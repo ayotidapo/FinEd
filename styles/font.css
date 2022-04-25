@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Gascogne-DemiBold';
+  src: url('../utils/font/Gascogne-DemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Medium';
+  src: url('../utils/font/Helvetica-Neue-Medium-Extended.otf') format('otf'),
+    url('../utils/font/Helvetica-Neue-Medium-Extended.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Regular';
+  src: url('../utils/font/helveticaneue.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue Bold';
+  src: url('../utils/font/Helvetica-Neue-Medium-Extended.otf') format('otf'),
+    url('../utils/font/Helvetica-Neue-Medium-Extended.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+/*  
+  @font-face {
+	font-family: 'Inter';
+	src: url('/fonts/SFUIText-Regular.woff2') format('woff2'),
+	  url('/fonts/SFUIText-Regular.woff') format('woff'),
+	  url('/fonts/SFUIText-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+  }
+   */

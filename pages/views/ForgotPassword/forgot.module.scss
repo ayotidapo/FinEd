@@ -1,0 +1,74 @@
+.forgotPw{
+	display: flex;
+	justify-content: center;
+    padding-top: 150px;
+	width:100%;
+	height:100vh;
+	.wrapper{
+		display: flex;
+		flex-direction: column;
+		width:500px;
+		height:500px;
+	}
+	.topSection{
+		text-align: center;
+		h2{
+			font-size: var(--f-32);
+			+ p{
+				font-size: var(--f-16);
+				color: var(--txt-col2);
+				font-family: Helvetica Neue Regular, sans-serif;
+				width: 81%;
+				margin: 25px auto;
+			}
+			
+		}
+		
+		
+	}
+	.logodiv{
+		position: relative;
+		display: inline-block;
+		width: 182.3px;
+        height: 32px;
+		margin-bottom: 20px;
+	}
+	input{
+		margin-bottom: 32px;
+	}
+	.fg_pass{
+		font-size: var(--f-14);
+		font-family: Helvetica Neue Regular, sans-serif;
+		color: var(--col-sec);
+	}
+	.sign_up{
+		display: flex;
+		justify-content: space-between;
+		font-family: Helvetica Neue Regular, sans-serif;
+		font-size: var(--f-14);
+		margin-top: 40px;
+		align-items: center;
+		a{
+			color: var(--col-sec);
+			text-decoration: underline;
+			font-weight: bold;
+			margin-left: 5px;
+			
+		}
+		span{
+			color: #637170;
+		}
+		button{
+			background-color: var(--btn-col-1);
+			width: 206px;
+		
+			svg{
+				margin-top: 5px;
+                margin-left: 7px;
+			}
+		}
+	}
+	
+}
+
+//forgotPw

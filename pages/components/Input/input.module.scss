@@ -1,0 +1,32 @@
+.input{  
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #E5E5E5;
+	padding-left: 10px;
+	padding-right: 10px;
+    height: 45px;
+    outline: none;
+    font-size: 16px;
+    color:var(--txt-col);
+	flex-shrink: 0;
+    // background-color: transparent;
+
+}
+
+
+
+
+.label{
+	position: relative;
+	display: block;
+	width:100%;
+	color: #7C7C7C;
+	font-size: var(--f-14);
+	font-family: Helvetica Neue Regular;
+	& > span{
+		display: inline-block;
+		position:absolute;
+		left:0px;
+		top: 28px
+	};
+}
