@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import Button from 'pages/components/Button'
-import Icon from 'pages/components/Icon'
-import Input from 'pages/components/Input'
+import Button from 'components/Button'
+import Icon from 'components/Icon'
+import Input from 'components/Input'
+import Logo from 'components/Logo'
 import styles from './footer.module.scss'
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
 		<footer className={styles.footer}>
 			<div className={styles.left_div}>
 				<div className={styles.logodiv}>
-					<Image src="/assets/logo.png" layout='fill' alt="logo" />
+					<Logo />
 				</div>
 				<p>&copy; 2021 The Money Africa. All rights reserved.</p>
 				<div className={styles.socials}>

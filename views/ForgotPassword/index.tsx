@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import Button from 'pages/components/Button'
-import Icon from 'pages/components/Icon'
-import Input from 'pages/components/Input'
-import styles from 'pages/views/ForgotPassword/forgot.module.scss'
+import Button from 'components/Button'
+import Icon from 'components/Icon'
+import Input from 'components/Input'
+import styles from './forgot.module.scss'
+import Logo from 'components/Logo'
 
 const ForgotPwPage = () => {
 	return (
@@ -11,7 +11,7 @@ const ForgotPwPage = () => {
 			<section className={styles.wrapper}>
 				<div className={styles.topSection}>
 					<div className={styles.logodiv}>
-						<Image src="/assets/logo.png" layout="fill" alt="logo" />
+						<Logo />
 					</div>
 					<h2>Forgot Password</h2>
 					<p>Please provide the email address you used when you signed up for your MoneyAfrica account.</p>

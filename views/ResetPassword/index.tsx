@@ -1,9 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Button from 'pages/components/Button'
-import Icon from 'pages/components/Icon'
-import Input from 'pages/components/Input'
+import Button from 'components/Button'
+import Icon from 'components/Icon'
+import Input from 'components/Input'
 import styles from './reset.module.scss'
+import Logo from 'components/Logo'
 
 const ResetPasswordPage = () => {
 	return (
@@ -11,7 +10,7 @@ const ResetPasswordPage = () => {
 			<section className={styles.wrapper}>
 				<div className={styles.topSection}>
 					<div className={styles.logodiv}>
-						<Image src="/assets/logo.png" layout="fill" alt="logo" />
+						<Logo />
 					</div>
 					<h2>Reset password</h2>
 					<p>Enter your new password for your account.</p>

@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
-import Header from 'pages/components/Header'
+import Header from 'components/Header'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss';
-import Icon from 'pages/components/Icon'
-import Footer from 'pages/components/Footer'
-import Button from './components/Button';
+import Icon from 'components/Icon'
+import Footer from 'components/Footer'
+import Button from '../components/Button';
 
 const Home: NextPage = () => {
   return (
@@ -142,9 +142,9 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <Footer />
-      </main>
 
+      </main>
+      <Footer />
 
     </div >
   )
