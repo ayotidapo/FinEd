@@ -92,16 +92,17 @@ a {
 .h2 {
   font-size: var(--f-64);
 }
-.container {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--pg-bg-col);
-  padding: 20px 0px;
-  padding-bottom: 0px;
-  overflow: scroll;
-  max-width: 1663px;
-  margin: 0 auto;
+.title{
+  font-size: var(--f-32);
+  font-family: Gascogne-DemiBold, sans-serif; 
+  font-weight: 400;
+
 }
+.title + p{
+  width:100%
+}
+
+
 .btn_arrow_dw::after {
   content: url('../svgs/arrow.svg');
   margin-top: 5px;
@@ -124,4 +125,13 @@ a {
  
   padding-right: 28px;
 
+}
+
+.country{
+  width:102px;
+}
+
+
+.lll{
+  color:red
 }
