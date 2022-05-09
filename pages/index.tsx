@@ -8,7 +8,7 @@ import Button from '../components/Button';
 
 const Home: NextPage = () => {
   return (
-    <div className="container">
+    <div >
       <Header />
 
       <main className={styles.main}>

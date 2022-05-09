@@ -1,6 +1,10 @@
 import { Logo2 } from 'components/Logo'
+import Input from 'components/Input'
+import Icon from 'components/Icon'
 import Image from 'next/image'
 import styles from './signup.module.scss'
+import Link from 'next/link'
+import Button from 'components/Button'
 
 interface Props {
 
@@ -8,7 +12,7 @@ interface Props {
 
 const SignUpPage: React.FC<Props> = () => {
 	return (
-		<div className={styles.signup}>
+		<div className={`signupWrapper ${styles.signup}`}>
 			<main className={styles.wrapper}>
 				<section className={styles.left}>
 					<div className={styles.imgdiv}>
@@ -25,7 +29,43 @@ const SignUpPage: React.FC<Props> = () => {
 				</section>
 				<section className={styles.right}>
 					<div className={styles.formdiv}>
-						<form>
+						<h2 className={`title ${styles.title}`}>Get Started</h2>
+						<p>Start building your financial knowledge bank with our   over 45+ ready-made courses.</p>
+						<form className={styles.signupForm}>
+							<div className={styles.split}>
+								<Input type="text" leftIcon={{ name: 'user' }} required={true} label="First name" />
+								<Input type="text" leftIcon={{ name: 'user' }} required={true} label="Last name" />
+							</div>
+
+							<Input type="email" leftIcon={{ name: 'envelope' }} required={true} label="Email Address" />
+							<div className={styles.split_phone}>
+								<Input type="text" leftIcon={{ name: 'phone' }} rightIcon={{ name: 'caret-down', pos: [72, 18] }}
+									required={true} label="Phone number" readOnly
+								>
+									<Icon id="nigeria" width={24} height={24} className={styles.nigeria} />
+								</Input>
+								<Input type="tel" required={true} inputClass={styles.phone}>
+									<span className={styles.number}>+234</span>
+								</Input>
+							</div>
+							<Input type="password" label="Enter Password" leftIcon={{ name: 'padlock' }}
+								rightIcon={{ name: 'lock-password', pos: ['95%', 18] }}
+							/>
+							<Input type="password" label="Re-enter Password" leftIcon={{ name: 'padlock' }}
+								rightIcon={{ name: 'lock-password', pos: ['95%', 18] }}
+							/>
+							<Input type="text" leftIcon={{ name: 'hamper' }} label="Referral code (optional)" />
+							<p className={styles.tnc}>By signing up, you agree to our <Link href="/reset-password">
+								<a className={styles.a}> Terms of Use</a></Link> and <Link href="/forgot-password"><a className={styles.a}>Privacy Policy.</a></Link>
+							</p>
+							<div className={styles.sign_up}>
+								<div>
+									<span>Already have an account?</span>
+									<Link href="/signup" ><a className={styles.a}>Sign Up</a>
+									</Link>
+								</div>
+								<Button>Sign up <Icon id="arrow-right" width={20} height={20} /></Button>
+							</div>
 
 						</form>
 					</div>
@@ -34,7 +74,7 @@ const SignUpPage: React.FC<Props> = () => {
 				</section>
 
 			</main>
-		</div>
+		</div >
 	)
 }
 export default SignUpPage
