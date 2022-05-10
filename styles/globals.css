@@ -134,6 +134,16 @@ a {
   width:102px;
 }
 
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--pg-bg-col);
+  padding: 0px;
+  padding-bottom: 0px;
+  overflow: scroll;
+  max-width: 1663px;
+  margin: 0 auto;
+}
 
 .lll{
   color:red
