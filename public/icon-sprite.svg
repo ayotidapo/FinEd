@@ -45,8 +45,11 @@
 </defs>
 </symbol>
 
-<symbol id="caret-down" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.75 0.875L8 7.625L1.25 0.875" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+
+
+
+<symbol id="caret-down" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.75 8.875L12 15.625L5.25 8.875" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 
 
@@ -55,6 +58,12 @@
 <path d="M6 21.25V19.25C6 18.1891 6.42143 17.1717 7.17157 16.4216C7.92172 15.6714 8.93913 15.25 10 15.25H14C15.0609 15.25 16.0783 15.6714 16.8284 16.4216C17.5786 17.1717 18 18.1891 18 19.25V21.25" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 
+<symbol id="hamper" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 8.25H4C3.44772 8.25 3 8.69772 3 9.25V11.25C3 11.8023 3.44772 12.25 4 12.25H20C20.5523 12.25 21 11.8023 21 11.25V9.25C21 8.69772 20.5523 8.25 20 8.25Z" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 8.25V21.25" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 12.25V19.25C19 19.7804 18.7893 20.2891 18.4142 20.6642C18.0391 21.0393 17.5304 21.25 17 21.25H7C6.46957 21.25 5.96086 21.0393 5.58579 20.6642C5.21071 20.2891 5 19.7804 5 19.25V12.25" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.5 8.25044C6.83696 8.25044 6.20107 7.98705 5.73223 7.5182C5.26339 7.04936 5 6.41348 5 5.75044C5 5.0874 5.26339 4.45151 5.73223 3.98267C6.20107 3.51383 6.83696 3.25044 7.5 3.25044C8.46469 3.23363 9.41003 3.7017 10.2127 4.5936C11.0154 5.4855 11.6383 6.75984 12 8.25044C12.3617 6.75984 12.9846 5.4855 13.7873 4.5936C14.59 3.7017 15.5353 3.23363 16.5 3.25044C17.163 3.25044 17.7989 3.51383 18.2678 3.98267C18.7366 4.45151 19 5.0874 19 5.75044C19 6.41348 18.7366 7.04936 18.2678 7.5182C17.7989 7.98705 17.163 8.25044 16.5 8.25044" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 
 
 	<symbol id="twitter" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

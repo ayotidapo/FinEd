@@ -17,9 +17,9 @@ const LoginPage = () => {
 					<p>Enter the same email and password you used to sign up to access accounts.</p>
 				</div>
 				<form style={{ marginTop: '20px' }}>
-					<Input type="email" label="Email Address" leftIcon={{ name: 'envelope', pos: [0, 28] }} required={true} />
-					<Input type="password" label="Enter Password" leftIcon={{ name: 'padlock', pos: [0, 28] }}
-						rightIcon={{ name: 'lock-password', pos: ['95%', 28] }}
+					<Input type="email" label="Email Address" leftIcon={{ name: 'envelope', pos: [28, 0] }} required={true} />
+					<Input type="password" label="Enter Password" leftIcon={{ name: 'padlock', pos: [28, 0] }}
+						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
 				</form>
 				<Link href="/forgot-password">

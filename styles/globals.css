@@ -102,6 +102,9 @@ a {
   width:100%
 }
 
+.center{
+  text-align: center;
+}
 
 .btn_arrow_dw::after {
   content: url('../svgs/arrow.svg');

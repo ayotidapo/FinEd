@@ -17,10 +17,10 @@ const ResetPasswordPage = () => {
 				</div>
 				<form style={{ marginTop: '20px' }}>
 					<Input type="password" label="New Password" leftIcon={{ name: 'padlock', pos: [0, 28] }} required={true}
-						rightIcon={{ name: 'lock-password', pos: ['95%', 28] }}
+						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
 					<Input type="password" label="Confirm New Password" leftIcon={{ name: 'padlock', pos: [0, 28] }}
-						rightIcon={{ name: 'lock-password', pos: ['95%', 28] }}
+						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
 				</form>
 				<div className={styles.sign_up}>

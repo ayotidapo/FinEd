@@ -17,7 +17,7 @@ const ForgotPwPage = () => {
 					<p>Please provide the email address you used when you signed up for your MoneyAfrica account.</p>
 				</div>
 				<form style={{ marginTop: '20px' }}>
-					<Input type="email" label="Email Address" leftIcon={{ name: 'envelope', pos: [0, 28] }} required={true} />
+					<Input type="email" label="Email Address" leftIcon={{ name: 'envelope', pos: [28, 0] }} required={true} />
 				</form>
 				<div className={styles.sign_up}>
 					<div>

@@ -29,8 +29,11 @@ const SignUpPage: React.FC<Props> = () => {
 				</section>
 				<section className={styles.right}>
 					<div className={styles.formdiv}>
-						<h2 className={`title ${styles.title}`}>Get Started</h2>
-						<p>Start building your financial knowledge bank with our   over 45+ ready-made courses.</p>
+						<div className="center">
+							<h2 className={`title ${styles.title}`}>Get Started</h2>
+							<p>Start building your financial knowledge bank with our   over 45+ ready-made courses.</p>
+						</div>
+
 						<form className={styles.signupForm}>
 							<div className={styles.split}>
 								<Input type="text" leftIcon={{ name: 'user' }} required={true} label="First name" />
@@ -39,7 +42,7 @@ const SignUpPage: React.FC<Props> = () => {
 
 							<Input type="email" leftIcon={{ name: 'envelope' }} required={true} label="Email Address" />
 							<div className={styles.split_phone}>
-								<Input type="text" leftIcon={{ name: 'phone' }} rightIcon={{ name: 'caret-down', pos: [72, 18] }}
+								<Input type="text" leftIcon={{ name: 'phone' }} rightIcon={{ name: 'caret-down', pos: [28, 72] }}
 									required={true} label="Phone number" readOnly
 								>
 									<Icon id="nigeria" width={24} height={24} className={styles.nigeria} />
@@ -49,10 +52,10 @@ const SignUpPage: React.FC<Props> = () => {
 								</Input>
 							</div>
 							<Input type="password" label="Enter Password" leftIcon={{ name: 'padlock' }}
-								rightIcon={{ name: 'lock-password', pos: ['95%', 18] }}
+								rightIcon={{ name: 'lock-password', pos: [18, '95%'] }}
 							/>
 							<Input type="password" label="Re-enter Password" leftIcon={{ name: 'padlock' }}
-								rightIcon={{ name: 'lock-password', pos: ['95%', 18] }}
+								rightIcon={{ name: 'lock-password', pos: [18, '95%'] }}
 							/>
 							<Input type="text" leftIcon={{ name: 'hamper' }} label="Referral code (optional)" />
 							<p className={styles.tnc}>By signing up, you agree to our <Link href="/reset-password">

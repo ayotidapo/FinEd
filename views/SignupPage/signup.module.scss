@@ -59,20 +59,23 @@
 		
 	}
 	.right{
-		padding-top: 28px;
+		padding-top: 18px;
 	    padding-bottom: 70px;
 		display: flex;
 		justify-content: flex-end;
-	    text-align: center;
+	
 		
 		.title{
+			margin-top: 10px;
 			&+p{
 				font-size: var(--f-16);
 				font-family: Helvetica Neue Regular, sans-serif;
 				width: 75%;
 				margin: 10px auto;
 				color:#637170;
-				padding-bottom: 13px;
+				padding-bottom: 25px;
+				padding-top:10px;
+				line-height: 1.5;
 
 			}
 		}
@@ -83,21 +86,26 @@
 			background-color: #fff;
 			border-radius: 24px;
 			padding: 40px;
+			// :global(.lll){
+			// 	color:blue
+			// }
+			
 		
 		}
 
 	}
 }
 .signupForm{
+	label{
+		margin-bottom: 25px;
+		
+	}
 
 	.split{
 		margin-top: 10px;
 		display: flex;
 		gap: 35px;	
-		label{
-			flex:1;
-			margin-top: 20px;
-		}	
+	
 	}
 	.split_phone{
 		display: flex;
@@ -111,23 +119,24 @@
 		}
 		.nigeria{
 			position: absolute;
-			top: 18px;
-            left: 40px;
+			top: 28px;
+            left: 38px;
 
 		}
 		.number{
 			position: absolute;
-			top: 22px;
+			top: 34px;
 			left: 0px;
+			font-size: var(--f-16);
+			color:#7C7C7C;
 		}
 		.phone{
-			padding-left: 35px;
+			padding-left: 40px;
 		}
 	}
 	.tnc{
 	    font-size: var(--f-14);
 		margin: 0px;
-		transform: translateY(-18px);
 		font-family: Helvetica Neue Regular, sans-serif;
 		color: #637170;
 		a{
@@ -140,8 +149,9 @@
 		justify-content: space-between;
 		font-family: Helvetica Neue Regular, sans-serif;
 		font-size: var(--f-16);
-		margin-top: 28px;
+		margin-top: 45px;
 		align-items: center;
+	
 		span{
 			color: #637170;
 		}

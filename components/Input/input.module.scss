@@ -1,30 +1,45 @@
 .input{  
     width: 100%;
     border: none;
-    border-bottom: 2px solid #E5E5E5;
 	padding-left: 10px;
 	padding-right: 10px;
-    height: 45px;
+	height: 100%;
     outline: none;
     font-size: 16px;
     color:var(--txt-col);
+	font-size: var(--f-16);
 	flex-shrink: 0;
     background-color: transparent;
-
+	height: 40px;
+	padding-top: 10px;
+    color: #000;
 }
 
 
-.label{
+.inputWrapper{
 	position: relative;
+	width: 100%;
 	display: block;
 	width:100%;
-	color: #7C7C7C;
-	font-size: var(--f-14);
+	border-bottom: 2px solid #E5E5E5;
 	font-family: Helvetica Neue Regular;
+    margin-bottom: 25px;
+		
+	
+
 	& > span{
 		display: inline-block;
 		position:absolute;
 		left:0px;
 		top: 28px
 	};
+	.label{
+	    position: relative;
+		left:0px;
+		top: 0px;
+		color: #7C7C7C;
+		font-size: var(--f-14);
+		min-height: 17px;
+		min-width: 20px;
+	}
 }
