@@ -14,7 +14,8 @@ interface Props {
 	children?: React.ReactNode;
 	type: string;
 	label?: string;
-	leftIcon?: IconType
+	leftIcon?: IconType;
+	wrapperClass?: string;
 	rightIcon?: IconType;
 	placeholder?: string;
 	required?: boolean;
@@ -22,7 +23,7 @@ interface Props {
 }
 
 const Input: React.FC<Props> = (props) => {
-	const { leftIcon, rightIcon, children, inputClass, ...rest } = props
+	const { leftIcon, rightIcon, children, inputClass, wrapperClass, ...rest } = props
 
 
 	const l = leftIcon as IconType
@@ -34,13 +35,13 @@ const Input: React.FC<Props> = (props) => {
 	const rytIpos = r?.pos || [28, 0]
 
 	return (
-		<label className={styles.inputWrapper}>
+		<label className={`${styles.inputWrapper} ${wrapperClass}`}>
 			<span className={styles.label}>{props.label}</span>
-			{leftIcon && <span className='icon-left' style={{ top: leftIpos[0], left: leftIpos[1] }}>
+			{leftIcon && <span className='icon icon-left' style={{ top: leftIpos[0], left: leftIpos[1] }}>
 				<Icon id={leftIname} width={24} height={24} />
 			</span>
 			}
-			{rightIcon && <span className='icon-right hand' style={{ top: rytIpos[0], left: rytIpos[1] }}>
+			{rightIcon && <span className='icon icon-right hand' style={{ top: rytIpos[0], left: rytIpos[1] }}>
 				<Icon id={rytIname} width={24} height={24} />
 			</span>
 			}

@@ -5,6 +5,7 @@ interface Props {
 	height: number;
 	width: number
 	className?: string,
+	style?: object,
 	onClickFunc?: () => void
 }
 

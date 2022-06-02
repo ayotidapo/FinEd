@@ -82,6 +82,21 @@ button > svg{
   
 }
 
+.btn{
+
+    border: none;
+    padding: 10px;
+    min-width: 70px;
+    border-radius: 8px;
+    background-color: var(--col-lyt-ash);
+    color: #fff;
+    font-size: var(--f-16);
+    
+}
+
+.red{
+ color: #C03E21
+}
 .hand:hover{
   cursor: pointer;
 }
@@ -116,7 +131,9 @@ a {
   left: 0px;
   bottom: 29px;
 }
-
+.icon{
+  color:#7C7C7C;
+}
 
 .icon-left ~ input{
  
@@ -143,8 +160,89 @@ a {
   overflow: scroll;
   max-width: 1663px;
   margin: 0 auto;
+  
 }
 
-.lll{
-  color:red
+.bar{
+  display: inline-block;
+
+    &::after{
+      content: ' ';
+      display: inline-block;
+      border: 1.7px solid #e5e5e5;
+      background:#e5e5e5 ;
+      margin-right: 2px;
+    
+     
+      
+    }
+    &:nth-of-type(1){  
+      &::after{
+        height:7px;
+      }   
+    }
+    &:nth-of-type(2){  
+      &::after{
+        height:10px;
+      }   
+    }
+    &:nth-of-type(3){  
+      &::after{
+        height:14px;
+      }   
+    }
+}
+
+.intermediate{
+  .bar{
+    &:nth-of-type(1){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F ;
+      }   
+    }
+    &:nth-of-type(2){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F ;
+      }   
+    }
+  }
+}
+
+.expert{
+    .bar{
+    &:nth-of-type(1){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F ;
+      }   
+    }
+    &:nth-of-type(2){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F ;
+      }   
+    }
+    &:nth-of-type(3){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F;
+        transform: translateY(-2px);
+      }   
+    }
+  }
+ 
+}
+
+.beginner{
+  .bar{
+    &:nth-of-type(1){  
+      &::after{
+        border: 1.7px solid #30656F;
+        background:#30656F ;
+      }   
+    }
+  }
+ 
 }
