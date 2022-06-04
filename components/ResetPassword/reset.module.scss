@@ -1,4 +1,4 @@
-.login{
+.resetPw{
 	display: flex;
 	justify-content: center;
     padding-top: 150px;
@@ -17,7 +17,7 @@
 			+ p{
 				font-size: var(--f-16);
 				color: var(--txt-col2);
-				font-family: Helvetica Neue Regular, sans-serif;
+				font-family: var(--font-2);
 				width: 81%;
 				margin: 25px auto;
 			}
@@ -36,13 +36,13 @@
 	
 	.fg_pass{
 		font-size: var(--f-14);
-		font-family: Helvetica Neue Regular, sans-serif;
+		font-family: var(--font-2);
 		color: var(--col-sec);
 	}
 	.sign_up{
 		display: flex;
-		justify-content: space-between;
-		font-family: Helvetica Neue Regular, sans-serif;
+		justify-content: flex-end;
+		font-family: var(--font-2);
 		font-size: var(--f-16);
 		margin-top: 40px;
 		align-items: center;
@@ -58,7 +58,7 @@
 		}
 		button{
 			background-color: var(--btn-col-1);
-			width: 148px;
+			width: 212px;
 		
 			svg{
 				margin-top: 5px;

@@ -1,7 +1,7 @@
-import Button from 'components/Button'
-import Icon from 'components/Icon'
-import Input from 'components/Input'
-import Logo from 'components/Logo'
+import Button from 'common/Button'
+import Icon from 'common/Icon'
+import Input from 'common/Input'
+import Logo from 'common/Logo'
 import styles from './footer.module.scss'
 
 const Footer = () => {
@@ -51,7 +51,7 @@ const Footer = () => {
 				<h2 className={styles.title}>Sign up for the news letter</h2>
 				<p>Sign up for our newsletter. Your email is never shared.</p>
 				<form>
-					<Input type="email" leftIcon={{ name: 'envelope', pos: [10, 0] }} required={true} />
+					<Input type="email" leftIcon={{ name: 'envelope' }} required={true} />
 					<Button>Subscribe</Button>
 				</form>
 			</div>

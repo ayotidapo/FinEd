@@ -1,4 +1,4 @@
-import ContentsPage from 'views/Contents'
+import ContentsPage from 'components/Contents'
 
 
 const Contents = () => {

@@ -1,35 +1,17 @@
-import Logo from 'components/Logo';
-import Icon from 'components/Icon';
-import Input from 'components/Input';
-import Button from 'components/Button';
-import VideoCard from 'components/VideoCard'
-import styles from './videos.module.scss'
+
+import HeaderWtSearch from 'common/HeaderWtSearch'
+import Icon from 'common/Icon';
+
+import VideoCard from 'common/VideoCard'
+import styles from './videoslist.module.scss'
 
 
-const VideoPage: React.FC = () => {
+const VideosListPage: React.FC = () => {
 
 	return (
 		<>
-			<header className={styles.header_wrap}>
-				<div className={styles.header_sec}>
-					<div>
-						<div className={styles.logo_box}>
-							<Logo />
-						</div>
-						<span className={`hand ${styles.xplore}`}>Explore</span>
-						<span className={`hand ${styles.cr_dn}`}>
-							<Icon id="caret-down" width={24} height={24} />
-						</span>
-					</div>
-					<div>
-						<Input type="text" leftIcon={{ name: 'search' }} wrapperClass={styles.wrapClass}
-							inputClass={styles.inptClass} placeholder="search"
-						/>
-						<Button className={styles.logIn}>Log In</Button>
-						<Button className={styles.btn}>Get Started</Button>
-
-					</div>
-				</div>
+			<header className={styles.video_header_wrap}>
+				<HeaderWtSearch />
 				<div className={styles.topics}>
 					<h2 className="title" >Learn with videos</h2>
 					<span className={`hand ${styles.xplore}`}>Filter Topics</span>
@@ -37,10 +19,9 @@ const VideoPage: React.FC = () => {
 						<Icon id="caret-down" width={24} height={24} />
 					</span>
 				</div>
-
-				{/* <Star /> */}
 			</header>
 			<main>
+
 				<div className={styles.content_wrap}>
 					<section className={styles.content_tabs}>
 						<span>Articles (14)</span>
@@ -68,4 +49,4 @@ const VideoPage: React.FC = () => {
 	)
 }
 
-export default VideoPage
+export default VideosListPage

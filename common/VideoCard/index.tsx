@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Icon from 'components/Icon'
-import Star from 'components/Ratings'
+import Icon from 'common/Icon'
+import Star from 'common/Ratings'
 import styles from './videocard.module.scss'
 
 const VideoCard: React.FC = () => {
@@ -28,12 +28,14 @@ const VideoCard: React.FC = () => {
 					{[1, 2, 3, 4, 5].map((n) => <Star key={n} />)} &nbsp;4.3
 					<span style={{ color: '#7C7C7C' }}>&nbsp;&nbsp;&nbsp;Updated Aug 9, 2021</span>
 				</div>
-				<p className={`expert ${styles.min_details}`}>
-					<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Intermediate
-					&nbsp;&nbsp;&nbsp;<Icon id="clock" width={20} height={20} />&nbsp;9 mins
-					&nbsp;&nbsp;&nbsp;<Icon id="file" width={20} height={20} />&nbsp;5 courses
-					&nbsp;&nbsp;&nbsp;&nbsp;<Icon id="see" width={20} height={20} />&nbsp;2,456
-				</p>
+				<div className={`expert ${styles.min_details}`}>
+					<span>
+						<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Intermediate
+					</span>
+					<span>&nbsp;&nbsp;&nbsp;<Icon id="clock" width={20} height={20} />&nbsp;9 mins</span>
+					<span>&nbsp;&nbsp;&nbsp;<Icon id="file" width={20} height={20} />&nbsp;5 courses</span>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;<Icon id="see" width={20} height={20} />&nbsp;2,456</span>
+				</div>
 				<p className={styles.content_labels}>
 					<label className='btn' style={{ background: '#F9D68A' }}>
 						MoneyAfrica

@@ -49,7 +49,7 @@
 		}
 		p{
 			font-size: var(--f-18);
-			font-family: Helvetica Neue Regular, sans-serif;
+			font-family: var(--font-2);
 			width: 62%;
 			text-align: center;
 			margin-top: 0;
@@ -69,7 +69,7 @@
 			margin-top: 10px;
 			&+p{
 				font-size: var(--f-16);
-				font-family: Helvetica Neue Regular, sans-serif;
+				font-family: var(--font-2);
 				width: 75%;
 				margin: 10px auto;
 				color:#637170;
@@ -137,7 +137,7 @@
 	.tnc{
 	    font-size: var(--f-14);
 		margin: 0px;
-		font-family: Helvetica Neue Regular, sans-serif;
+		font-family: var(--font-2);
 		color: #637170;
 		a{
 			text-decoration: underline;
@@ -147,7 +147,7 @@
 	.sign_up{
 		display: flex;
 		justify-content: space-between;
-		font-family: Helvetica Neue Regular, sans-serif;
+		font-family: var(--font-2);
 		font-size: var(--f-16);
 		margin-top: 45px;
 		align-items: center;

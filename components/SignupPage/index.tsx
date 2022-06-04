@@ -1,10 +1,10 @@
-import { Logo2 } from 'components/Logo'
-import Input from 'components/Input'
-import Icon from 'components/Icon'
+import { Logo2 } from 'common/Logo'
+import Input from 'common/Input'
+import Icon from 'common/Icon'
 import Image from 'next/image'
 import styles from './signup.module.scss'
 import Link from 'next/link'
-import Button from 'components/Button'
+import Button from 'common/Button'
 
 interface Props {
 

@@ -1,4 +1,5 @@
 .footer{
+	position: relative;
 	height: 393px;
 	display: flex;
 	padding: 0px 65px;
@@ -7,6 +8,7 @@
 	margin-top: 182px;
 	justify-content: center;
 	background-color: #fff;
+
 	> div{
 	
 	  width: 27%;
@@ -21,7 +23,7 @@
 	  height: 50px;
 	  + p{
 		font-size: var(--f-16);
-		font-family: Helvetica Neue Regular, sans-serif;
+		font-family: var(--font-2);
 	  }
 	}
 	.socials{
@@ -38,7 +40,7 @@
 	  display:flex;
 	  justify-content: space-between;
 	  font-size: var(--f-16);
-	  font-family: Helvetica Neue Regular, sans-serif;
+	  font-family: var(--font-2);
 	 
 		 nav{
 		   flex:1;

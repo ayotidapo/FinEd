@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Button from 'components/Button'
-import Icon from 'components/Icon'
-import Input from 'components/Input'
+import Button from 'common/Button'
+import Icon from 'common/Icon'
+import Input from 'common/Input'
 import styles from './forgot.module.scss'
-import Logo from 'components/Logo'
+import Logo from 'common/Logo'
 
 const ForgotPwPage = () => {
 	return (

@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
-import Button from 'components/Button'
-import Logo from 'components/Logo'
+import Button from 'common/Button'
+import Logo from 'common/Logo'
 import styles from './header.module.scss';
 import { useRouter } from 'next/router';
 

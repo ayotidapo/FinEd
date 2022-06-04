@@ -1,8 +1,8 @@
-import Button from 'components/Button'
-import Icon from 'components/Icon'
-import Input from 'components/Input'
+import Button from 'common/Button'
+import Icon from 'common/Icon'
+import Input from 'common/Input'
 import styles from './reset.module.scss'
-import Logo from 'components/Logo'
+import Logo from 'common/Logo'
 
 const ResetPasswordPage = () => {
 	return (
@@ -16,10 +16,10 @@ const ResetPasswordPage = () => {
 					<p>Enter your new password for your account.</p>
 				</div>
 				<form style={{ marginTop: '20px' }}>
-					<Input type="password" label="New Password" leftIcon={{ name: 'padlock', pos: [0, 28] }} required={true}
+					<Input type="password" label="New Password" leftIcon={{ name: 'padlock', pos: [28, 0] }} required={true}
 						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
-					<Input type="password" label="Confirm New Password" leftIcon={{ name: 'padlock', pos: [0, 28] }}
+					<Input type="password" label="Confirm New Password" leftIcon={{ name: 'padlock', pos: [28, 0] }}
 						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
 				</form>
