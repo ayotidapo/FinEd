@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
-import Header from 'components/Header'
+import Header from 'common/Header'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss';
-import Icon from 'components/Icon'
-import Footer from 'components/Footer'
-import Button from '../components/Button';
+import Icon from 'common/Icon'
+import Footer from 'common/Footer'
+import Button from '../common/Button';
 
 const Home: NextPage = () => {
   return (
@@ -151,3 +151,10 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  }
+}
