@@ -1,11 +1,13 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 import Icon from 'common/Icon'
 import Star from 'common/Ratings'
 import styles from './videocard.module.scss'
 
 const VideoCard: React.FC = () => {
+	const router = useRouter();
 	return (
-		<article className={styles.video_card}>
+		<article className={styles.video_card} onClick={() => router.push(`/video/how-to-trade-in-crypto`)}>
 			<div className={styles.video_thumbnail}>
 				<Image src="/assets/girl.png" layout='fill' alt="top-sec-img" />
 				<div className={styles.overlay}>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 import Button from 'common/Button'
 import Icon from 'common/Icon'
 import Input from 'common/Input'
@@ -6,6 +7,7 @@ import styles from './login.module.scss'
 import Logo from 'common/Logo'
 
 const LoginPage = () => {
+	const router = useRouter()
 	return (
 		<main className={styles.login}>
 			<section className={styles.wrapper}>
@@ -33,7 +35,7 @@ const LoginPage = () => {
 						<Link href="/signup" ><a className={styles.a}>Sign Up</a>
 						</Link>
 					</div>
-					<Button>Login <Icon id="arrow-right" width={20} height={20} /></Button>
+					<Button onClick={() => router.push(`/contents/videos`)}>Login <Icon id="arrow-right" width={20} height={20} /></Button>
 				</div>
 			</section>
 
