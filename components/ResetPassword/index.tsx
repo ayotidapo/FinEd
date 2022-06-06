@@ -1,10 +1,13 @@
+import { useRouter } from 'next/router';
 import Button from 'common/Button'
 import Icon from 'common/Icon'
 import Input from 'common/Input'
 import styles from './reset.module.scss'
 import Logo from 'common/Logo'
 
+
 const ResetPasswordPage = () => {
+	const router = useRouter()
 	return (
 		<main className={styles.resetPw}>
 			<section className={styles.wrapper}>
@@ -25,7 +28,7 @@ const ResetPasswordPage = () => {
 				</form>
 				<div className={styles.sign_up}>
 
-					<Button>Reset password <Icon id="arrow-right" width={20} height={20} /></Button>
+					<Button onClick={() => router.push('/forgot-password')}>Reset password <Icon id="arrow-right" width={20} height={20} /></Button>
 				</div>
 			</section>
 

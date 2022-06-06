@@ -1,4 +1,5 @@
 import Button from 'common/Button'
+import { useRouter } from 'next/router'
 import HeaderWtSearch from 'common/HeaderWtSearch'
 import Icon from 'common/Icon'
 import LabelTag from 'common/LabelTag'
@@ -8,6 +9,7 @@ import styles from './videodetails.module.scss'
 
 
 const VideoDetailsPage: React.FC = () => {
+	const router = useRouter()
 	return (
 		<>
 			<header className={styles.header}>
@@ -65,7 +67,7 @@ const VideoDetailsPage: React.FC = () => {
 					<h2 className='title'>
 						Get Started
 					</h2>
-					<Button className={styles.si_btn}>
+					<Button className={styles.si_btn} onClick={() => router.push('/signup')}>
 						Sign up with email <Icon id="arrow-right" width={20} height={20} />
 					</Button>
 					<p className={styles.pp}>

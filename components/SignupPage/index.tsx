@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Logo2 } from 'common/Logo'
 import Input from 'common/Input'
 import Icon from 'common/Icon'
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const SignUpPage: React.FC<Props> = () => {
+	const router = useRouter()
 	return (
 		<div className={`signupWrapper ${styles.signup}`}>
 			<main className={styles.wrapper}>
@@ -67,7 +69,7 @@ const SignUpPage: React.FC<Props> = () => {
 									<Link href="/signup" ><a className={styles.a}>Sign Up</a>
 									</Link>
 								</div>
-								<Button>Sign up <Icon id="arrow-right" width={20} height={20} /></Button>
+								<Button onClick={() => router.push('/reset-password')}>Sign up <Icon id="arrow-right" width={20} height={20} /></Button>
 							</div>
 
 						</form>
