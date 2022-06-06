@@ -69,7 +69,7 @@ const SignUpPage: React.FC<Props> = () => {
 									<Link href="/signup" ><a className={styles.a}>Sign Up</a>
 									</Link>
 								</div>
-								<Button onClick={() => router.push('/reset-password')}>Sign up <Icon id="arrow-right" width={20} height={20} /></Button>
+								<Button onClick={() => router.push('/contents/videos')}>Sign up <Icon id="arrow-right" width={20} height={20} /></Button>
 							</div>
 
 						</form>
