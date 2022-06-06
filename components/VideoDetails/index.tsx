@@ -52,7 +52,7 @@ const VideoDetailsPage: React.FC = () => {
 						<div className={`intermediate ${styles.min_details}`}>
 							<span className='bar' /><span className='bar' /><span className='bar' />&nbsp; Intermediate
 							&nbsp;&nbsp;
-							<Icon id="clock" width={20} height={20} /> &nbsp;45mins
+							<Icon id="clock" width={20} height={20} /> &nbsp;15mins
 						</div>
 					</section>
 				</div>
@@ -88,7 +88,108 @@ const VideoDetailsPage: React.FC = () => {
 					The composition can ultimately determine the difference between a good and a bad...
 					<span style={{ color: '#C03E21', fontWeight: 'bold' }} className="hand"> Show more.</span>
 				</p>
+			</section>
+			<section className={styles.content}>
+				<h2 className='title'>Course content</h2>
+				<ul>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> What is an RRSP &amp; How does it work?</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> Chequing vs Savings Account</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> What is Corporate Account?</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+					<li>
+						<span><Icon id="padlock" width={20} height={20} /> What is LIRA?</span>
+						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
+					</li>
+				</ul>
+			</section>
+			<section className={styles.ratings}>
+				<h2 className='title' style={{ marginBottom: '20px' }}>Ratings</h2>
+				<article className={styles.comment}>
+					<div className={styles.avatar}>
+						MA
+					</div>
+					<div className={styles.comment_txt}>
+						<div className={styles.sp}>
+							<span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
+						</div>
+						<div className="starwrap">
+							<Star /><Star /><Star /><Star /><Star /><span style={{ color: "#7c7c7c" }}>4.3</span>
+						</div>
+						<p>
+							So far so good, first day of use was impressive, but the plastic bucket is too light weight can break easily if handled by children. But overall.... Good but time will tell.
+						</p>
 
+					</div>
+
+				</article>
+				<article className={styles.comment}>
+					<div className={styles.avatar}>
+						MA
+					</div>
+					<div className={styles.comment_txt}>
+						<div className={styles.sp}>
+							<span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
+						</div>
+						<div className="starwrap">
+							<Star /><Star /><Star /><Star /><Star /><span style={{ color: "#7c7c7c" }}>4.3</span>
+						</div>
+						<p>
+							So far so good, first day of use was impressive, but the plastic bucket is too light weight can break easily if handled by children. But overall.... Good but time will tell.
+						</p>
+
+					</div>
+
+				</article><article className={styles.comment}>
+					<div className={styles.avatar}>
+						MA
+					</div>
+					<div className={styles.comment_txt}>
+						<div className={styles.sp}>
+							<span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
+						</div>
+						<div className="starwrap">
+							<Star /><Star /><Star /><Star /><Star /><span style={{ color: "#7c7c7c" }}>4.3</span>
+						</div>
+						<p>
+							So far so good, first day of use was impressive, but the plastic bucket is too light weight can break easily if handled by children. But overall.... Good but time will tell.
+						</p>
+
+					</div>
+
+				</article><article className={styles.comment}>
+					<div className={styles.avatar}>
+						MA
+					</div>
+					<div className={styles.comment_txt}>
+						<div className={styles.sp}>
+							<span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
+						</div>
+						<div className="starwrap">
+							<Star /><Star /><Star /><Star /><Star /><span style={{ color: "#7c7c7c" }}>4.3</span>
+						</div>
+						<p>
+							So far so good, first day of use was impressive, but the plastic bucket is too light weight can break easily if handled by children. But overall.... Good but time will tell.
+						</p>
+
+					</div>
+
+				</article>
 			</section>
 		</>
 	)

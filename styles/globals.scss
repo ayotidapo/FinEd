@@ -257,3 +257,17 @@ a {
   height: 100%;
   background: rgba(0,0,0,0.5);
 }
+
+.starwrap{
+  display: flex;
+  margin-top: 10px;
+  font-size: var(--f-16);
+  color:#D78806;
+  font-family: var(--font-2);
+  & > div{
+    margin: 0 5px;
+    &:first-child{
+    margin: 0px;
+    }
+  }
+}
