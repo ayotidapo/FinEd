@@ -6,7 +6,7 @@ import styles from './footer.module.scss'
 
 const Footer = () => {
 	return (
-		<footer className={styles.footer}>
+		<footer className={`app-pad ${styles.footer}`}>
 			<div className={styles.left_div}>
 				<div className={styles.logodiv}>
 					<Logo />

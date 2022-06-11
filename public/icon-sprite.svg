@@ -157,6 +157,13 @@
 		<path d="M9 21V15C9 14.4696 9.21071 13.9609 9.58579 13.5858C9.96086 13.2107 10.4696 13 11 13H13C13.5304 13 14.0391 13.2107 14.4142 13.5858C14.7893 13.9609 15 14.4696 15 15V21" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
+	<symbol id="hamburger" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<line x1="0.75" y1="1.25" x2="23.25" y2="1.25" stroke="#015351" stroke-width="1.5" stroke-linecap="round"/>
+		<line x1="0.75" y1="7.25" x2="23.25" y2="7.25" stroke="#015351" stroke-width="1.5" stroke-linecap="round"/>
+		<line x1="0.75" y1="13.25" x2="23.25" y2="13.25" stroke="#015351" stroke-width="1.5" stroke-linecap="round"/>
+	</symbol>
+
+
 
 
 </svg>

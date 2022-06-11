@@ -7,7 +7,7 @@ import styles from './headerwtsearch.module.scss'
 const HeaderWtSearch: React.FC = () => {
 	return (
 		<>
-			<div className={styles.header_sec}>
+			<div className={`app-pad ${styles.header_sec}`}>
 				<div>
 					<div className={styles.logo_box}>
 						<Logo />

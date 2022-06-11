@@ -3,14 +3,14 @@
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  padding: 0px 65px;
+  margin-top:10px;
   .logo_box {
     position: relative;
     width: 148px;
     height: 26px;
   }
   .header_nav {
-    width: 46%;
+     width: 46%; 
   }
   .header_ul {
     display: flex;
@@ -59,4 +59,39 @@
       }
     }
   }
+  .hamburger{
+    display: none;
+  }
 }
+
+
+@media only screen and (max-width: 1087px)  {
+  .header{
+    .header_ul{
+      padding-left: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 990px)  {
+  .header{
+    .header_nav, .header_btn_div{
+       display: none;
+    }
+    .hamburger{
+      display: inline-block;
+    }  
+  }
+  
+}
+
+@media only screen and (max-width: 425px)  {
+  .header{
+    padding: 0 10px;
+  }
+  
+}
+
+
+
+

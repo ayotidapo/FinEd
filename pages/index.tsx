@@ -12,10 +12,10 @@ const Home: NextPage = () => {
       <Header />
 
       <main className={styles.main}>
-        <div style={{ padding: '0px 65px' }}>
+        <div className='app-pad'>
           <section className={styles.top_sec}>
             <div className={styles.left_div}>
-              <h2 className={styles.title}>Improve your financial health.</h2>
+              <h2 className="title">Improve your financial health.</h2>
               <p>
                 MoneyAfrica is a subscription-based Ed-tech platform providing access to free and paid financial knowledge for learners.
               </p>
@@ -47,9 +47,9 @@ const Home: NextPage = () => {
             </div>
           </section>
         </div>
-        <section className={styles.welcome_div}>
+        <section className={`app-pad ${styles.welcome_div}`}>
           <div>
-            <h2 className={styles.title}> Welcome to MoneyAfrica</h2>
+            <h2 className="title"> Welcome to MoneyAfrica</h2>
             <p>
               Here’s an introductory message from Tosin Olaseinde, CEO MoneyAfrica on why you should hop on this ride with us.
             </p>
@@ -69,7 +69,7 @@ const Home: NextPage = () => {
         </section>
         <section className={styles.explore}>
           <div className={styles.explore_txt}>
-            <h2 className={styles.title}>Explore a variety of powerful financial tools packaged for you.</h2>
+            <h2 className="title">Explore a variety of powerful financial tools packaged for you.</h2>
             <p>
               We have amazing services that can aid you through your journey to making better financial decisions and becoming an expert at money management.
             </p>
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
         <section className={styles.options}>
           <article>
             <div>
-              <h2 className={styles.title}>Premium </h2>
+              <h2 className="title">Premium </h2>
               <p>
                 Talk to financial advisers, access powerful resources to support your financial goals.
               </p>
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
             </Button>
           </article>
           <article>
-            <h2 className={styles.title}>Learn </h2>
+            <h2 className="title">Learn </h2>
             <p>
               Talk to financial advisers, access powerful resources to support your financial goals.
             </p>
@@ -103,7 +103,7 @@ const Home: NextPage = () => {
             </Button>
           </article>
           <article>
-            <h2 className={styles.title}>Communities </h2>
+            <h2 className="title">Communities </h2>
             <p>
               Have access to powerful resources, investment tips and real-time support.
             </p>
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
             </Button>
           </article>
           <article>
-            <h2 className={styles.title}>Kids</h2>
+            <h2 className="title">Kids</h2>
             <p>
               Financial Education Made Easy for Kids. We run boot camps that help kids acquire financial literacy skills in a fun way.
             </p>
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
           </article>
           <div className={styles.learnMore}>
             <div>
-              <h2 className={styles.title}>Automated Digital Advisory</h2>
+              <h2 className="title">Automated Digital Advisory</h2>
               <p>
                 Improve your financial health and investment strategy by answering a few questions we’ll ask you.
               </p>

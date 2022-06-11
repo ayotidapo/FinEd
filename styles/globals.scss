@@ -115,7 +115,9 @@ a {
 
 }
 .title + p{
-  width:100%
+  width:100%;
+  font-size: var(--f-18);
+  font-family: var(--font-2);
 }
 
 .center{
@@ -271,3 +273,30 @@ a {
     }
   }
 }
+
+.app-pad{
+  padding: 0px 65px;
+}
+
+@media only screen and (max-width: 1146px)      {
+  .app-pad{
+   padding: 0px 35px;
+  }
+}
+@media only screen and (max-width: 1024px)      {
+  
+  .title{
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width: 425px)      {
+
+ 
+  
+  .app-pad{
+    padding: 0px;
+   }
+}
+
+// @media only screen and (max-width: 1146px) and (min-width: 1024px)     {

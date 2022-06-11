@@ -2,7 +2,6 @@
 	position: relative;
 	height: 393px;
 	display: flex;
-	padding: 0px 65px;
 	padding-top: 80px;
 	width: 100%;
 	margin-top: 182px;
@@ -19,7 +18,7 @@
 	}
 	.logodiv{
 	  position: relative;
-	  width:282px;
+	  width: 79.7%;
 	  height: 50px;
 	  + p{
 		font-size: var(--f-16);
@@ -83,5 +82,30 @@
   }
   
   
+
+
+@media only screen and (max-width: 425px){
+	.footer{
+		height: auto;
+		flex-wrap: wrap;
+		flex-direction: column;
+		:nth-child(1){
+		// order: 3; 
+
+		}
+		.mid_div{
+			width: 100%;
+			flex-wrap: wrap;
+			nav{
+				display: flex;
+				width:50%;
+				flex: auto;
+				flex-shrink: 0;
+				flex-wrap: wrap;
+			}
+			
+		}
+	}
+}
   
   

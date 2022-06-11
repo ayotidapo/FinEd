@@ -15,7 +15,7 @@ const VideoDetailsPage: React.FC = () => {
 			<header className={styles.header}>
 				<HeaderWtSearch />
 			</header>
-			<div className={styles.jumbotron}>
+			<div className={`app-pad ${styles.jumbotron}`}>
 				<nav className={styles.breadcrumb}>
 					<ul>
 						<li style={{ marginTop: "-2px" }}>
