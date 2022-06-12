@@ -89,21 +89,78 @@
 		height: auto;
 		flex-wrap: wrap;
 		flex-direction: column;
+		padding-left: 15px;
 		:nth-child(1){
-		// order: 3; 
+		 order: 3; 
 
+		}
+		> div{
+			width: 80%;
 		}
 		.mid_div{
 			width: 100%;
 			flex-wrap: wrap;
+		    margin-bottom: 20px;
 			nav{
-				display: flex;
+				
 				width:50%;
 				flex: auto;
 				flex-shrink: 0;
 				flex-wrap: wrap;
+				padding-left: 0px;
+				&:nth-of-type(1) {
+					padding-left: 0px;
+				}
 			}
+			:nth-child(1){
+				order: 3; 
+	   
+			   }			
+		}
+
+		.right_div{
+
+           p{
+			   font-size: 14px;
+		   }
+
+		   button{
+			   margin-top: 0;
+		   }
 			
+		}
+
+
+		.left_div{
+			display: flex;
+			flex-direction: column;
+			margin-top: 35px;
+			:nth-child(2){
+				order: 3; 
+	   
+			}
+			.logodiv{
+				position: relative;
+				width: 50.7%;
+				height: 25px;
+				margin-top: 25px;
+				+ p{
+				font-size: var(--f-16);
+				font-family: var(--font-2);
+				margin-top: 10px;
+				}
+			}
+		}
+		
+	}
+	.socials{
+		
+		svg{
+		  margin-left: 20px;
+		  width:25px;
+		  &:hover{
+			cursor: pointer;
+		  }
 		}
 	}
 }

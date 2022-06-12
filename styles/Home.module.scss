@@ -269,7 +269,7 @@
       }
     }
     .wallet_div{
-      position: relative;
+      // position: relative;
       left: 0px;
       top: 70px;
       img{
@@ -369,9 +369,11 @@
   .welcome_div,.top_sec, .explore >  .explore_txt{
     :global(.title){
       font-size: 32px;
+      padding-left: 15px;
       + p{
         font-size: 14px;
         line-height: 21px;
+        
       }
     }
   }
@@ -410,7 +412,7 @@
   }
 }
 
-@media only screen and (max-width: 425px)      {
+@media only screen and (max-width: 425px) {
 
 .btns_div{
   display: flex;
@@ -424,15 +426,17 @@
   .welcome_div,.top_sec, .explore >  .explore_txt{
     width: 100%;
     padding: 20px 15px;
+    
 
     :global(.title){
-      text-align: center;
       width: 100%;
       font-size: 24px;
+      padding-left: 0;
       + p{
         width: 100%;
         font-size: 14px;
         line-height: 21px;
+     
       }
     }
   }
@@ -459,10 +463,88 @@
     }
   }
   .options{
-    >article{
+    .learnMore, >article{
       width: 100%;
+      overflow:hidden;
+      padding-left: 15px;
+      :global(.title){
+        font-size: var(--f-24);
+        + p{
+          font-size: var(--f-16);
+          line-height: 20px;
+        }
+      }
+      .img_opt_box{
+        width: 42.3%;
+      }
+      &:nth-of-type(1){
+        .img_opt_box{
+          height: 37.9%;
+          right: -242px;
+          bottom: -276px;
+        }
+      }
+      &:nth-of-type(2){
+        .img_opt_box{
+          height: 37.9%;
+          right: -239px;
+          bottom: -300.8px;
+        }
+      }
+      &:nth-of-type(3){
+        .img_opt_box{
+          height: 37.9%;
+          right: -248px;
+          bottom: -299.5px;
+        }
+        
+      }
+      &:nth-of-type(4){
+        .img_opt_box{
+          height: 37.9%;                   
+          right: -244px;
+          bottom: -287px;   
+        }
+      }
+     
+   
     }
+  }
+ .options .learnMore{
+      // height: auto;
+      flex-direction: column;
+     justify-content: center;
+     text-align: center;
+      > div{
+        
+        button{
+          margin: 0px auto;
+        }
+      }
+      .wallet_div{
+        position: relative;
+         width:100%;
+         top:-20px;
+        img{
+          transform: scale(1);
+        }
+      }
+
+    
   }
 }
 
 
+@media only screen and (max-width: 320px) {
+    .welcome_div{
+      padding-left: 32px;
+    }
+    .options{
+      >article{
+     
+        .img_opt_box{
+          width: 0;
+        }
+    }
+  }
+}

@@ -51,7 +51,7 @@ const Footer = () => {
 				<h2 className={styles.title}>Sign up for the news letter</h2>
 				<p>Sign up for our newsletter. Your email is never shared.</p>
 				<form>
-					<Input type="email" leftIcon={{ name: 'envelope' }} required={true} />
+					<Input type="email" label="Email Address" leftIcon={{ name: 'envelope' }} required={true} />
 					<Button>Subscribe</Button>
 				</form>
 			</div>

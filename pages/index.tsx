@@ -8,7 +8,7 @@ import Button from '../common/Button';
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <Header />
 
       <main className={styles.main}>
