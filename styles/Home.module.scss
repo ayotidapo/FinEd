@@ -269,7 +269,7 @@
       }
     }
     .wallet_div{
-      // position: relative;
+      position: relative;
       left: 0px;
       top: 70px;
       img{
@@ -463,8 +463,9 @@
     }
   }
   .options{
-    .learnMore, >article{
+     >article{
       width: 100%;
+      height: 326px;
       overflow:hidden;
       padding-left: 15px;
       :global(.title){
@@ -475,35 +476,37 @@
         }
       }
       .img_opt_box{
+        height: 68.9%;
         width: 42.3%;
+        bottom: -62px;
       }
       &:nth-of-type(1){
         .img_opt_box{
-          height: 37.9%;
-          right: -242px;
-          bottom: -276px;
+          
+          right: -262px;
+          bottom: -60px;
         }
       }
       &:nth-of-type(2){
         .img_opt_box{
-          height: 37.9%;
+         
           right: -239px;
-          bottom: -300.8px;
+         
         }
       }
       &:nth-of-type(3){
         .img_opt_box{
-          height: 37.9%;
+        
           right: -248px;
-          bottom: -299.5px;
+        
         }
         
       }
       &:nth-of-type(4){
         .img_opt_box{
-          height: 37.9%;                   
+              
           right: -244px;
-          bottom: -287px;   
+           
         }
       }
      
@@ -511,7 +514,8 @@
     }
   }
  .options .learnMore{
-      // height: auto;
+      padding-left:15px;
+      padding-right:15px;
       flex-direction: column;
      justify-content: center;
      text-align: center;
@@ -529,7 +533,13 @@
           transform: scale(1);
         }
       }
-
+      :global(.title){
+        font-size: var(--f-24);
+        + p{
+          font-size: var(--f-16);
+          line-height: 20px;
+        }
+      }
     
   }
 }
