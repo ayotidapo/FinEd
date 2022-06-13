@@ -95,27 +95,27 @@ const VideoDetailsPage: React.FC = () => {
 				<h2 className='title'>Course content</h2>
 				<ul>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
+						<span className={styles.f_sp} ><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> What is an RRSP &amp; How does it work?</span>
+						<span className={styles.f_sp}><Icon id="padlock" width={20} height={20} /> What is an RRSP &amp; How does it work?</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> Chequing vs Savings Account</span>
+						<span className={styles.f_sp}><Icon id="padlock" width={20} height={20} /> Chequing vs Savings Account</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
+						<span className={styles.f_sp}><Icon id="padlock" width={20} height={20} /> What is a Tax Free Savings Account(TFSA)</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> What is Corporate Account?</span>
+						<span className={styles.f_sp}><Icon id="padlock" width={20} height={20} /> What is Corporate Account?</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 					<li>
-						<span><Icon id="padlock" width={20} height={20} /> What is LIRA?</span>
+						<span className={styles.f_sp}><Icon id="padlock" width={20} height={20} /> What is LIRA?</span>
 						<span><Icon id="clock" width={20} height={20} /> &nbsp;15mins</span>
 					</li>
 				</ul>
