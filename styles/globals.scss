@@ -278,6 +278,121 @@ a {
   padding: 0px 65px;
 }
 
+.logo_div{
+    position: relative;
+		display: inline-block;
+		width: 182.3px;
+    height: 32px;
+    margin: 0 auto;
+		margin-bottom: 20px;
+
+    + h2 {
+      font-size: var(--f-32);
+    }
+  }
+
+
+  .auth_page{
+    padding:0 20px;
+    display: flex;
+    justify-content: center;
+      padding-top: 150px;
+    width:100%;
+    height:100vh;
+    .wrapper{
+      display: flex;
+      flex-direction: column;
+      width:500px;
+      height:500px;
+    }
+    .topSection{
+      text-align: center;
+    .title{
+        font-weight: bolder;
+        + p{
+          font-size: var(--f-16);
+          color: var(--txt-col2);
+          font-family: var(--font-2);
+          width: 81%;
+          margin: 25px auto;
+        }
+        
+  
+      }	
+      
+    }
+    
+    
+    .fg_pass{
+      font-size: var(--f-14);
+      font-family: var(--font-2);
+      color: var(--col-sec);
+    }
+    .sign_up{
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-2);
+      font-size: var(--f-16);
+      margin-top: 40px;
+      align-items: center;
+      span{
+        color: #637170;
+      }
+      a{
+        color: var(--col-sec);
+        text-decoration: underline;
+        font-weight: bold;
+        margin-left: 5px;
+        
+      }
+      button{
+        background-color: var(--btn-col-1);
+        min-width: 148px;
+      
+        svg{
+          margin-top: 5px;
+          margin-left: 7px;
+        }
+      }
+      
+    }
+    
+  }
+  
+  
+  
+  @media only screen and (max-width: 425px) {
+    .login{
+      padding: 40px 20px;
+      .topSection{
+        :global(.title){
+          + p{
+            width: 100%;
+            margin-top: 10px;
+          }
+          }
+      }
+      
+      .fg_pass{
+        text-align: right;
+      }
+      .sign_up{
+        flex-direction: column;
+        font-size: var(--f-14);
+        :nth-child(1){
+          order: 2; 
+       
+           }
+        button{
+          width: 100%;
+          margin-bottom: 25px;
+        }
+      }
+    
+    }
+    
+  }
+
 @media only screen and (max-width: 1146px)      {
   .app-pad{
    padding: 0px 35px;
@@ -292,11 +407,51 @@ a {
 
 @media only screen and (max-width: 425px)      {
 
- 
+  .logo_div{
+    position: relative;
+    width: 148px;
+    height: 26px;
+    margin-bottom: 50px;
+     + h2{
+       font-size: var(--f-20);
+     }
+    }
   
-  .app-pad{
-    padding: 0px;
-   }
-}
+    .app-pad{
+      padding: 0px;
+    }
+    
 
-// @media only screen and (max-width: 1146px) and (min-width: 1024px)     {
+    .auth_page{
+      padding: 40px 20px;
+      .topSection{
+        .title{
+          font-weight: 400;
+          + p{
+            width: 100%;
+            margin-top: 10px;
+          }
+          }
+      }
+      
+      .fg_pass{
+        text-align: right;
+      }
+      .sign_up{
+        flex-direction: column;
+        font-size: var(--f-14);
+        :nth-child(1){
+          order: 2; 
+       
+           }
+        button{
+          width: 100%;
+          margin-bottom: 25px;
+        }
+      }
+    
+    }
+
+
+
+}

@@ -9,13 +9,13 @@ import Logo from 'common/Logo'
 const ResetPasswordPage = () => {
 	const router = useRouter()
 	return (
-		<main className={styles.resetPw}>
-			<section className={styles.wrapper}>
-				<div className={styles.topSection}>
-					<div className={styles.logodiv}>
+		<main className={`auth_page`}>
+			<section className={`wrapper`}>
+				<div className={`topSection`}>
+					<div className='logo_div'>
 						<Logo />
 					</div>
-					<h2>Reset password</h2>
+					<h2 className='title'>Reset password</h2>
 					<p>Enter your new password for your account.</p>
 				</div>
 				<form style={{ marginTop: '20px' }}>
@@ -26,7 +26,7 @@ const ResetPasswordPage = () => {
 						rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
 					/>
 				</form>
-				<div className={styles.sign_up}>
+				<div className={`sign_up`}>
 
 					<Button onClick={() => router.push('/forgot-password')}>Reset password <Icon id="arrow-right" width={20} height={20} /></Button>
 				</div>

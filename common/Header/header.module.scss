@@ -88,6 +88,11 @@
 @media only screen and (max-width: 425px)  {
   .header{
     padding: 0 10px;
+    .logo_box {
+      position: relative;
+      width: 148px;
+      height: 26px;
+    }
   }
   
 }
