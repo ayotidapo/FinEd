@@ -443,7 +443,7 @@
     width: 100%;
     padding: 20px 15px;
     flex-direction: column;
-    p
+    width:100%;
 
     :global(.title){
       width: 100%;
@@ -476,6 +476,7 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 35px;
       gap: 40px;
       > div {
         position: relative;
@@ -486,11 +487,13 @@
     }
   }
   .options{
+    margin-top: 60px;
      >article{
       width: 100%;
       height: 326px;
       overflow:hidden;
       padding-left: 45px;
+
       :global(.title){
         font-size: var(--f-24);
         + p{
