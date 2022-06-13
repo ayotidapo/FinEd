@@ -282,6 +282,14 @@
 		background-color: #fff;
 		.left{
 			display: none;
+			
+		}
+		.right{
+			.title{
+				+p{
+					width: 100%;
+				}
+			}
 		}
 	}
 }
