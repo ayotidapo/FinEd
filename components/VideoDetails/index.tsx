@@ -19,11 +19,13 @@ const VideoDetailsPage: React.FC = () => {
 				<nav className={styles.breadcrumb}>
 					<ul>
 						<li style={{ marginTop: "-2px" }}>
-							<Icon id="home" height={24} width={24} className="hand" />
+							<Icon id="home" height={24} width={24} className="hand"
+								onClickFunc={() => router.push('/')}
+							/>
 							<Icon id="caret-right" height={15} width={15} style={{ margin: "0 10px" }} />
 						</li>
 						<li>
-							<span className="hand">Videos</span>
+							<span className="hand" onClick={() => router.push('/contents/videos')}>Videos</span>
 							<Icon id="caret-right" height={15} width={15} style={{ margin: "0 10px" }} />
 						</li>
 						<li>
