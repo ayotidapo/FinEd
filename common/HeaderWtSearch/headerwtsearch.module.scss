@@ -45,4 +45,27 @@
 		font-family: var(--font-2);
 		font-weight: 700;
 	}
+	.hamburger{
+		display: none;
+	}
+}
+
+
+@media screen and (max-width:880px) {
+	.header_sec{
+		padding: 0 20px;
+		transform: translateY(-25px);
+		> div{
+			flex: unset;
+		}
+		.right,.xplore,.cr_dn{
+			display: none;
+		}
+		.hamburger{
+			display: inline-block;
+		}
+		
+	}
+
+	
 }

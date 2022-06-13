@@ -84,8 +84,9 @@
   
 
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 885px){
 	.footer{
+		margin-top: 25px;
 		height: auto;
 		flex-wrap: wrap;
 		flex-direction: column;
@@ -168,6 +169,9 @@
 @media only screen and (max-width: 520px){
 .footer{
 	padding-left: 25px;
+	> div{
+		width: 100%;
+	}
 	.mid_div{
 		width: 100%;
 		flex-wrap: wrap;

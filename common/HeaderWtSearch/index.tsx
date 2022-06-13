@@ -8,6 +8,7 @@ const HeaderWtSearch: React.FC = () => {
 	return (
 		<>
 			<div className={`app-pad ${styles.header_sec}`}>
+				<span className={styles.hamburger}><Icon id="search" width={24} height={24} /></span>
 				<div>
 					<div className={styles.logo_box}>
 						<Logo />
@@ -17,14 +18,14 @@ const HeaderWtSearch: React.FC = () => {
 						<Icon id="caret-down" width={24} height={24} />
 					</span>
 				</div>
-				<div>
+				<div className={styles.right}>
 					<Input type="text" leftIcon={{ name: 'search' }} wrapperClass={styles.wrapClass}
 						inputClass={styles.inptClass} placeholder="search"
 					/>
 					<Button className={styles.logIn}>Log In</Button>
 					<Button className={styles.btn}>Get Started</Button>
-
 				</div>
+				<span className={styles.hamburger}><Icon id="hamburger" width={24} height={24} /></span>
 			</div>
 
 			{/* <Star /> */}

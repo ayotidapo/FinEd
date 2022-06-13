@@ -18,6 +18,9 @@ const VideosListPage: React.FC = () => {
 					<span className={`hand ${styles.cr_dn}`}>
 						<Icon id="caret-down" width={24} height={24} />
 					</span>
+					<span className={`hand ${styles.filter}`}>
+						<Icon id="filter" width={24} height={24} />
+					</span>
 				</div>
 			</header>
 			<main>
