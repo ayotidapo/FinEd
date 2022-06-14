@@ -1,0 +1,44 @@
+
+.checkbox{
+	.cbox{
+		position: relative;
+		width:20px;
+		height:20px;
+		display: inline-block;
+		border: 1px solid #000;
+		border-radius: 5px;
+		
+		&::after{
+			content: " ";
+			display: inline-block;
+			width: 8px;
+			border: 1px solid #000;
+			border-right: none;
+			border-bottom: none;
+			left: 4.5px;
+			position: absolute;
+			height: 12px;
+			transform: rotate(226deg);
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity;
+			transition: all .3s linear;
+			
+		}
+
+		
+    }
+	input[type="checkbox"]{
+		display: none;
+		&:checked{
+			background-color: red;
+			+ .cbox{
+				&::after{
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+		
+	}
+}

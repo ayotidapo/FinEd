@@ -1,6 +1,8 @@
 
 import HeaderWtSearch from 'common/HeaderWtSearch'
 import Icon from 'common/Icon';
+import { LabelCheck } from 'common/LabelTag';
+import Checkbox from 'common/Checkbox';
 
 import VideoCard from 'common/VideoCard'
 import styles from './videoslist.module.scss'
@@ -21,8 +23,43 @@ const VideosListPage: React.FC = () => {
 					<span className={`hand ${styles.filter}`}>
 						<Icon id="filter" width={24} height={24} />
 					</span>
+					<section className={styles.filter_box}>
+						<div className={styles.by_topics}>
+							<p>Filter by Topics</p>
+							<div className={styles.tags_div}>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck>MoneyAfrica</LabelCheck>
+
+							</div>
+						</div>
+
+						<div className={styles.by_levels}>
+							<p>Filter by Levels</p>
+							<div className={styles.levels_div}>
+								<span className='beginner'>
+									<Checkbox level="beginner" />&nbsp;&nbsp;&nbsp;
+									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Beginner
+								</span>
+								<span className='intermediate'>
+									<Checkbox level="intermediate" />&nbsp;&nbsp;&nbsp;
+									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Intermediate
+								</span>
+								<span className='advanced'>
+									<Checkbox level="advanced" />&nbsp;&nbsp;&nbsp;
+									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Advanced
+								</span>
+							</div>
+						</div>
+					</section>
+
 				</div>
 			</header>
+
 			<main>
 
 				<div className={styles.content_wrap}>

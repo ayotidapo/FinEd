@@ -173,7 +173,7 @@ a {
 
 .bar{
   display: inline-flex;
- align-items: center;
+  align-items: center;
     &::after{
       content: ' ';
       display: flex;
@@ -204,6 +204,11 @@ a {
     }
 }
 
+.intermediate,.advanced,.beginner{
+  display: inline-flex;
+  align-items: center;
+}
+
 .intermediate{
   .bar{
     &:nth-of-type(1){  
@@ -221,7 +226,7 @@ a {
   }
 }
 
-.expert{
+.advanced{
     .bar{
     &:nth-of-type(1){  
       &::after{

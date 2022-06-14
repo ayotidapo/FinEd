@@ -178,6 +178,13 @@
     </symbol>
 
 
+	<symbol id="circle-mark" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5Z" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M4.5 6L5.5 7L7.5 5" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+	</symbol>
+
+
+
 
 </svg>
 

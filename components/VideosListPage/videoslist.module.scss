@@ -9,13 +9,14 @@
 	color:#C03E21
 }
 .topics{
-	min-height: 160px;
-	display: flex;
-	align-items: center;
-	padding: 0px 124px;
+	min-height: 150px;
+    display: flex;
+    padding: 0px 124px;
+    flex-wrap: wrap;
+    padding-top: 50px;
 
 	.xplore{
-		
+		padding-top:10px;
 		margin-left:20px;
 		font-size: var(--f-16);
 		font-family: var(--font-2);
@@ -26,6 +27,39 @@
 		margin-left: 5px;
 		margin-top: 7px;
 	}
+	
+}
+
+.filter_box{
+
+	display: flex;
+	margin-top:10px;
+	width: 100%;
+	height: 100%;
+	font-weight: 400;
+	font-size: var(--f-16);
+	font-family: var(--font-2);
+	padding-bottom: 50px;
+	> div{
+		flex: 1;
+	
+	}
+	
+	.tags_div{
+		display: flex;
+		flex-wrap: wrap;
+		grid-gap:7px;
+
+	}
+
+	.levels_div{
+		display: flex;
+		width:70%;
+		align-items: center;
+		justify-content: space-between;
+		font-size: var(--f-14);
+	}
+	
 	
 }
 
@@ -73,6 +107,7 @@
 
 
 
+
 @media only screen and (max-width: 1370px)  {
 	.content_wrap{
       padding: 40px 90px;
@@ -95,6 +130,7 @@
 		padding: 0px 20px;
 		min-height: auto;
 		height: auto;
+	
 	}
 	.content_wrap{
 		.content_tabs{

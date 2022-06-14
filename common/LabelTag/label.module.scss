@@ -7,3 +7,31 @@
 	text-transform: capitalize;
 
 }
+
+.label_check{
+	label{
+		display: inline-flex;
+		align-items: center;
+		position: relative;
+		@extend .label;
+		svg {
+			visibility: hidden;
+			opacity: 0;
+			transition: all .4s linear;
+		}
+	}
+	input[type="checkbox"]{
+		display: none;
+		
+		&:checked{
+			+ label {
+				background: #ABEAD3;
+				svg{
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+			 
+		}
+	}
+}
