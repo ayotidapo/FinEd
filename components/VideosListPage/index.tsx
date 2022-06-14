@@ -1,4 +1,6 @@
 
+import { useState } from 'react';
+import cx from 'classnames'
 import HeaderWtSearch from 'common/HeaderWtSearch'
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
@@ -10,30 +12,35 @@ import styles from './videoslist.module.scss'
 
 const VideosListPage: React.FC = () => {
 
+	const [showFilter, setShowFilter] = useState(false)
+
 	return (
 		<>
 			<header className={styles.video_header_wrap}>
 				<HeaderWtSearch />
 				<div className={styles.topics}>
 					<h2 className="title" >Learn with videos</h2>
-					<span className={`hand ${styles.xplore}`}>Filter Topics</span>
-					<span className={`hand ${styles.cr_dn}`}>
-						<Icon id="caret-down" width={24} height={24} />
+					<span className='d-flx' onClick={() => setShowFilter(state => !state)}>
+						<span className={`hand ${styles.xplore}`}>Filter Topics</span>
+						<span className={`hand ${styles.cr_dn}`}>
+							<Icon id="caret-down" width={24} height={24} />
+						</span>
 					</span>
-					<span className={`hand ${styles.filter}`}>
+					<span className={`hand ${styles.filter}`} onClick={() => setShowFilter(state => !state)}>
 						<Icon id="filter" width={24} height={24} />
 					</span>
-					<section className={styles.filter_box}>
+
+					<section className={cx([styles.filter_box], { [styles.filter_box_show]: showFilter })}>
 						<div className={styles.by_topics}>
 							<p>Filter by Topics</p>
 							<div className={styles.tags_div}>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
-								<LabelCheck>MoneyAfrica</LabelCheck>
+								<LabelCheck tag="MoneyAfrica" />
+								<LabelCheck tag="Blockchain" />
+								<LabelCheck tag="Ethereum" />
+								<LabelCheck tag="Technical analysis" />
+								<LabelCheck tag="Cryptocurrency" />
+								<LabelCheck tag="Essentials" />
+								<LabelCheck tag="Security" />
 
 							</div>
 						</div>
@@ -42,15 +49,15 @@ const VideosListPage: React.FC = () => {
 							<p>Filter by Levels</p>
 							<div className={styles.levels_div}>
 								<span className='beginner'>
-									<Checkbox level="beginner" />&nbsp;&nbsp;&nbsp;
+									<Checkbox level="beginner" />&nbsp;&nbsp;
 									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Beginner
 								</span>
 								<span className='intermediate'>
-									<Checkbox level="intermediate" />&nbsp;&nbsp;&nbsp;
+									<Checkbox level="intermediate" />&nbsp;&nbsp;
 									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Intermediate
 								</span>
 								<span className='advanced'>
-									<Checkbox level="advanced" />&nbsp;&nbsp;&nbsp;
+									<Checkbox level="advanced" />&nbsp;&nbsp;
 									<span className='bar' /><span className='bar' /><span className='bar' />&nbsp;Advanced
 								</span>
 							</div>
