@@ -1,71 +1,68 @@
+.header_sec {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  > div {
+    display: flex;
+    flex: 1;
+    &:last-of-type {
+      align-items: center;
 
-.header_sec{
-	width:100%;
-	height: 70px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: transparent;
-	> div{
-	display: flex;
-     flex: 1;
-	 &:last-of-type{
-		align-items: center;
-	
-		 justify-content: flex-end;
-	 }
-	}
-	.wrapClass{
-		width:304px
-	}
-	.inptClass{
-		padding-top: 7px;
-		border-bottom: 2px solid rgba(17, 17, 17, .5);
-	}
-	.btn{
-		background-color: #C03E21;
-		width:163px;
-        height:44px;
-	}
-	.logIn{
-		background:transparent;
-		color:var(--pri-col);
-		margin: 0 20px;
-	}
-	.logo_box{
-		position: relative;
-		width:126px;
-		height: 22px;
-	}
+      justify-content: flex-end;
+    }
+  }
+  .wrapClass {
+    width: 304px;
+  }
+  .inptClass {
+    padding-top: 7px;
+    border-bottom: 2px solid rgba(17, 17, 17, 0.5);
+  }
+  .btn {
+    background-color: #c03e21;
+    width: 163px;
+    height: 44px;
+  }
+  .logIn {
+    background: transparent;
+    color: var(--pri-col);
+    margin: 0 20px;
+  }
+  .logo_box {
+    position: relative;
+    width: 126px;
+    height: 22px;
+  }
 
-	.xplore{
-		color:#C03E21;
-		margin-left:20px;
-		font-size: var(--f-16);
-		font-family: var(--font-2);
-		font-weight: 700;
-	}
-	.hamburger{
-		display: none;
-	}
+  .xplore {
+    color: #c03e21;
+    margin-left: 20px;
+    font-size: var(--f-16);
+    font-family: var(--font-2);
+    font-weight: 700;
+  }
+  .hamburger {
+    display: none;
+  }
 }
 
-
-@media screen and (max-width:880px) {
-	.header_sec{
-		padding: 0 20px;
-		transform: translateY(-25px);
-		> div{
-			flex: unset;
-		}
-		.right,.xplore,.cr_dn{
-			display: none;
-		}
-		.hamburger{
-			display: inline-block;
-		}
-		
-	}
-
-	
+@media screen and (max-width: 880px) {
+  .header_sec {
+    padding: 0 20px;
+    transform: translateY(-25px);
+    > div {
+      flex: unset;
+    }
+    .right,
+    .xplore,
+    .cr_dn {
+      display: none;
+    }
+    .hamburger {
+      display: inline-block;
+    }
+  }
 }

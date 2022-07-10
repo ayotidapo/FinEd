@@ -16,6 +16,13 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "common/Button", "common/Logo"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.js",
+    "common/Button",
+    "common/Logo"
+  ],
   "exclude": ["node_modules"]
 }

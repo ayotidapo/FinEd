@@ -1,295 +1,263 @@
-.signup{
-	height: 100vh;
-    overflow-y: scroll;
-    background-color: var(--col-4);
-    padding: 50px 70px;
-    padding-bottom: 0;
-    padding-left: 40px;
-	
-	.wrapper{
-		display: flex;
-	
-	}
-	section{
-		flex: 1;
-		
-	}
-	
-	.left{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	    // > *{
-		//   margin: 0 auto;
-		// }
-		.girl_div{
-			position: relative;
-			width: 479px;
-            height: 757.67px;
-			margin-left: -50px;
-			margin-top: 55px;
-		}
+.signup {
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: var(--col-4);
+  padding: 50px 70px;
+  padding-bottom: 0;
+  padding-left: 40px;
 
-		.botm_div{
-			height: 98px;
-			background-color: #F4CF77;
-			width:611px;
-			margin-top: auto;
-			position:absolute;
-			bottom:0px;
-			left: -55px;
-	
-		}
-		.imgdiv{
-			position: relative;
-			height: 32px;
-			width:182px;
-			margin-bottom: 22px;
-		
-		}
-		p{
-			font-size: var(--f-18);
-			font-family: var(--font-2);
-			width: 62%;
-			text-align: center;
-			margin-top: 0;
-			line-height: 1.4;
+  .wrapper {
+    display: flex;
+  }
+  section {
+    flex: 1;
+  }
 
-		}
-		
-	}
-	.right{
-		padding-top: 18px;
-	    padding-bottom: 70px;
-		display: flex;
-		justify-content: flex-end;
-	
-		
-		.title{
-			margin-top: 10px;
-			&+p{
-				font-size: var(--f-16);
-				font-family: var(--font-2);
-				width: 75%;
-				margin: 10px auto;
-				color:#637170;
-				padding-bottom: 25px;
-				padding-top:10px;
-				line-height: 1.5;
+  .left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // > *{
+    //   margin: 0 auto;
+    // }
+    .girl_div {
+      position: relative;
+      width: 479px;
+      height: 757.67px;
+      margin-left: -50px;
+      margin-top: 55px;
+    }
 
-			}
-		}
-	
-		.formdiv{
-			width: 90.4%;
-			height: 856.5px;
-			background-color: #fff;
-			border-radius: 24px;
-			padding: 40px;
-			// :global(.lll){
-			// 	color:blue
-			// }
-			
-		
-		}
+    .botm_div {
+      height: 98px;
+      background-color: #f4cf77;
+      width: 611px;
+      margin-top: auto;
+      position: absolute;
+      bottom: 0px;
+      left: -55px;
+    }
+    .imgdiv {
+      position: relative;
+      height: 32px;
+      width: 182px;
+      margin-bottom: 22px;
+    }
+    p {
+      font-size: var(--f-18);
+      font-family: var(--font-2);
+      width: 62%;
+      text-align: center;
+      margin-top: 0;
+      line-height: 1.4;
+    }
+  }
+  .right {
+    padding-top: 18px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: flex-end;
 
-	}
+    .title {
+      margin-top: 10px;
+      & + p {
+        font-size: var(--f-16);
+        font-family: var(--font-2);
+        width: 75%;
+        margin: 10px auto;
+        color: #637170;
+        padding-bottom: 25px;
+        padding-top: 10px;
+        line-height: 1.5;
+      }
+    }
+
+    .formdiv {
+      width: 90.4%;
+      height: 856.5px;
+      background-color: #fff;
+      border-radius: 24px;
+      padding: 40px;
+      // :global(.lll){
+      // 	color:blue
+      // }
+    }
+  }
 }
-.signupForm{
-	label{
-		margin-bottom: 25px;
-		
-	}
+.signupForm {
+  label {
+    margin-bottom: 25px;
+  }
 
-	.split{
-		margin-top: 10px;
-		display: flex;
-		gap: 35px;	
-	
-	}
-	.split_phone{
-		display: flex;
-		gap: 10px;
-		label{
-			&:nth-of-type(1){
-				width: 102px;
-				flex-shrink: 0;
-			}
-		
-		}
-		.nigeria{
-			position: absolute;
-			top: 28px;
-            left: 38px;
+  .split {
+    margin-top: 10px;
+    display: flex;
+    gap: 35px;
+  }
+  .split_phone {
+    display: flex;
+    gap: 10px;
+    label {
+      &:nth-of-type(1) {
+        width: 102px;
+        flex-shrink: 0;
+      }
+    }
+    .nigeria {
+      position: absolute;
+      top: 28px;
+      left: 38px;
+    }
+    .number {
+      position: absolute;
+      top: 34px;
+      left: 0px;
+      font-size: var(--f-16);
+      color: #7c7c7c;
+    }
+    .phone {
+      padding-left: 40px;
+    }
+  }
+  .tnc {
+    font-size: var(--f-14);
+    margin: 0px;
+    font-family: var(--font-2);
+    color: #637170;
+    a {
+      text-decoration: underline;
+      color: var(--col-sec);
+    }
+  }
+  .sign_up {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-2);
+    font-size: var(--f-16);
+    margin-top: 45px;
+    align-items: center;
 
-		}
-		.number{
-			position: absolute;
-			top: 34px;
-			left: 0px;
-			font-size: var(--f-16);
-			color:#7C7C7C;
-		}
-		.phone{
-			padding-left: 40px;
-		}
-	}
-	.tnc{
-	    font-size: var(--f-14);
-		margin: 0px;
-		font-family: var(--font-2);
-		color: #637170;
-		a{
-			text-decoration: underline;
-			color: var(--col-sec);
-		}
-	}
-	.sign_up{
-		display: flex;
-		justify-content: space-between;
-		font-family: var(--font-2);
-		font-size: var(--f-16);
-		margin-top: 45px;
-		align-items: center;
-	
-		span{
-			color: #637170;
-		}
-		a{
-			color: var(--col-sec);
-			text-decoration: underline;
-			font-weight: bold;
-			margin-left: 5px;
-			
-		}
-		button{
-			background-color: var(--btn-col-1);
-			width: 148px;
-		
-			svg{
-				margin-top: 5px;
-                margin-left: 7px;
-			}
-		}
-	}
+    span {
+      color: #637170;
+    }
+    a {
+      color: var(--col-sec);
+      text-decoration: underline;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+    button {
+      background-color: var(--btn-col-1);
+      width: 148px;
+
+      svg {
+        margin-top: 5px;
+        margin-left: 7px;
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 1190px)  and   (min-width: 990px) {
-	.signup{
-		section{
-			flex: auto;
-			
-		}
-		.right{
-			width: 55%;
-			flex-shrink: 0;
-			justify-content: flex-start;
-			.formdiv{
-				width: 100%;
-			}
-		}
-		.left{
-			width: 45%;
-			p{
-				width: 75%;
-				
-			}
-		}
-	}
-	
+@media only screen and (max-width: 1190px) and (min-width: 990px) {
+  .signup {
+    section {
+      flex: auto;
+    }
+    .right {
+      width: 55%;
+      flex-shrink: 0;
+      justify-content: flex-start;
+      .formdiv {
+        width: 100%;
+      }
+    }
+    .left {
+      width: 45%;
+      p {
+        width: 75%;
+      }
+    }
+  }
 }
 
-
-@media only screen and (max-width: 989px)      {
-	.signup{
-		.wrapper{
-			flex-direction: column;
-		
-		}
-		.left{
-			.girl_div{
-				display: none;
-			}
-			p{
-				
-				width: 80%;
-				font-size: var(--f-14);
-			
-			}
-		}
-		.right{
-			justify-content: center;
-		}
-	}
-	
+@media only screen and (max-width: 989px) {
+  .signup {
+    .wrapper {
+      flex-direction: column;
+    }
+    .left {
+      .girl_div {
+        display: none;
+      }
+      p {
+        width: 80%;
+        font-size: var(--f-14);
+      }
+    }
+    .right {
+      justify-content: center;
+    }
+  }
 }
 
-@media only screen and (max-width: 648px)      {
-	.signup{
-		padding: 0px;
-		.wrapper{
-			flex-direction: column;
-		
-		}
-		.left{
-			.girl_div{
-				display: none;
-			}
-			p{
-				
-				width: 80%;
-						
-			
-			}
-		}
-		.right{
-			.formdiv{
-				width: 100%;
-				height: auto;
-				padding: 20px;
-				border-radius: 0px;
-			}
-		}
-		.split{
-			flex-direction: column;
-			grid-gap: 0px;	
-			gap:0px
-		
-		}
-		
-		.signupForm{
-			.sign_up{
-				font-size: var(--f-14);
-				flex-direction: column;
-				height:80px;
-				align-items: flex-start;
-				:nth-child(1){
-					order: 2;
-				}
-				
-			}
-			
-			button{
-				width: 100%;
-			}
-		}
-	}
-	
+@media only screen and (max-width: 648px) {
+  .signup {
+    padding: 0px;
+    .wrapper {
+      flex-direction: column;
+    }
+    .left {
+      .girl_div {
+        display: none;
+      }
+      p {
+        width: 80%;
+      }
+    }
+    .right {
+      .formdiv {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border-radius: 0px;
+      }
+    }
+    .split {
+      flex-direction: column;
+      grid-gap: 0px;
+      gap: 0px;
+    }
+
+    .signupForm {
+      .sign_up {
+        font-size: var(--f-14);
+        flex-direction: column;
+        height: 80px;
+        align-items: flex-start;
+        :nth-child(1) {
+          order: 2;
+        }
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 425px)      {
-	.signup{
-		background-color: #fff;
-		.left{
-			display: none;
-			
-		}
-		.right{
-			.title{
-				+p{
-					width: 100%;
-				}
-			}
-		}
-	}
+@media only screen and (max-width: 425px) {
+  .signup {
+    background-color: #fff;
+    .left {
+      display: none;
+    }
+    .right {
+      .title {
+        + p {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

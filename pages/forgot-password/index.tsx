@@ -1,9 +1,7 @@
-import ForgotPasswordPage from 'components/ForgotPassword'
+import ForgotPasswordPage from 'components/ForgotPassword';
 
 const ForgotPwPage = () => {
-	return (
-		<ForgotPasswordPage />
-	)
-}
+  return <ForgotPasswordPage />;
+};
 
-export default ForgotPwPage
+export default ForgotPwPage;

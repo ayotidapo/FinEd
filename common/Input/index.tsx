@@ -1,54 +1,93 @@
-
-import React, { Children } from 'react';
+import React from 'react';
+import cx from 'classnames'
 import Icon from '../Icon';
-import styles from './input.module.scss'
-
-
+import styles from './input.module.scss';
 
 interface IconType {
 	name: string;
-	pos?: [number | string, number | string]
+	pos?: [number | string, number | string];
 }
-interface Props {
-	inputClass?: string;
-	children?: React.ReactNode;
+
+export interface IField {
+	name: string;
+	value: string;
 	type: string;
-	label?: string;
+	label: string;
+	placeholder: string;
+	[key: string]: string | number | {};
+}
+
+interface Props {
 	leftIcon?: IconType;
-	wrapperClass?: string;
 	rightIcon?: IconType;
-	placeholder?: string;
-	required?: boolean;
-	readOnly?: boolean
+	children?: React.ReactNode;
+	inputClass?: string;
+	wrapperClass?: string;
+	readOnly?: boolean | undefined;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
+	onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
+	field: IField;
 }
 
 const Input: React.FC<Props> = (props) => {
-	const { leftIcon, rightIcon, children, inputClass, wrapperClass, ...rest } = props
+	const {
+		leftIcon,
+		rightIcon,
+		children,
+		inputClass,
+		wrapperClass,
+		field,
+		onChange,
+		...rest
+	} = props;
+	const { label, value, name, error, ...fRest } = field;
 
 
-	const l = leftIcon as IconType
-	const leftIname = l?.name
-	const leftIpos = l?.pos || [28, 0]
+	const l = leftIcon as IconType;
+	const leftIname = l?.name;
+	const leftIpos = l?.pos || [28, 0];
 
-	const r = rightIcon as IconType
-	const rytIname = r?.name
-	const rytIpos = r?.pos || [28, 0]
+	const r = rightIcon as IconType;
+	const rytIname = r?.name;
+	const rytIpos = r?.pos || [28, 0];
 
 	return (
-		<label className={`${styles.inputWrapper} ${wrapperClass}`}>
-			<span className={styles.label}>{props.label}</span>
-			{leftIcon && <span className='icon icon-left' style={{ top: leftIpos[0], left: leftIpos[1] }}>
-				<Icon id={leftIname} width={24} height={24} />
-			</span>
-			}
-			{rightIcon && <span className='icon icon-right hand' style={{ top: rytIpos[0], left: rytIpos[1] }}>
-				<Icon id={rytIname} width={24} height={24} />
-			</span>
-			}
+		<label className={cx([styles.inputWrapper, wrapperClass], {
+			[styles.err_brd]: error,
+		})}>
+			<span className={styles.label}>{label}</span>
+			{leftIcon && (
+				<span
+					className="icon icon-left"
+					style={{ top: leftIpos[0], left: leftIpos[1] }}
+				>
+					<Icon id={leftIname} width={24} height={24} />
+				</span>
+			)}
+			{rightIcon && (
+				<span
+					className="icon icon-right hand"
+					style={{ top: rytIpos[0], left: rytIpos[1] }}
+				>
+					<Icon id={rytIname} width={24} height={24} />
+				</span>
+			)}
 			{children}
-			<input autoComplete="new-password" className={`${styles.input} ${inputClass}`}  {...rest} />
-		</label>
-	)
-}
+			<input
+				value={value}
+				name={name}
+				autoComplete="new-password"
+				className={`${styles.input} ${inputClass}`}
+				onChange={onChange ? (e) => onChange(e) : undefined}
+				{...fRest}
+				{...rest}
+			/>
+			<div className={styles.errorDiv}>
+				<span className='error'>{`${error}`}</span>
+			</div>
 
-export default Input
+		</label>
+	);
+};
+
+export default Input;

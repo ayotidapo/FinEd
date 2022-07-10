@@ -1,0 +1,181 @@
+.settings_main{
+	width:80%;
+
+	margin: 0 auto;
+	height:calc(100% - 70px);
+	:global(.title){
+		font-size: var(--f-24);
+		height: 60px;
+		border-bottom: 1px solid #ccc;
+		padding-top: 15px;
+	}
+	.wrapper{
+		display: flex;
+		min-height: 400px;
+		padding-top: 35px;
+	}
+}
+
+
+.sidetab{
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	.settings_nav{
+		width:82%;
+		ul{
+			font-family: var(--font-2);
+			padding: 0px;
+			margin-top: 0px;
+			
+		}
+	}
+	.refer_div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		text-align: center;
+		flex-direction: column;
+		width: 195px;
+		height: 231px;
+		background-color: #E3EEE7;
+		padding: 20px;
+		border-radius: 8px;
+		margin-top: 40px;
+		font-size: var(--f-14);
+		font-family: var(--font-2);
+		.refer_box{
+			
+			position: relative;
+			width: 42px;
+			height: 42px;
+			
+		}
+	}
+	.copy{
+		padding: 0px;
+		min-height: 36px;
+		color: #000;
+		background: transparent;
+		width: 100%;
+		width: 125px;
+		border: 1px solid black;
+		font-family: Gascogne-DemiBold, sans-serif;
+		margin: 10px 0px;
+		font-weight: 200;
+	}
+	
+}
+.display{
+	width: 100%;
+	padding-left: 20px;
+}
+
+
+.profile_wrapper{
+	display: flex;
+	flex-direction: column;
+	font-family: var(--font-2);
+	>div{
+		display: flex;
+		margin-bottom: 40px;
+		
+	}
+	.personal_info{
+		margin-bottom: 10px;
+	}
+	.lft{
+		width:27%;
+		
+		h3{
+			
+			font-size: var(--f-24);
+			font-weight: 400;
+		}
+		p{
+			margin:5px 0px;
+			color: #7C7C7C;
+			line-height: 2rem;
+			font-size: var(--f-14);
+			
+		}
+	}
+	.dx_al{
+		align-items: center;
+		
+	}
+	.ryt{
+		display: flex;
+		flex: 1;
+		padding-left: 40px;
+		.avatar_wrapper{
+		 display: block; 
+		 border: 1px solid red; 
+		 border-radius: 50%;
+		 width:60px;
+		 height: 60px;
+		 padding: 2px;
+			.avatar{
+				display: block;
+				position: relative;
+				width:100%;
+				height: 100%;
+				border-radius: 50%;
+				padding: 5px;			
+			}
+	    }
+	}
+	.split_phone {
+		display: flex;
+		gap: 10px;
+		label {
+		  &:nth-of-type(1) {
+			width: 102px;
+			flex-shrink: 0;
+		  }
+		}
+		.nigeria {
+		  position: absolute;
+		  top: 28px;
+		  left: 38px;
+		}
+		.number {
+		  position: absolute;
+		  top: 34px;
+		  left: 0px;
+		  font-size: var(--f-16);
+		  color: #7c7c7c;
+		}
+		.phone {
+		  padding-left: 40px;
+		}
+	  }
+	  .radio_div{
+		  label{
+			width: 228px;
+			height: 54px;
+			justify-content: center;
+			font-size: var(--f-16);
+			font-weight: bold;
+			margin-right: 20px;
+			border:1px solid #E5E5E5;
+			margin-bottom:20px;
+			svg{
+				width: 18px;
+				height: 18px;
+			}
+		  }
+		  input[type='radio']:checked {
+			+ label {
+			  background: #E3EEE7;
+			}
+	  }
+	}
+	.btn_con{
+		display: flex;
+		justify-content: flex-end;
+		button{
+			background-color: var(--btn-col-1);
+		}
+	}
+}

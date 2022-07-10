@@ -1,9 +1,7 @@
-import ResetPasswordPage from 'components/ResetPassword'
+import ResetPasswordPage from 'components/ResetPassword';
 
 const ResetPwPage = () => {
-	return (
-		<ResetPasswordPage />
-	)
-}
+  return <ResetPasswordPage />;
+};
 
-export default ResetPwPage
+export default ResetPwPage;

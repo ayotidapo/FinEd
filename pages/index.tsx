@@ -1,9 +1,9 @@
-import type { NextPage } from 'next'
-import Header from 'common/Header'
-import Image from 'next/image'
+import type { NextPage } from 'next';
+import Header from 'common/Header';
+import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
-import Icon from 'common/Icon'
-import Footer from 'common/Footer'
+import Icon from 'common/Icon';
+import Footer from 'common/Footer';
 import Button from '../common/Button';
 
 const Home: NextPage = () => {
@@ -12,37 +12,45 @@ const Home: NextPage = () => {
       <Header />
 
       <main className={styles.main}>
-        <div className='app-pad'>
+        <div className="app-pad">
           <section className={styles.top_sec}>
             <div className={styles.left_div}>
               <h2 className="title">Improve your financial health.</h2>
               <p>
-                MoneyAfrica is a subscription-based Ed-tech platform providing access to free and paid financial knowledge for learners.
+                MoneyAfrica is a subscription-based Ed-tech platform providing
+                access to free and paid financial knowledge for learners.
               </p>
               <div className={styles.btns_div}>
                 <Button>Our Service</Button>
                 <Button>Start Investing</Button>
               </div>
-
             </div>
             <div className={styles.right_div}>
-              <Image src="/assets/top-sec.png" layout='fill' alt="top-sec-img" />
+              <Image
+                src="/assets/top-sec.png"
+                layout="fill"
+                alt="top-sec-img"
+              />
             </div>
           </section>
           <section className={styles.featured}>
             <span>As featured on</span>
             <div className={styles.img_bx}>
               <div>
-                <Image src="/assets/bbc.png" layout='fill' alt="top-sec-img" />
+                <Image src="/assets/bbc.png" layout="fill" alt="top-sec-img" />
               </div>
               <div>
-                <Image src="/assets/techpoint.png" layout='fill' alt="top-sec-img" />
+                <Image
+                  src="/assets/techpoint.png"
+                  layout="fill"
+                  alt="top-sec-img"
+                />
               </div>
               <div>
-                <Image src="/assets/cnn.png" layout='fill' alt="top-sec-img" />
+                <Image src="/assets/cnn.png" layout="fill" alt="top-sec-img" />
               </div>
               <div>
-                <Image src="/assets/lnk.png" layout='fill' alt="top-sec-img" />
+                <Image src="/assets/lnk.png" layout="fill" alt="top-sec-img" />
               </div>
             </div>
           </section>
@@ -51,7 +59,8 @@ const Home: NextPage = () => {
           <div>
             <h2 className="title"> Welcome to MoneyAfrica</h2>
             <p>
-              Here’s an introductory message from Tosin Olaseinde, CEO MoneyAfrica on why you should hop on this ride with us.
+              Here’s an introductory message from Tosin Olaseinde, CEO
+              MoneyAfrica on why you should hop on this ride with us.
             </p>
             <div className={styles.btns_div}>
               <Button>Watch Video</Button>
@@ -59,19 +68,18 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className={styles.video_div}>
-
-            <iframe
-              src="https://www.youtube.com/embed/mfVpN0pblrs">
-            </iframe>
-
+            <iframe src="https://www.youtube.com/embed/mfVpN0pblrs"></iframe>
           </div>
-
         </section>
         <section className={styles.explore}>
           <div className={styles.explore_txt}>
-            <h2 className="title">Explore a variety of powerful financial tools packaged for you.</h2>
+            <h2 className="title">
+              Explore a variety of powerful financial tools packaged for you.
+            </h2>
             <p>
-              We have amazing services that can aid you through your journey to making better financial decisions and becoming an expert at money management.
+              We have amazing services that can aid you through your journey to
+              making better financial decisions and becoming an expert at money
+              management.
             </p>
           </div>
         </section>
@@ -80,49 +88,65 @@ const Home: NextPage = () => {
             <div>
               <h2 className="title">Premium </h2>
               <p>
-                Talk to financial advisers, access powerful resources to support your financial goals.
+                Talk to financial advisers, access powerful resources to support
+                your financial goals.
               </p>
             </div>
             <div className={styles.img_opt_box}>
-              <Image src="/assets/premium.svg" layout='fill' alt="top-sec-img" />
+              <Image
+                src="/assets/premium.svg"
+                layout="fill"
+                alt="top-sec-img"
+              />
             </div>
-            <Button className={styles.optbtn}>Become a partner
+            <Button className={styles.optbtn}>
+              Become a partner
               <Icon id="arrow-right" width={20} height={20} />
             </Button>
           </article>
           <article>
             <h2 className="title">Learn </h2>
             <p>
-              Talk to financial advisers, access powerful resources to support your financial goals.
+              Talk to financial advisers, access powerful resources to support
+              your financial goals.
             </p>
             <div className={styles.img_opt_box}>
-              <Image src="/assets/learn.svg" layout='fill' alt="top-sec-img" />
+              <Image src="/assets/learn.svg" layout="fill" alt="top-sec-img" />
             </div>
-            <Button className={styles.optbtn}>Start learning
+            <Button className={styles.optbtn}>
+              Start learning
               <Icon id="arrow-right" width={20} height={20} />
             </Button>
           </article>
           <article>
             <h2 className="title">Communities </h2>
             <p>
-              Have access to powerful resources, investment tips and real-time support.
+              Have access to powerful resources, investment tips and real-time
+              support.
             </p>
             <div className={styles.img_opt_box}>
-              <Image src="/assets/communities.svg" layout='fill' alt="top-sec-img" />
+              <Image
+                src="/assets/communities.svg"
+                layout="fill"
+                alt="top-sec-img"
+              />
             </div>
-            <Button className={styles.optbtn}>Join our community
+            <Button className={styles.optbtn}>
+              Join our community
               <Icon id="arrow-right" width={20} height={20} />
             </Button>
           </article>
           <article>
             <h2 className="title">Kids</h2>
             <p>
-              Financial Education Made Easy for Kids. We run boot camps that help kids acquire financial literacy skills in a fun way.
+              Financial Education Made Easy for Kids. We run boot camps that
+              help kids acquire financial literacy skills in a fun way.
             </p>
             <div className={styles.img_opt_box}>
-              <Image src="/assets/kids.svg" layout='fill' alt="top-sec-img" />
+              <Image src="/assets/kids.svg" layout="fill" alt="top-sec-img" />
             </div>
-            <Button className={styles.optbtn}>Register your kids
+            <Button className={styles.optbtn}>
+              Register your kids
               <Icon id="arrow-right" width={20} height={20} />
             </Button>
           </article>
@@ -130,31 +154,29 @@ const Home: NextPage = () => {
             <div>
               <h2 className="title">Automated Digital Advisory</h2>
               <p>
-                Improve your financial health and investment strategy by answering a few questions we’ll ask you.
+                Improve your financial health and investment strategy by
+                answering a few questions we’ll ask you.
               </p>
-              <Button className={styles.optbtn}>Register your kids
+              <Button className={styles.optbtn}>
+                Register your kids
                 <Icon id="arrow-right" width={20} height={20} />
               </Button>
             </div>
             <div className={styles.wallet_div}>
-              <Image src="/assets/wallet.png" layout='fill' alt="top-sec-img" />
+              <Image src="/assets/wallet.png" layout="fill" alt="top-sec-img" />
             </div>
           </div>
         </section>
-
-
       </main>
       <Footer />
+    </div>
+  );
+};
 
-    </div >
-  )
-}
-
-export default Home
-
+export default Home;
 
 export async function getStaticProps() {
   return {
     props: {},
-  }
+  };
 }
