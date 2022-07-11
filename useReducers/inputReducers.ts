@@ -10,15 +10,13 @@ interface IAction {
 }
 
 const inputReducer = (state: IState, action: IAction) => {
-
   switch (action.type) {
-
     case 'ON_INPUT_CHANGE':
       return { ...onInputChangeFunc(state, action) };
-      case 'ON_UPDATE_INPUTS':
-        return { ...action.validatedInputs };
-        case 'RESET':
-          return { ...action.initialState };
+    case 'ON_UPDATE_INPUTS':
+      return { ...action.validatedInputs };
+    case 'RESET':
+      return { ...action.initialState };
     default:
       return state;
   }
@@ -27,11 +25,9 @@ const inputReducer = (state: IState, action: IAction) => {
 export default inputReducer;
 
 const onInputChangeFunc = (state: IState, action: IAction) => {
-  const { name, value } = action
+  const { name, value } = action;
   const State = { ...state };
   State[name].value = value;
 
   return State;
 };
-
-

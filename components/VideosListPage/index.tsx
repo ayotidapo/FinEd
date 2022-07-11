@@ -41,12 +41,32 @@ const VideosListPage: React.FC = () => {
             <div className={styles.by_topics}>
               <p>Filter by Topics</p>
               <div className={styles.tags_div}>
-                <LabelCheck tag="MoneyAfrica" value="MoneyAfrica" type="checkbox" />
-                <LabelCheck tag="Blockchain" value="Blockchain" type="checkbox" />
+                <LabelCheck
+                  tag="MoneyAfrica"
+                  value="MoneyAfrica"
+                  type="checkbox"
+                />
+                <LabelCheck
+                  tag="Blockchain"
+                  value="Blockchain"
+                  type="checkbox"
+                />
                 <LabelCheck tag="Ethereum" value="Ethereum" type="checkbox" />
-                <LabelCheck tag="Technical analysis" value="Technical analysis" type="checkbox" />
-                <LabelCheck tag="Cryptocurrency" value="Cryptocurrency" type="checkbox" />
-                <LabelCheck tag="Essentials" value="Essentials" type="checkbox" />
+                <LabelCheck
+                  tag="Technical analysis"
+                  value="Technical analysis"
+                  type="checkbox"
+                />
+                <LabelCheck
+                  tag="Cryptocurrency"
+                  value="Cryptocurrency"
+                  type="checkbox"
+                />
+                <LabelCheck
+                  tag="Essentials"
+                  value="Essentials"
+                  type="checkbox"
+                />
                 <LabelCheck tag="Security" value="Security" type="checkbox" />
               </div>
             </div>
@@ -55,7 +75,7 @@ const VideosListPage: React.FC = () => {
               <p>Filter by Levels</p>
               <div className={styles.levels_div}>
                 <span className="beginner">
-                  <Checkbox name="beginner" value='' type="checkbox" />
+                  <Checkbox name="beginner" value="" type="checkbox" />
                   &nbsp;&nbsp;
                   <span className="bar" />
                   <span className="bar" />
@@ -63,7 +83,7 @@ const VideosListPage: React.FC = () => {
                   &nbsp;Beginner
                 </span>
                 <span className="intermediate">
-                  <Checkbox name="intermediate" value='' type="checkbox" />
+                  <Checkbox name="intermediate" value="" type="checkbox" />
                   &nbsp;&nbsp;
                   <span className="bar" />
                   <span className="bar" />
@@ -71,7 +91,7 @@ const VideosListPage: React.FC = () => {
                   &nbsp;Intermediate
                 </span>
                 <span className="advanced">
-                  <Checkbox name="advanced" value='' type="checkbox" />
+                  <Checkbox name="advanced" value="" type="checkbox" />
                   &nbsp;&nbsp;
                   <span className="bar" />
                   <span className="bar" />

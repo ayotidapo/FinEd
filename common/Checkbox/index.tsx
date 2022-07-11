@@ -3,8 +3,8 @@ import styles from './checkbox.module.scss';
 interface Props {
   name: string;
   isChecked?: boolean;
-  type: 'checkbox' | 'radio',
-  value: string
+  type: 'checkbox' | 'radio';
+  value: string;
 }
 
 const Checkbox: React.FC<Props> = (props) => {

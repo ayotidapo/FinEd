@@ -50,10 +50,15 @@ const Footer = () => {
         <p>Sign up for our newsletter. Your email is never shared.</p>
         <form>
           <Input
-            field={{ name: 'email', value: '', placeholder: '', type: 'email', label: 'Email Address', error: '' }}
-
+            field={{
+              name: 'email',
+              value: '',
+              placeholder: '',
+              type: 'email',
+              label: 'Email Address',
+              error: '',
+            }}
             leftIcon={{ name: 'envelope' }}
-
           />
           <Button>Subscribe</Button>
         </form>

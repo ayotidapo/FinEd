@@ -13,7 +13,6 @@
   height: 40px;
   padding-top: 10px;
   color: #000;
- 
 }
 
 .inputWrapper {
@@ -40,30 +39,28 @@
     min-height: 17px;
     min-width: 20px;
   }
-  &::after{
-    content:'';
+  &::after {
+    content: '';
     display: block;
-    width:0%;
+    width: 0%;
     height: 2px;
     background-color: transparent;
     transform: translateY(2px);
-    transition: width .2s linear;
+    transition: width 0.2s linear;
   }
 }
-.err_brd{
- 
-  &::after{  
+.err_brd {
+  &::after {
     content: '';
-    background-color:#e78787;
-    width:100%;
-    
+    background-color: #e78787;
+    width: 100%;
   }
 }
 
-.errorDiv{
- color:red;
- font-size: 1.2rem;
- font-family: var(--font-2);
- position: absolute;
- bottom: -18px;
+.errorDiv {
+  color: red;
+  font-size: 1.2rem;
+  font-family: var(--font-2);
+  position: absolute;
+  bottom: -18px;
 }

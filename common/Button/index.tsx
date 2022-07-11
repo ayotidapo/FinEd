@@ -4,17 +4,19 @@ import style from './button.module.scss';
 interface Props {
   children: React.ReactNode;
   className?: string;
-  loading?: boolean | undefined
+  loading?: boolean | undefined;
+  bg?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const BtnLoader: React.FC = () => <span className={`${style.btn_loader} spin`} />
-
+const BtnLoader: React.FC = () => (
+  <span className={`${style.btn_loader} spin`} />
+);
 
 const Button: React.FC<Props> = (props) => {
-  const { children, className, loading, ...rest } = props;
+  const { bg, children, className, loading, ...rest } = props;
   return (
-    <button className={cx([style.btn, className])} disabled={loading} {...rest}>
+    <button style={{ background: bg && bg }} className={cx([style.btn, className])} disabled={loading} {...rest}>
       {!loading ? children : <BtnLoader />}
     </button>
   );

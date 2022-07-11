@@ -4,7 +4,7 @@ import useForm from 'hooks/useForm';
 import Icon from 'common/Icon';
 import Input from 'common/Input';
 import styles from './forgot.module.scss';
-import forgotPasswordFields from './fields'
+import forgotPasswordFields from './fields';
 import Logo from 'common/Logo';
 import axios from 'axios';
 import { useState } from 'react';
@@ -15,23 +15,21 @@ const ForgotPwPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-
     e.preventDefault();
     try {
-      setSubmitting(true)
-      const body: { [key: string]: any } = {}
+      setSubmitting(true);
+      const body: { [key: string]: any } = {};
 
-      Object.keys(inputs).forEach(field => {
-        body[field] = inputs[field].value
-      })
+      Object.keys(inputs).forEach((field) => {
+        body[field] = inputs[field].value;
+      });
 
-      const res = await axios.post('/auth/forgot-password', body)
-      setSubmitting(false)
+      const res = await axios.post('/auth/forgot-password', body);
+      setSubmitting(false);
     } catch (e) {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-
-  }
+  };
   return (
     <main className={`auth_page`}>
       <section className="wrapper">
@@ -60,20 +58,20 @@ const ForgotPwPage = () => {
               <a className="a">Log In</a>
             </Link>
           </div>
-          <Button className={styles.resent_btn} onClick={onSubmit} loading={submitting}>
+          <Button
+            className={styles.resent_btn}
+            onClick={onSubmit}
+            loading={submitting}
+          >
             <>
-
-
               Send reset link
-
-
               <Icon id="arrow-right" width={20} height={20} />
             </>
           </Button>
         </div>
       </section>
     </main>
-  )
+  );
 };
 
 export default ForgotPwPage;

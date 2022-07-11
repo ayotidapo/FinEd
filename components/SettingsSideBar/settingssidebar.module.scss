@@ -1,0 +1,48 @@
+.sidetab {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  .settings_nav {
+    width: 82%;
+    ul {
+      font-family: var(--font-2);
+      padding: 0px;
+      margin-top: 0px;
+    }
+  }
+  .refer_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    flex-direction: column;
+    width: 195px;
+    height: 231px;
+    background-color: #e3eee7;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 40px;
+    font-size: var(--f-14);
+    font-family: var(--font-2);
+    .refer_box {
+      position: relative;
+      width: 42px;
+      height: 42px;
+    }
+  }
+  .copy {
+    padding: 0px;
+    min-height: 36px;
+    color: #000;
+    background: transparent;
+    width: 100%;
+    width: 125px;
+    border: 1px solid black;
+    font-family: Gascogne-DemiBold, sans-serif;
+    margin: 10px 0px;
+    font-weight: 200;
+  }
+}
+.activeTab {
+  background-color: rgba(245, 195, 200, 0.5);
+}

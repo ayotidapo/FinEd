@@ -1,4 +1,3 @@
-
 const fields = {
   firstName: {
     name: 'firstName',
@@ -74,9 +73,7 @@ const fields = {
   },
 };
 
-
-
-export const initialState={
+export const initialState = {
   firstName: {
     name: 'firstName',
     type: 'text',

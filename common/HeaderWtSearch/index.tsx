@@ -11,10 +11,9 @@ const HeaderWtSearch: React.FC = () => {
       value: '',
       label: '',
       type: 'text',
-      placeholder: 'search'
-
-    }
-  }
+      placeholder: 'search',
+    },
+  };
   return (
     <>
       <div className={`app-pad ${styles.header_sec}`}>
@@ -36,7 +35,6 @@ const HeaderWtSearch: React.FC = () => {
             leftIcon={{ name: 'search' }}
             wrapperClass={styles.wrapClass}
             inputClass={styles.inptClass}
-
           />
           <Button className={styles.logIn}>Log In</Button>
           <Button className={styles.btn}>Get Started</Button>

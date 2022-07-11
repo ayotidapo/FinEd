@@ -24,7 +24,8 @@
       transition: all 0.3s linear;
     }
   }
-  input[type='checkbox'],  input[type='radio'] {
+  input[type='checkbox'],
+  input[type='radio'] {
     display: none;
     &:checked {
       background-color: red;

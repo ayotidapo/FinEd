@@ -221,6 +221,10 @@
 		<path d="M13 21V12C13 11.7348 12.8946 11.4804 12.7071 11.2929C12.5196 11.1054 12.2652 11 12 11H10C9.73478 11 9.48043 11.1054 9.29289 11.2929C9.10536 11.4804 9 11.7348 9 12V15" stroke="#7C7C7C" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
 
+    <symbol id="light-cicle-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M9 12L11 14L15 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 
 
 </svg>

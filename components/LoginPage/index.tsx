@@ -4,35 +4,35 @@ import useForm from 'hooks/useForm';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Input from 'common/Input';
-import LogInFields, { initialState } from './fields'
+import LogInFields, { initialState } from './fields';
 import Logo from 'common/Logo';
 import { useState } from 'react';
 import axios from 'axios';
 
 const LoginPage = () => {
-
   const router = useRouter();
-  const { onChangeInput, onBlurInput, inputs } = useForm(LogInFields, initialState);
+  const { onChangeInput, onBlurInput, inputs } = useForm(
+    LogInFields,
+    initialState,
+  );
   const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-
     e.preventDefault();
     try {
-      setSubmitting(true)
-      const body: { [key: string]: any } = {}
+      setSubmitting(true);
+      const body: { [key: string]: any } = {};
 
-      Object.keys(inputs).forEach(field => {
-        body[field] = inputs[field].value
-      })
+      Object.keys(inputs).forEach((field) => {
+        body[field] = inputs[field].value;
+      });
 
-      const res = await axios.post('/auth/login', body)
-      setSubmitting(false)
+      const res = await axios.post('/auth/login', body);
+      setSubmitting(false);
     } catch (e) {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-
-  }
+  };
 
   return (
     <main className="auth_page">
@@ -82,5 +82,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-

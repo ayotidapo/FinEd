@@ -12,7 +12,12 @@ interface Props {
 const Icon: React.FC<Props> = (props) => {
   const { id, height, width, onClickFunc, ...rest } = props;
   return (
-    <svg width={width || 24} height={height || 24} {...rest} onClick={onClickFunc}>
+    <svg
+      width={width || 24}
+      height={height || 24}
+      {...rest}
+      onClick={onClickFunc}
+    >
       <use xlinkHref={`/icon-sprite.svg#${id}`} />
     </svg>
   );

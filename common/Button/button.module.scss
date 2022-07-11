@@ -8,17 +8,16 @@
     cursor: pointer;
     opacity: 0.85;
   }
-  &:disabled{
-    cursor:not-allowed;
+  &:disabled {
+    cursor: not-allowed;
   }
 }
-.btn_loader{
+.btn_loader {
   display: inline-block;
-  border:1px solid #fff;
+  border: 1px solid #fff;
   border-bottom-color: transparent;
   border-top-color: transparent;
   border-radius: 50%;
-  width:35px;
-  height:35px;
-
+  width: 35px;
+  height: 35px;
 }

@@ -1,6 +1,4 @@
-
 const fields = {
- 
   password: {
     name: 'password',
     type: 'password',
@@ -19,7 +17,6 @@ const fields = {
     error: '',
     required: true,
   },
-  
 };
 
 export default fields;

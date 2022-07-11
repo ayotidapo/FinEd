@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Input from 'common/Input';
-import resetFields from './fields'
+import resetFields from './fields';
 import Logo from 'common/Logo';
 import useForm from 'hooks/useForm';
 import axios from 'axios';
@@ -14,25 +14,23 @@ const ResetPasswordPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-
     e.preventDefault();
     try {
-      setSubmitting(true)
-      const body: { [key: string]: any } = {}
+      setSubmitting(true);
+      const body: { [key: string]: any } = {};
 
-      Object.keys(inputs).forEach(field => {
-        body[field] = inputs[field].value
-      })
+      Object.keys(inputs).forEach((field) => {
+        body[field] = inputs[field].value;
+      });
       delete body.password2;
-      body.token = 'mljnisnj@0i-39fnki'
+      body.token = 'mljnisnj@0i-39fnki';
 
-      const res = await axios.post('/auth/reset-password', body)
-      setSubmitting(false)
+      const res = await axios.post('/auth/reset-password', body);
+      setSubmitting(false);
     } catch (e) {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-
-  }
+  };
   return (
     <main className={`auth_page`}>
       <section className={`wrapper`}>
@@ -60,7 +58,7 @@ const ResetPasswordPage = () => {
           />
         </form>
         <div className={`sign_up`}>
-          <Button onClick={onSubmit} loading={submitting} >
+          <Button onClick={onSubmit} loading={submitting}>
             Reset password <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </div>

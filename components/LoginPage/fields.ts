@@ -1,6 +1,4 @@
-
 const fields = {
- 
   username: {
     name: 'username',
     type: 'text',
@@ -10,7 +8,7 @@ const fields = {
     error: '',
     required: true,
   },
-  
+
   password: {
     name: 'password',
     type: 'password',
@@ -20,8 +18,7 @@ const fields = {
     error: '',
     required: true,
   },
-  
 };
 
-export const initialState={...fields}
+export const initialState = { ...fields };
 export default fields;

@@ -1,6 +1,4 @@
-
 const fields = {
- 
   email: {
     name: 'email',
     type: 'email',
@@ -10,7 +8,6 @@ const fields = {
     error: '',
     required: true,
   },
-  
 };
 
 export default fields;

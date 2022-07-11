@@ -1,55 +1,53 @@
-.header{
-	display: flex;
-	height:70px;
-	align-items: center;
-	margin-top: 12px;
-	.logo_box {
-		position: relative;
-		width: 148px;
-		height: 26px;
-	  }
-	  .navi_box{
-		  display: flex;
-		  flex:1;
-	  .nav_ul{
-		  font-family: var(--font-2);
-		  li{
+.header {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  margin-top: 12px;
+  .logo_box {
+    position: relative;
+    width: 148px;
+    height: 26px;
+  }
+  .navi_box {
+    display: flex;
+    flex: 1;
+    .nav_ul {
+      font-family: var(--font-2);
+      li {
+        padding: 0px 20px;
+        font-size: var(--f-16);
+        font-weight: 500;
+      }
+    }
+  }
+  .avatar_div {
+    align-items: center;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    .avatar {
+      position: relative;
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      background-color: gold;
+      border-radius: 50%;
 
-			  padding:0px 20px;
-			  font-size: var(--f-16);
-			  font-weight: 500;
-			  
-		  }
-	  }
-	}
-	.avatar_div{
-		align-items: center;
-		display: flex;
-		width:300px;
-		justify-content: space-between;
-		.avatar{
-			position: relative;
-			display: inline-flex;
-			width:46px;
-			height: 46px;
-			background-color: gold;
-			border-radius: 50%;
-		
-			img{
-				border-radius: 50%;
-				object-position:top center;
-			}
-		}
-		.log_auth{
-			position:relative;
-			display: flex; 
-			align-items: center;
-		}
-		.upgrade{
-			background: transparent;
-			border: 1px solid #000;
-			color: #000;
-			padding: 0px 15px;
-		}
-	}
+      img {
+        border-radius: 50%;
+        object-position: top center;
+      }
+    }
+    .log_auth {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .upgrade {
+      background: transparent;
+      border: 1px solid #000;
+      color: #000;
+      padding: 0px 15px;
+    }
+  }
 }

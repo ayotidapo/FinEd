@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import Icon from 'common/Icon';
 import styles from './label.module.scss';
 
@@ -30,7 +29,8 @@ interface LCProps extends LTProps {
 }
 
 export const LabelCheck: React.FC<LCProps> = (props) => {
-  const { children, rname, type, color, tag, className, value, ...rest } = props;
+  const { children, rname, type, color, tag, className, value, ...rest } =
+    props;
   return (
     <span className={styles.label_check}>
       <input type={type} name={rname || tag} id={tag} value={value} /> &nbsp;
