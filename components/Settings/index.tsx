@@ -1,14 +1,11 @@
 import Header from 'common/HeaderLoggedIn';
-import Image from 'next/Image';
-import LabelTab from 'common/LabelTab';
 import styles from './settings.module.scss';
-import Button from 'common/Button';
 import MyProfile from 'components/MyProfile';
 import Subscriptions from 'components/Subscriptions'
 import SideBar from 'components/SettingsSideBar';
-import cx from 'classnames';
-import Icon from 'common/Icon';
 import { useState } from 'react';
+import ReferFriend from 'components/ReferFriend';
+import ChangePassword from 'components/ChangePassword';
 
 interface Props { }
 
@@ -23,10 +20,13 @@ const SettingsPage: React.FC<Props> = () => {
 					<div className={styles.wrapper}>
 						<SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-						<section className={styles.display}>
-							{false && <MyProfile />}
-							<Subscriptions />
-						</section>
+						<div className={styles.display}>
+							{activeTab === 'My Profile' && <MyProfile />}
+							{activeTab === 'Subcriptions' && <Subscriptions />}
+							{activeTab === 'Refer a friend' && <ReferFriend />}
+							{activeTab === 'Change password' && <ChangePassword />}
+
+						</div>
 					</div>
 				</section >
 			</main >

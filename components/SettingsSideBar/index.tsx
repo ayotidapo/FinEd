@@ -24,7 +24,7 @@ const tabs = [
   },
   {
     text: 'Log out',
-    icon: '',
+    icon: 'logout',
   },
 ];
 
@@ -49,21 +49,23 @@ const SideBar: React.FC<Props> = (props: Props) => {
             ))}
           </ul>
         </nav>
-        <div className={styles.refer_div}>
-          <div className={styles.refer_box}>
-            <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
-          </div>
-          <span>Get 10% off when you refer a friend</span>
-          <Button className={styles.copy}>
-            Thelma23 <Icon id="copy" />
-          </Button>
-          <div className="socials">
-            <Icon id="fb" width={18} height={18} />
-            <Icon id="linkdIn" width={18} height={18} />
-            <Icon id="whatsapp" width={18} height={18} />
-            <Icon id="twitter" width={18} height={18} />
-          </div>
-        </div>
+        {activeTab !== 'Refer a friend' &&
+          (<div className={styles.refer_div}>
+            <div className={styles.refer_box}>
+              <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
+            </div>
+            <span>Get 10% off when you refer a friend</span>
+            <Button className={styles.copy}>
+              Thelma23 <Icon id="copy" />
+            </Button>
+            <div className="socials">
+              <Icon id="fb" width={18} height={18} />
+              <Icon id="linkdIn" width={18} height={18} />
+              <Icon id="whatsapp" width={18} height={18} />
+              <Icon id="twitter" width={18} height={18} />
+            </div>
+          </div>)
+        }
       </section>
     </>
   );
