@@ -34,6 +34,11 @@ interface Props {
 }
 const SideBar: React.FC<Props> = (props: Props) => {
   const { setActiveTab, activeTab } = props;
+
+  const onSetTab = (text: string) => {
+    if (text === 'Log out') return;
+    setActiveTab(text)
+  }
   return (
     <>
       <section className={styles.sidetab}>
@@ -43,7 +48,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
               <LabelTab
                 tab={tab}
                 key={tab.text}
-                onClick={() => setActiveTab(tab.text)}
+                onClick={() => onSetTab(tab.text)}
                 className={cx({ [styles.activeTab]: activeTab === tab.text })}
               />
             ))}
