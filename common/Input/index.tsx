@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import cx from 'classnames';
 import Icon from '../Icon';
@@ -25,11 +26,12 @@ interface Props {
   wrapperClass?: string;
   readOnly?: boolean | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   field?: IField;
 }
 
-const Input: React.FC<Props> = (props) => {
+const Input: React.FC<Props> = React.forwardRef((props, ref) => {
   const {
     leftIcon,
     rightIcon,
@@ -77,6 +79,7 @@ const Input: React.FC<Props> = (props) => {
       <input
         value={value}
         name={name}
+        id={name}
         autoComplete="new-password"
         className={`${styles.input} ${inputClass}`}
         onChange={onChange ? (e) => onChange(e) : undefined}
@@ -88,6 +91,9 @@ const Input: React.FC<Props> = (props) => {
       </div>
     </label>
   );
-};
+});
 
 export default Input;
+
+
+// const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>((props, ref) => {

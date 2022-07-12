@@ -5,7 +5,7 @@ export const isPasswordStrong = (value: string) =>
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/.test(value);
 
 export const ValidateInput = (field: IField, inputsObj: IState) => {
-  const { name, value, label, type } = field;
+  const { name, value, label, type,no_validate} = field;
   const validatedInputs = { ...inputsObj };
   if (value?.trim()?.length < 1) {
     validatedInputs[name].error = `${label || `Field`} is required `;
@@ -24,8 +24,12 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
   } else if (name === 'password2' && value) {
     validatedInputs[name].error =
       value !== inputsObj['password'].value ? 'Password does not match' : '';
-  } else {
+  } 
+  else {
+
     validatedInputs[name].error = ``;
+    
   }
+  if (no_validate) validatedInputs[name].error = ``;
   return validatedInputs;
 };

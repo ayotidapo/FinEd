@@ -11,7 +11,7 @@ import Link from 'next/link';
 import Button from 'common/Button';
 import signUpFields, { initialState } from './fields';
 
-interface Props {}
+interface Props { }
 
 const SignUpPage: React.FC<Props> = () => {
   const { onChangeInput, onBlurInput, inputs } = useForm(
@@ -36,7 +36,7 @@ const SignUpPage: React.FC<Props> = () => {
       delete body.nigeriaPhone;
 
       const res = await axios.post('/auth/signup', body);
-      setSubmitting(false);
+      router.push('/email-verification')
     } catch (e) {
       setSubmitting(false);
     }
