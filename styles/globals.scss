@@ -400,6 +400,11 @@ a {
     }
   }
 }
+
+.right_for_sub{
+  display: flex;
+  padding-left: 40px;
+}
 .spin {
   animation: pay-animation 1s infinite;
 }
@@ -411,6 +416,18 @@ a {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.rec{
+  text-align: center;
+  color: transparent;
+  background: transparent;
+  margin: 0px;
+  height: 25px;
+  font-size: 1.4rem;
+  padding-top: 5px;
+  border-radius: 8px 8px 0px 0px;
+  transform: translateY(4px);
 }
 
 .split {

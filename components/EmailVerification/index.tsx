@@ -3,12 +3,13 @@ import Logo from 'common/Logo'
 import Input from 'common/Input'
 import Button from 'common/Button'
 import Icon from 'common/Icon'
+
 const EmailVerificationPage = () => {
 	return (
 		<main className={styles.email_verification}>
 
 			<section className={styles.section}>
-				<div className={styles.go_back}>
+				<div className={`hand ${styles.go_back}`}>
 					&lt;&nbsp;&nbsp; Go back
 				</div>
 				<div className={styles.wrapper}>
