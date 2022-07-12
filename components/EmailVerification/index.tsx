@@ -1,14 +1,16 @@
-import styles from './verify.module.scss'
+import { useEffect, useState } from 'react'
+import useRouter from 'next/router'
 import Logo from 'common/Logo'
 import Input from 'common/Input'
 import Button from 'common/Button'
 import pinFields, { initialState } from './fields'
 import Icon from 'common/Icon'
 import useForm from 'hooks/useForm'
-import { useEffect, useState } from 'react'
 
+import styles from './verify.module.scss'
 const EmailVerificationPage = () => {
-	const [id, setId] = useState('pin1')
+	const [id, setId] = useState('pin1');
+	const router = useRouter()
 	const [submitting, setSubmitting] = useState(false)
 	const { onChangeInput, onBlurInput, inputs } = useForm(
 		pinFields,
@@ -32,7 +34,7 @@ const EmailVerificationPage = () => {
 			const idNum = Number(id.slice(-1));
 
 			const newId = `pin${idNum - 1}`
-			if (idNum >1) setId(newId)
+			if (idNum > 1) setId(newId)
 
 		}
 	}
@@ -47,6 +49,7 @@ const EmailVerificationPage = () => {
 			});
 
 			console.log(value)
+			router.push('/contents/videos')
 		} catch {
 			setSubmitting(false)
 		}

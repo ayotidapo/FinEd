@@ -17,6 +17,9 @@
         padding: 0px 20px;
         font-size: var(--f-16);
         font-weight: 500;
+        &:hover{
+          cursor: pointer;
+        }
       }
     }
   }

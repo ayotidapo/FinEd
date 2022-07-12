@@ -53,7 +53,7 @@
 	</symbol>
  
 	<symbol id="caret-right" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M0.5 11L5.5 6L0.5 1" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M0.5 11L5.5 6L0.5 1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
 
 
