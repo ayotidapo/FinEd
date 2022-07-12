@@ -1,0 +1,95 @@
+.email_verification{
+	width:80%;
+	margin:0 auto;
+	
+	height: 100%;
+	.section{
+		display: flex;
+		align-items: center;
+		height: 100%;
+		flex-direction: column;
+		.go_back{
+			height: 40px;
+			font-size: var(--f-16);
+			font-family: var(--font-2);
+			font-weight: bold;
+			text-align: left;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding-top: 80px;
+
+		}
+		.wrapper{
+			
+			height: 400px;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			width: 47%;
+			margin-top: 8%;
+		
+
+			:global(.title){
+				+p{
+					font-size: var(--f-16);
+					color:#637170;
+					width:80%;
+					
+				}
+			}
+			.info{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			
+				p{
+					text-align: center;
+				}
+				.inputs_div{
+					display: flex;
+					gap:10px;
+					label{
+						width: 80px;
+						input{
+							text-align: center;
+						}
+					}
+				}
+				.complete{
+					p{
+						font-family: var(--font-2);
+						font-size: var(--f-16);
+						color: #7C7C7C;
+						span{
+							color: #015351;
+							text-decoration: underline;
+							font-weight: bold;
+							
+						}
+					}
+					width:100%;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					margin-top: 35px;
+				}
+			}
+
+			.logo_box{
+				
+				position: relative;
+				width: 182px;
+				margin-bottom: 20px;
+				height: 32px;
+			
+			
+			}
+			
+
+		}
+	
+
+	}
+	
+}

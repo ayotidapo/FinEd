@@ -26,7 +26,7 @@ interface Props {
   readOnly?: boolean | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
-  field: IField;
+  field?: IField;
 }
 
 const Input: React.FC<Props> = (props) => {
@@ -40,7 +40,7 @@ const Input: React.FC<Props> = (props) => {
     onChange,
     ...rest
   } = props;
-  const { label, value, name, error, ...fRest } = field;
+  const { label, value, name, error, ...fRest } = field || { error: '' };
 
   const l = leftIcon as IconType;
   const leftIname = l?.name;
