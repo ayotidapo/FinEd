@@ -18,7 +18,7 @@ const SubscriptionArticles = () => {
 						</div>
 						<div className='flx_jc_ac_cl'>
 							<span className={styles.amt}>#10,000</span>
-							<span>/6 months</span>
+							<span>/3 months</span>
 						</div>
 					</div>
 					<p className={styles.p}>
@@ -76,7 +76,7 @@ const SubscriptionArticles = () => {
 						</div>
 						<div className='flx_jc_ac_cl'>
 							<span className={styles.amt}>#10,000</span>
-							<span>/6 months</span>
+							<span>/One year</span>
 						</div>
 					</div>
 					<p className={styles.p}>
