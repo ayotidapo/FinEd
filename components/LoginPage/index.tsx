@@ -27,8 +27,16 @@ const LoginPage = () => {
         body[field] = inputs[field].value;
       });
 
-      const res = await axios.post('/auth/login', body);
-      setSubmitting(false);
+
+      const { data: { accessToken } } = await axios.post('/auth/login', body);
+
+      const nextApi = axios.create({
+        baseURL: '/api'
+      })
+
+      await nextApi.post('/set-token', { token: accessToken, username: body?.username })
+
+      router.replace('/contents/videos')
     } catch (e) {
       setSubmitting(false);
     }

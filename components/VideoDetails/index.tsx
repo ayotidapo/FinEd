@@ -1,29 +1,46 @@
 import Button from 'common/Button';
 import { useRouter } from 'next/router';
-import HeaderWtSearch from 'common/HeaderWtSearch';
+import Header from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Star from 'common/Ratings';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
+import { ICourse } from 'components/VideosListPage';
 
-const VideoDetailsPage: React.FC = () => {
+interface Props {
+  course: ICourse
+}
+
+interface IContent {
+  duration: 0;
+  id: string;
+  summary: string;
+  title: string;
+  type: string;
+  [key: string]: any
+}
+
+
+const VideoDetailsPage: React.FC<Props> = ({ course }) => {
+  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
+  const { title, thumbnail, description, contents, categories, level } = course
   const router = useRouter();
   return (
     <>
       <header className={styles.header}>
-        <HeaderWtSearch />
+        <Header />
       </header>
       <div className={`app-pad ${styles.jumbotron}`}>
         <nav className={styles.breadcrumb}>
           <ul>
-            <li style={{ marginTop: '-2px' }}>
+            <li style={{ marginTop: '-2px' }} onClick={() => router.push('/')}>
               <Icon
                 id="home"
                 height={24}
                 width={24}
                 className="hand"
-                onClickFunc={() => router.push('/')}
+
               />
               <Icon
                 id="caret-right"
@@ -47,25 +64,23 @@ const VideoDetailsPage: React.FC = () => {
               />
             </li>
             <li>
-              <span>The Best Crypto Wallets for Binance Smart Chain (BSC)</span>
+              <span>{title}</span>
             </li>
           </ul>
         </nav>
         <div className={styles.details_sec}>
           <section className={styles.img_details}>
-            <Image src="/assets/girl.png" layout="fill" alt="video_img" />
+            <Image src={thumbnail?.url} layout="fill" alt="video_img" />
             <div className="overlay" />
           </section>
 
           <section className={styles.info_details}>
             <span className={styles.labeltag}>
-              <LabelTag color="#F9D68A">Money Africa</LabelTag>
-              <LabelTag color="#F5C3C8">Privacy</LabelTag>
-              <LabelTag color="#ABEAD3">Mining</LabelTag>
-              <LabelTag>+3</LabelTag>
+              {categories.map((category, i) => <LabelTag key={category} color={colors[i]}>{category}</LabelTag>)}
+              {categories.length > 3 && <LabelTag>+3</LabelTag>}
             </span>
             <h2 className={`title ${styles.title}`}>
-              The Best Crypto Wallets for Binance Smart Chain (BSC)
+              {title}
             </h2>
             <div className={styles.starwrap}>
               <Star />
@@ -75,7 +90,7 @@ const VideoDetailsPage: React.FC = () => {
               <Star />
               <span>4.3</span>
             </div>
-            <div className={`intermediate ${styles.min_details}`}>
+            <div className={`${level} ${styles.min_details}`}>
               <span className="bar" />
               <span className="bar" />
               <span className="bar" />
@@ -86,7 +101,7 @@ const VideoDetailsPage: React.FC = () => {
         </div>
       </div>
       <div className={styles.tabs}>
-        <span>About this course</span>
+        {<span>About this course</span>}
         <span>Course content</span>
         <span>Ratings</span>
         <article className={styles.getstarted}>
@@ -106,83 +121,36 @@ const VideoDetailsPage: React.FC = () => {
       </div>
       <section className={styles.about}>
         <h2 className="title">About this course</h2>
-        <p>
+        {false && <p>
           In this class, Documentary Photographer and Photojournalist, KC
           Nwakalor breaks down the various compositional techniques you can
           apply in order to have a better outcome in your photographs.
-        </p>
+        </p>}
         <p>
-          Composition refers to the placement and relationship of elements
-          within a picture. The arrangement of elements in a scene, the angle
-          they are shot at, the height we shoot from, and the distance the photo
-          is taken from, can completely change the final outcome of the
-          photograph. The composition can ultimately determine the difference
-          between a good and a bad...
-          <span
-            style={{ color: '#C03E21', fontWeight: 'bold' }}
-            className="hand"
-          >
-            {' '}
-            Show more.
-          </span>
+          {description}
+          {description.length > 600 &&
+            <span
+              style={{ color: '#C03E21', fontWeight: 'bold' }}
+              className="hand"
+            >
+              {' '}
+              Show more.
+            </span>}
         </p>
       </section>
       <section className={styles.content}>
         <h2 className="title">Course content</h2>
         <ul>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> What is a Tax Free
-              Savings Account(TFSA)
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> What is an RRSP &amp;
-              How does it work?
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> Chequing vs Savings
-              Account
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> What is a Tax Free
-              Savings Account(TFSA)
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> What is Corporate
-              Account?
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
-          <li>
-            <span className={styles.f_sp}>
-              <Icon id="padlock" width={20} height={20} /> What is LIRA?
-            </span>
-            <span>
-              <Icon id="clock" width={20} height={20} /> &nbsp;15mins
-            </span>
-          </li>
+          {contents.map((content: IContent) =>
+            <li key={content.id}>
+              <span className={styles.f_sp}>
+                <Icon id="padlock" width={20} height={20} />{content.title}
+              </span>
+              <span>
+                <Icon id="clock" width={20} height={20} /> &nbsp;15mins
+              </span>
+            </li>
+          )}
         </ul>
       </section>
       <section className={styles.ratings}>

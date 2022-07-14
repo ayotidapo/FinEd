@@ -27,7 +27,17 @@ const useForm = (fields: IState, initialState: IState) => {
     });
   };
 
-  return { onChangeInput, onBlurInput, inputs };
+  const setInputs = (newInputs: IState) => {
+
+    inputDispatch({
+      type: 'ON_UPDATE_INPUTS',
+      validatedInputs: newInputs,
+    });
+  };
+
+
+
+  return { onChangeInput, onBlurInput, setInputs, inputs };
 };
 
 export default useForm;

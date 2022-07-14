@@ -236,14 +236,14 @@ a {
   }
 }
 
-.intermediate,
-.advanced,
-.beginner {
+.Intermediate,
+.Advanced,
+.Beginner {
   display: inline-flex;
   align-items: center;
 }
 
-.intermediate {
+.Intermediate {
   .bar {
     &:nth-of-type(1) {
       &::after {
@@ -260,7 +260,7 @@ a {
   }
 }
 
-.advanced {
+.Advanced {
   .bar {
     &:nth-of-type(1) {
       &::after {
@@ -284,7 +284,7 @@ a {
   }
 }
 
-.beginner {
+.Beginner {
   .bar {
     &:nth-of-type(1) {
       &::after {

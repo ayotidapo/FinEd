@@ -1,12 +1,13 @@
 .video_header_wrap {
   background-image: url('/assets/vidheaderbg.png');
-  padding-top: 12px;
 }
 
 .filter {
   display: none;
 }
-
+.search_input{
+  margin-left: auto;
+}
 .cr_dn {
   margin-left: 7px;
   color: #c03e21;
@@ -119,7 +120,8 @@
   .content_items_wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+   //  justify-content: space-between;
+   gap:40px;
   }
 }
 

@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
-import useRouter from 'next/router'
+import { useRouter } from 'next/router'
 import Logo from 'common/Logo'
 import Input from 'common/Input'
 import Button from 'common/Button'
@@ -8,11 +9,14 @@ import Icon from 'common/Icon'
 import useForm from 'hooks/useForm'
 
 import styles from './verify.module.scss'
+import axios from 'axios'
 const EmailVerificationPage = () => {
 	const [id, setId] = useState('pin1');
 	const router = useRouter()
+	console.log(router.query)
 	const [submitting, setSubmitting] = useState(false)
-	const { onChangeInput, onBlurInput, inputs } = useForm(
+
+	const { onChangeInput, setInputs, inputs } = useForm(
 		pinFields,
 		initialState,
 	);
@@ -39,8 +43,10 @@ const EmailVerificationPage = () => {
 		}
 	}
 
-	const onSubmit = async () => {
+	const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault()
 		try {
+			setSubmitting(true);
 			const body: { [key: string]: any } = {};
 			let value = ''
 			Object.keys(inputs).forEach((field) => {
@@ -48,16 +54,33 @@ const EmailVerificationPage = () => {
 
 			});
 
-			console.log(value)
-			router.push('/contents/videos')
+			body.token = value
+			const { data } = await axios.post('/auth/verify-email', body);
+
+			console.log({ data })
+
+			router.push('/choose-plan')
 		} catch {
 			setSubmitting(false)
 		}
 	}
 
 	useEffect(() => {
+		const inputF = { ...inputs }
+		const query = router.query?.token || '';
 
-	}, [id])
+		const code = (query as string)?.split('')
+
+
+		Object.keys(inputs).forEach((field, i) => {
+			inputF[field].value = code[i]
+		});
+
+		setInputs(inputF)
+
+
+
+	}, [router.query])
 
 	useEffect(() => {
 		document.getElementById(`${id}`)?.focus()
@@ -67,7 +90,7 @@ const EmailVerificationPage = () => {
 		<main className={styles.email_verification}>
 
 			<section className={styles.section}>
-				<div className={`hand ${styles.go_back}`}>
+				<div className={`hand ${styles.go_back}`} onClick={() => router.push('/signup')}>
 					&lt;&nbsp;&nbsp; Go back
 				</div>
 				<div className={styles.wrapper}>
@@ -81,17 +104,17 @@ const EmailVerificationPage = () => {
 						</p>
 						<div className={styles.inputs_div}>
 							<Input field={inputs.pin1} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 							<Input field={inputs.pin2} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 							<Input field={inputs.pin3} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 							<Input field={inputs.pin4} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 							<Input field={inputs.pin5} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 							<Input field={inputs.pin6} onChange={onChange}
-								onBlur={onBlurInput} onKeyDown={onInputKeyDown} />
+								onKeyDown={onInputKeyDown} />
 						</div>
 						<div className={styles.complete}>
 

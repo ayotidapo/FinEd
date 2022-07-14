@@ -6,17 +6,17 @@ interface Props {
   width?: number;
   className?: string;
   style?: object;
-  onClickFunc?: () => void;
+  onClick?: (e: any) => void;
 }
 
 const Icon: React.FC<Props> = (props) => {
-  const { id, height, width, onClickFunc, ...rest } = props;
+  const { id, height, width, onClick, ...rest } = props;
   return (
     <svg
       width={width || 24}
       height={height || 24}
       {...rest}
-      onClick={onClickFunc}
+
     >
       <use xlinkHref={`/icon-sprite.svg#${id}`} />
     </svg>

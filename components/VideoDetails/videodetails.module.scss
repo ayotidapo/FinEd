@@ -1,6 +1,6 @@
 .header {
   background: #e3eee7;
-  padding-top: 25px;
+  
 }
 
 .jumbotron {
@@ -81,8 +81,10 @@
 
   .labeltag {
     display: flex;
-    justify-content: space-between;
-    width: 320px;
+    label{
+      margin-right: 10px;
+    }
+    
   }
 }
 .tabs {
@@ -155,8 +157,10 @@
 .ratings {
   width: 56%;
   padding-top: 50px;
-  min-height: 300px;
+  min-height: 220px;
+  max-height: 300px;
   padding-left: 65px;
+  overflow: auto;
   :global(.title) {
     font-size: var(--f-24);
     ~ p {
@@ -171,6 +175,7 @@
   padding-top: 27px;
   font-size: var(--f-16);
   font-family: var(--font-2);
+  max-height: 400px;
   ul {
     padding: 0;
     li {
@@ -192,6 +197,7 @@
 }
 .ratings {
   padding-top: 27px;
+  max-height: 800px;
 }
 
 .comment {

@@ -26,12 +26,18 @@ const ChoosePlan = () => {
 						</div>
 
 					</div>
-					<div className={`right_for_sub ${styles.choose}`}>
-						<SubscriptionArticles />
+					<Link href="/contents/videos" >
+						<a>
+							<div className={`right_for_sub ${styles.choose}`}>
 
-					</div>
+								<SubscriptionArticles />
+
+
+							</div>
+						</a>
+					</Link>
 					<div className={styles.link}>
-						<Link href='/'>I&apos;ll do this later</Link>
+						<Link href='/contents/videos'>I&apos;ll do this later</Link>
 					</div>
 
 				</section>

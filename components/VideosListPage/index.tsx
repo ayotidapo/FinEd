@@ -9,8 +9,32 @@ import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
 
-const VideosListPage: React.FC = () => {
+
+export interface ICourse {
+  categories: string[];
+  createdAt: string;
+  description: string;
+  level: string;
+  paid: false
+  published: boolean;
+  thumbnail: { id: string; url: string; key: string; }
+  title: string;
+  updatedAt: string;
+  [key: string]: any
+}
+
+
+interface Props {
+  data: {
+    courses: ICourse[],
+    [key: string]: any
+  }
+}
+
+const VideosListPage: React.FC<Props> = (props) => {
+
   const [showFilter, setShowFilter] = useState(false);
+  const { data: { courses } } = props
 
   return (
     <>
@@ -27,11 +51,13 @@ const VideosListPage: React.FC = () => {
               <Icon id="caret-down" width={24} height={24} />
             </span>
           </span>
-          <Input
-            leftIcon={{ name: 'search' }}
-            wrapperClass={styles.wrapClass}
-            inputClass={styles.inptClass}
-          />
+          <div className={styles.search_input}>
+            <Input
+              leftIcon={{ name: 'search' }}
+              wrapperClass={styles.wrapClass}
+              inputClass={styles.inptClass}
+            />
+          </div>
           <span
             className={`hand ${styles.filter}`}
             onClick={() => setShowFilter((state) => !state)}
@@ -125,8 +151,8 @@ const VideosListPage: React.FC = () => {
             </div>
           </section>
           <section className={styles.content_items_wrap}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'q', 'w'].map((k) => (
-              <VideoCard key={k} />
+            {courses.map((course) => (
+              <VideoCard key={course.id} course={course} />
             ))}
           </section>
         </div>
