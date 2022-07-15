@@ -4,9 +4,21 @@ import Logo from 'common/Logo';
 import styles from './headerloggedIn.module.scss';
 import Button from 'common/Button';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import axios from 'axios';
 
 const Header = () => {
   const router = useRouter()
+
+  const logOut = async () => {
+    const nextApi = axios.create({
+      baseURL: '/api'
+    })
+
+    await nextApi.post('/logout');
+    router.replace('/login')
+  }
+
   return (
     <header className={`app-pad ${styles.header}`}>
       <div className={styles.logo_box}>
@@ -29,6 +41,25 @@ const Header = () => {
             <Image src="/assets/girl.png" layout="fill" alt="top-sec-img" />
           </span>
           <Icon id="caret-down" />
+          <nav className='navi'>
+            <ul className={styles.tooltip_nav}>
+              <Link href='/settings'>
+                <a>
+                  <li>
+                    < Icon id="clog" />&nbsp; My Settings
+                  </li>
+                </a>
+              </Link>
+
+
+              <li onClick={logOut}>
+                < Icon id="logout" />&nbsp; Logout
+              </li>
+
+
+            </ul>
+
+          </nav>
         </div>
       </div>
     </header>

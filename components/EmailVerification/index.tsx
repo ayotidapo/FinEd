@@ -13,7 +13,7 @@ import axios from 'axios'
 const EmailVerificationPage = () => {
 	const [id, setId] = useState('pin1');
 	const router = useRouter()
-	console.log(router.query)
+
 	const [submitting, setSubmitting] = useState(false)
 
 	const { onChangeInput, setInputs, inputs } = useForm(
@@ -55,9 +55,14 @@ const EmailVerificationPage = () => {
 			});
 
 			body.token = value
-			const { data } = await axios.post('/auth/verify-email', body);
+			const { data: { accessToken, user } } = await axios.post('/auth/verify-email', body);
 
-			console.log({ data })
+			const nextApi = axios.create({
+				baseURL: '/api'
+			})
+
+			await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
+
 
 			router.push('/choose-plan')
 		} catch {

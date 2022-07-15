@@ -16,7 +16,7 @@ interface Props {
 
 const Videos: React.FC<Props> = (props) => {
   const { data } = props
-  console.log({ data })
+
   return (
     <>
       <VideoPage data={data} />
@@ -29,9 +29,9 @@ export default Videos;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const c_token = getCookie('c_token', { req, res })
-  const { s_token, username } = getToken(c_token as string)
+  const { s_token, userId } = getToken(c_token as string)
 
-  if (!username) {
+  if (!userId) {
     return {
       redirect: {
         destination: '/login',

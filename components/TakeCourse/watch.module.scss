@@ -1,0 +1,142 @@
+.watch{
+	.top{
+		display: flex;
+		background-color: #fff;
+		height: 70px;
+	align-items: center;
+	padding: 0 20px;
+		.breadcrumb {
+			font-family: var(--font-2);
+			
+		  
+			ul {
+			  margin-top: 0;
+			  padding: 0px;
+			  font-size: var(--f-14);
+			  height: 24px;
+			  display: flex;
+			  align-items: center;
+			  li {
+				display: flex;
+				align-items: center;
+		  
+				&:last-child {
+				  white-space: nowrap;
+				  overflow: hidden;
+				  text-overflow: ellipsis;
+				  display: inline-block;
+				}
+			  }
+			}
+		  }
+	}
+	.wrapper{
+		display: flex;
+		height: 100%;
+		p{
+			margin: 0 ;
+		}
+
+		.content_list{
+			width: 22.3%;
+			background-color:#30656F;
+			min-height:700px;
+			color: #fff;
+			p{
+				margin: 0 ;
+				height: 60px;
+				display: flex;
+				align-items: center;
+			   font-size: var(--f-16);
+			   font-family: var(--font-2);
+			   padding-left: 20px;
+			   background-color: #015351;
+			}
+			.content {
+				padding-top: 0px;
+				font-size: var(--f-14);
+				font-family: var(--font-2);
+				max-height: 400px;
+				padding-left: 20px;
+				ul {
+				  padding: 0;
+				  li {
+					width: 100%;
+					display: inline-flex;
+					justify-content: space-between;
+					align-items: center;
+					margin: 15px 0px;
+					padding-right: 20px;
+					.f_sp {
+					  display: inline-flex;
+					  align-items: center;
+					}
+					svg {
+					  vertical-align: middle;
+					}
+				  }
+				}
+			  }
+			
+		}
+
+		
+		.main_sec{
+			font-size: var(--f-16);
+			font-family: var(--font-2);
+			line-height: 1.5;
+			flex: 1;
+			.video_player{
+				height: 430px;
+				width:100%;
+				background-color: #000;
+			}
+			.details{
+				width: 80%;
+				min-height: 250px;
+				padding: 0 25px;
+				padding-top: 50px;
+				padding-left: 35px;
+				padding-bottom: 50px;
+				:global(.title){
+					font-size: var(--f-24);
+				}
+				.barz_clock{
+					height: 50px;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 40px;
+					margin-top: 20px;
+					label{
+						margin-right: 10px;
+					}
+				}
+				.min_details{
+					span{
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+			.summary{
+				margin-top: 0px;
+                margin-bottom: 20px;
+				span{
+					min-height: 120px;
+				}
+			}
+			.reference{
+				display: flex;
+				flex-direction: column;
+				text-decoration: underline;
+				font-size: var(--f-14);
+				color:#C03E21 ;
+				*{
+					margin: 10px 0px;
+				}
+				
+			}
+		}
+	}
+}

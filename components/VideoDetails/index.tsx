@@ -7,12 +7,13 @@ import Star from 'common/Ratings';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
+import Link from 'next/link';
 
 interface Props {
   course: ICourse
 }
 
-interface IContent {
+export interface IContent {
   duration: 0;
   id: string;
   summary: string;
@@ -24,7 +25,8 @@ interface IContent {
 
 const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
-  const { title, thumbnail, description, contents, categories, level } = course
+  const { title, thumbnail, description, contents, categories, level, id } = course
+  console.log({ course })
   const router = useRouter();
   return (
     <>
@@ -69,10 +71,14 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <section className={styles.img_details}>
-            <Image src={thumbnail?.url} layout="fill" alt="video_img" />
-            <div className="overlay" />
-          </section>
+          <Link href={`/take-course/${title}/${id}`}>
+            <a className={styles.img_details}>
+              <section>
+                <Image src={thumbnail?.url} layout="fill" alt="video_img" />
+                <div className="overlay" />
+              </section>
+            </a>
+          </Link>
 
           <section className={styles.info_details}>
             <span className={styles.labeltag}>

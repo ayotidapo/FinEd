@@ -45,6 +45,17 @@
       position: relative;
       display: flex;
       align-items: center;
+
+          :global(.navi){
+            visibility: hidden;
+            opacity: 0;
+          }
+      &:hover{
+        :global(.navi){
+          visibility: visible;
+          opacity: 1;
+        }
+      }
     }
     .upgrade {
       background: transparent;
@@ -53,4 +64,29 @@
       padding: 0px 15px;
     }
   }
+}
+.tooltip_nav{
+  width: 180px;
+  height: 121px;
+  position: absolute;
+  right: 0px;
+  top:32px;
+  flex-direction: column;
+  background: #FFF;
+  border: 1px solid #E4E6EB;
+  box-shadow: 0px 2px 16px rgba(232, 237, 250, 0.2);
+  border-radius: 8px;
+  padding: 20px 15px;
+  font-family: var(--font-2);
+  font-size: var(--f-14);
+  li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    &:hover{
+      cursor: pointer;
+    }
+
+  }
+
 }

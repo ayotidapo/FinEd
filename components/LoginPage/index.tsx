@@ -28,13 +28,13 @@ const LoginPage = () => {
       });
 
 
-      const { data: { accessToken } } = await axios.post('/auth/login', body);
+      const { data: { accessToken, user } } = await axios.post('/auth/login', body);
 
       const nextApi = axios.create({
         baseURL: '/api'
       })
 
-      await nextApi.post('/set-token', { token: accessToken, username: body?.username })
+      await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
 
       router.replace('/contents/videos')
     } catch (e) {
@@ -70,8 +70,8 @@ const LoginPage = () => {
             onBlur={onBlurInput}
           />
         </form>
-        <Link href="/forgot-password">
-          <a className={`fg_pass hand`}>Forgot Password?</a>
+        <Link href="/forgot-password" >
+          <a className={`fg_pass hand`} style={{ width: '150px' }}>Forgot Password?</a>
         </Link>
         <div className="sign_up">
           <div>

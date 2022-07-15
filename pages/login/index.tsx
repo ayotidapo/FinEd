@@ -14,11 +14,11 @@ export default Login;
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const c_token = getCookie('c_token', { req, res })
 
-  const { s_token, username } = getToken(c_token as string)
-  console.log({ c_token, s_token, username });
+  const { s_token, userId } = getToken(c_token as string)
+
   axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
 
-  if (username) {
+  if (userId) {
     return {
       redirect: {
         destination: '/contents/videos',

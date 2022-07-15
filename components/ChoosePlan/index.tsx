@@ -1,9 +1,11 @@
 import styles from './chooseplan.module.scss'
 import SubscriptionArticles from 'common/SubscriptionArticles'
+import { useRouter } from 'next/router'
 import Logo from 'common/Logo'
 import Link from 'next/link'
 
-const ChoosePlan = () => {
+const ChoosePlan: React.FC = () => {
+	const router = useRouter()
 	return (
 		<main className={styles.chooseplan}>
 
@@ -26,18 +28,16 @@ const ChoosePlan = () => {
 						</div>
 
 					</div>
-					<Link href="/contents/videos" >
-						<a>
-							<div className={`right_for_sub ${styles.choose}`}>
 
-								<SubscriptionArticles />
+					<div className={`right_for_sub ${styles.choose}`}>
+
+						<SubscriptionArticles />
 
 
-							</div>
-						</a>
-					</Link>
-					<div className={styles.link}>
-						<Link href='/contents/videos'>I&apos;ll do this later</Link>
+					</div>
+
+					<div className={`hand ${styles.link}`} onClick={() => router.push('/contents/videos')}>
+						I&apos;ll do this later
 					</div>
 
 				</section>

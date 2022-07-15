@@ -43,7 +43,7 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
     ...rest
   } = props;
   const { label, value, name, error, ...fRest } = field || { error: '' };
-  console.log(fRest)
+
 
   const l = leftIcon as IconType;
   const leftIname = l?.name;

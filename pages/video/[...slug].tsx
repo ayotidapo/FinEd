@@ -7,7 +7,7 @@ import { GetServerSideProps } from 'next';
 import { ICourse } from 'components/VideosListPage';
 
 const VideoDetails: React.FC<{ course: ICourse }> = ({ course }) => {
-  console.log(course)
+
   return (
     <>
       <VideoDetailsPage course={course} />
@@ -20,10 +20,10 @@ export default VideoDetails;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res, params }) => {
   const c_token = getCookie('c_token', { req, res })
-  const { s_token, username } = getToken(c_token as string)
+  const { s_token, userId } = getToken(c_token as string)
   const paramz = params?.slug || []
 
-  if (!username) {
+  if (!userId) {
     return {
       redirect: {
         destination: '/login',
