@@ -1,4 +1,4 @@
-import Image from 'next/Image';
+import Image from 'next/image';
 import Input from 'common/Input';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
@@ -8,7 +8,7 @@ import fields from 'components/SignupPage/fields';
 
 import styles from './myprofile.module.scss';
 
-interface Props {}
+interface Props { }
 const MyProfile: React.FC<Props> = () => {
   return (
     <form className={styles.profile_wrapper}>
