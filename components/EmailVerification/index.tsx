@@ -18,7 +18,7 @@ const EmailVerificationPage = () => {
 
 	const { onChangeInput, setInputs, inputs } = useForm(
 		pinFields,
-		initialState,
+
 	);
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

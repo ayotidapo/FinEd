@@ -16,7 +16,7 @@ interface Props { }
 const SignUpPage: React.FC<Props> = () => {
   const { onChangeInput, onBlurInput, inputs } = useForm(
     signUpFields,
-    initialState,
+
   );
 
   const [submitting, setSubmitting] = useState(false);

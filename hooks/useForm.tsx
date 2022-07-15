@@ -5,7 +5,7 @@ import { useReducer, useEffect } from 'react';
 import { IState } from 'useReducers/inputReducers';
 import { ValidateInput } from 'helpers';
 
-const useForm = (fields: IState, initialState: IState) => {
+const useForm = (fields: IState) => {
   const [inputs, inputDispatch] = useReducer(inputReducer, fields);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {

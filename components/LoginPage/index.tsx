@@ -13,7 +13,7 @@ const LoginPage = () => {
   const router = useRouter();
   const { onChangeInput, onBlurInput, inputs } = useForm(
     LogInFields,
-    initialState,
+
   );
   const [submitting, setSubmitting] = useState(false);
 
