@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import styles from './watch.module.scss'
 import { ICourse } from 'components/VideosListPage'
 import { IContent } from 'components/VideoDetails'
+import { useEffect, useState } from 'react'
 
 
 const ReactPlayer = dynamic(() => import('react-player'), {
@@ -14,11 +15,21 @@ const ReactPlayer = dynamic(() => import('react-player'), {
 
 
 const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
-	console.log({ course })
+	const router = useRouter()
+	const fakeUrl = [`www.youtube.com/watch?v=oJbfMBROEO0`, 'www.youtube.com/watch?v=v21jg8wb1eU', 'www.youtube.com/watch?v=s87Y-6EgwFI']
+
 	const { title, thumbnail, description, contents, categories, level, id } = course
 	const resources = contents.filter((content: IContent) => content.type !== 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
-	const router = useRouter()
+
+	const { vlink } = router.query
+	const videolink = vlink || fakeUrl[0]
+
+	const setUrl = (id: number) => {
+		router.push(`/take-course/${course.id}/?vlink=${fakeUrl[id]}`)
+
+	}
+
 	return (
 		<main className={styles.watch}>
 			<div className={styles.top}>
@@ -68,10 +79,10 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
 					<div className={styles.content}>
 						<ul>
-							{[1, 2, 3, 4].map((_n, i) =>
-								<li key={i} className='hand'>
+							{contents.map((content: IContent, i) =>
+								<li key={content.id} className='hand' onClick={() => setUrl(i)}>
 									<a className={styles.f_sp}>
-										<Icon id="play" width={18} height={18} />&nbsp;What is a Tax Free...
+										<Icon id="play" width={18} height={18} />&nbsp;{content.title}
 									</a>
 									<a>
 										<Icon id="clock" width={18} height={18} /> &nbsp;15mins
@@ -100,7 +111,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 					<div className={styles.video_player}>
 
 						<ReactPlayer
-							url={`https://www.youtube.com/watch?v=E9qNoohAudo`}
+							url={videolink}
 							controls
 							width="100%"
 							height="100%"

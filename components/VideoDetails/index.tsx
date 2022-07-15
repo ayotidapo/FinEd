@@ -26,7 +26,7 @@ export interface IContent {
 const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
   const { title, thumbnail, description, contents, categories, level, id } = course
-  console.log({ course })
+  // console.log({ course })
   const router = useRouter();
   return (
     <>
@@ -71,7 +71,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <Link href={`/take-course/${title}/${id}`}>
+          <Link href={`/take-course/${id}/${title}`}>
             <a className={styles.img_details}>
               <section>
                 <Image src={thumbnail?.url} layout="fill" alt="video_img" />

@@ -21,7 +21,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
   return (
     <article className={`${styles.video_card}`} >
       <div className={`hand ${styles.video_thumbnail}`}
-        onClick={() => router.push(`/video/${title}/${id}`)}
+        onClick={() => router.push(`/video/${id}/${title}`)}
       >
         <Image src={thumbnail?.url} layout="fill" alt="top-sec-img" />
         <div className={styles.overlay}>
