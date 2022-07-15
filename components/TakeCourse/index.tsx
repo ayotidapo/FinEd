@@ -79,7 +79,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
 					<div className={styles.content}>
 						<ul>
-							{contents.map((content: IContent, i) =>
+							{contents.map((content: IContent, i: number) =>
 								<li key={content.id} className='hand' onClick={() => setUrl(i)}>
 									<a className={styles.f_sp}>
 										<Icon id="play" width={18} height={18} />&nbsp;{content.title}
@@ -94,7 +94,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 					<p>Resource</p>
 					<div className={styles.content}>
 						<ul>
-							{resources.map((item: IContent, i) =>
+							{resources.map((item: IContent, i: number) =>
 								<li key={i} className='hand'>
 									<a download className={styles.f_sp}>
 										<Icon id="file" width={20} height={20} />&nbsp;{item.title}

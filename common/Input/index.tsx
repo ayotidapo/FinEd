@@ -26,7 +26,7 @@ interface Props {
   wrapperClass?: string;
   readOnly?: boolean | undefined;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void | undefined;
+  onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   field?: IField;
 }

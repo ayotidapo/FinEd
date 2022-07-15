@@ -7,7 +7,7 @@ import Button from 'common/Button'
 import pinFields, { initialState } from './fields'
 import Icon from 'common/Icon'
 import useForm from 'hooks/useForm'
-
+// React.KeyboardEvent<HTMLInputElement>
 import styles from './verify.module.scss'
 import axios from 'axios'
 const EmailVerificationPage = () => {
@@ -33,7 +33,7 @@ const EmailVerificationPage = () => {
 
 	}
 
-	const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+	const onInputKeyDown = (e: any) => {
 		if (e.key === 'Backspace' || e.key === 'Delete') {
 			const idNum = Number(id.slice(-1));
 
