@@ -1,16 +1,22 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import useForm from 'hooks/useForm';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Input from 'common/Input';
 import LogInFields, { initialState } from './fields';
+import { useDispatch } from "store"
 import Logo from 'common/Logo';
-import { useState } from 'react';
-import axios from 'axios';
+import { loginUser } from './functions';
+
 
 const LoginPage = () => {
   const router = useRouter();
+
+  const dispatch = useDispatch()
+
   const { onChangeInput, onBlurInput, inputs } = useForm(
     LogInFields,
 
@@ -27,14 +33,15 @@ const LoginPage = () => {
         body[field] = inputs[field].value;
       });
 
+      await loginUser(body)(dispatch)
 
-      const { data: { accessToken, user } } = await axios.post('/auth/login', body);
+      // const { data: { accessToken, user } } = await axios.post('/auth/login', body);
 
-      const nextApi = axios.create({
-        baseURL: '/api'
-      })
+      // const nextApi = axios.create({
+      //   baseURL: '/api'
+      // })
 
-      await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
+      // await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
 
       router.replace('/contents/videos')
     } catch (e) {

@@ -7,8 +7,10 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 
+
 const Header = () => {
   const router = useRouter()
+
 
   const logOut = async () => {
     const nextApi = axios.create({
@@ -41,8 +43,8 @@ const Header = () => {
             <Image src="/assets/girl.png" layout="fill" alt="top-sec-img" />
           </span>
           <Icon id="caret-down" />
-          <nav className='navi'>
-            <ul className={styles.tooltip_nav}>
+          <nav  className={styles.setlog}>
+            <ul className={`navi ${styles.tooltip_nav}`}>
               <Link href='/settings'>
                 <a>
                   <li>
@@ -62,7 +64,7 @@ const Header = () => {
           </nav>
         </div>
       </div>
-    </header>
+    </header >
   );
 };
 export default Header;

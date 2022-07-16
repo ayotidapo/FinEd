@@ -8,6 +8,7 @@ import Checkbox from 'common/Checkbox';
 import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
+import { useSelector } from 'store';
 
 
 export interface ICourse {
@@ -32,16 +33,19 @@ interface Props {
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
-
+  const { user } = useSelector(state => state.user.user)
   const [showFilter, setShowFilter] = useState(false);
   const { data: { courses } } = props
+
 
   return (
     <>
       <header className={styles.video_header_wrap}>
         <Header />
         <div className={styles.topics}>
-          <h2 className="title">Learn start learning, Hassan</h2>
+          <h2 className="title">Let&apos;s start learning,
+            <span style={{ textTransform: 'capitalize' }}> {user?.firstName}</span>
+          </h2>
           <span
             className="d-flx"
             onClick={() => setShowFilter((state) => !state)}
