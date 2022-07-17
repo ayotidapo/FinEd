@@ -26,7 +26,7 @@ export interface IContent {
 const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
   const { title, thumbnail, description, contents, categories, level, id: courseId } = course
-
+  console.log(course)
   const router = useRouter();
   return (
     <>
