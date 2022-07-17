@@ -8,7 +8,7 @@ export const getToken= (c_token:string):jwt.JwtPayload =>{
 		return {...decoded}
 	}catch(e){
 
-		return {username:'',s_token:''}
+		return {userId:'',s_token:''}
 	}	
 	
 }

@@ -3,14 +3,17 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 
 interface IUSer{
-	
+	user:{
 		accessToken:string;
+
 	    [key:string]:any
     
+	}
+		
 }
 
 const initialState : IUSer = {
-	accessToken:''
+	user:{accessToken:''}
 }
 
 
@@ -21,15 +24,15 @@ export const userSlice = createSlice({
 
 	reducers:{
 		setUser(state,action){
-			console.log({dat2:action.payload,state})
 			
-		     state.user= action.payload
+		     state.user = {...action.payload}
+
 		}
 	},
 
 	extraReducers:{
 		[HYDRATE]:(state,_action)=>{
-			console.log(state,'DAPO')
+		
 			return state
 		}
 	}

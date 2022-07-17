@@ -19,6 +19,7 @@ const Videos: React.FC<Props> = (props) => {
 
   return (
     <>
+
       <VideoPage data={data} />
       <Footer />
     </>
@@ -40,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     }
   }
   try {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
+    // axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
     const { data } = await axios.get('/courses-user/noauth?skip=0&take=20')
     return {
       props: {

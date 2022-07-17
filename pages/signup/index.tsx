@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
   const { s_token, userId } = getToken(c_token as string)
 
-  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
+  // axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
 
   if (userId) {
     return {

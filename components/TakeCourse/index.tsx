@@ -1,11 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from 'next/dynamic'
 import Icon from 'common/Icon'
+import cx from 'classnames'
 import LabelTag from 'common/LabelTag'
 import { useRouter } from 'next/router'
 import styles from './watch.module.scss'
 import { ICourse } from 'components/VideosListPage'
 import { IContent } from 'components/VideoDetails'
-import { useEffect, useState } from 'react'
+import { getContentUrl } from './functions'
+import { useEffect, useRef, useState } from 'react'
+import { BtnLoader } from 'common/Button'
+
 
 
 const ReactPlayer = dynamic(() => import('react-player'), {
@@ -15,20 +20,46 @@ const ReactPlayer = dynamic(() => import('react-player'), {
 
 
 const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
-	const router = useRouter()
-	const fakeUrl = [`www.youtube.com/watch?v=oJbfMBROEO0`, 'www.youtube.com/watch?v=v21jg8wb1eU', 'www.youtube.com/watch?v=s87Y-6EgwFI']
+	const [loading, setLoading] = useState(false)
+	const [duration, setDuration] = useState('')
 
-	const { title, thumbnail, description, contents, categories, level, id } = course
-	const resources = contents.filter((content: IContent) => content.type !== 'video')
+	const [url, setUrl] = useState('')
+
+	const router = useRouter()
+	
+	const { title, description, contents, categories, level, id } = course
+	
+	const resources = contents.filter((content: IContent) => content.type?.toLowerCase() !== 'video')
+	const videos = contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
 
-	const { vlink } = router.query
-	const videolink = vlink || fakeUrl[0]
+	const { contId } = router.query
 
-	const setUrl = (id: number) => {
-		router.push(`/take-course/${course.id}/?vlink=${fakeUrl[id]}`)
+
+	const getUrl = async (courseVideoId: string) => {
+		setLoading(true)
+		const data = await getContentUrl(courseVideoId)
+		const fileurl = data?.file?.url
+		setUrl(fileurl)
+		if (data) {
+			router.push(`/take-course/${course.id}/${data.title}/?contId=${courseVideoId}`)
+
+		}
+		setLoading(false)
 
 	}
+	const handleDuration = (duration: any) => {
+		setDuration(duration)
+
+	}
+
+	useEffect(() => {
+		let videoId = '';
+		if (!contId) videoId = videos[0].id
+		else videoId = contId as string
+		getUrl(videoId)
+
+	}, [])
 
 	return (
 		<main className={styles.watch}>
@@ -79,13 +110,15 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
 					<div className={styles.content}>
 						<ul>
-							{contents.map((content: IContent, i: number) =>
-								<li key={content.id} className='hand' onClick={() => setUrl(i)}>
-									<a className={styles.f_sp}>
-										<Icon id="play" width={18} height={18} />&nbsp;{content.title}
-									</a>
+							{videos.map((video: IContent, i: number) =>
+								<li key={video.id} className={cx('hand', { [styles.active_vid]: video.id === contId })} onClick={() => getUrl(video.id)}>
+									<abbr title={video.title} className={`elips ${styles.f_sp}`}>
+										<a>
+											<Icon id="play" width={18} height={18} />&nbsp;{video.title}
+										</a>
+									</abbr>
 									<a>
-										<Icon id="clock" width={18} height={18} /> &nbsp;15mins
+										<Icon id="clock" width={18} height={18} />&nbsp;{(Number(duration) / 60).toFixed(2)} mins
 									</a>
 								</li>
 							)}
@@ -94,12 +127,13 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 					<p>Resource</p>
 					<div className={styles.content}>
 						<ul>
-							{resources.map((item: IContent, i: number) =>
+							{resources.map((resource: IContent, i: number) =>
 								<li key={i} className='hand'>
-									<a download className={styles.f_sp}>
-										<Icon id="file" width={20} height={20} />&nbsp;{item.title}
-									</a>
-
+									<abbr title={resource.title} className={`elips  ${styles.f_sp} ${styles.r_l}`}>
+										<a download >
+											<Icon id="file" width={20} height={20} />&nbsp;{resource.title}
+										</a>
+									</abbr>
 								</li>
 							)}
 						</ul>
@@ -110,15 +144,19 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 				<section className={styles.main_sec}>
 					<div className={styles.video_player}>
 
-						<ReactPlayer
-							url={videolink}
+						{!loading ? <ReactPlayer
+							url={url}
 							controls
 							width="100%"
 							height="100%"
 							//onReady={() => setLoading(false)}
-
+							onDuration={handleDuration}
 							playing
 						/>
+							:
+
+							<BtnLoader classStyle='abs-center' />
+						}
 					</div>
 					<div className={styles.details}>
 						<h2 className='title'>
@@ -162,9 +200,9 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
 				</section>
 
-			</div>
+			</div >
 
-		</main>
+		</main >
 	)
 }
 

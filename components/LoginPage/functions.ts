@@ -15,8 +15,23 @@ export const loginUser=(body:{[key:string]:any}) => async(dispatch:AppDispatch)=
 		})
   
 		await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
-		console.log({dat:data})
 		dispatch(setUser(data))
+
+	  } catch (e) {
+		
+	  }
+
+}
+
+
+export const getUser=(id:string) => async(dispatch:AppDispatch)=>{
+	try {
+	
+		
+		const { data } = await axios.get(`/users/${id}`);
+
+
+		dispatch(setUser({user:data}))
 
 	  } catch (e) {
 		

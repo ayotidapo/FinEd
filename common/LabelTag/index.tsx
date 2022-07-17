@@ -12,7 +12,7 @@ const LabelTag: React.FC<LTProps> = (props) => {
   return (
     <label
       style={{ background: color }}
-      className={`${styles.label} ${className}`}
+      className={`elips ${styles.label} ${className}`}
       {...rest}
     >
       {children}

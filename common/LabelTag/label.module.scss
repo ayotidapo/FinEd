@@ -5,7 +5,12 @@
   font-size: var(--f-14);
   font-family: var(--font-2);
   text-transform: capitalize;
+  max-width: 150px;
+  display: inline-block;
+  margin-right: 10px;
 }
+
+
 
 .label_check {
   label {

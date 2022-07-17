@@ -33,7 +33,7 @@ interface Props {
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
-  const { user } = useSelector(state => state.user.user)
+  const { user } = useSelector(state => state?.user?.user)
   const [showFilter, setShowFilter] = useState(false);
   const { data: { courses } } = props
 

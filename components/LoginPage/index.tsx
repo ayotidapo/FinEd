@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import useForm from 'hooks/useForm';
 import Button from 'common/Button';
@@ -35,13 +34,7 @@ const LoginPage = () => {
 
       await loginUser(body)(dispatch)
 
-      // const { data: { accessToken, user } } = await axios.post('/auth/login', body);
-
-      // const nextApi = axios.create({
-      //   baseURL: '/api'
-      // })
-
-      // await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
+      setSubmitting(false);
 
       router.replace('/contents/videos')
     } catch (e) {

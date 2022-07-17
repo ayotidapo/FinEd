@@ -57,7 +57,7 @@
 				font-size: var(--f-14);
 				font-family: var(--font-2);
 				max-height: 400px;
-				padding-left: 20px;
+				
 				ul {
 				  padding: 0;
 				  li {
@@ -65,21 +65,35 @@
 					display: inline-flex;
 					justify-content: space-between;
 					align-items: center;
-					margin: 15px 0px;
 					padding-right: 20px;
+					height: 40px;
+                    padding-left: 20px;
+					margin-bottom: 5px;
+
 					.f_sp {
-					  display: inline-flex;
-					  align-items: center;
+						width: 60%;
+						display: inline-block;
+						text-decoration: none;
+						align-items: center;
+					}
+					.r_l{	
+						width: 80% ;
 					}
 					svg {
 					  vertical-align: middle;
+					}
+					&:hover{
+						background-color: #091f1f;
 					}
 				  }
 				}
 			  }
 			
 		}
-
+        
+		.active_vid	{
+			background-color: #091f1f;
+		}
 		
 		.main_sec{
 			font-size: var(--f-16);
@@ -87,6 +101,7 @@
 			line-height: 1.5;
 			flex: 1;
 			.video_player{
+				position: relative;
 				height: 430px;
 				width:100%;
 				background-color: #000;

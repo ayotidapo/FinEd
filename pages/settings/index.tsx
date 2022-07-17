@@ -1,7 +1,12 @@
 import SettingsPage from 'components/Settings';
 
 const Settings = () => {
-  return <SettingsPage />;
+  return (
+    <>
+
+      <SettingsPage />
+    </>
+  )
 };
 
 export default Settings;

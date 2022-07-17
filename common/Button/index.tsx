@@ -9,8 +9,8 @@ interface Props {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const BtnLoader: React.FC = () => (
-  <span className={`${style.btn_loader} spin`} />
+export const BtnLoader: React.FC<{ classStyle?: string }> = ({ classStyle }) => (
+  <span className={`${style.btn_loader}  ${classStyle} spin`} />
 );
 
 const Button: React.FC<Props> = (props) => {
