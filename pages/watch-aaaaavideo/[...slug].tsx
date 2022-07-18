@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, params 
 		}
 	}
 	try {
-		//axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
+		axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
 		const { data } = await axios.get(`/courses-user/${paramz[0]}`)
 		return {
 			props: {

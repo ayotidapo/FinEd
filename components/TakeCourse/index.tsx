@@ -20,24 +20,28 @@ const ReactPlayer = dynamic(() => import('react-player'), {
 
 
 const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
+	const router = useRouter()
+	const { contId } = router.query
 	const [loading, setLoading] = useState(false)
 	const [duration, setDuration] = useState('')
+	const [curVidId, setCurVidId] = useState(contId)
 
 	const [url, setUrl] = useState('')
 
-	const router = useRouter()
-	
+
+
 	const { title, description, contents, categories, level, id } = course
-	
+
 	const resources = contents.filter((content: IContent) => content.type?.toLowerCase() !== 'video')
 	const videos = contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
 
-	const { contId } = router.query
+
 
 
 	const getUrl = async (courseVideoId: string) => {
 		setLoading(true)
+		setCurVidId(courseVideoId)
 		const data = await getContentUrl(courseVideoId)
 		const fileurl = data?.file?.url
 		setUrl(fileurl)
@@ -111,7 +115,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 					<div className={styles.content}>
 						<ul>
 							{videos.map((video: IContent, i: number) =>
-								<li key={video.id} className={cx('hand', { [styles.active_vid]: video.id === contId })} onClick={() => getUrl(video.id)}>
+								<li key={video.id} className={cx('hand', { [styles.active_vid]: video.id === curVidId })} onClick={() => getUrl(video.id)}>
 									<abbr title={video.title} className={`elips ${styles.f_sp}`}>
 										<a>
 											<Icon id="play" width={18} height={18} />&nbsp;{video.title}
