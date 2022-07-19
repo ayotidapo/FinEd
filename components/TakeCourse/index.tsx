@@ -8,7 +8,7 @@ import styles from './watch.module.scss'
 import { ICourse } from 'components/VideosListPage'
 import { IContent } from 'components/VideoDetails'
 import { getContentUrl } from './functions'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BtnLoader } from 'common/Button'
 
 
@@ -36,7 +36,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 	const videos = contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
 
-
+	console.log({ videos })
 
 
 	const getUrl = async (courseVideoId: string) => {
@@ -59,7 +59,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
 	useEffect(() => {
 		let videoId = '';
-		if (!contId) videoId = videos[0].id
+		if (!contId) videoId = videos[0]?.id
 		else videoId = contId as string
 		getUrl(videoId)
 
@@ -175,11 +175,14 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 									<span className="bar" />
 									&nbsp;{level}
 								</span>
-								<span>
-									&nbsp;&nbsp;&nbsp;
-									<Icon id="clock" width={20} height={20} />
-									&nbsp;9 mins
-								</span>
+								{duration &&
+									<span>
+										&nbsp;&nbsp;&nbsp;
+										<Icon id="clock" width={20} height={20} />
+										&nbsp;9 mins
+									</span>
+								}
+
 							</div>
 							<div>
 								{categories.map((cat, i) => <LabelTag key={i} color={colors[i]}>{cat}</LabelTag>)}
