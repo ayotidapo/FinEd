@@ -185,10 +185,18 @@
       align-items: center;
       margin: 15px 0px;
       padding-right: 20px;
-      span {
+      .f_sp{
         display: inline-flex;
-        align-items: center;
+        width:80%;
+        :global(.elips){
+          width:85%;
+        }
+       
       }
+      // span {
+      //   align-items: center;
+    
+      // }
       svg {
         vertical-align: middle;
       }

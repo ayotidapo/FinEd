@@ -24,10 +24,21 @@ export interface IContent {
 
 
 const VideoDetailsPage: React.FC<Props> = ({ course }) => {
+  const router = useRouter()
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
   const { title, thumbnail, description, contents, categories, level, id: courseId } = course
 
-  const router = useRouter();
+  const isVideo = (type: string) => type.toLowerCase() === 'video'
+
+  const takeCourse = (video: IContent) => {
+    const { title, id, type } = video
+    if (isVideo(type)) {
+      router.push(`/take-course/${courseId}/${title}?contId=${id}`)
+    }
+
+  }
+
+
   return (
     <>
       <header className={styles.header}>
@@ -148,10 +159,11 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
         <h2 className="title">Course content</h2>
         <ul>
           {contents.map((content: IContent) =>
-            <li key={content.id}>
-              <span className={styles.f_sp}>
-                <Icon id="padlock" width={20} height={20} />{content.title}
-              </span>
+            <li key={content.id} className='hand' onClick={() => takeCourse(content)}>
+              <div className={styles.f_sp}>
+                <Icon id={isVideo(content.type) ? "play" : 'file'} width={20} height={20} />
+                &nbsp;<span className='elips'>{content.title}</span>
+              </div>
               <span>
                 <Icon id="clock" width={20} height={20} /> &nbsp;15mins
               </span>
