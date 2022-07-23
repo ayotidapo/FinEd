@@ -10,12 +10,13 @@ import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { useEffect ,useState} from 'react';
 import PageLoader from 'common/PageLoader';
+import { useRouter } from 'next/router';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading,setLoading]=useState(true)
   axios.defaults.baseURL = 'https://api.themoneystaging.com';
- 
+  const { pathname } = useRouter();
   const {userId,s_token}=pageProps
   const dispatch=useDispatch();
 
@@ -25,6 +26,18 @@ function MyApp({ Component, pageProps }: AppProps) {
     await getUser(userId)(dispatch)
     setLoading(false)
   }
+
+
+  
+
+  // useEffect(() => {
+  //   console.log
+  //   // some browsers (like safari) may require a timeout to delay calling this
+  //   // function after a page has loaded; otherwise, it may not update the position
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
+
+
 
   useEffect(()=>{   
     loadUser()   
