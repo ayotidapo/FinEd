@@ -15,6 +15,7 @@ export const loginUser=(body:{[key:string]:any}) => async(dispatch:AppDispatch)=
 		})
   
 		await nextApi.post('/set-token', { token: accessToken, userId: user?.id })
+	
 		dispatch(setUser(data))
 
 	  } catch (e) {
@@ -30,7 +31,7 @@ export const getUser=(id:string) => async(dispatch:AppDispatch)=>{
 		
 		const { data } = await axios.get(`/users/${id}`);
 
-
+		console.log(data,'dapo')
 		dispatch(setUser({user:data}))
 
 	  } catch (e) {

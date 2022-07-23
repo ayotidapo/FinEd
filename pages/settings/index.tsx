@@ -34,8 +34,8 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
-    const data = await axios.get('/plans');
-    console.log(data, 1238)
+    const { data } = await axios.get('/plans');
+    console.log(data, 423000)
     store.dispatch(setActivePlans(data))
     console.log(data, 1239)
     return {

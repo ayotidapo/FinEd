@@ -29,8 +29,8 @@ const plan = {
 
 const SubscriptionPage: React.FC = () => {
 
-	const g = useSelector(state => state.plan)
-	console.log({ g })
+	const g = useSelector(state => state.plans)
+	console.log({ g }, 'po0')
 	return (
 		<section className={styles.subscriptions}>
 			<div className={styles.left}>

@@ -5,15 +5,7 @@ import { IAction } from 'store';
 
 
 
-const initialState:IPlan[] = [{
-	active: false,
-	dateCreated: '',
-	dateUpdated: '',
-	duration: 0,
-	id: '',
-	name: '',
-	price: 0
-}]
+const initialState:any[] = []
 
 export const plansSlice = createSlice({
 	name:'plans',
@@ -22,14 +14,16 @@ export const plansSlice = createSlice({
 
 	reducers:{
 		setActivePlans(state: IPlan[], action:IAction){
+			console.log(action.payload,'6775')
 		  state = [...action.payload]
 		}
 	},
 
 	extraReducers:{
 		[HYDRATE]:(state,action)=>{
-			console.log(action.payload,676)
-			return state
+			if(action.payload.plans.length === 0) return state
+			console.log(action.payload.plans,6760)
+			state=[...action.payload.plans]
 		}
 	}
 })
