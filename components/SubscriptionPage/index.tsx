@@ -27,7 +27,7 @@ const plan = {
 	price: 40
 }
 
-const SubscriptionPage: React.FC = () => {
+const SubscriptionPage: React.FC<Props> = ({ plans }) => {
 
 	const g = useSelector(state => state.plans)
 	console.log({ g }, 'po0')
@@ -41,9 +41,7 @@ const SubscriptionPage: React.FC = () => {
 				</p>
 			</div>
 			<div className={`right_for_sub ${styles.right}`}>
-				<SubscriptionCard plan={plan} />
-				<SubscriptionCard plan={plan} />
-				<SubscriptionCard plan={plan} />
+				{plans.map((plan) => <SubscriptionCard key={plan.id} plan={plan} />)}
 			</div>
 
 		</section>

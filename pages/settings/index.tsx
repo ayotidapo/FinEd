@@ -1,5 +1,6 @@
 import axios from 'axios';
 import SettingsPage from 'components/Settings';
+import { IPlan } from 'components/SubscriptionPage';
 import { getActivePlans } from 'components/SubscriptionPage/functions'
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
@@ -7,10 +8,16 @@ import { GetServerSideProps } from 'next';
 import { setActivePlans } from 'reducers/plans';
 import { wrapper } from 'store';
 
-const Settings = () => {
+interface Props {
+  plans: IPlan[]
+}
+
+const Settings: React.FC<Props> = (props) => {
+  const { plans } = props
+  console.log({ plans })
   return (
     <>
-      <SettingsPage />
+      <SettingsPage plans={plans} />
     </>
   )
 };
@@ -35,12 +42,10 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
     const { data } = await axios.get('/plans');
-    console.log(data, 423000)
-    store.dispatch(setActivePlans(data))
-    console.log(data, 1239)
+    console.log({ kl: data })
     return {
       props: {
-        data,
+        plans: data,
       },
     };
   } catch (e) {

@@ -1,16 +1,19 @@
 import Header from 'common/HeaderLoggedIn';
 import styles from './settings.module.scss';
 import MyProfile from 'components/MyProfile';
-import SubscriptionPage from 'components/SubscriptionPage'
+import SubscriptionPage, { IPlan } from 'components/SubscriptionPage'
 import SideBar from 'components/SettingsSideBar';
 import { useState } from 'react';
 import ReferFriend from 'components/ReferFriend';
 import ChangePassword from 'components/ChangePassword';
 
-interface Props { }
+interface Props {
+	plans: IPlan[]
+}
 
-const SettingsPage: React.FC<Props> = () => {
+const SettingsPage: React.FC<Props> = (props) => {
 	const [activeTab, setActiveTab] = useState<string>('My Profile');
+	const { plans } = props
 	return (
 		<>
 			<Header />
@@ -22,7 +25,7 @@ const SettingsPage: React.FC<Props> = () => {
 
 						<div className={styles.display}>
 							{activeTab === 'My Profile' && <MyProfile />}
-							{activeTab === 'Subcriptions' && <SubscriptionPage />}
+							{activeTab === 'Subcriptions' && <SubscriptionPage plans={plans} />}
 							{activeTab === 'Refer a friend' && <ReferFriend />}
 							{activeTab === 'Change password' && <ChangePassword />}
 

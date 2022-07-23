@@ -32,7 +32,7 @@ export const getUser=(id:string) => async(dispatch:AppDispatch)=>{
 		const { data } = await axios.get(`/users/${id}`);
 
 		console.log(data,'dapo')
-		dispatch(setUser({user:data}))
+		dispatch(setUser({user :data}))
 
 	  } catch (e) {
 		

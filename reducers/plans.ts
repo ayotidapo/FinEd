@@ -13,17 +13,17 @@ export const plansSlice = createSlice({
 	initialState,
 
 	reducers:{
-		setActivePlans(state: IPlan[], action:IAction){
-			console.log(action.payload,'6775')
-		  state = [...action.payload]
+		setActivePlans(state?: IPlan[], action?:IAction){
+			console.log(action?.payload,'6775')
+		  state = [...action?.payload]
 		}
 	},
 
 	extraReducers:{
-		[HYDRATE]:(state,action)=>{
-			if(action.payload.plans.length === 0) return state
-			console.log(action.payload.plans,6760)
-			state=[...action.payload.plans]
+		[HYDRATE]:(state?: IPlan[], action?:IAction)=>{
+			if(action?.payload?.plans.length === 0) return state
+			console.log(action?.payload.plans,6760)
+			state=[...action?.payload.plans]
 		}
 	}
 })
