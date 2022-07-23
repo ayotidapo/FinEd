@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Action, createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 
@@ -7,9 +7,9 @@ interface IUSer{
 		accessToken:string;
 
 	    [key:string]:any
-    
+
 	}
-		
+
 }
 
 const initialState : IUSer = {
@@ -23,8 +23,8 @@ export const userSlice = createSlice({
 	initialState,
 
 	reducers:{
-		setUser(state,action){
-			
+		setUser(state: IUSer, action: Action){
+
 		     state.user = {...action.payload}
 
 		}
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
 
 	extraReducers:{
 		[HYDRATE]:(state,_action)=>{
-		
+
 			return state
 		}
 	}
