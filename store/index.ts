@@ -2,10 +2,17 @@ import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux'
 import { createWrapper } from 'next-redux-wrapper'
 import user from 'reducers/user'
+import plans from 'reducers/plans'
+
+export interface IAction{
+  type:string;
+  [key:string]:any
+}
 
 export const store = configureStore({
   reducer: {
-    user
+    user,
+    plans
   },
   devTools:true
 })

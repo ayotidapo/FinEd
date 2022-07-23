@@ -1,7 +1,7 @@
 import Header from 'common/HeaderLoggedIn';
 import styles from './settings.module.scss';
 import MyProfile from 'components/MyProfile';
-import Subscriptions from 'components/Subscriptions'
+import SubscriptionPage from 'components/SubscriptionPage'
 import SideBar from 'components/SettingsSideBar';
 import { useState } from 'react';
 import ReferFriend from 'components/ReferFriend';
@@ -22,7 +22,7 @@ const SettingsPage: React.FC<Props> = () => {
 
 						<div className={styles.display}>
 							{activeTab === 'My Profile' && <MyProfile />}
-							{activeTab === 'Subcriptions' && <Subscriptions />}
+							{activeTab === 'Subcriptions' && <SubscriptionPage />}
 							{activeTab === 'Refer a friend' && <ReferFriend />}
 							{activeTab === 'Change password' && <ChangePassword />}
 

@@ -1,5 +1,5 @@
 import styles from './chooseplan.module.scss'
-import SubscriptionArticles from 'common/SubscriptionArticles'
+import SubscriptionArticles from 'common/SubscriptionCard'
 import { useRouter } from 'next/router'
 import Logo from 'common/Logo'
 import Link from 'next/link'
