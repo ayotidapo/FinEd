@@ -43,8 +43,8 @@ const VideosListPage: React.FC<Props> = (props) => {
       name: 'discountCode',
       value: '',
       type: 'text',
-      label: 'Discount code',
-      placeholder: 'Enter your discount code', error: '',
+      label: '',
+      placeholder: 'Search', error: '',
       required: false
     }
   }
