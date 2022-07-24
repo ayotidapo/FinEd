@@ -8,7 +8,7 @@ import Input from 'common/Input';
 import LogInFields, { initialState } from './fields';
 import { useDispatch } from "store"
 import Logo from 'common/Logo';
-import { loginUser } from './functions_';
+import { loginUser } from './helpers';
 
 
 const LoginPage = () => {

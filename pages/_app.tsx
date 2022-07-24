@@ -4,7 +4,7 @@ import '../styles/globals.scss';
 import axios from 'axios';
 import { useDispatch, wrapper } from 'store';
 import type { AppContext, AppProps } from 'next/app';
-import { getUser } from 'components/LoginPage/functions_';
+import { getUser } from 'components/LoginPage/helpers';
 import App from 'next/app';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
