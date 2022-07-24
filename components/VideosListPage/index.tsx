@@ -9,6 +9,7 @@ import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
 import { useSelector } from 'store';
+import useForm from 'hooks/useForm';
 
 
 export interface ICourse {
@@ -37,7 +38,18 @@ const VideosListPage: React.FC<Props> = (props) => {
   const [showFilter, setShowFilter] = useState(false);
   const { data: { courses } } = props
 
-
+  const fields = {
+    discountCode: {
+      name: 'discountCode',
+      value: '',
+      type: 'text',
+      label: 'Discount code',
+      placeholder: 'Enter your discount code', error: '',
+      required: false
+    }
+  }
+  const { onChangeInput, onBlurInput, inputs } = useForm(fields);
+  const { discountCode } = inputs
   return (
     <>
       <header className={styles.video_header_wrap}>
@@ -57,6 +69,7 @@ const VideosListPage: React.FC<Props> = (props) => {
           </span>
           <div className={styles.search_input}>
             <Input
+              field={discountCode}
               leftIcon={{ name: 'search' }}
               wrapperClass={styles.wrapClass}
               inputClass={styles.inptClass}
