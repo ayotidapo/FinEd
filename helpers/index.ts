@@ -5,9 +5,9 @@ export const isPasswordStrong = (value: string) =>
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/.test(value);
 
 export const ValidateInput = (field: IField, inputsObj: IState) => {
-  const { name, value, label, type,no_validate} = field;
+  const { name, value, label, type,no_validate,required} = field;
   const validatedInputs = { ...inputsObj };
-  if (value?.trim()?.length < 1) {
+  if (value?.trim()?.length < 1 && required) {
     validatedInputs[name].error = `${label || `Field`} is required `;
   } else if (type === 'email' && value) {
     const emailRegex = /^[a-zA-Z_][-_a-zA-Z0-9.]*@[a-zA-Z]+\.[a-zA-Z]+/;

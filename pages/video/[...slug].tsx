@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, params 
       },
     };
   } catch (e: any) {
-    console.log(e.response)
+\
     return {
       props: {
         error: "call failed",

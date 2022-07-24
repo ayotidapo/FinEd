@@ -86,3 +86,23 @@
 		}
 	}
   }
+  .modalClass{
+	width:40%;
+  }
+  .enter_code_div{
+    min-width: 100%;    
+  }
+  .inputWraper{
+	width: 60%;
+	
+  }
+  .skip{
+    color: #015351;
+    font-size: 1.6rem;
+    font-family: var(--font-2);
+  }
+  .codeloading{
+	border: 1px solid #015351;
+	border-bottom-color: transparent;
+    border-top-color: transparent;
+  }

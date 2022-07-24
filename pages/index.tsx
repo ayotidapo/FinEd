@@ -6,7 +6,10 @@ import Icon from 'common/Icon';
 import Footer from 'common/Footer';
 import Button from '../common/Button';
 
+
 const Home: NextPage = () => {
+
+
   return (
     <div style={{ overflow: 'hidden' }}>
       <Header />
@@ -21,7 +24,7 @@ const Home: NextPage = () => {
                 access to free and paid financial knowledge for learners.
               </p>
               <div className={styles.btns_div}>
-                <Button>Our Service</Button>
+                <Button >Our Service</Button>
                 <Button>Start Investing</Button>
               </div>
             </div>

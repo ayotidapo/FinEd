@@ -36,7 +36,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 	const videos = contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
 
-	console.log({ videos })
+
 
 
 	const getUrl = async (courseVideoId: string) => {

@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   loading?: boolean | undefined;
   bg?: string;
+  disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 

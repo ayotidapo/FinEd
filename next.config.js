@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['money-africa-media-staging.s3.amazonaws.com'],
   },
+  env: {
+    FLUTTERWAVE_KEY: process.env.FLUTTERWAVE_KEY,
+  },
 };
 
 module.exports = nextConfig;

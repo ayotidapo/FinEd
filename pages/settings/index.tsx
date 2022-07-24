@@ -1,11 +1,9 @@
 import axios from 'axios';
 import SettingsPage from 'components/Settings';
 import { IPlan } from 'components/SubscriptionPage';
-import { getActivePlans } from 'components/SubscriptionPage/functions'
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
-import { setActivePlans } from 'reducers/plans';
 import { wrapper } from 'store';
 
 interface Props {
@@ -14,7 +12,7 @@ interface Props {
 
 const Settings: React.FC<Props> = (props) => {
   const { plans } = props
-  console.log({ plans })
+
   return (
     <>
       <SettingsPage plans={plans} />
@@ -41,15 +39,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   }
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
-    const { data } = await axios.get('/plans');
-    console.log({ kl: data })
+    const { data } = await axios.get('/plans/noauth');
+
     return {
       props: {
         plans: data,
       },
     };
   } catch (e) {
-    console.log('data')
+
     return {
       props: {
         error: "call failed",

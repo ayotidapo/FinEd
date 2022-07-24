@@ -1,7 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPlan } from 'common/SubscriptionCard';
 import { HYDRATE } from 'next-redux-wrapper';
 import { IAction } from 'store';
+
+
+export interface IPlan {
+	active: boolean;
+	dateCreated: string;
+	dateUpdated: string;
+	duration: number;
+	id: string;
+	name: string;
+	price: number;
+}
 
 
 
@@ -14,7 +24,7 @@ export const plansSlice = createSlice({
 
 	reducers:{
 		setActivePlans(state?: IPlan[], action?:IAction){
-			console.log(action?.payload,'6775')
+
 		  state = [...action?.payload]
 		}
 	},
@@ -22,7 +32,7 @@ export const plansSlice = createSlice({
 	extraReducers:{
 		[HYDRATE]:(state?: IPlan[], action?:IAction)=>{
 			if(action?.payload?.plans.length === 0) return state
-			console.log(action?.payload.plans,6760)
+			
 			state=[...action?.payload.plans]
 		}
 	}

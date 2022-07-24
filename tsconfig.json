@@ -23,6 +23,6 @@
     "next.config.js",
     "common/Button",
     "common/Logo"
-  ],
+, "components/LoginPage/functions.js", "common/SubscriptionCard/function.js", "common/SubscriptionCard/index.jsx"  ],
   "exclude": ["node_modules"]
 }

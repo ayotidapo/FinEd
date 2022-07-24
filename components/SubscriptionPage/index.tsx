@@ -30,7 +30,7 @@ const plan = {
 const SubscriptionPage: React.FC<Props> = ({ plans }) => {
 
 	const g = useSelector(state => state.plans)
-	console.log({ g }, 'po0')
+
 	return (
 		<section className={styles.subscriptions}>
 			<div className={styles.left}>
