@@ -87,8 +87,8 @@ const SubscriptionCard= (props) => {
 		try {
 			setSubmitting(true)
 			const body = { planId }
-			if (discountCode) body.discountCode = discountCode
-
+			if (discountCode) body.discountCode = discountCode?.value
+console.log(discountCode)
 			const { data } = await axios.post(`/subscriptions`, { planId });
 
 			const { plan, user, amount, id: subscriptionID } = data
@@ -112,7 +112,7 @@ const SubscriptionCard= (props) => {
 		try {
 			setSubmitting(true)
 			body.discountCode = discountCode.value
-			await axios.post(`/subscriptions/discount/${discountCode}`, body);
+			await axios.get(`/subscriptions/discount/${discountCode?.value}`);
 			await onSubscribed(discountCode?.value)
 
 		} catch {
