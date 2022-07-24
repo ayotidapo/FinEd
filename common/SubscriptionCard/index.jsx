@@ -88,7 +88,7 @@ const SubscriptionCard= (props) => {
 			setSubmitting(true)
 			const body = { planId }
 			if (discountCode) body.discountCode = discountCode?.value
-console.log(discountCode)
+
 			const { data } = await axios.post(`/subscriptions`, { planId });
 
 			const { plan, user, amount, id: subscriptionID } = data
