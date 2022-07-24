@@ -2,9 +2,13 @@ import styles from './chooseplan.module.scss'
 import SubscriptionArticles from 'common/SubscriptionCard'
 import { useRouter } from 'next/router'
 import Logo from 'common/Logo'
-import Link from 'next/link'
+import { IPlans } from 'components/SubscriptionPage'
+import SubscriptionCard from 'common/SubscriptionCard'
 
-const ChoosePlan: React.FC = () => {
+
+const ChoosePlan: React.FC<IPlans> = (props) => {
+	const { plans } = props
+
 	const router = useRouter()
 	return (
 		<main className={styles.chooseplan}>
@@ -31,7 +35,7 @@ const ChoosePlan: React.FC = () => {
 
 					<div className={`right_for_sub ${styles.choose}`}>
 
-						<SubscriptionArticles />
+						{plans.map((plan) => <SubscriptionCard key={plan.id} plan={plan} />)}
 
 
 					</div>

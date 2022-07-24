@@ -13,7 +13,7 @@ export interface IPlan {
 }
 
 
-interface Props {
+export interface IPlans {
 	plans: IPlan[]
 }
 
@@ -27,7 +27,7 @@ const plan = {
 	price: 40
 }
 
-const SubscriptionPage: React.FC<Props> = ({ plans }) => {
+const SubscriptionPage: React.FC<IPlans> = ({ plans }) => {
 
 	const g = useSelector(state => state.plans)
 
