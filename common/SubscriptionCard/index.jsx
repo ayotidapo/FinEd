@@ -49,24 +49,6 @@ const SubscriptionCard= (props) => {
 		onToggleModal(true)
 	}
 
-	const config = {
-		public_key: process.env.FLUTTERWAVE_KEY,
-		tx_ref: Date.now(),
-		amount: amount || 0,
-		currency: 'NGN',
-		payment_options: 'card,mobilemoney,ussd',
-		customer: {
-			email: `${user?.email}`,
-			phonenumber: `${user?.phone}}`,
-			name: `${user?.firstName} ${user?.lastName}`,
-		},
-		customizations: {
-			title: 'MONEY AFRICA',
-			description: `Subscription plan ${userPlan?.name}`,
-			logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-		},
-	};
-
 
 	const handleFlutterPayment = useFlutterwave(fwConfig);
 
@@ -75,8 +57,8 @@ const SubscriptionCard= (props) => {
 		if(!fwConfig.tx_ref) return
 		handleFlutterPayment({
 			callback: (response) => {
-	
-				closePaymentModal() // this will close the modal programmatically
+	         console.log(response.flw_ref)
+			closePaymentModal() // this will close the modal programmatically
 			},
 			onClose: () => { },
 		});
@@ -177,17 +159,3 @@ const SubscriptionCard= (props) => {
 };
 
 export default SubscriptionCard;
-
-
-// {payload?.id && <Button onClick={() => handleFlutterPayment({
-// 	callback: (response) => {
-// 		console.log(response);
-// 		closePaymentModal()
-// 	},
-// 	onClose: () => { },
-// })}
-// >
-// 	Subscribe new
-// </Button>}
-// {data &&
-// 	data.map((plan) => (

@@ -6,11 +6,13 @@ import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
+import { useSelector } from 'store';
 
 
 const Header = () => {
   const router = useRouter()
-
+  const { user } = useSelector(state => state?.user?.user)
+  console.log(2, user)
 
   const logOut = async () => {
     const nextApi = axios.create({
@@ -43,7 +45,7 @@ const Header = () => {
             <Image src="/assets/girl.png" layout="fill" alt="top-sec-img" />
           </span>
           <Icon id="caret-down" />
-          <nav  className={styles.setlog}>
+          <nav className={styles.setlog}>
             <ul className={`navi ${styles.tooltip_nav}`}>
               <Link href='/settings'>
                 <a>

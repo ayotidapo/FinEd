@@ -7,6 +7,7 @@ export const configureFW = (data) => {
     amount: amount,
     currency: 'NGN',
     payment_options: 'card,mobilemoney,ussd',
+    redirect_url: 'https://money-africa.vercel.app/verify-payment',
     customer: {
       email: `${user?.email}`,
       phonenumber: `${user?.phone}`,

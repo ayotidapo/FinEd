@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SettingsPage: React.FC<Props> = (props) => {
-	const [activeTab, setActiveTab] = useState<string>('My Profile');
+	const [activeTab, setActiveTab] = useState<string>('Subcriptions');
 	const { plans } = props
 	return (
 		<>

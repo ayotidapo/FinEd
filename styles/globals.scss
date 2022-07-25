@@ -101,6 +101,19 @@ h6 {
   align-items: center;
   flex-direction: column;
 }
+.codeloading{
+  border: 1px solid #015351;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+}
+.link{
+  display: inline-block;
+  color: #015351; 
+  margin: auto; 
+  font-size: 1.6rem;
+  font-family: var(--font-2);
+}	
+
 img {
   width: 100%;
   height: 100%;
