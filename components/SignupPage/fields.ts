@@ -42,7 +42,7 @@ const fields = {
     placeholder: '',
     label: 'Referral code (optional)',
     error: '',
-    required: true,
+    required: false,
   },
   password: {
     name: 'password',

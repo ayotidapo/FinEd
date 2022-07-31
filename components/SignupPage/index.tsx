@@ -14,11 +14,11 @@ import signUpFields, { initialState } from './fields';
 interface Props { }
 
 const SignUpPage: React.FC<Props> = () => {
-  const { onChangeInput, onBlurInput, getPayload, inputs } = useForm(
+  const { isTouched, onChangeInput, onBlurInput, getPayload, isError, inputs } = useForm(
     signUpFields,
 
   );
-
+  console.log(123, isTouched)
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
@@ -148,7 +148,7 @@ const SignUpPage: React.FC<Props> = () => {
                     <a className={styles.a}>Log In</a>
                   </Link>
                 </div>
-                <Button onClick={onSubmit} loading={submitting}>
+                <Button onClick={onSubmit} loading={submitting} disabled={isError() || !isTouched}>
                   Sign up <Icon id="arrow-right" width={20} height={20} />
                 </Button>
               </div>

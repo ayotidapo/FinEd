@@ -11,12 +11,13 @@ import Logo from 'common/Logo';
 import { loginUser } from './helpers';
 
 
+
 const LoginPage = () => {
   const router = useRouter();
 
   const dispatch = useDispatch()
 
-  const { onChangeInput, onBlurInput, inputs } = useForm(
+  const { isTouched, onChangeInput, onBlurInput, isError, inputs } = useForm(
     LogInFields,
 
   );
@@ -80,7 +81,7 @@ const LoginPage = () => {
               <a className="a">Sign Up</a>
             </Link>
           </div>
-          <Button onClick={onSubmit} loading={submitting}>
+          <Button onClick={onSubmit} loading={submitting} disabled={isError() || !isTouched}>
             Login <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </div>

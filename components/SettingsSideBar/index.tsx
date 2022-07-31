@@ -4,6 +4,8 @@ import Image from 'next/image';
 import LabelTab from 'common/LabelTab';
 import cx from 'classnames';
 import styles from './settingssidebar.module.scss';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const tabs = [
   {
@@ -21,24 +23,32 @@ const tabs = [
   {
     text: 'Change password',
     icon: 'padlock',
-  },
-  {
-    text: 'Log out',
-    icon: 'logout',
-  },
+  }
 ];
 
 interface Props {
   setActiveTab: (tab: string) => void;
   activeTab: string;
 }
+
 const SideBar: React.FC<Props> = (props: Props) => {
+
   const { setActiveTab, activeTab } = props;
+  const router = useRouter()
 
   const onSetTab = (text: string) => {
     if (text === 'Log out') return;
     setActiveTab(text)
   }
+  const logOut = async () => {
+    const nextApi = axios.create({
+      baseURL: '/api'
+    })
+
+    await nextApi.post('/logout');
+    router.replace('/login')
+  }
+
   return (
     <>
       <section className={styles.sidetab}>
@@ -52,6 +62,13 @@ const SideBar: React.FC<Props> = (props: Props) => {
                 className={cx({ [styles.activeTab]: activeTab === tab.text })}
               />
             ))}
+            <LabelTab
+              tab={{
+                text: 'Log out',
+                icon: 'logout',
+              }}
+              onClick={logOut}
+            />
           </ul>
         </nav>
         {activeTab !== 'Refer a friend' &&

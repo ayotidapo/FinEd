@@ -4,7 +4,6 @@ import inputReducer from 'useReducers/inputReducers';
 import { useReducer, useEffect, useState } from 'react';
 import { IState } from 'useReducers/inputReducers';
 import { ValidateInput } from 'helpers';
-import { IField } from 'common/Input';
 
 const useForm = (fields: IState) => {
   const [inputs, inputDispatch] = useReducer(inputReducer, fields);

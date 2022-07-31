@@ -16,7 +16,7 @@ const LabelTab: React.FC<Props> = (props: Props) => {
   const { text, icon } = tab;
 
   return (
-    <li className={`hand ${styles.li_tab} ${className}`} {...rest}>
+    <li className={`hand ${styles.li_tab} ${className}`} {...rest} >
       <Icon id={icon} />
       <span>{text}</span>
     </li>
