@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import inputReducer from 'useReducers/inputReducers';
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 import { IState } from 'useReducers/inputReducers';
 import { ValidateInput } from 'helpers';
+import { IField } from 'common/Input';
 
 const useForm = (fields: IState) => {
   const [inputs, inputDispatch] = useReducer(inputReducer, fields);
+  const [isTouched, setIsTouched] = useState(false)
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsTouched(true)
     const { name, value } = e.target;
 
     inputDispatch({
@@ -26,6 +29,10 @@ const useForm = (fields: IState) => {
     });
     return body
   }
+
+  const isError = () => Object.keys(inputs).some((field: string) => inputs[field].error)
+
+
 
   const onBlurInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
@@ -47,7 +54,7 @@ const useForm = (fields: IState) => {
 
 
 
-  return { onChangeInput, onBlurInput, setInputs, getPayload, inputs };
+  return { isTouched, onChangeInput, onBlurInput, setInputs, getPayload, isError, inputs };
 };
 
 export default useForm;
