@@ -1,4 +1,5 @@
 import SubscriptionCard from 'common/SubscriptionCard'
+import cx from 'classnames'
 import styles from './subpage.module.scss'
 import { useSelector } from 'store';
 
@@ -29,8 +30,9 @@ const plan = {
 
 const SubscriptionPage: React.FC<IPlans> = ({ plans }) => {
 
-	const g = useSelector(state => state.plans)
-
+	const { user } = useSelector(state => state?.user?.user)
+	const { plan: curPlan } = user?.currentSubscription || {}
+	console.log({ user })
 	return (
 		<section className={styles.subscriptions}>
 			<div className={styles.left}>
@@ -41,7 +43,7 @@ const SubscriptionPage: React.FC<IPlans> = ({ plans }) => {
 				</p>
 			</div>
 			<div className={`right_for_sub ${styles.right}`}>
-				{plans.map((plan) => <SubscriptionCard key={plan.id} plan={plan} />)}
+				{plans.map((plan) => <SubscriptionCard key={plan.id} plan={plan} curPlan={curPlan} />)}
 			</div>
 
 		</section>

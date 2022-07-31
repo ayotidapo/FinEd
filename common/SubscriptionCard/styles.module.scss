@@ -9,6 +9,7 @@
 	border-radius: 8px 8px 0px 0px;
 	transform: translateY(4px);
 }
+
 #fst{
 				        
 	border:1px solid red;
@@ -73,15 +74,15 @@
 	}
 	&:hover{
 		background-color: #015351;
-		color: #fff;
+	   color: #fff;
 
 		.p{
 			+ button{
-			  margin-top: auto;
-			  margin-bottom: 5px;
-			  background: #C03E21;
-			  color:#fff;
-			  border: 1px solid transparent;
+				margin-top: auto;
+				margin-bottom: 5px;
+				background: #C03E21;
+				color:#fff;
+				border: 1px solid transparent;
 			}
 		}
 	}
@@ -106,3 +107,19 @@
 	border-bottom-color: transparent;
     border-top-color: transparent;
   }
+
+  .hylyt{
+	background-color: #015351;
+	color: #fff;
+
+	.p{
+		+ button{
+			margin-top: auto;
+			margin-bottom: 5px;
+			background: #C03E21;
+			color:#fff;
+			border: 1px solid transparent;
+		}
+	}
+
+}

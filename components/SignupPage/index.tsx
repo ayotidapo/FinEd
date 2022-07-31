@@ -14,7 +14,7 @@ import signUpFields, { initialState } from './fields';
 interface Props { }
 
 const SignUpPage: React.FC<Props> = () => {
-  const { onChangeInput, onBlurInput, inputs } = useForm(
+  const { onChangeInput, onBlurInput, getPayload, inputs } = useForm(
     signUpFields,
 
   );
@@ -26,11 +26,7 @@ const SignUpPage: React.FC<Props> = () => {
     e.preventDefault();
     try {
       setSubmitting(true);
-      const body: { [key: string]: any } = {};
-
-      Object.keys(inputs).forEach((field) => {
-        body[field] = inputs[field].value;
-      });
+      const body = getPayload();
 
       delete body.password2;
       delete body.nigeriaPhone;

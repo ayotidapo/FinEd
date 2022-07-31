@@ -5,7 +5,6 @@ import user from 'reducers/user'
 import plans from 'reducers/plans'
 
 export interface IAction{
-  type:string;
   [key:string]:any
 }
 

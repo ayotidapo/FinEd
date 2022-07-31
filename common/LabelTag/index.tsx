@@ -9,6 +9,7 @@ interface LTProps {
 
 const LabelTag: React.FC<LTProps> = (props) => {
   const { children, color, className, ...rest } = props;
+
   return (
     <label
       style={{ background: color }}
@@ -26,14 +27,16 @@ interface LCProps extends LTProps {
   value: string;
   type: 'checkbox' | 'radio';
   rname?: string;
+  defaultChecked?: boolean
 }
 
 export const LabelCheck: React.FC<LCProps> = (props) => {
-  const { children, rname, type, color, tag, className, value, ...rest } =
+  const { children, rname, type, color, defaultChecked, tag, className, value, ...rest } =
     props;
+
   return (
     <span className={styles.label_check}>
-      <input type={type} name={rname || tag} id={tag} value={value} /> &nbsp;
+      <input type={type} name={rname || tag} id={tag} value={value} defaultChecked={defaultChecked} /> &nbsp;
       <label
         htmlFor={tag}
         className={`${styles.label_check} ${className} hand elips`}

@@ -25,10 +25,12 @@ interface Props {
   inputClass?: string;
   wrapperClass?: string;
   readOnly?: boolean | undefined;
+  max?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   field: IField;
+
 }
 
 const Input: React.FC<Props> = React.forwardRef((props, ref) => {

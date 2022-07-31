@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice,PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { IAction } from 'store';
 
 
 interface IUSer{
 	user:{
-		accessToken:string;
+		accessToken?:string;
 
 	    [key:string]:any
 
@@ -24,7 +24,7 @@ export const userSlice = createSlice({
 	initialState,
 
 	reducers:{
-		setUser(state: IUSer, action: IAction){
+		setUser(state: IUSer, action: PayloadAction<IAction>){
 
 		     state.user = {...action.payload}
 

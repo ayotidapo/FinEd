@@ -10,12 +10,22 @@ const useForm = (fields: IState) => {
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     inputDispatch({
       type: 'ON_INPUT_CHANGE',
       name,
       value,
     });
   };
+
+  const getPayload = () => {
+    const body: { [key: string]: any } = {};
+
+    Object.keys(inputs).forEach((field) => {
+      body[field] = inputs[field].value;
+    });
+    return body
+  }
 
   const onBlurInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
@@ -37,7 +47,7 @@ const useForm = (fields: IState) => {
 
 
 
-  return { onChangeInput, onBlurInput, setInputs, inputs };
+  return { onChangeInput, onBlurInput, setInputs, getPayload, inputs };
 };
 
 export default useForm;

@@ -2,20 +2,20 @@
 //Omit<I,'k','l'> Pick<I,'l','k'> Required<I> Partial<I>
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import styles from './styles.module.scss';
+import cx from 'classnames'
 import Button, { BtnLoader } from 'common/Button';
 import Image from 'next/image';
 import Icon from 'common/Icon';
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'common/Modal';
 import useForm from 'hooks/useForm';
 import Input from 'common/Input';
 import axios from 'axios';
-import  {initConfig,configureFW} from './function';
+import { initConfig, configureFW } from './function';
 
 
 
-
-const SubscriptionCard= (props) => {
+const SubscriptionCard = (props) => {
 	const fields = {
 		discountCode: {
 			name: 'discountCode',
@@ -27,7 +27,7 @@ const SubscriptionCard= (props) => {
 		}
 	}
 
-	const { plan } = props
+	const { plan, curPlan } = props
 	const { duration, id: plan_id } = plan
 	const { onChangeInput, onBlurInput, inputs } = useForm(fields);
 	const { discountCode } = inputs
@@ -52,20 +52,21 @@ const SubscriptionCard= (props) => {
 
 	const handleFlutterPayment = useFlutterwave(fwConfig);
 
-	useEffect(()=> {
-	
-		if(!fwConfig.tx_ref) return
+	useEffect(() => {
+
+		if (!fwConfig.tx_ref) return
 		handleFlutterPayment({
 			callback: (response) => {
-	         console.log(response.flw_ref)
-			closePaymentModal() // this will close the modal programmatically
+				console.log(response.flw_ref)
+				closePaymentModal() // this will close the modal programmatically
 			},
 			onClose: () => { },
 		});
 
-	},[fwConfig])
+	}, [fwConfig])
 
 	const onSubscribed = async (discountCode) => {
+
 		try {
 			setSubmitting(true)
 			const body = { planId }
@@ -74,16 +75,16 @@ const SubscriptionCard= (props) => {
 			const { data } = await axios.post(`/subscriptions`, body);
 
 			const { plan, user, amount, id: subscriptionID } = data
-	
-		
-				const config = configureFW({ subscriptionID, amount, user, plan })
 
-		
+
+			const config = configureFW({ subscriptionID, amount, user, plan })
+
+
 			setFwConfig(config)
 			setSubdata(data)
-					
-		} catch(e) {
-                
+
+		} catch (e) {
+
 		}
 		setSubmitting(false)
 	}
@@ -105,7 +106,7 @@ const SubscriptionCard= (props) => {
 
 
 	}
-
+console.log(plan_id,curPlan.id)
 	return (
 		<>
 			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={styles.modalClass}>
@@ -127,7 +128,7 @@ const SubscriptionCard= (props) => {
 			</Modal>
 			<article key={plan.id} >
 				<p className="rec">Recomended</p>
-				<div className={styles.sub_card}>
+				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan.id===curPlan.id })}>
 					<div className={`flx_ac ${styles.img_dx}`}>
 						<div className={styles.img_bx}>
 							<span>
