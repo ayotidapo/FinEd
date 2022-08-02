@@ -12,7 +12,7 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
   if (value?.trim()?.length < 1 && required) {
     validatedInputs[name].error = `${label || `Field`} is required `;
   } else if (type === 'email' && value) {
-    const emailRegex = /^[a-zA-Z_][-_a-zA-Z0-9.]*@[a-zA-Z]+\.[a-zA-Z]+/;
+    const emailRegex = /^[a-zA-Z_0-9][-_a-zA-Z0-9.]*@[a-zA-Z]+\.[a-zA-Z]+/;
     if (!emailRegex.test(value))
       validatedInputs[name].error = `Invalid email address `;
     else validatedInputs[name].error = ``;
