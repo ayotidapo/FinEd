@@ -33,18 +33,18 @@ const SubscriptionCard = (props) => {
 	const { discountCode } = inputs
 	const body = {}
 	const [isOpen, setIsOpen] = useState(false)
+	const [payMode, setPayMode] = useState(false)
 	const [planId, setPlanId] = useState('')
-	const [subdata, setSubdata] = useState({})
+	const [_subdata, setSubdata] = useState({})
 	const [fwConfig, setFwConfig] = useState(initConfig)
 	const [submitting, setSubmitting] = useState(false)
-	const { plan: userPlan, user, amount } = subdata
-
+	
 	const onToggleModal = (isopen) => {
 		setIsOpen(isopen)
 	}
 
 	const onClickedCard = (planId) => {
-
+		setPayMode(true)
 		setPlanId(planId)
 		onToggleModal(true)
 	}
@@ -106,29 +106,38 @@ const SubscriptionCard = (props) => {
 
 
 	}
-console.log(plan_id,curPlan.id)
+
 	return (
 		<>
 			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={styles.modalClass}>
-				<div className={styles.enter_code_div}>
+				<div className={styles.enter_code_div}>					
+						
+                    {payMode && (
+						<div className={styles.payplan}>
+							<h2 className='title'>Choose suscription type </h2>
+						</div>
+					   )
+					}
 
-					{submitting ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} />
-						:
 						<form>
+						{
+						submitting && !payMode ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} /> :
+						<>
 							<Input field={discountCode} wrapperClass={styles.inputWraper} onChange={onChangeInput} onBlur={onBlurInput} leftIcon={{ name: 'hamper' }} />
 							<div className='flx_jc_sb'>
 								<Button bg="#c03e21" onClick={onConfirmCode} disabled={!discountCode.value}>Subscribe with code</Button>
 								<Button className={styles.skip} onClick={() => onSubscribed()} disabled={discountCode.value}>Subscribe with no code</Button>
 							</div>
-
+							</>
+						}
 						</form>
-					}
+					
 
 				</div>
 			</Modal>
 			<article key={plan.id} >
 				<p className="rec">Recomended</p>
-				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan.id===curPlan.id })}>
+				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan.id===curPlan?.id })}>
 					<div className={`flx_ac ${styles.img_dx}`}>
 						<div className={styles.img_bx}>
 							<span>

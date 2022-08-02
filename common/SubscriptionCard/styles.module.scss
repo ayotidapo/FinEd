@@ -91,10 +91,20 @@
 	width:40%;
   }
   .enter_code_div{
-    min-width: 100%;    
+    min-width: 100%;  
+	width:80%;
+	
+	.payplan{
+		display: flex;
+	}
+	
+
+	form{
+		min-height: 135px;
+	}
   }
   .inputWraper{
-	width: 60%;
+	width: 60% !important;
 	
   }
   .skip{
