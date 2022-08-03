@@ -1,5 +1,5 @@
 export const configureFW = (data) => {
-  const { subscriptionID, amount, user, plan } = data;
+  const { subscriptionID,payPlan, amount, user, plan } = data;
 
   return {
     public_key: process.env.FLUTTERWAVE_KEY,
@@ -7,6 +7,7 @@ export const configureFW = (data) => {
     amount: amount,
     currency: 'NGN',
     payment_options: 'card,mobilemoney,ussd',
+    payment_plan:payPlan,
     redirect_url: 'https://money-africa.vercel.app/verify-payment',
     customer: {
       email: `${user?.email}`,
@@ -27,6 +28,7 @@ export const initConfig = {
   amount: 0,
   currency: 'NGN',
   payment_options: 'card,mobilemoney,ussd',
+  payment_plan:'',
   customer: {
     email: ``,
     phonenumber: ``,

@@ -14,6 +14,18 @@
 				        
 	border:1px solid red;
 }
+
+.modalClass{
+	width: 70%;
+   
+}
+
+.modalClass2{
+	width: 50%;
+   
+}
+
+
 .sub_card{
 	width: 312px;
 	height: 290px;
@@ -87,20 +99,56 @@
 		}
 	}
   }
-  .modalClass{
-	width:40%;
-  }
+ .hder{
+	width:60%;
+	margin: 0 auto;
+	text-align: center;
+ }
+ 
   .enter_code_div{
     min-width: 100%;  
 	width:80%;
 	
 	.payplan{
-		display: flex;
+		
+		justify-content: center;
+		align-items: center;
+		:global(.title){
+			border-bottom: none;
+			padding: 20px;
+			font-size: var(--f-32);
+			+p{
+				font-size: 1.6rem;
+			}
+		}
+		.choosepay{
+			display: flex;
+			gap:35px;
+			margin:50px 0px;
+
+			justify-content: center;
+			article{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 35%;
+				border: 1px solid #E5E5E5;
+                border-radius: 8px;
+				height: 262px;
+				padding: 0 12px;
+				text-align: center;
+				:global(.title){
+					font-size: var(--f-24);
+				}
+			}
+		}
 	}
 	
 
 	form{
 		min-height: 135px;
+		
 	}
   }
   .inputWraper{

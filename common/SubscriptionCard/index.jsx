@@ -33,7 +33,7 @@ const SubscriptionCard = (props) => {
 	const { discountCode } = inputs
 	const body = {}
 	const [isOpen, setIsOpen] = useState(false)
-	const [payMode, setPayMode] = useState(false)
+	const [payPlan, setPayPlan] = useState('')
 	const [planId, setPlanId] = useState('')
 	const [_subdata, setSubdata] = useState({})
 	const [fwConfig, setFwConfig] = useState(initConfig)
@@ -41,19 +41,24 @@ const SubscriptionCard = (props) => {
 	
 	const onToggleModal = (isopen) => {
 		setIsOpen(isopen)
+		if(!isopen) setPayPlan('')
 	}
 
-	const onClickedCard = (planId) => {
-		setPayMode(true)
+	const onSetPay=(paymentPlan)=>{
+		setPayPlan(paymentPlan)
+	}
+
+	const onClickedCard=(planId) => {
 		setPlanId(planId)
 		onToggleModal(true)
 	}
 
+	
 
 	const handleFlutterPayment = useFlutterwave(fwConfig);
-
+	
 	useEffect(() => {
-
+		
 		if (!fwConfig.tx_ref) return
 		handleFlutterPayment({
 			callback: (response) => {
@@ -62,6 +67,7 @@ const SubscriptionCard = (props) => {
 			},
 			onClose: () => { },
 		});
+		
 
 	}, [fwConfig])
 
@@ -77,7 +83,7 @@ const SubscriptionCard = (props) => {
 			const { plan, user, amount, id: subscriptionID } = data
 
 
-			const config = configureFW({ subscriptionID, amount, user, plan })
+			const config = configureFW({ subscriptionID, payPlan, amount, user, plan })
 
 
 			setFwConfig(config)
@@ -109,20 +115,47 @@ const SubscriptionCard = (props) => {
 
 	return (
 		<>
-			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={styles.modalClass}>
+			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={!payPlan ? styles.modalClass : styles.modalClass2 }>
 				<div className={styles.enter_code_div}>					
 						
-                    {payMode && (
+                    {!payPlan && (
 						<div className={styles.payplan}>
-							<h2 className='title'>Choose suscription type </h2>
+							<div className={styles.hder}>
+								<h2 className='title'>Choose suscription type</h2>
+								<p>Let us know how often you want the payment to be processed.</p>
+							</div>
+							<section className={styles.choosepay}>
+								<article onClick={()=>onSetPay('type')}>
+									<div style={{width:'50px',height:'50px',position:'relative'}}> 
+									 <Image src='/assets/card.png' layout='fill'/>
+									</div>
+									<h2 className='title'>Auto-renew</h2>
+									<p>
+									Subscription charges would be deducted from your account every month.
+									</p>
+								
+								</article>
+								<article onClick={()=>onSetPay('type')}>
+									<div style={{width:'50px',height:'50px',position:'relative'}}> 
+									  <Image src='/assets/card.png' layout='fill'/>
+									</div>
+									<h2 className='title'>One-time payment</h2>
+									<p>
+									Only one-time subscription payment will be deducted from your account.
+									</p>
+								
+								</article>
+							</section>
+
 						</div>
 					   )
 					}
 
+					{ payPlan && 
 						<form>
-						{
-						submitting && !payMode ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} /> :
-						<>
+						
+						{submitting ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} /> :
+					        <>
 							<Input field={discountCode} wrapperClass={styles.inputWraper} onChange={onChangeInput} onBlur={onBlurInput} leftIcon={{ name: 'hamper' }} />
 							<div className='flx_jc_sb'>
 								<Button bg="#c03e21" onClick={onConfirmCode} disabled={!discountCode.value}>Subscribe with code</Button>
@@ -130,12 +163,14 @@ const SubscriptionCard = (props) => {
 							</div>
 							</>
 						}
+						
 						</form>
-					
+					}
 
 				</div>
 			</Modal>
 			<article key={plan.id} >
+
 				<p className="rec">Recomended</p>
 				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan.id===curPlan?.id })}>
 					<div className={`flx_ac ${styles.img_dx}`}>
