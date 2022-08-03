@@ -169,10 +169,10 @@ const SubscriptionCard = (props) => {
 
 				</div>
 			</Modal>
-			<article key={plan.id} >
+			<article key={plan?.id} >
 
 				<p className="rec">Recomended</p>
-				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan.id===curPlan?.id })}>
+				<div  className={cx(styles.sub_card,{[styles.hylyt]: plan?.id===curPlan?.id })}>
 					<div className={`flx_ac ${styles.img_dx}`}>
 						<div className={styles.img_bx}>
 							<span>
