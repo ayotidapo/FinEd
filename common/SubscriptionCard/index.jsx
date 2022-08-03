@@ -33,19 +33,16 @@ const SubscriptionCard = (props) => {
 	const { discountCode } = inputs
 	const body = {}
 	const [isOpen, setIsOpen] = useState(false)
-	const [payPlan, setPayPlan] = useState('')
+	const [payPlan, showPayPlan] = useState(false)
 	const [planId, setPlanId] = useState('')
 	const [_subdata, setSubdata] = useState({})
 	const [fwConfig, setFwConfig] = useState(initConfig)
+	const [loading, setLoading] = useState(false)
 	const [submitting, setSubmitting] = useState(false)
 	
 	const onToggleModal = (isopen) => {
 		setIsOpen(isopen)
-		if(!isopen) setPayPlan('')
-	}
-
-	const onSetPay=(paymentPlan)=>{
-		setPayPlan(paymentPlan)
+		if(!isopen) showPayPlan(false)
 	}
 
 	const onClickedCard=(planId) => {
@@ -71,10 +68,12 @@ const SubscriptionCard = (props) => {
 
 	}, [fwConfig])
 
+	
+
 	const onSubscribed = async (discountCode) => {
 
 		try {
-			setSubmitting(true)
+			setLoading(true)
 			const body = { planId }
 			if (discountCode) body.discountCode = discountCode
 
@@ -88,11 +87,13 @@ const SubscriptionCard = (props) => {
 
 			setFwConfig(config)
 			setSubdata(data)
+			showPayPlan(false)
+			setIsOpen(false)
 
 		} catch (e) {
 
 		}
-		setSubmitting(false)
+		setLoading(false)
 	}
 
 	const onConfirmCode = async (e) => {
@@ -102,7 +103,8 @@ const SubscriptionCard = (props) => {
 			setSubmitting(true)
 			body.discountCode = discountCode.value
 			await axios.get(`/subscriptions/discount/${discountCode?.value}`);
-			await onSubscribed(discountCode?.value)
+			showPayPlan(true)
+			
 
 		} catch {
 			setSubmitting(false)
@@ -115,17 +117,19 @@ const SubscriptionCard = (props) => {
 
 	return (
 		<>
-			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={!payPlan ? styles.modalClass : styles.modalClass2 }>
+			<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={payPlan ? styles.modalClass : styles.modalClass2 }>
 				<div className={styles.enter_code_div}>					
 						
-                    {!payPlan && (
+                    {payPlan && (
+						<>
+						{loading ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} /> :
 						<div className={styles.payplan}>
 							<div className={styles.hder}>
 								<h2 className='title'>Choose suscription type</h2>
 								<p>Let us know how often you want the payment to be processed.</p>
 							</div>
 							<section className={styles.choosepay}>
-								<article onClick={()=>onSetPay('type')}>
+								<article onClick={() => onSubscribed()}>
 									<div style={{width:'50px',height:'50px',position:'relative'}}> 
 									 <Image src='/assets/card.png' layout='fill'/>
 									</div>
@@ -135,7 +139,7 @@ const SubscriptionCard = (props) => {
 									</p>
 								
 								</article>
-								<article onClick={()=>onSetPay('type')}>
+								<article onClick={() => onSubscribed()}>
 									<div style={{width:'50px',height:'50px',position:'relative'}}> 
 									  <Image src='/assets/card.png' layout='fill'/>
 									</div>
@@ -148,21 +152,23 @@ const SubscriptionCard = (props) => {
 							</section>
 
 						</div>
+                    }
+						</>
 					   )
 					}
 
-					{ payPlan && 
+					{ !payPlan && 
 						<form>
 						
-						{submitting ? <BtnLoader classStyle={`${styles.codeloading} abs-center`} /> :
-					        <>
+					
+					        
 							<Input field={discountCode} wrapperClass={styles.inputWraper} onChange={onChangeInput} onBlur={onBlurInput} leftIcon={{ name: 'hamper' }} />
 							<div className='flx_jc_sb'>
-								<Button bg="#c03e21" onClick={onConfirmCode} disabled={!discountCode.value}>Subscribe with code</Button>
-								<Button className={styles.skip} onClick={() => onSubscribed()} disabled={discountCode.value}>Subscribe with no code</Button>
+								<Button bg="#c03e21" onClick={onConfirmCode} disabled={!discountCode.value} loading={submitting}>Subscribe with code</Button>
+								<Button className={styles.skip} onClick={() => showPayPlan(true)} disabled={discountCode.value}>Subscribe with no code</Button>
 							</div>
-							</>
-						}
+						
+						
 						
 						</form>
 					}
