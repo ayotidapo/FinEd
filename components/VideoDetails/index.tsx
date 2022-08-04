@@ -8,6 +8,7 @@ import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 interface Props {
   course: ICourse
@@ -25,10 +26,12 @@ export interface IContent {
 
 const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   const router = useRouter()
+  const [hasVideo,setHasVideo]=useState(false)
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
-  const { title, thumbnail, description, contents, categories, level, id: courseId } = course
-
+  const { title, thumbnail, description, contents, categories, level, id: courseId,paid} = course
+  const coursePaidTxt=paid ? 'Upgrade your account to premium to watch this video':'To begin this course, click the button below to watch videos'
   const isVideo = (type: string) => type.toLowerCase() === 'video'
+
 
   const takeCourse = (video: IContent) => {
     const { title, id, type } = video
@@ -37,8 +40,18 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
     }
 
   }
+  
+  const onClicked=()=>{
+   return router.push(`/take-course/${courseId}/${title}`)
+  }
+  
 
+  useEffect(()=>{
 
+    const hasVideo = contents.some((content:IContent)=> isVideo(content.type))
+    setHasVideo(hasVideo)
+
+  },[])
   return (
     <>
       <header className={styles.header}>
@@ -82,11 +95,13 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <Link href={`/take-course/${courseId}`}>
+          <Link href={hasVideo ? `/take-course/${courseId}` : "#"}>
             <a className={styles.img_details}>
               <section>
                 <Image src={thumbnail?.url} layout="fill" alt="video_img" />
-                <div className="overlay" />
+                <div className="overlay" style={{ background : !hasVideo ? '#fff' : ''}}>
+                  {!hasVideo && <span>This course contains no video</span>}
+                  </div>
               </section>
             </a>
           </Link>
@@ -122,18 +137,17 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
         <span>Course content</span>
         <span>Ratings</span>
         <article className={styles.getstarted}>
-          <h2 className="title">Get Started</h2>
+          <h2 className="title">{paid  && hasVideo ? 'Upgrade plan':'Watch video'}</h2>
+
+          <p className={styles.pp}>
+          {coursePaidTxt}
+          </p>
           <Button
             className={styles.si_btn}
-            onClick={() => router.push('/signup')}
+            onClick={onClicked}
           >
-            Sign up with email <Icon id="arrow-right" width={20} height={20} />
+            {paid?'Start watching video': 'Upgrade to pro'} <Icon id="arrow-right" width={20} height={20} />
           </Button>
-          <p className={styles.pp}>
-            By signing up, you agree to our <span>Terms of Use</span> and
-            <br />
-            <span>Privacy Policy</span>.
-          </p>
         </article>
       </div>
       <section className={styles.about}>

@@ -41,6 +41,14 @@
     width: 32.5%;
     height: 275px;
     border-radius: 8px;
+    :global(.overlay){
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: red;
+      font-size: var(--f-20);
+      font-weight: bold;
+    }
     img {
       object-position: center;
       object-fit: cover;
@@ -144,7 +152,10 @@
   .pp {
     text-align: left;
     color: #7c7c7c;
-    font-size: var(--f-14);
+    font-size: var(--f-16);
+    color: #637170;
+    font-weight: bold;
+    text-align: center;
     span {
       color: #637170;
       text-decoration: underline;

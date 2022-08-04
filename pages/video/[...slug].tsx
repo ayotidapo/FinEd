@@ -7,7 +7,7 @@ import { GetServerSideProps } from 'next';
 import { ICourse } from 'components/VideosListPage';
 
 const VideoDetails: React.FC<{ course: ICourse }> = ({ course }) => {
-
+ 
   return (
     <>
       <VideoDetailsPage course={course} />
