@@ -6,6 +6,9 @@ import cx from 'classnames';
 import styles from './settingssidebar.module.scss';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import Tooltip from 'common/Tooltip';
+import { useSelector } from 'store';
 
 const tabs = [
   {
@@ -32,6 +35,15 @@ interface Props {
 }
 
 const SideBar: React.FC<Props> = (props: Props) => {
+  
+  const { user } = useSelector(state => state?.user?.user)
+  const {refCode} = user
+  const [el,setEl]=useState<HTMLElement | null>(null);
+
+	useEffect(()=>{
+		setEl(document.getElementById('codeSpan'))
+		
+	},[])
 
   const { setActiveTab, activeTab } = props;
   const router = useRouter()
@@ -48,7 +60,8 @@ const SideBar: React.FC<Props> = (props: Props) => {
     await nextApi.post('/logout');
     router.replace('/login')
   }
-
+  
+ 
   return (
     <>
       <section className={styles.sidetab}>
@@ -77,9 +90,11 @@ const SideBar: React.FC<Props> = (props: Props) => {
               <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
             </div>
             <span>Get 10% off when you refer a friend</span>
-            <Button className={styles.copy}>
-              Thelma23 <Icon id="copy" />
-            </Button>
+            <Tooltip el={el}>
+              <Button className={styles.copy}>
+                <span id='codeSpan'>{refCode}</span><Icon id="copy" />
+              </Button>
+            </Tooltip>
             <div className="socials">
               <Icon id="fb" width={18} height={18} />
               <Icon id="linkdIn" width={18} height={18} />

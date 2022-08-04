@@ -8,7 +8,7 @@ import Button from 'common/Button';
 import fields from './fields';
 import styles from './myprofile.module.scss';
 import { useDispatch, useSelector } from 'store';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useForm from 'hooks/useForm';
 import { countries, getStates } from 'utils/country'
 import axios from 'axios';
@@ -16,6 +16,7 @@ import { setUser } from 'reducers/user';
 
 interface Props { }
 const MyProfile: React.FC<Props> = () => {
+
   const { user } = useSelector(state => state?.user?.user)
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } = useForm(fields)
   const [userState, setUserState] = useState(user?.residentState)
@@ -26,7 +27,7 @@ const MyProfile: React.FC<Props> = () => {
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10)
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10)
 
-  console.log({ user })
+
   const updateStates = (country: string) => {
     const states = getStates(country)
 
@@ -39,7 +40,11 @@ const MyProfile: React.FC<Props> = () => {
     if (name === 'residentCountry') setUserCountry(value)
     if (name === 'residentState') setUserState(value)
   }
+  
 
+	 const [txt,setTxt]=useState('Tap to copy')
+
+	
   const onSubmit = async () => {
     try {
       setSubmitting(true);

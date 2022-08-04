@@ -2,29 +2,21 @@
 import Button from 'common/Button'
 import Icon from 'common/Icon'
 import Tooltip from 'common/Tooltip'
-import { useRef, useState } from 'react'
+import SocialMediaShare from 'common/SocialShare'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'store'
 import styles from './referfriend.module.scss'
 
 const ReferFriend = () => {
-     const codeRef=useRef<HTMLHeadingElement>(null)
-	 const [txt,setTxt]=useState('Tap to copy')
+	const [el,setEl]=useState<HTMLElement | null>(null);
+	const { user } = useSelector(state => state?.user?.user)
+    const {refCode} = user
 
-	const onCopy = async () => {
-		if (!navigator.clipboard) {
-			console.log(78)
-		  return;
-		}
-		try {
-
-		   const text = codeRef?.current?.innerText || '';	
-		   console.log(text)	
-			await navigator.clipboard.writeText(text);
-		    setTxt('copied')
-		 
-		} catch (e) {
-		 console.log(e)
-		}
-	  };
+	useEffect(()=>{
+		setEl(document.getElementById('codeSpan'))
+		
+	},[])
+     
 	return (
 		<section className={styles.refer_friend}>
 			<div className={styles.left}>
@@ -58,22 +50,18 @@ const ReferFriend = () => {
 					<span>Your referral code:</span>
 					<div className={styles.link}>
 						<h3 className='title' >							
-							 <span ref={codeRef}>Thelma23</span>							
+							 <span id='codeSpan'>{refCode}</span>							
 							<Button> Share link</Button>
 						</h3>
 
 					</div>
-					<div className='flx_ac'>
-					    <Tooltip desc={txt}>
-						  <Icon id="copy" className='hand' onClick={onCopy}  onMouseEnter={() =>  setTxt('Tap to copy')}/>&nbsp;
+					<div className='flx_jc_sb'>
+					    <Tooltip el={el}>
+						  <Icon id="copy" className='hand'/>&nbsp;						
+						  <span className='hand'>Copy code</span>
 						</Tooltip>
-						<span className='hand'>Copy code</span>
-						<div className={styles.socials}>
-							<Icon id="fb" width={32} height={32} />
-							<Icon id="linkdIn" width={32} height={32} />
-							<Icon id="whatsapp" width={32} height={32} />
-							<Icon id="twitter" width={32} height={32} />
-						</div>
+						
+						<SocialMediaShare/>
 					</div>
 				</div>
 

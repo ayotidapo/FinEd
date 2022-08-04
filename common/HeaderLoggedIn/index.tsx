@@ -7,12 +7,13 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import { useSelector } from 'store';
+import classnames from 'classnames';
 
 
 const Header = () => {
   const router = useRouter()
   const { user } = useSelector(state => state?.user?.user)
-  console.log(2, user)
+  const {currentSubscription}=user;
 
   const logOut = async () => {
     const nextApi = axios.create({
@@ -37,7 +38,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className={styles.avatar_div}>
-        <Button className={styles.upgrade}>UPGRADE</Button>
+       <Button className={classnames(styles.upgrade,{'hide':currentSubscription})}>UPGRADE</Button>
         <Icon id="book-mark" />
         <Icon id="bell" />
         <div className={`hand ${styles.log_auth}`} onClick={() => router.push('/settings')}>
