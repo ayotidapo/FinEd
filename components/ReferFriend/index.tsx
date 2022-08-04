@@ -1,9 +1,30 @@
 
 import Button from 'common/Button'
 import Icon from 'common/Icon'
+import Tooltip from 'common/Tooltip'
+import { useRef, useState } from 'react'
 import styles from './referfriend.module.scss'
 
 const ReferFriend = () => {
+     const codeRef=useRef<HTMLHeadingElement>(null)
+	 const [txt,setTxt]=useState('Tap to copy')
+
+	const onCopy = async () => {
+		if (!navigator.clipboard) {
+			console.log(78)
+		  return;
+		}
+		try {
+
+		   const text = codeRef?.current?.innerText || '';	
+		   console.log(text)	
+			await navigator.clipboard.writeText(text);
+		    setTxt('copied')
+		 
+		} catch (e) {
+		 console.log(e)
+		}
+	  };
 	return (
 		<section className={styles.refer_friend}>
 			<div className={styles.left}>
@@ -36,14 +57,16 @@ const ReferFriend = () => {
 				<div className={styles.ref_code_box}>
 					<span>Your referral code:</span>
 					<div className={styles.link}>
-						<h3 className='title'>
-							Thelma23
+						<h3 className='title' >							
+							 <span ref={codeRef}>Thelma23</span>							
 							<Button> Share link</Button>
 						</h3>
 
 					</div>
 					<div className='flx_ac'>
-						<Icon id="copy" className='hand' />&nbsp;
+					    <Tooltip desc={txt}>
+						  <Icon id="copy" className='hand' onClick={onCopy}  onMouseEnter={() =>  setTxt('Tap to copy')}/>&nbsp;
+						</Tooltip>
 						<span className='hand'>Copy code</span>
 						<div className={styles.socials}>
 							<Icon id="fb" width={32} height={32} />

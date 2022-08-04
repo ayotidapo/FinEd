@@ -7,10 +7,11 @@ interface Props {
   className?: string;
   style?: object;
   onClick?: (e: any) => void;
+  onMouseEnter?:(e: any) => void;
 }
 
 const Icon: React.FC<Props> = (props) => {
-  const { id, height, width, onClick, ...rest } = props;
+  const { id, height, width,  ...rest } = props;
   return (
     <svg
       width={width || 24}
