@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import '../styles/globals.scss';
 import axios from 'axios';
 import { useDispatch, wrapper } from 'store';
 import type { AppContext, AppProps } from 'next/app';
@@ -9,8 +8,11 @@ import App from 'next/app';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { useEffect ,useState} from 'react';
+import { ToastContainer, Zoom } from 'react-toastify';
 import PageLoader from 'common/PageLoader';
 import { useRouter } from 'next/router';
+import 'react-toastify/dist/ReactToastify.min.css';
+import '../styles/globals.scss';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -53,7 +55,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   
   return (
     <div className="container">
-      
+       <ToastContainer
+      autoClose={5000}
+      transition={Zoom}
+      position="top-center"
+      className="toast-container"
+      toastClassName="dark-toast"
+    />     
       <Component {...pageProps} />
     </div>
   );

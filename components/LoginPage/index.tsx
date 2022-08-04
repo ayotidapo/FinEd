@@ -12,9 +12,10 @@ import { loginUser } from './helpers';
 
 
 
+
 const LoginPage = () => {
   const router = useRouter();
-
+ 
   const dispatch = useDispatch()
 
   const { isTouched, onChangeInput, onBlurInput, isError, inputs } = useForm(
@@ -38,7 +39,8 @@ const LoginPage = () => {
       setSubmitting(false);
 
       router.replace('/contents/videos')
-    } catch (e) {
+    } catch (e:any) {
+     
       setSubmitting(false);
     }
   };

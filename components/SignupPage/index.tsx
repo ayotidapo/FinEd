@@ -10,6 +10,7 @@ import styles from './signup.module.scss';
 import Link from 'next/link';
 import Button from 'common/Button';
 import signUpFields, { initialState } from './fields';
+import { toast } from 'react-toastify';
 
 interface Props { }
 
@@ -33,7 +34,9 @@ const SignUpPage: React.FC<Props> = () => {
 
       const res = await axios.post('/auth/signup', body);
       router.push('/email-verification')
-    } catch (e) {
+    } catch (e:any) {
+      const errMsg=e?.response?.data?.message[0]
+      toast.error(errMsg || 'Error occured')
       setSubmitting(false);
     }
   };

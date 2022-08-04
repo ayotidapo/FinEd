@@ -46,6 +46,7 @@ const SubscriptionCard = (props) => {
 	}
 
 	const onClickedCard=(planId) => {
+		
 		setPlanId(planId)
 		onToggleModal(true)
 	}
@@ -69,22 +70,23 @@ const SubscriptionCard = (props) => {
 	}, [fwConfig])
 
 	
-
-	const onSubscribed = async (discountCode) => {
+	
+	const onSubscribed = async (auto=false) => {
 
 		try {
 			setLoading(true)
 			const body = { planId }
-			if (discountCode) body.discountCode = discountCode
+			const payPlan =  auto ? props.plan?.fwPlan?.id : null
+			
+			if (discountCode) body.discountCode = discountCode?.value
 
 			const { data } = await axios.post(`/subscriptions`, body);
 
 			const { plan, user, amount, id: subscriptionID } = data
-
+            
 
 			const config = configureFW({ subscriptionID, payPlan, amount, user, plan })
-
-
+			console.log(config)
 			setFwConfig(config)
 			setSubdata(data)
 			showPayPlan(false)
@@ -129,7 +131,7 @@ const SubscriptionCard = (props) => {
 								<p>Let us know how often you want the payment to be processed.</p>
 							</div>
 							<section className={styles.choosepay}>
-								<article onClick={() => onSubscribed()}>
+								<article onClick={() => onSubscribed('auto')}>
 									<div style={{width:'50px',height:'50px',position:'relative'}}> 
 									 <Image src='/assets/card.png' layout='fill'/>
 									</div>
@@ -198,8 +200,8 @@ const SubscriptionCard = (props) => {
 						<Icon id="light-cicle-mark" />
 						&nbsp; Access to everything - video &amp; article courses.
 					</p>
-					<Button onClick={() => onClickedCard(plan_id)}>
-						Subscribe to this plan
+					<Button onClick={() => onClickedCard(plan_id)} disabled={plan?.id===curPlan?.id}>
+						{plan?.id===curPlan?.id ? 'Plan subscribed to' : 'Subscribe to this plan'}
 						<Icon id="arrow-right" width={20} height={20} />
 					</Button>
 				</div>

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { setUser } from 'reducers/user';
-// import { AppDispatch } from 'store';
+import { toast } from 'react-toastify';
 
 export const loginUser = (body) => async (dispatch) => {
   try {
     const { data } = await axios.post('/auth/login', body);
-
+    toast.success('Login successful')
     const { accessToken, user } = data;
 
     const nextApi = axios.create({
@@ -18,7 +18,10 @@ export const loginUser = (body) => async (dispatch) => {
     });
 
     dispatch(setUser(data));
-  } catch (e) {}
+  } catch (e) {
+    console.log(e.response)
+    toast.error(e?.response?.data?.messsage || 'Login failed')
+  }
 };
 
 export const getUser = (id) => async (dispatch) => {

@@ -13,7 +13,7 @@ import classnames from 'classnames';
 const Header = () => {
   const router = useRouter()
   const { user } = useSelector(state => state?.user?.user)
-  const {currentSubscription}=user;
+  const currentSubscription=user?.currentSubscription;
 
   const logOut = async () => {
     const nextApi = axios.create({

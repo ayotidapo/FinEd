@@ -6,6 +6,7 @@ import SideBar from 'components/SettingsSideBar';
 import { useState } from 'react';
 import ReferFriend from 'components/ReferFriend';
 import ChangePassword from 'components/ChangePassword';
+import { toast } from 'react-toastify';
 
 interface Props {
 	plans: IPlan[]
@@ -14,6 +15,7 @@ interface Props {
 const SettingsPage: React.FC<Props> = (props) => {
 	const [activeTab, setActiveTab] = useState<string>('My Profile');
 	const { plans } = props
+
 	return (
 		<>
 			<Header />

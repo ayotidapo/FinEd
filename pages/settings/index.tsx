@@ -12,7 +12,7 @@ interface Props {
 
 const Settings: React.FC<Props> = (props) => {
   const { plans } = props
-
+console.log({plans})
   return (
     <>
       <SettingsPage plans={plans} />
