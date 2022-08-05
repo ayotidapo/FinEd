@@ -37,7 +37,7 @@ interface Props {
 const SideBar: React.FC<Props> = (props: Props) => {
   
   const { user } = useSelector(state => state?.user?.user)
-  const {refCode} = user
+  const refCode = user?.refCode
   const [el,setEl]=useState<HTMLElement | null>(null);
 
 	useEffect(()=>{

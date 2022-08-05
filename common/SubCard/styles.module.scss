@@ -110,7 +110,7 @@
 	width:80%;
 	
 	.payplan{
-		
+	
 		justify-content: center;
 		align-items: center;
 		:global(.title){
@@ -138,11 +138,6 @@
 				height: 262px;
 				padding: 0 12px;
 				text-align: center;
-				&:hover{
-					cursor: pointer;
-					color: #fff;
-					background: #015351;
-				}
 				:global(.title){
 					font-size: var(--f-24);
 				}
@@ -186,3 +181,41 @@
 	}
 
 }
+.form{
+	width:400px;
+	
+}
+
+.choosepayx{
+   display: flex;   
+   justify-content: center;
+   gap:35px;
+   margin:50px 0px;
+   min-height: 200px;
+   width: 900px;
+   article{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 35%;
+	border: 1px solid #E5E5E5;
+	border-radius: 8px;
+	height: 262px;
+	padding: 0 12px;
+	text-align: center;
+	&:hover{
+		cursor: pointer;
+		color: #fff;
+		background: #015351;
+	}
+	:global(.title){
+		font-size: var(--f-24);
+	}
+   }
+}
+.loaderWrapper{
+	min-height: 400px;
+	width: 70%;
+}
+

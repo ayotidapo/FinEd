@@ -9,9 +9,15 @@ import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Modal from 'common/Modal';
+import SubCard,{SubForm,PayPlanView} from 'common/SubCard';
+import { useSelector } from 'store';
+import { IPlans } from 'components/SubscriptionPage';
+import { IPlan } from 'reducers/plans';
 
 interface Props {
-  course: ICourse
+  course: ICourse,
+  plans:IPlans['plans']
 }
 
 export interface IContent {
@@ -24,16 +30,22 @@ export interface IContent {
 }
 
 
-const VideoDetailsPage: React.FC<Props> = ({ course }) => {
+const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
+  console.log(plans,90)
   const router = useRouter()
   const [hasVideo,setHasVideo]=useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [step, setStep] = useState(0)
+  
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
   const { title, thumbnail, description, contents, categories, level, id: courseId,paid} = course
   const coursePaidTxt=paid ? 'Upgrade your account to premium to watch this video':'To begin this course, click the button below to watch videos'
 
   const isVideo = (type: string) => type.toLowerCase() === 'video'
 
-
+  const { user } = useSelector(state => state?.user?.user)
+  const { plan: curPlan } = user?.currentSubscription || {}
+  
   const takeCourse = (video: IContent) => {
     const { title, id, type } = video
     if (isVideo(type)) {
@@ -43,18 +55,49 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   }
   
   const onClicked=()=>{
-   if(!paid) return router.push(`/take-course/${courseId}/${title}`)
+   // if(!paid) return router.push(`/take-course/${courseId}/${title}`)
+   setIsOpen(true)
   }
   
+ 
 
   useEffect(()=>{
 
     const hasVideo = contents.some((content:IContent)=> isVideo(content.type))
     setHasVideo(hasVideo)
 
-  },[])
+    
+
+  },[isOpen])
+
+  const onClickSubCard=(stp:number)=>{
+   setStep(stp)
+
+  }
+
+  const onClose =()=>{
+    setIsOpen(false)
+    setStep(0)
+  }
+
+
+
+
   return (
     <>
+    <Modal openModal={isOpen} onClose={onClose} modalClass={styles.modalClass} zIndex='99'>
+ 
+       {
+        
+          <SubCard  plans={plans} curPlan={curPlan} step={step}
+            onClickSubCard={onClickSubCard}
+          />
+         
+       } 
+
+      
+      
+    </Modal>
       <header className={styles.header}>
         <Header />
       </header>

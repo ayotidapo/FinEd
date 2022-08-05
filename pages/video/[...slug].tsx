@@ -5,12 +5,13 @@ import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
 import { ICourse } from 'components/VideosListPage';
+import { IPlans } from 'components/SubscriptionPage';
 
-const VideoDetails: React.FC<{ course: ICourse }> = ({ course }) => {
+const VideoDetails: React.FC<{ course: ICourse, plans:IPlans['plans'] }> = ({ course,plans }) => {
  
   return (
     <>
-      <VideoDetailsPage course={course} />
+      <VideoDetailsPage course={course} plans={plans}/>
       <Footer />
     </>
   );
@@ -35,9 +36,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, params 
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
     const { data } = await axios.get(`/courses-user/${paramz[0]}`)
 
+    const { data:plans } = await axios.get('/plans/noauth');
+
     return {
       props: {
         course: data,
+        plans
       },
     };
   } catch (e: any) {
@@ -50,3 +54,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, params 
 
   }
 }
+
+
+
+

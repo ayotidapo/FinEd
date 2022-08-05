@@ -430,6 +430,9 @@ a {
     }
   }
 }
+.Toastify__toast-body {
+  z-index: 999999 !important;
+}
 
 .right_for_sub{
   display: flex;

@@ -34,16 +34,16 @@ const VerifyPaymentPage: React.FC = () => {
 		setResponse(res)
 	}, [transaction_id])
 
-	const onToggleModal = (status: boolean) => {
+	const onToggleModal = () => {
 		// response?.payment?.status === "successful"
 		if (response) router.push(`/contents/videos`)
 		else router.push(`/settings`)
-		setIsOpen(status)
+		setIsOpen(false)
 	}
 
 
 	return (
-		<Modal openModal={isOpen} onToggle={onToggleModal} modalClass={styles.modalClass}>
+		<Modal openModal={isOpen} onClose={onToggleModal} modalClass={styles.modalClass}>
 			<div className={styles.status}>
 
 				{loading && <BtnLoader classStyle={`${styles.codeloading} abs-center`} />}

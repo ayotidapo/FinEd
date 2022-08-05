@@ -18,21 +18,13 @@ export interface IPlans {
 	plans: IPlan[]
 }
 
-const plan = {
-	active: true,
-	dateCreated: 'string',
-	dateUpdated: 'string',
-	duration: 2000,
-	id: 'string',
-	name: 'string',
-	price: 40
-}
+
 
 const SubscriptionPage: React.FC<IPlans> = ({ plans }) => {
 
 	const { user } = useSelector(state => state?.user?.user)
 	const { plan: curPlan } = user?.currentSubscription || {}
-	console.log({ user })
+
 	return (
 		<section className={styles.subscriptions}>
 			<div className={styles.left}>
