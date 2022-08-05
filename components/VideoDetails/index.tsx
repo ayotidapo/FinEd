@@ -30,6 +30,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
   const { title, thumbnail, description, contents, categories, level, id: courseId,paid} = course
   const coursePaidTxt=paid ? 'Upgrade your account to premium to watch this video':'To begin this course, click the button below to watch videos'
+
   const isVideo = (type: string) => type.toLowerCase() === 'video'
 
 
@@ -42,7 +43,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
   }
   
   const onClicked=()=>{
-   return router.push(`/take-course/${courseId}/${title}`)
+   if(!paid) return router.push(`/take-course/${courseId}/${title}`)
   }
   
 
@@ -137,7 +138,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
         <span>Course content</span>
         <span>Ratings</span>
         <article className={styles.getstarted}>
-          <h2 className="title">{paid  && hasVideo ? 'Upgrade plan':'Watch video'}</h2>
+          <h2 className="title">{paid ? 'Upgrade plan':'Watch video'}</h2>
 
           <p className={styles.pp}>
           {coursePaidTxt}
@@ -146,7 +147,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course }) => {
             className={styles.si_btn}
             onClick={onClicked}
           >
-            {paid?'Start watching video': 'Upgrade to pro'} <Icon id="arrow-right" width={20} height={20} />
+            {paid ?'Upgrade to pro':  'Start watching video'} <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </article>
       </div>

@@ -23,12 +23,13 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 	const router = useRouter()
 	const { contId } = router.query
 	const [loading, setLoading] = useState(false)
+	const [hasVideo,setHasVideo]=useState(false)
 	const [duration, setDuration] = useState('')
 	const [curVidId, setCurVidId] = useState(contId)
 
 	const [url, setUrl] = useState('')
 
-
+	const isVideo = (type: string) => type.toLowerCase() === 'video'
 
 	const { title, description, contents, categories, level, id } = course
 
@@ -36,7 +37,12 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 	const videos = contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 	const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
 
+	useEffect(()=>{
 
+		const hasVideo = contents.some((content:IContent)=> isVideo(content.type))
+		setHasVideo(hasVideo)
+	
+	  },[])
 
 
 	const getUrl = async (courseVideoId: string) => {
@@ -148,18 +154,24 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 				<section className={styles.main_sec}>
 					<div className={styles.video_player}>
 
-						{!loading ? <ReactPlayer
-							url={url}
-							controls
-							width="100%"
-							height="100%"
-							//onReady={() => setLoading(false)}
-							onDuration={handleDuration}
-							playing
-						/>
+						{!loading ? 
+						<>
+						    {!hasVideo && <div className='error-big abs-center'>This course has no video content</div>} 
+							<ReactPlayer
+								url={url}
+								controls
+								width="100%"
+								height="100%"
+								//onReady={() => setLoading(false)}
+								onDuration={handleDuration}
+								playing
+							/>
+						</>
 							:
-
-							<BtnLoader classStyle='abs-center' />
+                            
+	
+							  <BtnLoader classStyle='abs-center' />
+							
 						}
 					</div>
 					<div className={styles.details}>
