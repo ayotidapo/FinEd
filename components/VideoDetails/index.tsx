@@ -181,7 +181,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
         <span>Course content</span>
         <span>Ratings</span>
         <article className={styles.getstarted}>
-          <h2 className="title">{paid ? 'Upgrade plan':'Watch video'}</h2>
+          <h2 className="title">{paid && !curPlan.id ? 'Upgrade plan':'Watch video'}</h2>
 
           <p className={styles.pp}>
           {coursePaidTxt}
@@ -190,7 +190,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
             className={styles.si_btn}
             onClick={onClicked}
           >
-            {paid ?'Upgrade to pro':  'Start watching video'} <Icon id="arrow-right" width={20} height={20} />
+            {paid && !curPlan.id ?'Upgrade to pro':  'Start watching video'} <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </article>
       </div>
