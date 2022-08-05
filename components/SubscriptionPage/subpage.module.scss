@@ -37,16 +37,16 @@
 				cursor: pointer;
 			}
 		}
-		article{
-		   &:nth-of-type(1){
-			:global(.rec){		     
-				color: rgb(0, 0, 0);
-				background: rgb(227, 238, 231);
-			}
+		// article{
+		//    &:nth-of-type(1){
+		// 	:global(.rec){		     
+		// 		color: rgb(0, 0, 0);
+		// 		background: rgb(227, 238, 231);
+		// 	}
 			
-		   }
+		//    }
 
-		}
+		// }
 		
 	}
   }

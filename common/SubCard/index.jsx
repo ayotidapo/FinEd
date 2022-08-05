@@ -212,13 +212,22 @@ const SubCard = (props) => {
       {step === 0 &&
         plans.map((plan) => (
           <article key={plan?.id}>
-            <p className="rec">Recomended</p>
+            <p
+              className="rec"
+              style={{
+                visibility: plan?.id === curPlan?.id ? 'visible' : 'hidden',
+              }}
+            >
+              Current Plan
+            </p>
             <div
               className={cx(styles.sub_card, {
                 [styles.hylyt]: plan?.id === curPlan?.id,
               })}
             >
-              <div className={`flx_ac ${styles.img_dx}`}>
+              <div
+                className={`flx_ac ${styles.img_dx} ${styles.loaderWrapper}`}
+              >
                 <div className={styles.img_bx}>
                   <span>
                     <Image src="/assets/graph.png" alt="graph" layout="fill" />
@@ -240,15 +249,15 @@ const SubCard = (props) => {
                 <Icon id="light-cicle-mark" />
                 &nbsp; Access to everything - video &amp; article courses.
               </p>
-              <Button
-                onClick={() => onClickedCard(1, plan?.id)}
-                disabled={plan?.id === curPlan?.id}
-              >
-                {plan?.id === curPlan?.id
-                  ? 'Plan subscribed to'
-                  : 'Subscribe to this plan'}
-                <Icon id="arrow-right" width={20} height={20} />
-              </Button>
+              {!curPlan?.id && (
+                <Button
+                  onClick={() => onClickedCard(1, plan?.id)}
+                  disabled={plan?.id === curPlan?.id}
+                >
+                  Subscribe to this plan
+                  <Icon id="arrow-right" width={20} height={20} />
+                </Button>
+              )}
             </div>
           </article>
         ))}

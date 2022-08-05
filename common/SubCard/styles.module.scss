@@ -215,7 +215,29 @@
    }
 }
 .loaderWrapper{
-	min-height: 400px;
-	width: 70%;
+	.p{
+	
+		display: flex;
+		text-align: left;
+		align-items: center;
+		margin: 0px;
+		margin-bottom: 10px;
+        font-family: var(--font-2) !important;
+		+ button{
+		  margin-top: auto;
+		  margin-bottom: 5px;
+		  background: transparent;
+		  color: #000;
+		  border: 1px solid #000;
+		}
+	}
+	
+	
 }
 
+.sub_card{
+	.p{
+		font-family: var(--font-2) !important;
+		font-size: var(--f-14)  !important;
+	}
+}

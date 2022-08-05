@@ -17,12 +17,12 @@
 
 .modalClass{
 	width: 70%;
-	height: 65vh;
    
 }
 
 .modalClass2{
 	width: 50%;
+   
 }
 
 
@@ -138,11 +138,6 @@
 				height: 262px;
 				padding: 0 12px;
 				text-align: center;
-				&:hover{
-					cursor: pointer;
-					color: #fff;
-					background: #015351;
-				}
 				:global(.title){
 					font-size: var(--f-24);
 				}

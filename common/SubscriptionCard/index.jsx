@@ -201,7 +201,14 @@ const SubscriptionCard = (props) => {
         </div>
       </Modal>
       <article key={plan?.id}>
-        <p className="rec">Recomended</p>
+        <p
+          className="rec"
+          style={{
+            visibility: plan?.id === curPlan?.id ? 'visible' : 'hidden',
+          }}
+        >
+          Current Plan
+        </p>
         <div
           className={cx(styles.sub_card, {
             [styles.hylyt]: plan?.id === curPlan?.id,
@@ -229,15 +236,15 @@ const SubscriptionCard = (props) => {
             <Icon id="light-cicle-mark" />
             &nbsp; Access to everything - video &amp; article courses.
           </p>
-          <Button
-            onClick={() => onClickedCard(plan_id)}
-            disabled={plan?.id === curPlan?.id}
-          >
-            {plan?.id === curPlan?.id
-              ? 'Plan subscribed to'
-              : 'Subscribe to this plan'}
-            <Icon id="arrow-right" width={20} height={20} />
-          </Button>
+          {!curPlan.id && (
+            <Button
+              onClick={() => onClickedCard(plan_id)}
+              disabled={plan?.id === curPlan?.id}
+            >
+              Subscribe to this plan
+              <Icon id="arrow-right" width={20} height={20} />
+            </Button>
+          )}
         </div>
       </article>
     </>

@@ -55,7 +55,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
   }
   
   const onClicked=()=>{
-    if( (paid && curPlan.id ) || !paid) return router.push(`/take-course/${courseId}/${title}`)
+   if( (paid && curPlan.id ) || !paid) return router.push(`/take-course/${courseId}/${title}`)
     else setIsOpen(true)
   }
   
