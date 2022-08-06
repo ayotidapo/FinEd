@@ -1,0 +1,47 @@
+.topheader{
+    background-color: #ebebeb;
+   
+    section{
+        
+        margin:50px auto 0px auto;
+        
+        width:85%;
+    }
+    :global(.navi){
+       ul{
+         
+        margin-top:32px;
+          padding-bottom: 25px;
+          li{
+            margin-right: 3rem;
+            &:hover{
+                cursor: pointer;
+            }
+          }
+        }
+    }
+    .navUl{
+        padding-left: 0;
+        font-size: var(--f-16);
+        font-family: var(--font-2);
+        .uli{
+            padding-left: 0;
+        }
+       
+    }
+}
+
+.main{
+    margin:20px auto 0px auto;
+    
+    width:85%;
+    :global(.title){
+        font-size: var(--f-24);
+    }
+    .lastviewed_details{
+        border: 1px solid #E5E5E5;
+        border-radius: 8px;
+        height: 185px;
+        margin-top:20px;
+    }
+}

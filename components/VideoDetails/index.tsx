@@ -30,7 +30,6 @@ export interface IContent {
 }
 
 const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
-  console.log(plans, 90);
   const router = useRouter();
   const [hasVideo, setHasVideo] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -47,14 +46,15 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
     id: courseId,
     paid,
   } = course;
-  const coursePaidTxt = paid
-    ? 'Upgrade your account to premium to watch this video'
-    : 'To begin this course, click the button below to watch videos';
-
-  const isVideo = (type: string) => type.toLowerCase() === 'video';
-
   const { user } = useSelector((state) => state?.user?.user);
   const { plan: curPlan } = user?.currentSubscription || {};
+
+  const coursePaidTxt =
+    paid && !curPlan?.id
+      ? 'Upgrade your account to premium to watch this video'
+      : 'To begin this course, click the button below to watch videos';
+
+  const isVideo = (type: string) => type.toLowerCase() === 'video';
 
   const takeCourse = (video: IContent) => {
     const { title, id, type } = video;
