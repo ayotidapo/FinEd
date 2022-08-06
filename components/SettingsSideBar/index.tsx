@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import Tooltip from 'common/Tooltip';
 import { useSelector } from 'store';
+import SocialMediaShare from 'common/SocialShare';
 
 const tabs = [
   {
@@ -95,12 +96,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
                 <span id='codeSpan'>{refCode}</span><Icon id="copy" />
               </Button>
             </Tooltip>
-            <div className="socials">
-              <Icon id="fb" width={18} height={18} />
-              <Icon id="linkdIn" width={18} height={18} />
-              <Icon id="whatsapp" width={18} height={18} />
-              <Icon id="twitter" width={18} height={18} />
-            </div>
+            <SocialMediaShare iconSize={18}/>
           </div>)
         }
       </section>

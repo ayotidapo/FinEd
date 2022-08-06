@@ -9,11 +9,14 @@ import styles from './referfriend.module.scss'
 
 const ReferFriend = () => {
 	const [el,setEl]=useState<HTMLElement | null>(null);
+	const [el2,setEl2]=useState<HTMLElement | null>(null);
 	const { user } = useSelector(state => state?.user?.user)
+	const browsUrl=window.location.origin
     const {refCode} = user
 
 	useEffect(()=>{
 		setEl(document.getElementById('codeSpan'))
+		setEl2(document.getElementById('codeSpan2'))
 		
 	},[])
      
@@ -50,8 +53,13 @@ const ReferFriend = () => {
 					<span>Your referral code:</span>
 					<div className={styles.link}>
 						<h3 className='title' >							
-							 <span id='codeSpan'>{refCode}</span>							
-							<Button> Share link</Button>
+							 <span id='codeSpan'>{refCode}</span>	
+							 <span id='codeSpan2' style={{display:'none'}}>
+								{`${browsUrl}/signup?referrer=${refCode}`}
+							 </span>	
+							 <Tooltip el={el2}>						
+							   <Button>Copy referral link</Button>
+							</Tooltip>
 						</h3>
 
 					</div>
@@ -71,3 +79,15 @@ const ReferFriend = () => {
 	)
 }
 export default ReferFriend
+
+
+
+// <h3 className='title' >							
+// 							 <span id='codelink'>{refCode}</span>	
+// 							 <Tooltip el={el2}>					
+// 							   <Button>
+// 								  <span>htt</span>
+// 								  Copy referral link
+// 								</Button>
+// 							</Tooltip>	
+// 						</h3>

@@ -12,6 +12,7 @@ const Tooltip:React.FC<Props> = (props) => {
     const { el,  children, className } = props;
 
     const onCopy = async () => {
+      console.log(el)
 		if (!navigator.clipboard) {
 			console.log(78)
 		  return;

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { Logo2 } from 'common/Logo';
@@ -15,11 +16,11 @@ import { toast } from 'react-toastify';
 interface Props { }
 
 const SignUpPage: React.FC<Props> = () => {
-  const { isTouched, onChangeInput, onBlurInput, getPayload, isError, inputs } = useForm(
+  const { isTouched, onChangeInput, onBlurInput, getPayload, setInputs, isError, inputs } = useForm(
     signUpFields,
 
   );
-  console.log(123, isTouched)
+
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
@@ -40,6 +41,14 @@ const SignUpPage: React.FC<Props> = () => {
       setSubmitting(false);
     }
   };
+
+  useEffect(()=>{
+    const refCode = router.query?.referrer || '';
+    const inputF={...inputs}
+    inputF['refCode'].value = refCode
+  
+    setInputs(inputF)
+  },[])
 
   return (
     <div className={`signupWrapper ${styles.signup}`}>

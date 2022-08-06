@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Header from 'common/HeaderLoggedIn';
@@ -68,7 +69,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
 
     
 
-  },[isOpen])
+  },[])
 
   const onClickSubCard=(stp:number)=>{
    setStep(stp)

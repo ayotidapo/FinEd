@@ -6,6 +6,8 @@
     display: inline-flex;
     text-align: left;
     align-items: center;
+    font-size:var(--f-14) !important;
+    font-family: var(--font-2);
     .tool__tip {
       position: absolute;
       opacity: 0;
