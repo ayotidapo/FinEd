@@ -205,8 +205,7 @@ const SubCard = (props) => {
     props.onClickSubCard(stp);
     if (id) setPlanId(id);
   };
-
-  console.log(planId, 899);
+  console.log(plans, 456789);
   return (
     <>
       {step === 0 &&

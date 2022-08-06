@@ -11,14 +11,13 @@ import { ICourse } from 'components/VideosListPage';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Modal from 'common/Modal';
-import SubCard,{SubForm,PayPlanView} from 'common/SubCard';
+import SubCard from 'common/SubCard';
 import { useSelector } from 'store';
-import { IPlans } from 'components/SubscriptionPage';
 import { IPlan } from 'reducers/plans';
 
 interface Props {
-  course: ICourse,
-  plans:IPlans['plans']
+  course: ICourse;
+  plans: IPlan[];
 }
 
 export interface IContent {
@@ -27,78 +26,82 @@ export interface IContent {
   summary: string;
   title: string;
   type: string;
-  [key: string]: any
+  [key: string]: any;
 }
 
+const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
+  console.log(plans, 90);
+  const router = useRouter();
+  const [hasVideo, setHasVideo] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [step, setStep] = useState(0);
 
-const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
-  console.log(plans,90)
-  const router = useRouter()
-  const [hasVideo,setHasVideo]=useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [step, setStep] = useState(0)
-  
-  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3']
-  const { title, thumbnail, description, contents, categories, level, id: courseId,paid} = course
-  const coursePaidTxt=paid ? 'Upgrade your account to premium to watch this video':'To begin this course, click the button below to watch videos'
+  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
+  const {
+    title,
+    thumbnail,
+    description,
+    contents,
+    categories,
+    level,
+    id: courseId,
+    paid,
+  } = course;
+  const coursePaidTxt = paid
+    ? 'Upgrade your account to premium to watch this video'
+    : 'To begin this course, click the button below to watch videos';
 
-  const isVideo = (type: string) => type.toLowerCase() === 'video'
+  const isVideo = (type: string) => type.toLowerCase() === 'video';
 
-  const { user } = useSelector(state => state?.user?.user)
-  const { plan: curPlan } = user?.currentSubscription || {}
-  
+  const { user } = useSelector((state) => state?.user?.user);
+  const { plan: curPlan } = user?.currentSubscription || {};
+
   const takeCourse = (video: IContent) => {
-    const { title, id, type } = video
+    const { title, id, type } = video;
     if (isVideo(type)) {
-      router.push(`/take-course/${courseId}/${title}?contId=${id}`)
+      router.push(`/take-course/${courseId}/${title}?contId=${id}`);
     }
+  };
 
-  }
-  
-  const onClicked=()=>{
-   if( (paid && curPlan?.id ) || !paid) return router.push(`/take-course/${courseId}/${title}`)
-    else setIsOpen(true)
-  }
-  
- 
+  const onClickedUpgrade = () => {
+    if ((paid && curPlan?.id) || !paid)
+      return router.push(`/take-course/${courseId}/${title}`);
+    else setIsOpen(true);
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
+    const hasVideo = contents.some((content: IContent) =>
+      isVideo(content.type),
+    );
+    setHasVideo(hasVideo);
+  }, []);
 
-    const hasVideo = contents.some((content:IContent)=> isVideo(content.type))
-    setHasVideo(hasVideo)
+  const onClickSubCard = (stp: number) => {
+    setStep(stp);
+  };
 
-    
-
-  },[])
-
-  const onClickSubCard=(stp:number)=>{
-   setStep(stp)
-
-  }
-
-  const onClose =()=>{
-    setIsOpen(false)
-    setStep(0)
-  }
-
-
-
-
+  const onClose = () => {
+    setIsOpen(false);
+    setStep(0);
+  };
+  console.log(plans, 899);
   return (
     <>
-    <Modal openModal={isOpen} onClose={onClose} modalClass={styles.modalClass} zIndex='99'>
- 
-       {
-        
-          <SubCard  plans={plans} curPlan={curPlan} step={step}
+      <Modal
+        openModal={isOpen}
+        onClose={onClose}
+        modalClass={styles.modalClass}
+        zIndex="99"
+      >
+        {
+          <SubCard
+            plans={plans}
+            curPlan={curPlan}
+            step={step}
             onClickSubCard={onClickSubCard}
           />
-         
-       } 
-
-      
-      
-    </Modal>
+        }
+      </Modal>
       <header className={styles.header}>
         <Header />
       </header>
@@ -106,13 +109,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
         <nav className={styles.breadcrumb}>
           <ul>
             <li style={{ marginTop: '-2px' }} onClick={() => router.push('/')}>
-              <Icon
-                id="home"
-                height={24}
-                width={24}
-                className="hand"
-
-              />
+              <Icon id="home" height={24} width={24} className="hand" />
               <Icon
                 id="caret-right"
                 height={15}
@@ -140,25 +137,30 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <Link href={hasVideo ? `/take-course/${courseId}` : "#"}>
+          <Link href={hasVideo ? `/take-course/${courseId}` : '#'}>
             <a className={styles.img_details}>
               <section>
                 <Image src={thumbnail?.url} layout="fill" alt="video_img" />
-                <div className="overlay" style={{ background : !hasVideo ? '#fff' : ''}}>
+                <div
+                  className="overlay"
+                  style={{ background: !hasVideo ? '#fff' : '' }}
+                >
                   {!hasVideo && <span>This course contains no video</span>}
-                  </div>
+                </div>
               </section>
             </a>
           </Link>
 
           <section className={styles.info_details}>
             <span className={styles.labeltag}>
-              {categories.map((category, i) => <LabelTag key={category} color={colors[i]}>{category}</LabelTag>)}
+              {categories.map((category, i) => (
+                <LabelTag key={category} color={colors[i]}>
+                  {category}
+                </LabelTag>
+              ))}
               {categories.length > 3 && <LabelTag>+3</LabelTag>}
             </span>
-            <h2 className={`title ${styles.title}`}>
-              {title}
-            </h2>
+            <h2 className={`title ${styles.title}`}>{title}</h2>
             <div className={styles.starwrap}>
               <Star />
               <Star />
@@ -182,52 +184,61 @@ const VideoDetailsPage: React.FC<Props> = ({ course,plans }) => {
         <span>Course content</span>
         <span>Ratings</span>
         <article className={styles.getstarted}>
-          <h2 className="title">{paid && !curPlan?.id ? 'Upgrade plan':'Watch video'}</h2>
+          <h2 className="title">
+            {paid && !curPlan?.id ? 'Upgrade plan' : 'Watch video'}
+          </h2>
 
-          <p className={styles.pp}>
-          {coursePaidTxt}
-          </p>
-          <Button
-            className={styles.si_btn}
-            onClick={onClicked}
-          >
-            {paid && !curPlan?.id ?'Upgrade to pro':  'Start watching video'} <Icon id="arrow-right" width={20} height={20} />
+          <p className={styles.pp}>{coursePaidTxt}</p>
+          <Button className={styles.si_btn} onClick={onClickedUpgrade}>
+            {paid && !curPlan?.id ? 'Upgrade to pro' : 'Start watching video'}{' '}
+            <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </article>
       </div>
       <section className={styles.about}>
         <h2 className="title">About this course</h2>
-        {false && <p>
-          In this class, Documentary Photographer and Photojournalist, KC
-          Nwakalor breaks down the various compositional techniques you can
-          apply in order to have a better outcome in your photographs.
-        </p>}
+        {false && (
+          <p>
+            In this class, Documentary Photographer and Photojournalist, KC
+            Nwakalor breaks down the various compositional techniques you can
+            apply in order to have a better outcome in your photographs.
+          </p>
+        )}
         <p>
           {description}
-          {description.length > 600 &&
+          {description.length > 600 && (
             <span
               style={{ color: '#C03E21', fontWeight: 'bold' }}
               className="hand"
             >
               {' '}
               Show more.
-            </span>}
+            </span>
+          )}
         </p>
       </section>
       <section className={styles.content}>
         <h2 className="title">Course content</h2>
         <ul>
-          {contents.map((content: IContent) =>
-            <li key={content.id} className='hand' onClick={() => takeCourse(content)}>
+          {contents.map((content: IContent) => (
+            <li
+              key={content.id}
+              className="hand"
+              onClick={() => takeCourse(content)}
+            >
               <div className={styles.f_sp}>
-                <Icon id={isVideo(content.type) ? "play" : 'file'} width={20} height={20} />
-                &nbsp;<span className='elips'>{content.title}</span>
+                <Icon
+                  id={isVideo(content.type) ? 'play' : 'file'}
+                  width={20}
+                  height={20}
+                />
+                &nbsp;<span className="elips">{content.title}</span>
               </div>
               <span>
                 <Icon id="clock" width={20} height={20} /> &nbsp;15mins
               </span>
             </li>
-          )}
+          ))}
         </ul>
       </section>
       <section className={styles.ratings}>

@@ -7,30 +7,24 @@ import { getUser } from 'components/LoginPage/helpers';
 import App from 'next/app';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
-import { useEffect ,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
 import PageLoader from 'common/PageLoader';
 import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../styles/globals.scss';
 
-
 function MyApp({ Component, pageProps }: AppProps) {
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
   axios.defaults.baseURL = 'https://api.themoneystaging.com';
-  const { pathname } = useRouter();
-  const {userId,s_token}=pageProps
-  const dispatch=useDispatch();
+  const { userId, s_token } = pageProps;
+  const dispatch = useDispatch();
 
-  const loadUser= async ()=>{
- 
-    axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
-    await getUser(userId)(dispatch)
-    setLoading(false)
-  }
-
-
-  
+  const loadUser = async () => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+    await getUser(userId)(dispatch);
+    setLoading(false);
+  };
 
   // useEffect(() => {
   //   console.log
@@ -39,61 +33,53 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   window.scrollTo(0, 0);
   // }, [pathname]);
 
+  useEffect(() => {
+    loadUser();
+  }, [userId, s_token]);
 
-
-  useEffect(()=>{   
-    loadUser()   
-  },[userId,s_token])
-
-  if(loading) {
+  if (loading) {
     return (
       <div className="container">
-        <PageLoader/>
-       </div>
-      )
-    }
-  
+        <PageLoader />
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-       <ToastContainer
-      autoClose={5000}
-      transition={Zoom}
-      position="top-center"
-      className="toast-container"
-      toastClassName="dark-toast"
-    />     
+      <ToastContainer
+        autoClose={5000}
+        transition={Zoom}
+        position="top-center"
+        className="toast-container"
+        toastClassName="dark-toast"
+      />
       <Component {...pageProps} />
     </div>
   );
 }
 
-
-
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext)
-    const { req, res } = appContext.ctx
-  const c_token = getCookie('c_token', { req, res })
-  const { s_token ,userId } = getToken(c_token as string)
+  const appProps = await App.getInitialProps(appContext);
+  const { req, res } = appContext.ctx;
+  const c_token = getCookie('c_token', { req, res });
+  const { s_token, userId } = getToken(c_token as string);
 
   return {
     pageProps: {
       ...appProps.pageProps,
-      userId:  userId,
+      userId: userId,
       s_token,
     },
-  }
-}
-
+  };
+};
 
 export default wrapper.withRedux(MyApp);
-
-
 
 // function MyApp({ Component, pageProps }: AppProps) {
 
 //   return <Component {...pageProps} />
 // }
-
 
 // MyApp.getInitialProps = async (appContext: AppContext) => {
 //   const appProps = await App.getInitialProps(appContext);
@@ -102,13 +88,8 @@ export default wrapper.withRedux(MyApp);
 //   const c_token = getCookie('c_token', { req, res })
 //   const { userId } = getToken(c_token as string)
 
-  
-
 //   return { ...appProps, userId: `lo${userId}` };
 // };
-
-
-
 
 // function MyApp({ Component, pageProps }: AppProps) {
 //   const { user } = useSelector(state => state?.user?.user)
@@ -121,5 +102,3 @@ export default wrapper.withRedux(MyApp);
 //     </div>
 //   );
 // }
-
-

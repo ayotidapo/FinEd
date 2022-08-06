@@ -13,9 +13,14 @@ export interface IPlan {
 	price: number;
 }
 
+interface IState{
+    plans:IPlan[]
+}
 
 
-const initialState:any[] = []
+const initialState:IState= {
+	plans:[]
+}
 
 export const plansSlice = createSlice({
 	name:'plans',
@@ -23,21 +28,23 @@ export const plansSlice = createSlice({
 	initialState,
 
 	reducers:{
-		setActivePlans(state?: IPlan[], action?:IAction){
+		setPlans(state: IState, action: PayloadAction<IAction>){
+			// console.log('hhhh',action)
 
-		  state = [...action?.payload]
+		  state.plans = [...action.payload.plans]
 		}
 	},
 
 	extraReducers:{
-		[HYDRATE]:(state?: IPlan[], action?:IAction)=>{
+		[HYDRATE]:(state:IState, action)=>{
+			// console.log(action?.payload.plans)
 			if(action?.payload?.plans.length === 0) return state
 			
-			state=[...action?.payload.plans]
+			state.plans=[...action?.payload.plans.plans]
 		}
 	}
 })
 
 
-export const { setActivePlans } = plansSlice.actions
+export const { setPlans } = plansSlice.actions
 export default plansSlice.reducer
