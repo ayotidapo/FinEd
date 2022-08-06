@@ -26,6 +26,7 @@ const useForm = (fields: IState) => {
     Object.keys(inputs).forEach((field) => {
       body[field] = inputs[field].value;
     });
+    console.log({body},90)
     return body
   }
 

@@ -5,27 +5,31 @@ import Input from 'common/Input'
 import fields from './fields'
 import styles from './changepassword.module.scss'
 import useForm from 'hooks/useForm'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 
 const ChangePassword = () => {
 	const { isTouched, onBlurInput, onChangeInput, getPayload, isError } = useForm(fields)
 	const [submitting, setSubmitting] = useState(false);
 
-	const onSubmit = async () => {
+	const onSubmit = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.preventDefault()
 		try {
 			setSubmitting(true);
 			const body = getPayload();
 			body.NewPassword = body.password
-
+console.log({body})
 			delete body.password
 			delete body.password2
 
 			const { data } = await axios.patch(`/auth/change-password`, body)
-
+			toast.success('Password changed')
 			setSubmitting(false);
-			console.log(data)
-		} catch (e) {
+	
+		} catch (e:any) {
+			const errMsg=e?.response?.data?.message[0]
+            toast.error(errMsg || 'Incorrect current password')
 			setSubmitting(false);
 		}
 
