@@ -236,7 +236,7 @@ const SubscriptionCard = (props) => {
             <Icon id="light-cicle-mark" />
             &nbsp; Access to everything - video &amp; article courses.
           </p>
-          {!curPlan.id && (
+          {!curPlan?.id && (
             <Button
               onClick={() => onClickedCard(plan_id)}
               disabled={plan?.id === curPlan?.id}

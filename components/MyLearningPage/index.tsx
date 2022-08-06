@@ -1,4 +1,6 @@
 import HeaderLoggedIn from 'common/HeaderLoggedIn';
+import Icon from 'common/Icon';
+import Image from 'next/image';
 import styles from './learning.module.scss';
 const MyLearningPage = () => {
   return (
@@ -18,7 +20,17 @@ const MyLearningPage = () => {
       </div>
       <main className={styles.main}>
         <h2 className="title">Last viewed</h2>
-        <div className={styles.lastviewed_details}></div>
+        <section className={styles.lastviewed_details}>
+          <div className={styles.imgBx}>
+            <Image src="/assets/bag.png" layout="fill" alt="" />
+            <span>
+              <Icon id="play" />
+            </span>
+            <div className={styles.overlay} />
+          </div>
+          <div className={styles.midBx}></div>
+          <div className={styles.lblBx}></div>
+        </section>
       </main>
     </>
   );
