@@ -153,7 +153,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
 
           <section className={styles.info_details}>
             <span className={styles.labeltag}>
-              {categories.map((category, i) => (
+              {categories.slice(0, 3).map((category, i) => (
                 <LabelTag key={category} color={colors[i]}>
                   {category}
                 </LabelTag>

@@ -39,9 +39,98 @@
         font-size: var(--f-24);
     }
     .lastviewed_details{
+        display: flex;
         border: 1px solid #E5E5E5;
         border-radius: 8px;
         height: 185px;
         margin-top:20px;
     }
+    .imgBx{
+        position: relative;
+        width:20%;
+        border-radius: 8px 0px 0px 8px;
+        height: 100%;
+        &:hover{
+            cursor: pointer;
+        }
+        svg{
+            top: 50%;
+            left: 50%;
+            z-index: 500;
+            color: #fff;
+            display: none;
+            &:hover{
+                transform: scale(1.2);
+                cursor: pointer;
+            }
+        }
+        img{
+            object-position: center;
+        }
+        .overlay{
+            width: 100%;
+            position: absolute;
+            top:0;
+            left:0;
+            border-radius: 8px 0px 0px 8px;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.7);
+
+        }
+    }
+    .lblBx{
+        width:27%;
+        border-radius: 0px 8px 8px 0px;
+        height: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-right: 20px;
+    }
+    .midBx{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding-left: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .rating_div {
+        display: flex;
+        gap: 2px;
+        color: #d78806;
+        align-items: center;
+        margin-top: 12px;
+        font-size:var(--f-14);
+        font-family: var(--font-2);
+
+      }
+    .min_details {
+        display: flex;
+        font-size: var(--f-16);
+        align-items: center;
+        margin-top: 20px;
+        font-family: var(--font-2);
+        span{
+            display: flex;
+            align-items: center;
+        }
+    }
+    .labeltag{
+        display: inline-flex;
+        flex-wrap: wrap;
+        label{
+            margin-right: 7px;
+        }
+    }
+
+      .progressbar{
+        width:80%;
+        margin-top: auto;
+      }
 }
+

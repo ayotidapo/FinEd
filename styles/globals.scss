@@ -422,6 +422,13 @@ a {
     }
   }
 }
+.rating_div {
+  display: flex;
+  gap: 2px;
+  color: #d78806;
+  align-items: center;
+  margin-top: 12px;
+}
 .navi {
   ul {
     display: flex;
