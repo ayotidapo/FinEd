@@ -155,3 +155,15 @@
 		}
 	}
 }
+.modalClass{
+	display: flex;
+	gap: 25px;
+}
+.subTo{
+	font-family: var(--font-2);
+	font-size: var(--f-16);
+	text-align: center;
+	margin-bottom: 0;
+	color:#015351;
+	font-weight: bold;
+}

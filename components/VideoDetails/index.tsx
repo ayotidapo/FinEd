@@ -137,19 +137,24 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <Link href={hasVideo ? `/take-course/${courseId}` : '#'}>
-            <a className={styles.img_details}>
-              <section>
-                <Image src={thumbnail?.url} layout="fill" alt="video_img" />
-                <div
-                  className="overlay"
-                  style={{ background: !hasVideo ? '#fff' : '' }}
-                >
-                  {!hasVideo && <span>This course contains no video</span>}
-                </div>
-              </section>
-            </a>
-          </Link>
+          <div className={styles.img_details} onClick={onClickedUpgrade}>
+            <section>
+              <Image src={thumbnail?.url} layout="fill" alt="video_img" />
+              <div
+                className="overlay"
+                style={{ background: !hasVideo ? '#fff' : '' }}
+              >
+                {!hasVideo && <span>This course contains no video</span>}
+                {paid && !curPlan?.id && (
+                  <Button className={styles.si_btn} bg="#C03E21">
+                    &nbsp;&nbsp;&nbsp;UPGRADE TO PRO
+                    <Icon id="arrow-right" width={20} height={20} />
+                    &nbsp;&nbsp;&nbsp;
+                  </Button>
+                )}
+              </div>
+            </section>
+          </div>
 
           <section className={styles.info_details}>
             <span className={styles.labeltag}>

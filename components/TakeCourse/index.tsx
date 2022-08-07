@@ -10,6 +10,9 @@ import { IContent } from 'components/VideoDetails';
 import { getContentUrl } from './functions';
 import { useEffect, useState } from 'react';
 import { BtnLoader } from 'common/Button';
+import Modal from 'common/Modal';
+import SubCard from 'common/SubCard';
+import { useSelector } from 'store';
 
 const ReactPlayer = dynamic(() => import('react-player'), {
   ssr: false,
@@ -22,12 +25,21 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState('');
   const [curVidId, setCurVidId] = useState(contId);
+  const [step, setStep] = useState(0);
+
+  const { user } = useSelector((state) => state?.user?.user);
+  const { plans } = useSelector((state) => state?.plans);
+
+  const { title, description, contents, categories, level, paid, id } = course;
+
+  const { plan: curPlan } = user?.currentSubscription || {};
+
+  const cantWatch = paid && !curPlan?.id;
+  const [isOpen, setIsOpen] = useState(cantWatch);
 
   const [url, setUrl] = useState('');
 
   const isVideo = (type: string) => type.toLowerCase() === 'video';
-
-  const { title, description, contents, categories, level, id } = course;
 
   const resources = contents.filter(
     (content: IContent) => content.type?.toLowerCase() !== 'video',
@@ -61,6 +73,15 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
     setDuration(duration);
   };
 
+  const onClickSubCard = (stp: number) => {
+    setStep(stp);
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+    router.push(`/video/${id}/${title}`);
+  };
+
   useEffect(() => {
     let videoId = '';
     if (!contId) videoId = videos[0]?.id;
@@ -70,6 +91,26 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
   return (
     <main className={styles.watch}>
+      <Modal
+        openModal={isOpen}
+        onClose={onClose}
+        modalClass={styles.modalClass}
+        zIndex="99"
+      >
+        <div>
+          <p className={styles.subTo}>
+            Upgrade your account to view this course
+          </p>
+          <div style={{ display: 'flex', gap: '25px' }}>
+            <SubCard
+              plans={plans}
+              curPlan={curPlan}
+              step={step}
+              onClickSubCard={onClickSubCard}
+            />
+          </div>
+        </div>
+      </Modal>
       <div className={styles.top}>
         <nav className={styles.breadcrumb}>
           <ul>
@@ -161,15 +202,17 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
                     This course has no video content
                   </div>
                 )}
-                <ReactPlayer
-                  url={url}
-                  controls
-                  width="100%"
-                  height="100%"
-                  //onReady={() => setLoading(false)}
-                  onDuration={handleDuration}
-                  playing
-                />
+                {!cantWatch && (
+                  <ReactPlayer
+                    url={url}
+                    controls
+                    width="100%"
+                    height="100%"
+                    //onReady={() => setLoading(false)}
+                    onDuration={handleDuration}
+                    playing
+                  />
+                )}
               </>
             ) : (
               <BtnLoader classStyle="abs-center" />

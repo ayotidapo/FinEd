@@ -11,32 +11,32 @@ import Input from 'common/Input';
 import { useSelector } from 'store';
 import useForm from 'hooks/useForm';
 
-
 export interface ICourse {
   categories: string[];
   createdAt: string;
   description: string;
   level: string;
-  paid: false
+  paid: false;
   published: boolean;
-  thumbnail: { id: string; url: string; key: string; }
+  thumbnail: { id: string; url: string; key: string };
   title: string;
   updatedAt: string;
-  [key: string]: any
+  [key: string]: any;
 }
-
 
 interface Props {
   data: {
-    courses: ICourse[],
-    [key: string]: any
-  }
+    courses: ICourse[];
+    [key: string]: any;
+  };
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
-  const { user } = useSelector(state => state?.user?.user)
+  const { user } = useSelector((state) => state?.user?.user);
   const [showFilter, setShowFilter] = useState(false);
-  const { data: { courses } } = props
+  const {
+    data: { courses },
+  } = props;
 
   const fields = {
     discountCode: {
@@ -44,19 +44,24 @@ const VideosListPage: React.FC<Props> = (props) => {
       value: '',
       type: 'text',
       label: '',
-      placeholder: 'Search', error: '',
-      required: false
-    }
-  }
+      placeholder: 'Search',
+      error: '',
+      required: false,
+    },
+  };
   const { onChangeInput, onBlurInput, inputs } = useForm(fields);
-  const { discountCode } = inputs
+  const { discountCode } = inputs;
   return (
     <>
       <header className={styles.video_header_wrap}>
         <Header />
         <div className={styles.topics}>
-          <h2 className="title">Let&apos;s start learning,
-            <span style={{ textTransform: 'capitalize' }}> {user?.firstName}</span>
+          <h2 className="title">
+            Let&apos;s start learning,
+            <span style={{ textTransform: 'capitalize' }}>
+              {' '}
+              {user?.firstName}
+            </span>
           </h2>
           <span
             className="d-flx"

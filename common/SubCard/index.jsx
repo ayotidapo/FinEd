@@ -7,7 +7,6 @@ import Button, { BtnLoader } from 'common/Button';
 import Image from 'next/image';
 import Icon from 'common/Icon';
 import React, { useEffect, useState } from 'react';
-import Modal from 'common/Modal';
 import useForm from 'hooks/useForm';
 import Input from 'common/Input';
 import axios from 'axios';
@@ -29,13 +28,7 @@ export const PayPlanView = ({ onSubscribed, loading }) => {
           {!loading && (
             <>
               <article onClick={() => onSubscribed('auto')}>
-                <div
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    position: 'relative',
-                  }}
-                >
+                <div className={styles.sub_desc_wrapper}>
                   <Image src="/assets/card.png" layout="fill" alt="" />
                 </div>
                 <h2 className="title">Auto-renew</h2>
@@ -45,14 +38,8 @@ export const PayPlanView = ({ onSubscribed, loading }) => {
                 </p>
               </article>
               <article onClick={() => onSubscribed()}>
-                <div
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    position: 'relative',
-                  }}
-                >
-                  <Image src="/assets/card.png" layout="fill" alt="" />
+                <div className={styles.sub_desc_wrapper}>
+                  <Image src="/assets/bag.png" layout="fill" alt="" />
                 </div>
                 <h2 className="title">One-time payment</h2>
                 <p>
