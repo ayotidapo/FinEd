@@ -134,3 +134,9 @@
       }
 }
 
+.content_items_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+    gap:40px;
+}

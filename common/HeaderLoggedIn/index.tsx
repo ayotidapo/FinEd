@@ -18,6 +18,9 @@ const Header = () => {
   const [step, setStep] = useState(0);
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
+  const state = useSelector((state) => state);
+
+  console.log(plans, 456333, state);
 
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 
@@ -67,7 +70,7 @@ const Header = () => {
         <ul className={styles.nav_ul}>
           <li>Explore</li>
           <li>Courses</li>
-          <li>Calculator</li>
+          {false && <li>Calculator</li>}
           <li>My Learning</li>
         </ul>
       </nav>

@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     const { data } = await axios.get(`/courses-user/${paramz[0]}`);
 
     const { data: plans } = await axios.get('/plans/noauth');
-    console.log(plans, 1899);
+
     return {
       props: {
         course: data,

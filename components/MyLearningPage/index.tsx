@@ -4,10 +4,15 @@ import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
 import Star from 'common/Ratings';
+import VideoCard from 'common/VideoCard';
 import Image from 'next/image';
+import { ICourse } from 'reducers/courses';
+import { useSelector } from 'store';
 import styles from './learning.module.scss';
+
 const MyLearningPage = () => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
+  const courses: any = useSelector((state) => state.courses.courses);
   return (
     <>
       <div className={styles.topheader}>
@@ -80,6 +85,11 @@ const MyLearningPage = () => {
               </Button>
             </div>
           </div>
+        </section>
+        <section className={styles.content_items_wrap}>
+          {courses.courses.map((course: ICourse) => (
+            <VideoCard key={course.id} course={course} />
+          ))}
         </section>
       </main>
     </>

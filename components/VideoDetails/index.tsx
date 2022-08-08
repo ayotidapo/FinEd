@@ -84,7 +84,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
     setIsOpen(false);
     setStep(0);
   };
-  console.log(plans, 899);
+
   return (
     <>
       <Modal

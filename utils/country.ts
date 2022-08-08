@@ -775,7 +775,7 @@ export const countriesList=[
 
 
 	export const getStates = (selectedCountry:string)=>{
-		console.log({selectedCountry})
+	
 		const contState=countriesList.find(country=>country.country?.toLocaleLowerCase() === selectedCountry)
 
 		const states=contState?.states.map(state=>({

@@ -1,6 +1,14 @@
+const xStyle = {
+  display: 'inline-block',
+  width: '25%',
+  fontSize: '1.2rem',
+  fontFamily: 'Helvetica Neue Regular, sans-serif',
+  marginLeft: '1rem',
+};
+
 const Progressbar = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
       <div
         style={{
           height: '4px',
@@ -18,7 +26,7 @@ const Progressbar = () => {
           }}
         />
       </div>
-      <span>15% complete</span>
+      <span style={xStyle}>1% complete</span>
     </div>
   );
 };

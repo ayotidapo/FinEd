@@ -112,7 +112,7 @@ const SubCard = (props) => {
   const { discountCode } = inputs;
 
   const { plans, curPlan, step } = props;
-  console.log(step, 979);
+
   const body = {};
   const [payPlan, showPayPlan] = useState(false);
 
@@ -130,7 +130,6 @@ const SubCard = (props) => {
     if (!fwConfig.tx_ref) return;
     handleFlutterPayment({
       callback: (response) => {
-        console.log(response.flw_ref);
         closePaymentModal(); // this will close the modal programmatically
       },
       onClose: () => {},
@@ -157,7 +156,7 @@ const SubCard = (props) => {
         user,
         plan,
       });
-      console.log(config);
+
       setFwConfig(config);
       setSubdata(data);
       showPayPlan(false);
@@ -192,7 +191,7 @@ const SubCard = (props) => {
     props.onClickSubCard(stp);
     if (id) setPlanId(id);
   };
-  console.log(plans, 456789);
+
   return (
     <>
       {step === 0 &&

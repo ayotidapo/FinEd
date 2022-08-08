@@ -1,6 +1,6 @@
-import { createSlice,PayloadAction } from '@reduxjs/toolkit';
+import { Action, createSlice,PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { IAction } from 'store';
+
 
 
 export interface IPlan {
@@ -28,17 +28,17 @@ export const plansSlice = createSlice({
 	initialState,
 
 	reducers:{
-		setPlans(state: IState, action: PayloadAction<IAction>){
-			// console.log('hhhh',action)
+		setPlans(state: IState, action){
+		 console.log('hhhh',action)
 
-		  state.plans = [...action.payload.plans]
+		  state.plans = [...action.payload]
 		}
 	},
 
 	extraReducers:{
 		[HYDRATE]:(state:IState, action)=>{
 			// console.log(action?.payload.plans)
-			if(action?.payload?.plans.length === 0) return state
+			if(action?.payload?.plans.plans.length === 0) return state
 			
 			state.plans=[...action?.payload.plans.plans]
 		}

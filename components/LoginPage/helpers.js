@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export const loginUser = (body) => async (dispatch) => {
   try {
     const { data } = await axios.post('/auth/login', body);
-    toast.success('Login successful')
+    toast.success('Login successful');
     const { accessToken, user } = data;
 
     const nextApi = axios.create({
@@ -20,32 +20,23 @@ export const loginUser = (body) => async (dispatch) => {
 
     dispatch(setUser(data));
   } catch (e) {
-    console.log(e.response)
-    toast.error(e?.response?.data?.messsage || 'Login failed')
+    toast.error(e?.response?.data?.messsage || 'Login failed');
   }
 };
-
-export const getUser = (id) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(`/auth/profile`);
-    await dispatch(getPlans())
-
-    dispatch(setUser({ user: data }));
-  } catch (e) {}
-};
-
-
-
 
 export const getPlans = () => async (dispatch) => {
   try {
     const { data: plans } = await axios.get('/plans/noauth');
-    console.log(plans)
-    dispatch(setPlans({plans}));
-  } catch (e) {
-    console.log(e.response)
-    
-  }
+
+    dispatch(setPlans(plans));
+  } catch (e) {}
 };
 
+export const getUser = (id) => async (dispatch) => {
+  try {
+    const { data: datap } = await axios.get(`/auth/profile`);
+    await dispatch(setUser({ user: datap }));
 
+    await dispatch(getPlans());
+  } catch (e) {}
+};

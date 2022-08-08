@@ -3,11 +3,12 @@ import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
+import { setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
 interface Props {}
 
-const Settings: React.FC<Props> = (props) => {
+const MyLearning: React.FC<Props> = () => {
   return (
     <>
       <MyLearningPage />
@@ -15,7 +16,7 @@ const Settings: React.FC<Props> = (props) => {
   );
 };
 
-export default Settings;
+export default MyLearning;
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ req, res }) => {
@@ -32,14 +33,13 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      const { data } = await axios.get('/plans/noauth');
-
+      const { data } = await axios.get('/courses-user/noauth?skip=0&take=20');
+      store.dispatch(setCourses(data));
       return {
-        props: {
-          plans: data,
-        },
+        props: {},
       };
     } catch (e) {
+      store.dispatch(setCourses(null));
       return {
         props: {
           error: 'call failed',

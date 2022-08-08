@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch as useAppDispatch, useSelector as use
 import { createWrapper } from 'next-redux-wrapper'
 import user from 'reducers/user'
 import plans from 'reducers/plans'
+import courses from 'reducers/courses'
 
 export interface IAction{
   [key:string]:any
@@ -11,7 +12,8 @@ export interface IAction{
 export const store = configureStore({
   reducer: {
     user,
-    plans
+    plans,
+    courses,
   },
   devTools:true
 })

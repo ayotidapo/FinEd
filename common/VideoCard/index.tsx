@@ -21,7 +21,6 @@ const VideoCard: React.FC<Props> = ({ course }) => {
   // const canWatch = (paid && curPlan?.id) || !paid;
   const i = !paid ? 'Free' : 'Available for premium users only';
 
-  console.log(paid, curPlan?.id);
   return (
     <article className={`${styles.video_card}`}>
       <div

@@ -25,18 +25,13 @@ export interface ICourse {
 }
 
 interface Props {
-  data: {
-    courses: ICourse[];
-    [key: string]: any;
-  };
+  [key: string]: any;
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
+  const courses: any = useSelector((state) => state.courses.courses);
   const [showFilter, setShowFilter] = useState(false);
-  const {
-    data: { courses },
-  } = props;
 
   const fields = {
     discountCode: {
@@ -173,7 +168,7 @@ const VideosListPage: React.FC<Props> = (props) => {
             </div>
           </section>
           <section className={styles.content_items_wrap}>
-            {courses.map((course) => (
+            {courses?.courses.map((course: ICourse) => (
               <VideoCard key={course.id} course={course} />
             ))}
           </section>

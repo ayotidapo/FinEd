@@ -7,10 +7,10 @@ import { ValidateInput } from 'helpers';
 
 const useForm = (fields: IState) => {
   const [inputs, inputDispatch] = useReducer(inputReducer, fields);
-  const [isTouched, setIsTouched] = useState(false)
+  const [isTouched, setIsTouched] = useState(false);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsTouched(true)
+    setIsTouched(true);
     const { name, value } = e.target;
 
     inputDispatch({
@@ -26,13 +26,12 @@ const useForm = (fields: IState) => {
     Object.keys(inputs).forEach((field) => {
       body[field] = inputs[field].value;
     });
-    console.log({body},90)
-    return body
-  }
 
-  const isError = () => Object.keys(inputs).some((field: string) => inputs[field].error)
+    return body;
+  };
 
-
+  const isError = () =>
+    Object.keys(inputs).some((field: string) => inputs[field].error);
 
   const onBlurInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
@@ -45,16 +44,21 @@ const useForm = (fields: IState) => {
   };
 
   const setInputs = (newInputs: IState) => {
-
     inputDispatch({
       type: 'ON_UPDATE_INPUTS',
       validatedInputs: newInputs,
     });
   };
 
-
-
-  return { isTouched, onChangeInput, onBlurInput, setInputs, getPayload, isError, inputs };
+  return {
+    isTouched,
+    onChangeInput,
+    onBlurInput,
+    setInputs,
+    getPayload,
+    isError,
+    inputs,
+  };
 };
 
 export default useForm;

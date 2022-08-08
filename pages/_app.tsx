@@ -26,13 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   console.log
-  //   // some browsers (like safari) may require a timeout to delay calling this
-  //   // function after a page has loaded; otherwise, it may not update the position
-  //   window.scrollTo(0, 0);
-  // }, [pathname]);
-
   useEffect(() => {
     loadUser();
   }, [userId, s_token]);

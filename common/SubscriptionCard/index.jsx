@@ -56,7 +56,6 @@ const SubscriptionCard = (props) => {
     if (!fwConfig.tx_ref) return;
     handleFlutterPayment({
       callback: (response) => {
-        console.log(response.flw_ref);
         closePaymentModal(); // this will close the modal programmatically
       },
       onClose: () => {},
@@ -83,7 +82,7 @@ const SubscriptionCard = (props) => {
         user,
         plan,
       });
-      console.log(config);
+
       setFwConfig(config);
       setSubdata(data);
       showPayPlan(false);
