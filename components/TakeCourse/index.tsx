@@ -124,10 +124,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
               />
             </li>
             <li>
-              <span
-                className="hand"
-                onClick={() => router.push('/contents/videos')}
-              >
+              <span className="hand" onClick={() => router.push('/courses')}>
                 Videos
               </span>
               <Icon

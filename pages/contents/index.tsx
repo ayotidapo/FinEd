@@ -1,12 +1,83 @@
-import ContentsPage from 'components/Contents'
+import VideoPage, { ICourse } from 'components/VideosListPage';
+import { getToken } from 'helpers/getToken';
+import axios from 'axios';
+import Footer from 'common/Footer';
+import { wrapper } from 'store';
+import { GetServerSideProps } from 'next';
+import { getCookie } from 'cookies-next';
+import { setCourses } from 'reducers/courses';
 
+interface Props {
+  courses: ICourse[];
+  [key: string]: any;
+}
 
-
-const Contents = () => {
-
-
-  return <ContentsPage />;
+const Videos: React.FC<Props> = () => {
+  return (
+    <>
+      <VideoPage />
+      <Footer />
+    </>
+  );
 };
-export default Contents;
 
+export default Videos;
 
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async ({ req, res }) => {
+    const c_token = getCookie('c_token', { req, res });
+    const { s_token, userId } = getToken(c_token as string);
+
+    if (!userId) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+    try {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+      const { data } = await axios.get('/courses-user/noauth?skip=0&take=20');
+      store.dispatch(setCourses(data));
+      return {
+        props: {},
+      };
+    } catch (e) {
+      store.dispatch(setCourses(null));
+      return {
+        props: {
+          error: 'call failed',
+        },
+      };
+    }
+  });
+
+// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+//   const c_token = getCookie('c_token', { req, res });
+//   const { s_token, userId } = getToken(c_token as string);
+
+//   if (!userId) {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       },
+//     };
+//   }
+//   try {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+//     const { data } = await axios.get('/courses-user/noauth?skip=0&take=20');
+//     return {
+//       props: {
+//         data,
+//       },
+//     };
+//   } catch (e) {
+//     return {
+//       props: {
+//         error: 'call failed',
+//       },
+//     };
+//   }
+// };

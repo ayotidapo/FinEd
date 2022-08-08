@@ -9,10 +9,7 @@ import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 
-
 const Home: NextPage = () => {
-
-
   return (
     <div style={{ overflow: 'hidden' }}>
       <Header />
@@ -27,7 +24,7 @@ const Home: NextPage = () => {
                 access to free and paid financial knowledge for learners.
               </p>
               <div className={styles.btns_div}>
-                <Button >Our Service</Button>
+                <Button>Our Service</Button>
                 <Button>Start Investing</Button>
               </div>
             </div>
@@ -182,26 +179,21 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const c_token = getCookie('c_token', { req, res })
+  const c_token = getCookie('c_token', { req, res });
 
-  const { s_token, userId } = getToken(c_token as string)
+  const { s_token, userId } = getToken(c_token as string);
 
-  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
+  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
   if (userId) {
     return {
       redirect: {
-        destination: '/contents/videos',
-        permanent: false
+        destination: '/courses',
+        permanent: false,
       },
-
-    }
+    };
   }
   return {
-    props: {
-
-    }
-  }
-}
-
-
+    props: {},
+  };
+};

@@ -118,10 +118,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
               />
             </li>
             <li>
-              <span
-                className="hand"
-                onClick={() => router.push('/contents/videos')}
-              >
+              <span className="hand" onClick={() => router.push('/courses')}>
                 Videos
               </span>
               <Icon

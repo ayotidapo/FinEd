@@ -6,7 +6,7 @@ import Footer from 'common/Footer';
 import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
-import { useSelector, wrapper } from 'store';
+import { wrapper } from 'store';
 
 interface Props {
   courses: ICourse[];

@@ -97,3 +97,21 @@
   flex-wrap: wrap;
   gap: 10px;  
 }
+
+.activelnk{
+  color: #C03E21;
+  font-weight: bold;
+  position: relative;
+  &::after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width:4px;
+    height:4px;
+    background-color:#C03E21 ;
+    border-radius: 100%;
+    bottom: -5px;
+    left:50%;
+  }
+  
+}

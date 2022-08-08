@@ -10,26 +10,22 @@ const Login = () => {
 
 export default Login;
 
-
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const c_token = getCookie('c_token', { req, res })
+  const c_token = getCookie('c_token', { req, res });
 
-  const { s_token, userId } = getToken(c_token as string)
+  const { s_token, userId } = getToken(c_token as string);
 
-  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`
+  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
   if (userId) {
     return {
       redirect: {
-        destination: '/contents/videos',
-        permanent: false
+        destination: '/courses',
+        permanent: false,
       },
-
-    }
+    };
   }
   return {
-    props: {
-
-    }
-  }
-}
+    props: {},
+  };
+};

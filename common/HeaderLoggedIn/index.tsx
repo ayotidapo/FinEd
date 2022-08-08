@@ -19,9 +19,9 @@ const Header = () => {
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
   const state = useSelector((state) => state);
-
+  console.log({ path: router.pathname });
   console.log(plans, 456333, state);
-
+  const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 
   const logOut = async () => {
@@ -68,10 +68,28 @@ const Header = () => {
       </div>
       <nav className={`navi ${styles.navi_box}`}>
         <ul className={styles.nav_ul}>
-          <li>Explore</li>
-          <li>Courses</li>
+          <li>
+            <Link href="/contents">
+              <a className={path.includes('contents') ? styles.activelnk : ''}>
+                Explore
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/">
+              <a className={path.includes('video') ? styles.activelnk : ''}>
+                Courses
+              </a>
+            </Link>
+          </li>
           {false && <li>Calculator</li>}
-          <li>My Learning</li>
+          <li>
+            <Link href="/my-learning">
+              <a className={path.includes('learning') ? styles.activelnk : ''}>
+                My Learning
+              </a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className={styles.avatar_div}>
