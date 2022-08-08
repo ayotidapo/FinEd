@@ -6,7 +6,7 @@ import Footer from 'common/Footer';
 import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
-import { wrapper } from 'store';
+import { useSelector, wrapper } from 'store';
 
 interface Props {
   courses: ICourse[];
@@ -14,9 +14,10 @@ interface Props {
 }
 
 const Videos: React.FC<Props> = () => {
+  const courses: any = useSelector((state) => state.courses.courses);
   return (
     <>
-      <VideoPage />
+      <VideoPage courses={courses?.courses} />
       <Footer />
     </>
   );

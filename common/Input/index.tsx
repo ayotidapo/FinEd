@@ -30,7 +30,6 @@ interface Props {
   onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   field: IField;
-
 }
 
 const Input: React.FC<Props> = React.forwardRef((props, ref) => {
@@ -46,7 +45,6 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
   } = props;
   const { label, value, name, error, ...fRest } = field || { error: '' };
 
-
   const l = leftIcon as IconType;
   const leftIname = l?.name;
   const leftIpos = l?.pos || [28, 0];
@@ -54,6 +52,19 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
   const r = rightIcon as IconType;
   const rytIname = r?.name;
   const rytIpos = r?.pos || [28, 0];
+
+  const onChangeAttr = (field: IField) => {
+    const { name } = field;
+
+    const lCase = name.toLowerCase();
+    if (lCase.includes('password')) {
+      console.log(field);
+      const el = document.getElementById(name);
+      if (el?.getAttribute('type') === 'password')
+        el?.setAttribute('type', 'text');
+      else el?.setAttribute('type', 'password');
+    }
+  };
 
   return (
     <label
@@ -75,7 +86,12 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
           className="icon icon-right hand"
           style={{ top: rytIpos[0], left: rytIpos[1] }}
         >
-          <Icon id={rytIname} width={24} height={24} />
+          <Icon
+            id={rytIname}
+            width={24}
+            height={24}
+            onClick={() => onChangeAttr(field)}
+          />
         </span>
       )}
       {children}
@@ -97,6 +113,5 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
 });
 
 export default Input;
-
 
 // const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>((props, ref) => {

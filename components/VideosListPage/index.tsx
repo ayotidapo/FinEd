@@ -10,6 +10,7 @@ import styles from './videoslist.module.scss';
 import Input from 'common/Input';
 import { useSelector } from 'store';
 import useForm from 'hooks/useForm';
+import Link from 'next/link';
 
 export interface ICourse {
   categories: string[];
@@ -21,18 +22,19 @@ export interface ICourse {
   thumbnail: { id: string; url: string; key: string };
   title: string;
   updatedAt: string;
+  explorePage?: boolean;
   [key: string]: any;
 }
 
 interface Props {
   [key: string]: any;
+  courses: ICourse[];
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
-  const courses: any = useSelector((state) => state.courses.courses);
   const [showFilter, setShowFilter] = useState(false);
-
+  const { explorePage, courses } = props;
   const fields = {
     discountCode: {
       name: 'discountCode',
@@ -67,14 +69,16 @@ const VideosListPage: React.FC<Props> = (props) => {
               <Icon id="caret-down" width={24} height={24} />
             </span>
           </span>
-          <div className={styles.search_input}>
-            <Input
-              field={discountCode}
-              leftIcon={{ name: 'search' }}
-              wrapperClass={styles.wrapClass}
-              inputClass={styles.inptClass}
-            />
-          </div>
+          {explorePage && (
+            <div className={styles.search_input}>
+              <Input
+                field={discountCode}
+                leftIcon={{ name: 'search' }}
+                wrapperClass={styles.wrapClass}
+                inputClass={styles.inptClass}
+              />
+            </div>
+          )}
           <span
             className={`hand ${styles.filter}`}
             onClick={() => setShowFilter((state) => !state)}
@@ -156,19 +160,33 @@ const VideosListPage: React.FC<Props> = (props) => {
       <main>
         <div className={styles.content_wrap}>
           <section className={styles.content_tabs}>
-            <span style={{ color: '#000' }}>Explore our courses</span>
+            <span style={{ color: '#000' }}>
+              {explorePage ? 'Explore our courses' : 'Courses'}
+            </span>
             {/* <span>Videos (14)</span> */}
             <div className={styles.content_sort}>
               {/* <span style={{ color: '#7C7C7C' }}>Sort by &nbsp;&nbsp;</span>
               <span className={`hand`}>Latest videos</span> */}
-              <span className={`hand`}>View all</span>
-              <span className={`hand ${styles.cr_dn}`}>
-                <Icon id="caret-right" width={18} height={18} />
-              </span>
+              {explorePage ? (
+                <div className={styles.vw_all}>
+                  <span className={`hand`}>
+                    <Link href="/courses">View all</Link>
+                  </span>
+                  <span className={`hand ${styles.cr_dn}`}>
+                    <Icon id="caret-right" width={18} height={18} />
+                  </span>
+                </div>
+              ) : (
+                <div className={`hand ${styles.sortby_div}`}>
+                  <span style={{ color: '#747474' }}>Sort by </span>
+                  <span> Latest videos</span>
+                  <Icon id="caret-down" width={18} height={18} />
+                </div>
+              )}
             </div>
           </section>
           <section className={styles.content_items_wrap}>
-            {courses?.courses.map((course: ICourse) => (
+            {courses.map((course: ICourse) => (
               <VideoCard key={course.id} course={course} />
             ))}
           </section>

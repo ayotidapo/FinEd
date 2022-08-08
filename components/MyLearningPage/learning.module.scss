@@ -4,31 +4,24 @@
     section{
         
         margin:50px auto 0px auto;
-        
+        padding-bottom: 5px;
         width:85%;
     }
     :global(.navi){
-       ul{
-         
-        margin-top:32px;
-          padding-bottom: 25px;
-          li{
-            margin-right: 3rem;
-            &:hover{
-                cursor: pointer;
-            }
-          }
-        }
-    }
-    .navUl{
-        padding-left: 0;
-        font-size: var(--f-16);
-        font-family: var(--font-2);
         .uli{
             padding-left: 0;
+            font-size: var(--f-16);
+            font-family: var(--font-2);
+            margin-top: 32px;
+            li{
+                padding-left: 0;
+                margin-right: 3rem;
+            }
+           
         }
-       
+      
     }
+    
 }
 
 .main{

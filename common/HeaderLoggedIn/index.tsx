@@ -77,7 +77,7 @@ const Header = () => {
           </li>
           <li>
             <Link href="/">
-              <a className={path.includes('video') ? styles.activelnk : ''}>
+              <a className={path.includes('course') ? styles.activelnk : ''}>
                 Courses
               </a>
             </Link>

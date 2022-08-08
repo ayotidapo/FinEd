@@ -2,7 +2,7 @@ import VideoPage, { ICourse } from 'components/VideosListPage';
 import { getToken } from 'helpers/getToken';
 import axios from 'axios';
 import Footer from 'common/Footer';
-import { wrapper } from 'store';
+import { useSelector, wrapper } from 'store';
 import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
@@ -13,9 +13,11 @@ interface Props {
 }
 
 const Videos: React.FC<Props> = () => {
+  const courses: any = useSelector((state) => state.courses.courses);
+
   return (
     <>
-      <VideoPage />
+      <VideoPage courses={courses?.courses?.slice(0, 6)} explorePage />
       <Footer />
     </>
   );
