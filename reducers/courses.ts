@@ -38,7 +38,7 @@ export const courseSlice = createSlice({
 	extraReducers:{
 		[HYDRATE]:(state:IState,action)=>{
       
-      console.log(action.payload,789098)
+      // console.log(action.payload,789098)
       if(!action?.payload?.courses.courses) return state	            		
 			state.courses=action?.payload.courses.courses
 			

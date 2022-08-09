@@ -58,7 +58,6 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
 
     const lCase = name.toLowerCase();
     if (lCase.includes('password')) {
-      console.log(field);
       const el = document.getElementById(name);
       if (el?.getAttribute('type') === 'password')
         el?.setAttribute('type', 'text');

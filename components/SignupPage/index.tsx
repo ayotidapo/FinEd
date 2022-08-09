@@ -13,13 +13,18 @@ import Button from 'common/Button';
 import signUpFields, { initialState } from './fields';
 import { toast } from 'react-toastify';
 
-interface Props { }
+interface Props {}
 
 const SignUpPage: React.FC<Props> = () => {
-  const { isTouched, onChangeInput, onBlurInput, getPayload, setInputs, isError, inputs } = useForm(
-    signUpFields,
-
-  );
+  const {
+    isTouched,
+    onChangeInput,
+    onBlurInput,
+    getPayload,
+    setInputs,
+    isError,
+    inputs,
+  } = useForm(signUpFields);
 
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
@@ -34,21 +39,22 @@ const SignUpPage: React.FC<Props> = () => {
       delete body.nigeriaPhone;
 
       const res = await axios.post('/auth/signup', body);
-      router.push('/email-verification')
-    } catch (e:any) {
-      const errMsg=e?.response?.data?.message[0]
-      toast.error(errMsg || 'Error occured')
+      router.push('/email-verification');
+    } catch (e: any) {
+      const errMsg = e?.response?.data?.message;
+
+      toast.error(errMsg || 'Error occured');
       setSubmitting(false);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const refCode = router.query?.referrer || '';
-    const inputF={...inputs}
-    inputF['refCode'].value = refCode
-  
-    setInputs(inputF)
-  },[])
+    const inputF = { ...inputs };
+    inputF['refCode'].value = refCode;
+
+    setInputs(inputF);
+  }, []);
 
   return (
     <div className={`signupWrapper ${styles.signup}`}>
@@ -160,7 +166,11 @@ const SignUpPage: React.FC<Props> = () => {
                     <a className={styles.a}>Log In</a>
                   </Link>
                 </div>
-                <Button onClick={onSubmit} loading={submitting} disabled={isError() || !isTouched}>
+                <Button
+                  onClick={onSubmit}
+                  loading={submitting}
+                  disabled={isError() || !isTouched}
+                >
                   Sign up <Icon id="arrow-right" width={20} height={20} />
                 </Button>
               </div>

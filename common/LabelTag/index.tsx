@@ -27,16 +27,35 @@ interface LCProps extends LTProps {
   value: string;
   type: 'checkbox' | 'radio';
   rname?: string;
-  defaultChecked?: boolean
+  defaultChecked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const LabelCheck: React.FC<LCProps> = (props) => {
-  const { children, rname, type, color, defaultChecked, tag, className, value, ...rest } =
-    props;
+  const {
+    children,
+    rname,
+    type,
+    color,
+    defaultChecked,
+    onChange,
+    tag,
+    className,
+    value,
+    ...rest
+  } = props;
 
   return (
     <span className={styles.label_check}>
-      <input type={type} name={rname || tag} id={tag} value={value} defaultChecked={defaultChecked} /> &nbsp;
+      <input
+        type={type}
+        name={rname || tag}
+        id={tag}
+        value={value}
+        defaultChecked={defaultChecked}
+        onChange={onChange}
+      />{' '}
+      &nbsp;
       <label
         htmlFor={tag}
         className={`${styles.label_check} ${className} hand elips`}

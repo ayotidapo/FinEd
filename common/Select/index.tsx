@@ -8,8 +8,8 @@ interface Props {
   }[];
   icon?: string;
   error?: string;
-  optionSelected: string
-  onChange: (e: any) => void
+  optionSelected: string;
+  onChange: (e: any) => void;
 }
 
 const Select: React.FC<Props> = (props: Props) => {
@@ -26,9 +26,11 @@ const Select: React.FC<Props> = (props: Props) => {
         }}
       >
         <Icon id="house" />
-        <select name={name} {...rest}>
+        <select name={name} {...rest} defaultValue={optionSelected}>
           {options.map(({ value, label }) => (
-            <option key={value} value={value} selected={value === optionSelected}>{label}</option>
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </select>
       </div>

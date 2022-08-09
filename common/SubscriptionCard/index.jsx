@@ -114,7 +114,7 @@ const SubscriptionCard = (props) => {
       <Modal
         openModal={isOpen}
         onClose={onToggleModal}
-        modalClass={payPlan ? styles.modalClass : styles.modalClass2}
+        modalClass={payPlan ? 'modalClass' : 'modalClass2'}
       >
         <div className={styles.enter_code_div}>
           {payPlan && (
@@ -122,7 +122,7 @@ const SubscriptionCard = (props) => {
               {loading ? (
                 <BtnLoader classStyle={`${styles.codeloading} abs-center`} />
               ) : (
-                <div className={styles.payplan}>
+                <div className={styles.payplan_x}>
                   <div className={styles.hder}>
                     <h2 className="title">Choose suscription type</h2>
                     <p>
@@ -130,7 +130,7 @@ const SubscriptionCard = (props) => {
                       processed.
                     </p>
                   </div>
-                  <section className={styles.choosepay}>
+                  <section className={styles.choosepay_x}>
                     <article onClick={() => onSubscribed('auto')}>
                       <div
                         style={{

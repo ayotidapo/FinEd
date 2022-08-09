@@ -17,7 +17,7 @@ const MyLearningPage = () => {
     <>
       <div className={styles.topheader}>
         <HeaderLoggedIn />
-        <section>
+        <section className={styles.sect}>
           <h2 className="title">My Learning</h2>
           <nav className={`navi ${styles.navUl}`}>
             <ul className={styles.uli}>
