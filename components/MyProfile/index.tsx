@@ -35,7 +35,7 @@ const MyProfile: React.FC<Props> = () => {
 
     if (states) setStates(states);
   };
-
+  console.log(states, 'pl');
   const onSelect = (e: any) => {
     const { name, value } = e.target;
 

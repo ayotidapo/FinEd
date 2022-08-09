@@ -782,6 +782,7 @@ export const countriesList=[
 			label:state,
 			value:state?.toLocaleLowerCase()
 		}))
-		states?.unshift({label:'Select a state',value:''})
+	//	states?.push({label:'Select a state',value:''})
+
 	   return states
 	}

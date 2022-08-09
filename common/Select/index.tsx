@@ -14,6 +14,7 @@ interface Props {
 
 const Select: React.FC<Props> = (props: Props) => {
   const { options, name, icon, error, optionSelected, ...rest } = props;
+  console.log(optionSelected, 'optionSelected');
   return (
     <label className={styles.select_wrapper}>
       <span>Country of Residence</span>

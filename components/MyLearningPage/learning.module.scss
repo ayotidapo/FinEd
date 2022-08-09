@@ -16,6 +16,11 @@
             li{
                 padding-left: 0;
                 margin-right: 3rem;
+
+                &:hover{
+                    cursor: pointer;
+                    color: #C03E21;
+                  }
             }
            
         }
@@ -30,6 +35,7 @@
     width:85%;
     :global(.title){
         font-size: var(--f-24);
+        margin-bottom: 2rem;
     }
     .lastviewed_details{
         display: flex;
@@ -130,6 +136,5 @@
 .content_items_wrap {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5rem;
     gap:40px;
 }

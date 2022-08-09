@@ -40,7 +40,6 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/plans/noauth');
       const { data: profile } = await axios.get(`/auth/profile`);
-      console.log(profile, 'OOOWOWOWOWOWO');
       store.dispatch(setUser(profile));
       return {
         props: {
