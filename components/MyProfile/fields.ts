@@ -71,6 +71,15 @@ const fields = {
 	  error: '',
 	  readOnly: true,
 	},
+	gender: {
+		name: 'nigeria',
+		type: 'text',
+		value: '',
+		placeholder: '',
+		label: 'Phone number',
+		error: '',
+		readOnly: true,
+	  },
   };
   
   export const initialState = {

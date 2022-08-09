@@ -14,7 +14,7 @@ const VerifyPaymentPage: React.FC = () => {
 
   const verifyPayment = (id: number) => {
     try {
-      const response = axios.post(`/subscriptions/verify/${id}`);
+      const response = axios.post(`/subscriptions/verify-fwpayment/${id}`);
       setLoading(false);
       return response;
     } catch {

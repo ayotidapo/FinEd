@@ -48,8 +48,9 @@ const MyProfile: React.FC<Props> = () => {
       const body = getPayload();
       body.residentCountry = userCountry;
       body.residentState = userState;
+      delete body.nigeriaPhone;
       return console.log({ body });
-      const { data } = await axios.patch(`/users/${user?.id}`, body);
+      const { data } = await axios.patch(`/auth/profile`, body);
       setUser(data);
       setSubmitting(false);
     } catch (e) {
@@ -158,11 +159,8 @@ const MyProfile: React.FC<Props> = () => {
               defaultChecked={user?.gender === 'female'}
               onChange={onChangeInput}
             />
-            <LabelCheck
-              tag="male"
-              rname="gender"
-              value="male"
-              type="radio"
+            <Input
+              field={inputs.gender}
               defaultChecked={user?.gender === 'male'}
               onChange={onChangeInput}
             />

@@ -25,7 +25,7 @@ const ChangePassword = () => {
       delete body.password;
       delete body.password2;
 
-      const { data } = await axios.patch(`/auth/change-password`, body);
+      const { data } = await axios.post(`/auth/change-password`, body);
       toast.success('Password changed');
       setSubmitting(false);
     } catch (e: any) {
