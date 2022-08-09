@@ -35,6 +35,8 @@ const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
   const [showFilter, setShowFilter] = useState(false);
   const { explorePage, courses } = props;
+
+  console.log('courses', courses);
   const fields = {
     discountCode: {
       name: 'discountCode',
