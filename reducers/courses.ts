@@ -39,7 +39,7 @@ export const courseSlice = createSlice({
 		[HYDRATE]:(state,action)=>{
       
       console.log(action.payload,789098)
-      if(!action?.payload?.courses.courses) return state	            		
+      if(!action?.payload?.courses.courses?.length) return state	            		
 			state.courses=action?.payload.courses.courses
 			
 		}
