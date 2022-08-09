@@ -19,8 +19,7 @@ const Header = () => {
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
   const state = useSelector((state) => state);
-  console.log({ path: router.pathname });
-  console.log(plans, 456333, state);
+  console.log(state, 1234);
   const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 

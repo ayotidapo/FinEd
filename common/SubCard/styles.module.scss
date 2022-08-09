@@ -99,7 +99,7 @@
 			}
 		}
 	}
-  }
+}
  .hder{
 	width:60%;
 	margin: 0 auto;
@@ -141,6 +141,11 @@
 				text-align: center;
 				:global(.title){
 					font-size: var(--f-24);
+				}
+				&:hover{
+					cursor: pointer;
+					color: #fff;
+					background: #015351;
 				}
 			}
 		}

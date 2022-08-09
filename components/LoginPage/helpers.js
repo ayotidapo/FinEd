@@ -27,7 +27,7 @@ export const loginUser = (body) => async (dispatch) => {
 export const getPlans = () => async (dispatch) => {
   try {
     const { data: plans } = await axios.get('/plans/noauth');
-
+    console.log(12345678, plans);
     dispatch(setPlans(plans));
   } catch (e) {}
 };

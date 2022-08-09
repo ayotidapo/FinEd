@@ -19,6 +19,7 @@ const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user?.user);
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
+  console.log({ inputs });
   const [userState, setUserState] = useState(user?.residentState);
   const [userCountry, setUserCountry] = useState(user?.residentCountry);
   const [states, setStates] = useState([{ label: '', value: '' }]);
@@ -27,6 +28,7 @@ const MyProfile: React.FC<Props> = () => {
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
 
+  console.log({ user }, 9);
   const updateStates = (country: string) => {
     const states = getStates(country);
 
@@ -40,13 +42,13 @@ const MyProfile: React.FC<Props> = () => {
     if (name === 'residentState') setUserState(value);
   };
 
-  const [txt, setTxt] = useState('Tap to copy');
-
   const onSubmit = async () => {
     try {
       setSubmitting(true);
       const body = getPayload();
-
+      body.residentCountry = userCountry;
+      body.residentState = userState;
+      return console.log({ body });
       const { data } = await axios.patch(`/users/${user?.id}`, body);
       setUser(data);
       setSubmitting(false);
@@ -154,13 +156,15 @@ const MyProfile: React.FC<Props> = () => {
               value="female"
               type="radio"
               defaultChecked={user?.gender === 'female'}
+              onChange={onChangeInput}
             />
             <LabelCheck
               tag="male"
               rname="gender"
               value="male"
               type="radio"
-              defaultChecked={user?.gender !== 'male'}
+              defaultChecked={user?.gender === 'male'}
+              onChange={onChangeInput}
             />
           </div>
           <Input

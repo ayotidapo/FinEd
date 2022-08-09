@@ -162,6 +162,7 @@ const SubCard = (props) => {
       showPayPlan(false);
       setIsOpen(false);
     } catch (e) {
+      console.log(e);
       toast.error('Subscription failed');
     }
     setLoading(false);

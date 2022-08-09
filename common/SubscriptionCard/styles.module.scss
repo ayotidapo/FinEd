@@ -111,7 +111,7 @@
     min-width: 100%;  
 	width:80%;
 	
-	.payplan{
+	.payplan_x{
 		
 		justify-content: center;
 		align-items: center;
@@ -123,7 +123,7 @@
 				font-size: 1.6rem;
 			}
 		}
-		.choosepay{
+		.choosepay_x{
 			display: flex;
 			gap:35px;
 			margin:50px 0px;
@@ -142,6 +142,11 @@
 				text-align: center;
 				:global(.title){
 					font-size: var(--f-24);
+				}
+				&:hover{
+					cursor: pointer;
+					color: #fff;
+					background: #015351;
 				}
 			}
 		}
