@@ -4,6 +4,7 @@ import { IPlan } from 'components/SubscriptionPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
+import { setUser } from 'reducers/user';
 import { wrapper } from 'store';
 
 interface Props {
@@ -38,13 +39,16 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/plans/noauth');
-
+      const { data: profile } = await axios.get(`/auth/profile`);
+      console.log(profile, 'OOOWOWOWOWOWO');
+      store.dispatch(setUser(profile));
       return {
         props: {
           plans: data,
         },
       };
     } catch (e) {
+      console.log(e, 'OOOWOWOWOWOWO');
       return {
         props: {
           error: 'call failed',

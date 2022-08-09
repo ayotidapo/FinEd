@@ -3,7 +3,6 @@ import React from 'react';
 import cx from 'classnames';
 import Icon from '../Icon';
 import styles from './input.module.scss';
-import { LabelCheck } from 'common/LabelTag';
 
 interface IconType {
   name: string;
@@ -30,7 +29,6 @@ interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
-  defaultChecked?: boolean;
   field: IField;
 }
 
@@ -45,7 +43,7 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
     onChange,
     ...rest
   } = props;
-  const { label, value, name, error, type, ...fRest } = field || { error: '' };
+  const { label, value, name, error, ...fRest } = field || { error: '' };
 
   const l = leftIcon as IconType;
   const leftIname = l?.name;
@@ -66,17 +64,6 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
       else el?.setAttribute('type', 'password');
     }
   };
-
-  if (type === 'radio')
-    return (
-      <LabelCheck
-        tag={value}
-        rname={name}
-        value={value}
-        type="radio"
-        defaultChecked={user?.gender === 'male'}
-      />
-    );
 
   return (
     <label

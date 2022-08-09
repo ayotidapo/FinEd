@@ -8,7 +8,7 @@ import Button from 'common/Button';
 import fields from './fields';
 import styles from './myprofile.module.scss';
 import { useDispatch, useSelector } from 'store';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useForm from 'hooks/useForm';
 import { countries, getStates } from 'utils/country';
 import axios from 'axios';
@@ -21,6 +21,7 @@ const MyProfile: React.FC<Props> = () => {
     useForm(fields);
   console.log({ inputs });
   const [userState, setUserState] = useState(user?.residentState);
+  const [gender, setGender] = useState(user?.gender);
   const [userCountry, setUserCountry] = useState(user?.residentCountry);
   const [states, setStates] = useState([{ label: '', value: '' }]);
   const [submitting, setSubmitting] = useState(false);
@@ -42,15 +43,22 @@ const MyProfile: React.FC<Props> = () => {
     if (name === 'residentState') setUserState(value);
   };
 
+  const onSelectGender = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (checked) setGender(value);
+  };
+
   const onSubmit = async () => {
     try {
       setSubmitting(true);
       const body = getPayload();
       body.residentCountry = userCountry;
       body.residentState = userState;
+      body.gender = gender;
       delete body.nigeriaPhone;
-      return console.log({ body });
-      const { data } = await axios.patch(`/auth/profile`, body);
+      delete body.dob;
+      console.log({ body });
+      const { data } = await axios.patch(`/users/profile`, body);
       setUser(data);
       setSubmitting(false);
     } catch (e) {
@@ -157,12 +165,15 @@ const MyProfile: React.FC<Props> = () => {
               value="female"
               type="radio"
               defaultChecked={user?.gender === 'female'}
-              onChange={onChangeInput}
+              onChange={onSelectGender}
             />
-            <Input
-              field={inputs.gender}
+            <LabelCheck
+              tag="male"
+              rname="gender"
+              value="male"
+              type="radio"
               defaultChecked={user?.gender === 'male'}
-              onChange={onChangeInput}
+              onChange={onSelectGender}
             />
           </div>
           <Input

@@ -188,7 +188,7 @@ const VideosListPage: React.FC<Props> = (props) => {
             </div>
           </section>
           <section className={styles.content_items_wrap}>
-            {courses?.map((course: ICourse) => (
+            {courses.map((course: ICourse) => (
               <VideoCard key={course.id} course={course} />
             ))}
           </section>
