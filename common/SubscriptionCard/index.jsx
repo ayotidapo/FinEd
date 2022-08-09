@@ -110,7 +110,7 @@ const SubscriptionCard = (props) => {
   };
 
   return (
-    <>
+    <div className={styles.subzCard}>
       <Modal
         openModal={isOpen}
         onClose={onToggleModal}
@@ -246,7 +246,7 @@ const SubscriptionCard = (props) => {
           )}
         </div>
       </article>
-    </>
+    </div>
   );
 };
 

@@ -3,15 +3,18 @@ import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
-interface Props {}
+interface Props {
+  data: any;
+}
 
-const MyLearning: React.FC<Props> = () => {
+const MyLearning: React.FC<Props> = ({ data }) => {
   return (
     <>
-      <MyLearningPage />
+      <MyLearningPage data={data} />
     </>
   );
 };
@@ -19,9 +22,10 @@ const MyLearning: React.FC<Props> = () => {
 export default MyLearning;
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async ({ req, res }) => {
+  wrapper.getServerSideProps((store) => async ({ req, query, res }) => {
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
+    const { tab } = query || {};
 
     if (!userId) {
       return {
@@ -33,10 +37,14 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      const { data } = await axios.get('/courses-user/noauth?skip=0&take=20');
-      store.dispatch(setCourses(data));
+      const { data } = await axios.get(
+        `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+      );
+      console.log(data, 'learning');
       return {
-        props: {},
+        props: {
+          data,
+        },
       };
     } catch (e) {
       store.dispatch(setCourses(null));

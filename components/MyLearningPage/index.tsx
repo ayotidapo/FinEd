@@ -12,11 +12,15 @@ import { ICourse } from 'reducers/courses';
 import { useSelector } from 'store';
 import styles from './learning.module.scss';
 
-const MyLearningPage = () => {
+interface Props {
+  data: any;
+}
+
+const MyLearningPage: React.FC<Props> = ({ data }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
-  const courses: any = useSelector((state) => state.courses.courses);
-
+  const analytics: any = data.analytics || [];
+  console.log(analytics);
   const onSetTab = (tab: string) => {
     router.push(`/my-learning?tab=${tab}`);
   };
@@ -115,27 +119,12 @@ const MyLearningPage = () => {
             </div>
           </section>
         )}
-        {tab === 'ongoing' && (
-          <section className={styles.content_items_wrap}>
-            {courses.courses.map((course: ICourse) => (
-              <VideoCard key={course.id} course={course} />
-            ))}
-          </section>
-        )}
-        {tab === 'bookmarked' && (
-          <section className={styles.content_items_wrap}>
-            {courses.courses.map((course: ICourse) => (
-              <VideoCard key={course.id} course={course} />
-            ))}
-          </section>
-        )}
-        {tab === 'completed' && (
-          <section className={styles.content_items_wrap}>
-            {courses.courses.map((course: ICourse) => (
-              <VideoCard key={course.id} course={course} />
-            ))}
-          </section>
-        )}
+
+        <section className={styles.content_items_wrap}>
+          {analytics.map(({ course, progress }: any) => (
+            <VideoCard key={course.id} course={course} />
+          ))}
+        </section>
       </main>
     </>
   );
