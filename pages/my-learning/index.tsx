@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ req, query, res }) => {
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
-    const { tab } = query || {};
+    const tab = query?.tab || 'ongoing';
 
     if (!userId) {
       return {
@@ -40,6 +40,7 @@ export const getServerSideProps: GetServerSideProps =
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
+
       console.log(data, 'learning');
       return {
         props: {

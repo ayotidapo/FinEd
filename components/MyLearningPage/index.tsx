@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Button from 'common/Button';
 import HeaderLoggedIn from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
@@ -7,7 +8,7 @@ import Star from 'common/Ratings';
 import VideoCard from 'common/VideoCard';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ICourse } from 'reducers/courses';
 import { useSelector } from 'store';
 import styles from './learning.module.scss';
@@ -16,14 +17,24 @@ interface Props {
   data: any;
 }
 
+const sortedAsc = (arr: any[]) =>
+  arr.sort(
+    (objA: any, objB: any) =>
+      Number(objA.dateupdated) - Number(objB.dateupdated),
+  );
+
 const MyLearningPage: React.FC<Props> = ({ data }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
-  const analytics: any = data.analytics || [];
-  console.log(analytics);
+  const analytics: any = data?.analytics || [];
+  console.log(analytics, 'o');
   const onSetTab = (tab: string) => {
     router.push(`/my-learning?tab=${tab}`);
   };
+
+  useEffect(() => {
+    sortedAsc(analytics);
+  }, []);
 
   const { tab } = router.query || {};
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
