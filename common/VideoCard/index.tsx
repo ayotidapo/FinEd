@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import { ICourse } from 'components/VideosListPage';
+import { formatDate } from 'helpers';
 import Star from 'common/Ratings';
 import styles from './videocard.module.scss';
 import { useSelector } from 'store';
@@ -11,8 +12,10 @@ interface Props {
 }
 
 const VideoCard: React.FC<Props> = ({ course }) => {
-  const { thumbnail, level, title, paid, contents, categories, id } = course;
+  const { thumbnail, level, title, paid, contents, categories, updatedAt, id } =
+    course;
   const { user } = useSelector((state) => state?.user?.user);
+  const rating = Math.round(course?.rating);
 
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
@@ -51,12 +54,12 @@ const VideoCard: React.FC<Props> = ({ course }) => {
       <div className={styles.video_info}>
         <p className="title">{title}</p>
         <div className={styles.rating_div}>
-          {[1, 2, 3, 4, 5].map((n) => (
-            <Star key={n} />
+          {[1, 2, 3, 4, 5].map((n, i) => (
+            <Star key={n} id={i} rating={rating} />
           ))}
-          &nbsp;4.3
+          &nbsp;{rating}
           <span style={{ color: '#7C7C7C' }}>
-            &nbsp;&nbsp;&nbsp;Updated Aug 9, 2021
+            &nbsp;&nbsp;&nbsp;Updated {formatDate(updatedAt)}
           </span>
         </div>
         <div className={`${level} ${styles.min_details}`}>

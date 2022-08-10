@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Button from 'common/Button';
+import EmptyView from 'common/EmptyView';
 import HeaderLoggedIn from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
 import Star from 'common/Ratings';
 import VideoCard from 'common/VideoCard';
+import { formatDate } from 'helpers';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -19,25 +21,43 @@ interface Props {
 
 const sortedAsc = (arr: any[]) =>
   arr.sort(
-    (objA: any, objB: any) =>
-      Number(objA.dateupdated) - Number(objB.dateupdated),
+    (objA: any, objB: any) => Number(objA.updatedAt) - Number(objB.updatedAt),
   );
 
 const MyLearningPage: React.FC<Props> = ({ data }) => {
-  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
+  const tab = router.query?.tab || 'ongoing';
+  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
+
   const analytics: any = data?.analytics || [];
-  console.log(analytics, 'o');
+  const [sortedCourses, setSortedCourses] = useState<ICourse[]>([]);
+  const [lastAnalytics, setLastAnalytics] = useState<any>({});
+  const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
+  const lastViewed = sortedCourses[0];
+
+  const rating = Math.round(lastViewed?.rating);
+
+  const ayraStars = Array.from(new Array(5).keys());
+
   const onSetTab = (tab: string) => {
     router.push(`/my-learning?tab=${tab}`);
   };
 
   useEffect(() => {
-    sortedAsc(analytics);
-  }, []);
+    const analyCourses = analytics.map((analytic: any) => analytic.course);
 
-  const { tab } = router.query || {};
-  const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
+    const sortCourses = sortedAsc(analyCourses);
+
+    setSortedCourses(sortCourses);
+
+    const lastAnalytics = analytics.find(
+      (analytics: any) => analytics?.course?.id === sortCourses[0]?.id,
+    );
+
+    setLastAnalytics(lastAnalytics);
+  }, [tab]);
+
+  console.log({ newAnalytics: analytics }, tab);
   return (
     <>
       <div className={styles.topheader}>
@@ -73,31 +93,35 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
         {tab === 'ongoing' && (
           <section className={styles.lastviewed_details}>
             <div className={styles.imgBx}>
-              <Image src="/assets/bag.png" layout="fill" alt="" />
+              {lastViewed?.thumbnail && (
+                <Image
+                  src={lastViewed?.thumbnail?.url}
+                  layout="fill"
+                  alt="alu"
+                />
+              )}
               <span>
                 <Icon id="play" />
               </span>
               <div className={styles.overlay} />
             </div>
             <div className={styles.midBx}>
-              <h2 className="title">
-                What is a Tax Free Savings Account (TFSA)
-              </h2>
+              <h2 className="title">{lastViewed?.title}</h2>
               <div className={styles.rating_div}>
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <Star key={n} />
+                {ayraStars.map((n, i) => (
+                  <Star key={n} id={i} rating={rating - 1} />
                 ))}
-                &nbsp;4.3
+                &nbsp;{rating}
                 <span style={{ color: '#7C7C7C' }}>
-                  &nbsp;&nbsp;&nbsp;Updated Aug 9, 2021
+                  &nbsp;&nbsp;&nbsp;Updated {formatDate(lastViewed?.updatedAt)}
                 </span>
               </div>
-              <div className={`Intermediate ${styles.min_details}`}>
+              <div className={`${lastViewed?.level} ${styles.min_details}`}>
                 <span>
                   <span className="bar" />
                   <span className="bar" />
                   <span className="bar" />
-                  &nbsp;Intermediate
+                  &nbsp;{lastViewed?.level}
                 </span>
                 <span>
                   &nbsp;&nbsp;&nbsp;
@@ -106,21 +130,19 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
                 </span>
               </div>
               <div className={styles.progressbar}>
-                <Progressbar />
+                <Progressbar progress={lastAnalytics?.progress} />
               </div>
             </div>
             <div className={styles.lblBx}>
               <span className={styles.labeltag}>
-                {['shsh', 'hhhd', 'jfjfjfj', 'oeoeo']
-                  .slice(0, 3)
-                  .map((category, i) => (
+                {lastViewed?.categories
+                  ?.slice(0, 3)
+                  .map((category: any, i: number) => (
                     <LabelTag key={category} color={colors[i]}>
                       {category}
                     </LabelTag>
                   ))}
-                {['shsh', 'hhhd', 'jfjfjfj', 'oeoeo'].length > 3 && (
-                  <LabelTag>+3</LabelTag>
-                )}
+                {lastViewed?.categories?.length > 3 && <LabelTag>+3</LabelTag>}
               </span>
               <div style={{ width: '180px' }}>
                 <Button bg="#c03e21">
@@ -131,8 +153,12 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
           </section>
         )}
 
+        {sortedCourses.length < 1 && (
+          <EmptyView contentName={`${tab} course`} />
+        )}
+
         <section className={styles.content_items_wrap}>
-          {analytics.map(({ course, progress }: any) => (
+          {sortedCourses?.map((course: any) => (
             <VideoCard key={course.id} course={course} />
           ))}
         </section>

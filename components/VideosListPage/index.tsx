@@ -4,7 +4,6 @@ import Header from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
 import Checkbox from 'common/Checkbox';
-
 import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
@@ -36,7 +35,6 @@ const VideosListPage: React.FC<Props> = (props) => {
   const [showFilter, setShowFilter] = useState(false);
   const { explorePage, courses } = props;
 
-  console.log('courses', courses);
   const fields = {
     discountCode: {
       name: 'discountCode',
@@ -188,7 +186,7 @@ const VideosListPage: React.FC<Props> = (props) => {
             </div>
           </section>
           <section className={styles.content_items_wrap}>
-            {courses.map((course: ICourse) => (
+            {courses?.map((course: ICourse) => (
               <VideoCard key={course.id} course={course} />
             ))}
           </section>

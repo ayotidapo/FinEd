@@ -6,7 +6,7 @@ const xStyle = {
   marginLeft: '1rem',
 };
 
-const Progressbar = () => {
+const Progressbar = ({ progress }: { progress: number }) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <div
@@ -22,11 +22,11 @@ const Progressbar = () => {
             background: '#015351',
             borderRadius: '10px',
             height: '100%',
-            width: '25%',
+            width: `${progress}%`,
           }}
         />
       </div>
-      <span style={xStyle}>1% complete</span>
+      <span style={xStyle}>{progress}% complete</span>
     </div>
   );
 };

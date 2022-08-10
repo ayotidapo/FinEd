@@ -29,14 +29,14 @@ export const plansSlice = createSlice({
 
 	reducers:{
 		setPlans(state: IState, action){
-		 console.log('hhhh',action)
+		  //console.log('hhhh',action)
 		  state.plans = [...action.payload]
 		}
 	},
 
 	extraReducers:{
 		[HYDRATE]:(state:IState, action)=>{
-			 console.log(state,action?.payload,'dapo')
+			// console.log(state,action?.payload,'dapo')
 			if(action?.payload?.plans.plans.length === 0) return state
 			
 			state.plans=[...action?.payload.plans.plans]

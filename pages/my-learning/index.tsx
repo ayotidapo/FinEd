@@ -12,6 +12,7 @@ interface Props {
 }
 
 const MyLearning: React.FC<Props> = ({ data }) => {
+  console.log({ newData: data });
   return (
     <>
       <MyLearningPage data={data} />
@@ -37,11 +38,12 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
 
-      console.log(data, 'learning');
+      console.log(data, 'learning', tab);
       return {
         props: {
           data,

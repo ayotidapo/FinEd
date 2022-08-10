@@ -36,3 +36,16 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
   if (no_validate) validatedInputs[name].error = ``;
   return validatedInputs;
 };
+
+
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+
+export const formatDate =(dt:string)=>{
+  const dateType=new Date(dt)
+  const day=dateType.getUTCDay()
+  const dd=day < 10 ? `0${day}` : day;
+  const mm = months[(dateType.getUTCMonth()) + 1] 
+  const yr=dateType.getUTCFullYear();
+  return `${dd} ${mm} ${yr}`
+
+}
