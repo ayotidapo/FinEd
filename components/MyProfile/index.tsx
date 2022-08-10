@@ -13,34 +13,44 @@ import useForm from 'hooks/useForm';
 import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
+import { toast } from 'react-toastify';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user?.user);
+  const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
-  console.log({ inputs });
+
   const [userState, setUserState] = useState(user?.residentState);
   const [gender, setGender] = useState(user?.gender);
   const [userCountry, setUserCountry] = useState(user?.residentCountry);
-  const [states, setStates] = useState([{ label: '', value: '' }]);
+  const [states, setStates] = useState<{ label: string; value: string }[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [resErr, setResErr] = useState(false);
   const today = new Date();
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
 
-  console.log({ user }, 9);
-  const updateStates = (country: string) => {
-    const states = getStates(country);
+  // const updateStates = (country: string) => {
+  //   const states = getStates(country);
+  //   if (states) setStates(states);
+  // };
 
-    if (states) setStates(states);
-  };
-  console.log(states, 'pl');
   const onSelect = (e: any) => {
     const { name, value } = e.target;
-
-    if (name === 'residentCountry') setUserCountry(value);
-    if (name === 'residentState') setUserState(value);
+    console.log(name, 'ppp');
+    if (name === 'residentCountry') {
+      setUserCountry(value);
+      const states = getStates(value);
+      states.unshift({ label: 'Select  state', value: '' });
+      setUserState('');
+      setStates(states);
+    }
+    if (name === 'residentState') {
+      setUserState(value);
+      setResErr(false);
+    }
   };
 
   const onSelectGender = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +60,7 @@ const MyProfile: React.FC<Props> = () => {
 
   const onSubmit = async () => {
     try {
+      if (userCountry && !userState) return setResErr(true);
       setSubmitting(true);
       const body = getPayload();
       body.residentCountry = userCountry;
@@ -57,17 +68,26 @@ const MyProfile: React.FC<Props> = () => {
       body.gender = gender;
       delete body.nigeriaPhone;
       delete body.dob;
-      console.log({ body });
+
       const { data } = await axios.patch(`/users/profile`, body);
-      setUser(data);
+      console.log('update', data);
+      dispatch(setUser(data));
       setSubmitting(false);
+      toast.success('Profile updated!');
     } catch (e) {
+      toast.success('Profile update!');
       setSubmitting(false);
     }
   };
 
   useEffect(() => {
-    updateStates(userCountry);
+    if (userCountry) {
+      const states = getStates(userCountry);
+
+      if (userState) states.unshift({ label: userState, value: userState });
+      setStates(states);
+    }
+
     const mInputs = { ...inputs };
     Object.keys(mInputs).forEach((field) => {
       if (field === 'dob') mInputs[field].value = user[field]?.substr(0, 10);
@@ -76,10 +96,11 @@ const MyProfile: React.FC<Props> = () => {
     setInputs(mInputs);
   }, []);
 
-  useEffect(() => {
-    updateStates(userCountry);
-  }, [userCountry]);
+  // useEffect(() => {
+  //   updateStates(userCountry);
+  // }, [userCountry]);
 
+  console.log(userState);
   return (
     <form className={styles.profile_wrapper}>
       <div className={styles.profile_imgr}>
@@ -200,9 +221,15 @@ const MyProfile: React.FC<Props> = () => {
           <Select
             name="residentState"
             options={states}
-            optionSelected={userState}
+            // optionSelected={userState}
             onChange={onSelect}
           />
+
+          {resErr && (
+            <span style={{ marginTop: '-20px' }} className="error">
+              Select state
+            </span>
+          )}
           <div className={styles.btn_con}>
             <Button onClick={onSubmit} loading={submitting}>
               {' '}

@@ -57,7 +57,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
           {[1, 2, 3, 4, 5].map((n, i) => (
             <Star key={n} id={i} rating={rating} />
           ))}
-          &nbsp;{rating}
+          &nbsp;{rating > 0 && rating}
           <span style={{ color: '#7C7C7C' }}>
             &nbsp;&nbsp;&nbsp;Updated {formatDate(updatedAt)}
           </span>

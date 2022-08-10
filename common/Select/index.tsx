@@ -8,13 +8,13 @@ interface Props {
   }[];
   icon?: string;
   error?: string;
-  optionSelected: string;
+  optionSelected?: string;
   onChange: (e: any) => void;
 }
 
 const Select: React.FC<Props> = (props: Props) => {
   const { options, name, icon, error, optionSelected, ...rest } = props;
-  console.log(optionSelected, 'optionSelected');
+
   return (
     <label className={styles.select_wrapper}>
       <span>Country of Residence</span>
@@ -27,9 +27,14 @@ const Select: React.FC<Props> = (props: Props) => {
         }}
       >
         <Icon id="house" />
-        <select name={name} {...rest} defaultValue={optionSelected}>
+        <select
+          name={name}
+          {...rest}
+          defaultValue={optionSelected}
+          style={{ textTransform: 'capitalize' }}
+        >
           {options.map(({ value, label }) => (
-            <option key={value} value={value}>
+            <option key={name} value={value}>
               {label}
             </option>
           ))}

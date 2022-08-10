@@ -19,7 +19,7 @@ const Header = () => {
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
   const state = useSelector((state) => state);
-  console.log(state, 1234);
+
   const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 
@@ -98,7 +98,11 @@ const Header = () => {
         >
           UPGRADE
         </Button>
-        <Icon id="book-mark" />
+        <Link href="/my-learning?tab=bookmarked">
+          <a>
+            <Icon id="book-mark" />
+          </a>
+        </Link>
         <Icon id="bell" />
         <div
           className={`hand ${styles.log_auth}`}

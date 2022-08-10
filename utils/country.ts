@@ -778,11 +778,15 @@ export const countriesList=[
 	
 		const contState=countriesList.find(country=>country.country?.toLocaleLowerCase() === selectedCountry)
 
+		if(!contState)  return [{label:'Select a state',value:''}]
+
 		const states=contState?.states.map(state=>({
 			label:state,
 			value:state?.toLocaleLowerCase()
 		}))
-	//	states?.push({label:'Select a state',value:''})
+		states?.push({label:'Select state',value:''})
+
+		
 
 	   return states
 	}

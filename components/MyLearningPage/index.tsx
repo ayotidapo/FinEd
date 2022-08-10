@@ -111,7 +111,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
                 {ayraStars.map((n, i) => (
                   <Star key={n} id={i} rating={rating - 1} />
                 ))}
-                &nbsp;{rating}
+                &nbsp;{rating > 0 && rating}
                 <span style={{ color: '#7C7C7C' }}>
                   &nbsp;&nbsp;&nbsp;Updated {formatDate(lastViewed?.updatedAt)}
                 </span>
