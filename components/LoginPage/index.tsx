@@ -66,27 +66,28 @@ const LoginPage = () => {
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />
-        </form>
-        <Link href="/forgot-password">
-          <a className={`fg_pass hand`} style={{ width: '150px' }}>
-            Forgot Password?
-          </a>
-        </Link>
-        <div className="sign_up">
-          <div>
-            <span>Have no account yet?</span>
-            <Link href="/signup">
-              <a className="a">Sign Up</a>
-            </Link>
+
+          <Link href="/forgot-password">
+            <a className={`fg_pass hand`} style={{ width: '150px' }}>
+              Forgot Password?
+            </a>
+          </Link>
+          <div className="sign_up">
+            <div>
+              <span>Have no account yet?</span>
+              <Link href="/signup">
+                <a className="a">Sign Up</a>
+              </Link>
+            </div>
+            <Button
+              onClick={onSubmit}
+              loading={submitting}
+              disabled={isError() || !isTouched}
+            >
+              Login <Icon id="arrow-right" width={20} height={20} />
+            </Button>
           </div>
-          <Button
-            onClick={onSubmit}
-            loading={submitting}
-            disabled={isError() || !isTouched}
-          >
-            Login <Icon id="arrow-right" width={20} height={20} />
-          </Button>
-        </div>
+        </form>
       </section>
     </main>
   );

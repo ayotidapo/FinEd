@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { responseSymbol } from 'next/dist/server/web/spec-compliant/fetch-event';
+
 
 export const getContentUrl =async(id:string)=> {
 
@@ -14,3 +14,18 @@ export const getContentUrl =async(id:string)=> {
 	
 
 }
+
+
+export const sendContentProgress =async(contentId:string,timeWatched:number)=> {
+
+	try{
+	   const {data} = await axios.patch(`/analytics/content/${contentId}`,{progress:timeWatched})
+       console.log(data)
+	   return data
+   
+	   }catch(e:any){
+		   return false
+	   }
+	   
+   
+   }

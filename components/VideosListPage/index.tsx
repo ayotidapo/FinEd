@@ -12,6 +12,7 @@ import useForm from 'hooks/useForm';
 import Link from 'next/link';
 
 export interface ICourse {
+  id: string;
   categories: string[];
   createdAt: string;
   description: string;

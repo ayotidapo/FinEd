@@ -7,22 +7,23 @@ import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
 import Star from 'common/Ratings';
 import VideoCard from 'common/VideoCard';
-import { formatDate } from 'helpers';
+import { courseVideos, formatDate, getCourseProgressPerc } from 'helpers';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ICourse } from 'reducers/courses';
-import { useSelector } from 'store';
+
 import styles from './learning.module.scss';
 
 interface Props {
   data: any;
 }
 
-const sortedAsc = (arr: any[]) =>
-  arr.sort(
-    (objA: any, objB: any) => Number(objA.updatedAt) - Number(objB.updatedAt),
+const sortedAsc = (arr: any[], key: string) => {
+  return arr.sort(
+    (objA: any, objB: any) => Date.parse(objB[key]) - Date.parse(objA[key]),
   );
+};
 
 const MyLearningPage: React.FC<Props> = ({ data }) => {
   const router = useRouter();
@@ -30,10 +31,11 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
 
   const analytics: any = data?.analytics || [];
-  const [sortedCourses, setSortedCourses] = useState<ICourse[]>([]);
+  const [sortedAnalytics, setSortedAnalytics] = useState<ICourse[]>([]);
   const [lastAnalytics, setLastAnalytics] = useState<any>({});
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
-  const lastViewed = sortedCourses[0];
+  // getCourseProgressPerc();
+  const lastViewed: ICourse = lastAnalytics?.course;
 
   const rating = Math.round(lastViewed?.rating);
 
@@ -43,21 +45,33 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
     router.push(`/my-learning?tab=${tab}`);
   };
 
+  console.log('analytics', analytics);
+
   useEffect(() => {
-    const analyCourses = analytics.map((analytic: any) => analytic.course);
+    const sortedAnalytiks = sortedAsc(analytics, 'dateupdated');
 
-    const sortCourses = sortedAsc(analyCourses);
+    setSortedAnalytics(sortedAnalytiks);
 
-    setSortedCourses(sortCourses);
-
-    const lastAnalytics = analytics.find(
-      (analytics: any) => analytics?.course?.id === sortCourses[0]?.id,
-    );
+    const lastAnalytics = sortedAnalytiks[0];
 
     setLastAnalytics(lastAnalytics);
   }, [tab]);
+  console.log({ newAnalytics: analytics, lastAnalytics }, tab);
 
-  console.log({ newAnalytics: analytics }, tab);
+  useEffect(() => {
+    let contentLen = 0;
+    const numberWatched = lastAnalytics?.progress;
+
+    if (lastViewed?.contents) {
+      const videos = courseVideos(lastViewed.contents);
+      contentLen = videos.length;
+      const percProgress = getCourseProgressPerc(contentLen, numberWatched);
+      const updateLastAnalytics = { ...lastAnalytics, progress: percProgress };
+      setLastAnalytics(updateLastAnalytics);
+      console.log(contentLen, numberWatched, 'iro', videos);
+    }
+  }, [lastViewed?.id]);
+
   return (
     <>
       <div className={styles.topheader}>
@@ -153,12 +167,12 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
           </section>
         )}
 
-        {sortedCourses.length < 1 && (
+        {sortedAnalytics.length < 1 && (
           <EmptyView contentName={`${tab} course`} />
         )}
 
         <section className={styles.content_items_wrap}>
-          {sortedCourses?.map((course: any) => (
+          {sortedAnalytics?.map(({ course }: any) => (
             <VideoCard key={course.id} course={course} />
           ))}
         </section>

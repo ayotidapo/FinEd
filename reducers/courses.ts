@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IContent } from 'components/VideoDetails';
 import { HYDRATE } from 'next-redux-wrapper';
 
 export interface ICourse {
     categories: string[];
     createdAt: string;
     description: string;
+    contents?:IContent[];
     level: string;
     paid: false;
     published: boolean;
@@ -38,7 +40,7 @@ export const courseSlice = createSlice({
 	extraReducers:{
 		[HYDRATE]:(state:IState,action)=>{
       
-      console.log(action.payload.courses.courses,789098)
+      //console.log(action.payload.courses.courses,789098)
       if(action?.payload?.courses.courses?.length) return state	            		
 			state.courses=action.payload.courses.courses
 			

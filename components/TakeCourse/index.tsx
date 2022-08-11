@@ -7,9 +7,10 @@ import { useRouter } from 'next/router';
 import styles from './watch.module.scss';
 import { ICourse } from 'components/VideosListPage';
 import { IContent } from 'components/VideoDetails';
-import { getContentUrl } from './functions';
+import { getContentUrl, sendContentProgress } from './functions';
 import { useEffect, useState } from 'react';
 import { BtnLoader } from 'common/Button';
+import { ifHasVideo } from 'helpers';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useSelector } from 'store';
@@ -36,10 +37,11 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
   const cantWatch = paid && !curPlan?.id;
   const [isOpen, setIsOpen] = useState(cantWatch);
+  const [played, setPlayed] = useState(0);
 
   const [url, setUrl] = useState('');
 
-  const isVideo = (type: string) => type.toLowerCase() === 'video';
+  // const isVideo = (type: string) => type.toLowerCase() === 'video';
 
   const resources = contents.filter(
     (content: IContent) => content.type?.toLowerCase() !== 'video',
@@ -50,10 +52,12 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
 
   useEffect(() => {
-    const hasVideo = contents.some((content: IContent) =>
-      isVideo(content.type),
-    );
-    setHasVideo(hasVideo);
+    const isHasVideo = ifHasVideo(contents);
+    setHasVideo(isHasVideo);
+
+    return () => {
+      onProgress(played);
+    };
   }, []);
 
   const getUrl = async (courseVideoId: string) => {
@@ -69,6 +73,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
     }
     setLoading(false);
   };
+
   const handleDuration = (duration: any) => {
     setDuration(duration);
   };
@@ -80,6 +85,12 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
   const onClose = () => {
     setIsOpen(false);
     router.push(`/video/${id}/${title}`);
+  };
+
+  const onProgress = async (playedSeconds: number) => {
+    const progress = playedSeconds;
+    await sendContentProgress(id, progress);
+    console.log('sent to BE', progress);
   };
 
   useEffect(() => {
@@ -205,7 +216,9 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
                     controls
                     width="100%"
                     height="100%"
-                    //onReady={() => setLoading(false)}
+                    onProgress={(progress) => {
+                      setPlayed(progress.playedSeconds);
+                    }}
                     onDuration={handleDuration}
                     playing
                   />

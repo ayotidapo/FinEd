@@ -1,4 +1,6 @@
 import { IField } from 'common/Input';
+import { IContent } from 'components/VideoDetails';
+import contents from 'pages/contents';
 import { IState } from 'useReducers/inputReducers';
 
 export const isPasswordStrong = (value: string) =>
@@ -49,3 +51,21 @@ export const formatDate =(dt:string)=>{
   return `${dd} ${mm} ${yr}`
 
 }
+
+
+export const getCourseProgressPerc=(totalVideos:number,numberWatched:number)=>{
+  const courseProgressPerc = (numberWatched/totalVideos) * 100;
+  return courseProgressPerc;
+
+}
+
+export const isVideo = (type: string) => type.toLowerCase() === 'video';
+
+export const ifHasVideo = (contents:IContent[])=>{
+  return contents.some((content: IContent) => isVideo(content.type))
+}
+
+export const courseVideos = (contents:IContent[])=>{
+  return contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
+}
+
