@@ -150,13 +150,15 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
             <div className={styles.lblBx}>
               <span className={styles.labeltag}>
                 {lastViewed?.categories
-                  ?.slice(0, 3)
+                  ?.slice(0, 2)
                   .map((category: any, i: number) => (
                     <LabelTag key={category} color={colors[i]}>
                       {category}
                     </LabelTag>
                   ))}
-                {lastViewed?.categories?.length > 3 && <LabelTag>+3</LabelTag>}
+                {lastViewed?.categories?.length > 2 && (
+                  <LabelTag>+ {lastViewed?.categories?.length - 2}</LabelTag>
+                )}
               </span>
               <div style={{ width: '180px' }}>
                 <Button bg="#c03e21">

@@ -15,7 +15,7 @@ interface Props {
 
 const Videos: React.FC<Props> = () => {
   const courses: any = useSelector((state) => state.courses.courses);
-  console.log(courses?.courses, 566566);
+
   return (
     <>
       <VideoPage courses={courses?.courses} />
@@ -28,7 +28,6 @@ export default Videos;
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ req, res }) => {
-    console.log(345678);
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
 
@@ -43,7 +42,7 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/courses-user/noauth?skip=0&take=20');
-      console.log(data, 5665661);
+
       store.dispatch(setCourses(data));
 
       return {

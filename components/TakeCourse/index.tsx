@@ -8,7 +8,7 @@ import styles from './watch.module.scss';
 import { ICourse } from 'components/VideosListPage';
 import { IContent } from 'components/VideoDetails';
 import { getContentUrl, sendContentProgress } from './functions';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BtnLoader } from 'common/Button';
 import { ifHasVideo } from 'helpers';
 import Modal from 'common/Modal';
@@ -19,7 +19,13 @@ const ReactPlayer = dynamic(() => import('react-player'), {
   ssr: false,
 });
 
-const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
+interface Props {
+  course: ICourse;
+  latestCourseContent: ICourse;
+}
+const TakeCoursePage: React.FC<Props> = (props) => {
+  const { course, latestCourseContent } = props;
+
   const router = useRouter();
   const { contId } = router.query;
   const [loading, setLoading] = useState(false);
@@ -27,7 +33,8 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
   const [duration, setDuration] = useState('');
   const [curVidId, setCurVidId] = useState(contId);
   const [step, setStep] = useState(0);
-
+  const [isReady, setIsReady] = useState(false);
+  const playerRef = useRef();
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
 
@@ -37,7 +44,6 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
 
   const cantWatch = paid && !curPlan?.id;
   const [isOpen, setIsOpen] = useState(cantWatch);
-  const [played, setPlayed] = useState(0);
 
   const [url, setUrl] = useState('');
 
@@ -51,12 +57,26 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
   );
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
 
+  // const onReady = useCallback(() => {
+  //   // if (!isReady) {
+  //   //   const timeToStart = 7 * 60 + 12.6;
+  //   //   playerRef.current?.seekTo(timeToStart, 'seconds');
+  //   //   setIsReady(true);
+  //   // }
+
+  //   if (playerRef.current) {
+  //     const timeToStart = 7 * 60 + 12.6;
+  //     console.log('seeking to', timeToStart);
+  //     playerRef.current.seekTo(timeToStart);
+  //   }
+  // }, [isReady]);
+
   useEffect(() => {
     const isHasVideo = ifHasVideo(contents);
+    console.log(playerRef.current);
     setHasVideo(isHasVideo);
-
     return () => {
-      onProgress(played);
+      // onSendProgress();
     };
   }, []);
 
@@ -87,10 +107,10 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
     router.push(`/video/${id}/${title}`);
   };
 
-  const onProgress = async (playedSeconds: number) => {
-    const progress = playedSeconds;
-    await sendContentProgress(id, progress);
-    console.log('sent to BE', progress);
+  const onSendProgress = async () => {
+    const progress = localStorage.getItem('tvp_') || 0;
+
+    await sendContentProgress(id, Number(progress));
   };
 
   useEffect(() => {
@@ -155,7 +175,7 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
       </div>
       <div className={styles.wrapper}>
         <section className={styles.content_list}>
-          <p>Course content</p>
+          <p onClick={() => onSendProgress()}>Course content</p>
 
           <div className={styles.content}>
             <ul>
@@ -216,11 +236,14 @@ const TakeCoursePage: React.FC<{ course: ICourse }> = ({ course }) => {
                     controls
                     width="100%"
                     height="100%"
+                    ref={playerRef}
                     onProgress={(progress) => {
-                      setPlayed(progress.playedSeconds);
+                      localStorage.setItem('tvp_', `${progress.playedSeconds}`);
                     }}
                     onDuration={handleDuration}
+                    //  onReady={onReady}
                     playing
+                    onSeek={(e: number) => console.log('onSeek', e)}
                   />
                 )}
               </>
