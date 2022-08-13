@@ -29,3 +29,18 @@ export const sendContentProgress =async(contentId:string,timeWatched:number)=> {
 	   
    
    }
+
+   export const getLastWatchContent =async(contentId:string)=> {
+
+	try{
+	   const {data} = await axios.patch(`/analytics/content/latest/${contentId}`)
+       console.log(data)
+	   return data
+   
+	   }catch(e:any){
+		   return false
+	   }
+	   
+   
+   }
+

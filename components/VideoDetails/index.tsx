@@ -8,7 +8,6 @@ import Star from 'common/Ratings';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
@@ -134,7 +133,10 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
           </ul>
         </nav>
         <div className={styles.details_sec}>
-          <div className={styles.img_details} onClick={onClickedUpgrade}>
+          <div
+            className={`${styles.img_details} hand`}
+            onClick={onClickedUpgrade}
+          >
             <section>
               <Image src={thumbnail?.url} layout="fill" alt="video_img" />
               <div
@@ -164,12 +166,10 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
             </span>
             <h2 className={`title ${styles.title}`}>{title}</h2>
             <div className={styles.starwrap}>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span>4.3</span>
+              {[1, 2, 3, 4, 5].map((n, i) => (
+                <Star key={n} id={i} rating={3} />
+              ))}
+              <span style={{ color: '#7c7c7c' }}>3</span>
             </div>
             <div className={`${level} ${styles.min_details}`}>
               <span className="bar" />
@@ -254,12 +254,10 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
               <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
             </div>
             <div className="starwrap">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span style={{ color: '#7c7c7c' }}>4.3</span>
+              {[1, 2, 3, 4, 5].map((n, i) => (
+                <Star key={n} id={i} rating={3} />
+              ))}
+              <span style={{ color: '#7c7c7c' }}>3</span>
             </div>
             <p>
               So far so good, first day of use was impressive, but the plastic
@@ -275,12 +273,10 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
               <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
             </div>
             <div className="starwrap">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span style={{ color: '#7c7c7c' }}>4.3</span>
+              {[1, 2, 3, 4, 5].map((n, i) => (
+                <Star key={n} id={i} rating={2} />
+              ))}
+              <span style={{ color: '#7c7c7c' }}>2</span>
             </div>
             <p>
               So far so good, first day of use was impressive, but the plastic
@@ -296,12 +292,10 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
               <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
             </div>
             <div className="starwrap">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span style={{ color: '#7c7c7c' }}>4.3</span>
+              {[1, 2, 3, 4, 5].map((n, i) => (
+                <Star key={n} id={i} rating={1} />
+              ))}
+              <span style={{ color: '#7c7c7c' }}>1</span>
             </div>
             <p>
               So far so good, first day of use was impressive, but the plastic
@@ -317,12 +311,12 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
               <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
             </div>
             <div className="starwrap">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span style={{ color: '#7c7c7c' }}>4.3</span>
+              <div className="starwrap">
+                {[1, 2, 3, 4, 5].map((n, i) => (
+                  <Star key={n} id={i} rating={4} />
+                ))}
+                <span style={{ color: '#7c7c7c' }}>4</span>
+              </div>
             </div>
             <p>
               So far so good, first day of use was impressive, but the plastic

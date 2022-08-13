@@ -16,16 +16,17 @@ import { ICourse } from 'reducers/courses';
 import styles from './learning.module.scss';
 
 interface Props {
-  data: any;
+  data?: any;
+  bookmarked?: any;
 }
 
 const sortedAsc = (arr: any[], key: string) => {
   return arr.sort(
-    (objA: any, objB: any) => Date.parse(objB[key]) - Date.parse(objA[key]),
+    (objA: any, objB: any) => Date.parse(objA[key]) - Date.parse(objB[key]),
   );
 };
 
-const MyLearningPage: React.FC<Props> = ({ data }) => {
+const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
   const router = useRouter();
   const tab = router.query?.tab || 'ongoing';
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
@@ -34,7 +35,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   const [sortedAnalytics, setSortedAnalytics] = useState<ICourse[]>([]);
   const [lastAnalytics, setLastAnalytics] = useState<any>({});
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
-  // getCourseProgressPerc();
+
   const lastViewed: ICourse = lastAnalytics?.course;
 
   const rating = Math.round(lastViewed?.rating);
@@ -56,7 +57,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
 
     setLastAnalytics(lastAnalytics);
   }, [tab]);
-  console.log({ newAnalytics: analytics, lastAnalytics }, tab);
+  console.log({ analytics: analytics, sortedAnalytics, lastAnalytics }, tab);
 
   useEffect(() => {
     let contentLen = 0;
@@ -72,6 +73,15 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
     }
   }, [lastViewed?.id]);
 
+  const onContinueCourse = () => {
+    //   router.push(
+    //  //  `/take-course/${lastViewed?.id}/${data.title}/?contId=${courseVideoId}`,
+    //   );
+  };
+  let dataArray = analytics;
+  if (tab === 'bookmarked') {
+    dataArray = bookmarked;
+  }
   return (
     <>
       <div className={styles.topheader}>
@@ -161,7 +171,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
                 )}
               </span>
               <div style={{ width: '180px' }}>
-                <Button bg="#c03e21">
+                <Button bg="#c03e21" onClick={onContinueCourse}>
                   Continue course <Icon id="arrow-right" />
                 </Button>
               </div>
@@ -169,12 +179,10 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
           </section>
         )}
 
-        {sortedAnalytics.length < 1 && (
-          <EmptyView contentName={`${tab} course`} />
-        )}
+        {dataArray.length < 1 && <EmptyView contentName={`${tab} course`} />}
 
         <section className={styles.content_items_wrap}>
-          {sortedAnalytics?.map(({ course }: any) => (
+          {dataArray?.map(({ course }: any) => (
             <VideoCard key={course.id} course={course} />
           ))}
         </section>

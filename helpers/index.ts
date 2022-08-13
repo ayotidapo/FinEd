@@ -55,6 +55,7 @@ export const formatDate =(dt:string)=>{
 
 export const getCourseProgressPerc=(totalVideos:number,numberWatched:number)=>{
   const courseProgressPerc = (numberWatched/totalVideos) * 100;
+  if(totalVideos < 1) return 0;
   return courseProgressPerc;
 
 }
@@ -69,3 +70,10 @@ export const courseVideos = (contents:IContent[])=>{
   return contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 }
 
+export function toTimeString(seconds:number) {
+  console.log(seconds,678898)
+ const res=(new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)
+ if(res) return res[0]
+ return '00:00:00'
+
+}

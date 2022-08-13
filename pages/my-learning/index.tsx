@@ -3,19 +3,19 @@ import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import { setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
 interface Props {
-  data: any;
+  data?: any;
+  bookmarked?: any;
 }
 
-const MyLearning: React.FC<Props> = ({ data }) => {
+const MyLearning: React.FC<Props> = ({ data, bookmarked }) => {
   console.log({ newData: data });
   return (
     <>
-      <MyLearningPage data={data} />
+      <MyLearningPage data={data} bookmarked={bookmarked} />
     </>
   );
 };
@@ -39,11 +39,20 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
+      if (tab === 'bookmarked') {
+        const { data } = await axios.get(`/bookmarks`);
+
+        return {
+          props: {
+            bookmarked: data,
+          },
+        };
+      }
+
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
 
-      console.log(data, 'learning', tab);
       return {
         props: {
           data,
