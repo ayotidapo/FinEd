@@ -25,16 +25,17 @@ import { useSelector } from 'store';
 
 interface Props {
   course: ICourse;
-  latestCourseContent: ICourse;
 }
 const TakeCoursePage: React.FC<Props> = (props) => {
-  const { course, latestCourseContent } = props;
-  console.log(latestCourseContent, '9');
+  const { course } = props;
+  console.log('9');
   const router = useRouter();
   const { contId } = router.query;
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState(0);
+  const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
+
   const [curVidId, setCurVidId] = useState(contId);
   const [step, setStep] = useState(0);
 
@@ -82,9 +83,10 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setUrl(fileurl);
 
     if (data) {
-      router.push(
-        `/take-course/${course.id}/${data.title}/?contId=${contentId}`,
-      );
+      const Coursetitle = data?.title || '';
+      const ContentID = contentId || '';
+      let urlpath = `/take-course/${course.id}/${Coursetitle}/?contId=${ContentID}`;
+      router.push(urlpath);
     }
     setLoading(false);
   };
@@ -108,7 +110,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const handleVideoMounted = (element: any) => {
     if (element !== null) {
-      element.currentTime = latestCourseContent?.progress;
+      element.currentTime = latestCourseContent?.progress || 0;
     }
   };
 
@@ -133,12 +135,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     }
 
     const fileurl = data?.file?.url;
+    setLatestCourseContent(data);
     setUrl(fileurl);
 
     if (data) {
-      router.push(
-        `/take-course/${course.id}/${data.title}/?contId=${contentId}`,
-      );
+      const Coursetitle = data?.title || '';
+      const ContentID = contentId || '';
+      let urlpath = `/take-course/${course.id}/${Coursetitle}/?contId=${ContentID}`;
+      router.push(urlpath);
     }
     setLoading(false);
   };

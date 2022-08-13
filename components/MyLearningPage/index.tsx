@@ -57,7 +57,10 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
 
     setLastAnalytics(lastAnalytics);
   }, [tab]);
-  console.log({ analytics: analytics, sortedAnalytics, lastAnalytics }, tab);
+  console.log(
+    { analytics: analytics, sortedAnalytics, lastAnalytics, lastViewed },
+    tab,
+  );
 
   useEffect(() => {
     let contentLen = 0;
@@ -74,9 +77,7 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
   }, [lastViewed?.id]);
 
   const onContinueCourse = () => {
-    //   router.push(
-    //  //  `/take-course/${lastViewed?.id}/${data.title}/?contId=${courseVideoId}`,
-    //   );
+    router.push(`/take-course/${lastViewed?.id}/${data.title}`);
   };
   let dataArray = analytics;
   if (tab === 'bookmarked') {

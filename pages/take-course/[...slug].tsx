@@ -8,17 +8,13 @@ import { ICourse } from 'components/VideosListPage';
 
 interface Props {
   course: ICourse;
-  latestCourseContent: ICourse;
 }
 
 const TakeCourse: React.FC<Props> = (props) => {
-  const { course, latestCourseContent } = props;
+  const { course } = props;
   return (
     <>
-      <TakeCoursePage
-        course={course}
-        latestCourseContent={latestCourseContent}
-      />
+      <TakeCoursePage course={course} />
       <Footer />
     </>
   );
@@ -36,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const paramz = params?.slug || [];
 
   const courseId = paramz[0];
-
+  console.log({ courseId });
   if (!userId) {
     return {
       redirect: {
@@ -48,17 +44,16 @@ export const getServerSideProps: GetServerSideProps = async ({
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
     const { data } = await axios.get(`/courses-user/${courseId}`);
-    const { data: latestCourseContent } = await axios.get(
-      `/analytics/content/latest/${courseId}`,
-    );
+    console.log({ data }, 122);
 
+    console.log({ data }, 142);
     return {
       props: {
         course: data,
-        latestCourseContent,
       },
     };
   } catch (e: any) {
+    console.log({ e }, 142);
     return {
       props: {
         course: {},
