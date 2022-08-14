@@ -35,7 +35,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
-  console.log(contId, 8999);
+
   const [curVidId, setCurVidId] = useState(contId);
   const [step, setStep] = useState(0);
 
@@ -43,7 +43,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const { plans } = useSelector((state) => state?.plans);
 
   const { title, description, contents, categories, level, paid, id } = course;
-
+  console.log(contId, curVidId, 8999);
   const { plan: curPlan } = user?.currentSubscription || {};
 
   const cantWatch = paid && !curPlan?.id;
@@ -67,13 +67,13 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setHasVideo(isHasVideo);
 
     tHandler = window.setInterval(() => {
-      onSendProgress();
+      if (contId) onSendProgress(contId as string);
     }, 2000);
 
     return () => {
       window.clearInterval(tHandler);
     };
-  }, []);
+  }, [contId]);
 
   const getUrl = async (contentId: string) => {
     setCurVidId(contentId);
@@ -100,14 +100,16 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     router.push(`/video/${id}/${title}`);
   };
 
-  const onSendProgress = async () => {
+  const onSendProgress = async (contId: string) => {
     const player: any = document.getElementById('player');
     const progress = player ? player.currentTime : null;
     const duration = player ? player.duration : 0;
     setDuration(duration);
-    await sendContentProgress(curVidId as string, Math.floor(Number(progress)));
+    // const cId = contId || curVidId;
+    // console.log('pow', cId, contId, curVidId);
+    await sendContentProgress(contId, Math.floor(Number(progress)));
   };
-  console.log();
+  console.log(latestCourseContent);
   const handleVideoMounted = (element: any) => {
     if (element !== null) {
       element.currentTime = latestCourseContent?.progress || 0;
@@ -128,6 +130,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       data = withcontentIDdata;
     } else {
       const withcourseIDdata = await getLastWatchContent(course?.id);
+
       data = withcourseIDdata;
       if (withcourseIDdata.error === 404)
         withcontentIDdata = await getContentUrl(contentId);
@@ -136,6 +139,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
     const fileurl = data?.file?.url;
     setLatestCourseContent(data);
+    console.log(data, 4);
     setUrl(fileurl);
 
     if (data) {
