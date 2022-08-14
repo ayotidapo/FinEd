@@ -15,14 +15,15 @@ interface Props {
 }
 
 const VideoCard: React.FC<Props> = ({ course }) => {
-  const { thumbnail, level, title, paid, contents, categories, updatedAt, id } =
+  const { thumbnail, level, title, paid, categories, updatedAt, id, bookmark } =
     course;
+
   const { user } = useSelector((state) => state?.user?.user);
   const rating = Math.round(course?.rating);
 
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
-  const [bookMarked, setBookmarked] = useState(false);
+  const [bookMarked, setBookmarked] = useState(bookmark?.id);
 
   // const canWatch = (paid && curPlan?.id) || !paid;
   const i = !paid ? 'Free' : 'Available for premium users only';
@@ -31,8 +32,8 @@ const VideoCard: React.FC<Props> = ({ course }) => {
   ) => {
     e.stopPropagation();
     setBookmarked(true);
-    const { id, bookmarked } = course;
-    if (!bookmarked) return await bookMarkCourse(id);
+    const { id } = course;
+    if (!bookmark?.id) return await bookMarkCourse(id);
     setBookmarked(false);
     unbookMarkCourse(id);
   };
@@ -42,7 +43,9 @@ const VideoCard: React.FC<Props> = ({ course }) => {
         className={`hand ${styles.video_thumbnail}`}
         onClick={() => router.push(`/video/${id}/${title}`)}
       >
-        <Image src={thumbnail?.url} layout="fill" alt="top-sec-img" />
+        {thumbnail?.url && (
+          <Image src={thumbnail?.url} layout="fill" alt="top-sec-img" />
+        )}
         <div className={styles.overlay}>
           <p onClick={(e) => onBookMark(e)} className={styles.bookmark}>
             <span className={classnames({ [styles.bookmarked]: bookMarked })}>
@@ -90,7 +93,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
           <span>
             &nbsp;&nbsp;&nbsp;
             <Icon id="file" width={20} height={20} />
-            &nbsp;{contents?.length || 0} content(s)
+            &nbsp;{course?.contents?.length || 0} content(s)
           </span>
           <span>
             &nbsp;&nbsp;&nbsp;&nbsp;
