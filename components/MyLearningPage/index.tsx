@@ -75,7 +75,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   if (tab === 'bookmarked') {
     dataArray = data.map((d: ICourse) => ({ course: d }));
   }
-  console.log(dataArray, data, 78);
+
   return (
     <>
       <div className={styles.topheader}>

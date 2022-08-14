@@ -35,7 +35,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
-
+  console.log(contId, 8999);
   const [curVidId, setCurVidId] = useState(contId);
   const [step, setStep] = useState(0);
 
@@ -107,7 +107,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setDuration(duration);
     await sendContentProgress(curVidId as string, Math.floor(Number(progress)));
   };
-
+  console.log();
   const handleVideoMounted = (element: any) => {
     if (element !== null) {
       element.currentTime = latestCourseContent?.progress || 0;
