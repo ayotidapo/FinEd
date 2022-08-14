@@ -82,6 +82,10 @@
     align-items: center;
     justify-content: space-between;
     font-size: var(--f-14);
+    span{
+      display: flex;
+     align-items: center;
+    }
   }
 }
 .filter_box_show {
