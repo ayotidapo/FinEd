@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice,current } from '@reduxjs/toolkit';
 import { IContent } from 'components/VideoDetails';
 import { HYDRATE } from 'next-redux-wrapper';
 
@@ -17,7 +17,7 @@ export interface ICourse {
 }
 
 interface IState{
-  courses:ICourse[]
+  courses:any
 }
 
 const initialState:IState  = {
@@ -34,7 +34,14 @@ export const courseSlice = createSlice({
 		setCourses(state: IState, action){
        
 		    state.courses = {...action.payload}
-		}
+		},
+    updateCourses(state: IState, action){
+      console.log(current(state),state.courses)
+      const { courses } = state.courses;
+       const courseIndex=courses.findIndex((course:any) => course.id === action.payload?.courseId)
+       courses[courseIndex].bookmark=action.payload?.bookmark
+      
+    }
 	},
 
 	extraReducers:{
@@ -49,5 +56,5 @@ export const courseSlice = createSlice({
 })
 
 
-export const {setCourses} = courseSlice.actions
+export const {setCourses,updateCourses} = courseSlice.actions
 export default courseSlice.reducer

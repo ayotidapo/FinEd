@@ -5,10 +5,11 @@ import { ICourse } from 'components/VideosListPage';
 import { formatDate } from 'helpers';
 import Star from 'common/Ratings';
 import styles from './videocard.module.scss';
-import { useSelector } from 'store';
+import { useDispatch } from 'store';
 import React, { useState } from 'react';
 import { bookMarkCourse, unbookMarkCourse } from './function';
 import classnames from 'classnames';
+import { updateCourses } from 'reducers/courses';
 
 interface Props {
   course: ICourse;
@@ -18,7 +19,8 @@ const VideoCard: React.FC<Props> = ({ course }) => {
   const { thumbnail, level, title, paid, categories, updatedAt, id, bookmark } =
     course;
 
-  const { user } = useSelector((state) => state?.user?.user);
+  // const { user } = useSelector((state) => state?.user?.user);
+  const dispatch = useDispatch();
   const rating = Math.round(course?.rating);
 
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
@@ -31,12 +33,23 @@ const VideoCard: React.FC<Props> = ({ course }) => {
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
   ) => {
     e.stopPropagation();
-    setBookmarked(true);
+
     const { id } = course;
-    if (!bookmark?.id) return await bookMarkCourse(id);
+    if (!bookmark?.id) {
+      setBookmarked(true);
+
+      const response = await bookMarkCourse(id);
+
+      return dispatch(
+        updateCourses({ courseId: id, bookmark: { id: 'mockId' } }),
+      );
+    }
+
+    dispatch(updateCourses({ courseId: id, bookmark: {} }));
+    await unbookMarkCourse(id);
     setBookmarked(false);
-    unbookMarkCourse(id);
   };
+  console.log(course);
   return (
     <article className={`${styles.video_card}`}>
       <div
