@@ -71,7 +71,7 @@ export const courseVideos = (contents:IContent[])=>{
 }
 
 export function toTimeString(seconds:number) {
-  console.log(seconds,678898)
+
  const res=(new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)
  if(res) return res[0]
  return '00:00:00'

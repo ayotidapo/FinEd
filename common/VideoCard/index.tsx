@@ -33,6 +33,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
     setBookmarked(true);
     const { id, bookmarked } = course;
     if (!bookmarked) return await bookMarkCourse(id);
+    setBookmarked(false);
     unbookMarkCourse(id);
   };
   return (

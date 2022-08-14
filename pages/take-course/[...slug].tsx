@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const paramz = params?.slug || [];
 
   const courseId = paramz[0];
-  console.log({ courseId });
+
   if (!userId) {
     return {
       redirect: {
@@ -44,16 +44,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
     const { data } = await axios.get(`/courses-user/${courseId}`);
-    console.log({ data }, 122);
-
-    console.log({ data }, 142);
     return {
       props: {
         course: data,
       },
     };
   } catch (e: any) {
-    console.log({ e }, 142);
     return {
       props: {
         course: {},

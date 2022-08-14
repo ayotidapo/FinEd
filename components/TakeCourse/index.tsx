@@ -28,7 +28,7 @@ interface Props {
 }
 const TakeCoursePage: React.FC<Props> = (props) => {
   const { course } = props;
-  console.log('9');
+
   const router = useRouter();
   const { contId } = router.query;
   const [loading, setLoading] = useState(false);
@@ -150,7 +150,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   useEffect(() => {
     onLoadPage();
   }, []);
-  console.log(duration, 5666);
+
   return (
     <main className={styles.watch}>
       <Modal

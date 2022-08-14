@@ -12,7 +12,6 @@ interface Props {
 }
 
 const MyLearning: React.FC<Props> = ({ data, bookmarked }) => {
-  console.log({ newData: data });
   return (
     <>
       <MyLearningPage data={data} bookmarked={bookmarked} />

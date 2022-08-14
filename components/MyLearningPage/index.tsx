@@ -46,8 +46,6 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
     router.push(`/my-learning?tab=${tab}`);
   };
 
-  console.log('analytics', analytics);
-
   useEffect(() => {
     const sortedAnalytiks = sortedAsc(analytics, 'dateupdated');
 
@@ -57,10 +55,6 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
 
     setLastAnalytics(lastAnalytics);
   }, [tab]);
-  console.log(
-    { analytics: analytics, sortedAnalytics, lastAnalytics, lastViewed },
-    tab,
-  );
 
   useEffect(() => {
     let contentLen = 0;
@@ -72,7 +66,6 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
       const percProgress = getCourseProgressPerc(contentLen, numberWatched);
       const updateLastAnalytics = { ...lastAnalytics, progress: percProgress };
       setLastAnalytics(updateLastAnalytics);
-      console.log(contentLen, numberWatched, 'iro', videos);
     }
   }, [lastViewed?.id]);
 
@@ -184,7 +177,7 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
 
         <section className={styles.content_items_wrap}>
           {dataArray?.map(({ course }: any) => (
-            <VideoCard key={course.id} course={course} />
+            <VideoCard key={course?.id} course={course} />
           ))}
         </section>
       </main>

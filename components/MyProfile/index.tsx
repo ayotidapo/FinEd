@@ -39,7 +39,7 @@ const MyProfile: React.FC<Props> = () => {
 
   const onSelect = (e: any) => {
     const { name, value } = e.target;
-    console.log(name, 'ppp');
+
     if (name === 'residentCountry') {
       setUserCountry(value);
       const states = getStates(value);
@@ -70,7 +70,7 @@ const MyProfile: React.FC<Props> = () => {
       delete body.dob;
 
       const { data } = await axios.patch(`/users/profile`, body);
-      console.log('update', data);
+
       dispatch(setUser(data));
       setSubmitting(false);
       toast.success('Profile updated!');
@@ -96,11 +96,6 @@ const MyProfile: React.FC<Props> = () => {
     setInputs(mInputs);
   }, []);
 
-  // useEffect(() => {
-  //   updateStates(userCountry);
-  // }, [userCountry]);
-
-  console.log(userState);
   return (
     <form className={styles.profile_wrapper}>
       <div className={styles.profile_imgr}>
