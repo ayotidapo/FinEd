@@ -17,7 +17,6 @@ import styles from './learning.module.scss';
 
 interface Props {
   data?: any;
-  bookmarked?: any;
 }
 
 const sortedAsc = (arr: any[], key: string) => {
@@ -26,7 +25,7 @@ const sortedAsc = (arr: any[], key: string) => {
   );
 };
 
-const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
+const MyLearningPage: React.FC<Props> = ({ data }) => {
   const router = useRouter();
   const tab = router.query?.tab || 'ongoing';
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
@@ -74,8 +73,9 @@ const MyLearningPage: React.FC<Props> = ({ data, bookmarked }) => {
   };
   let dataArray = analytics;
   if (tab === 'bookmarked') {
-    dataArray = bookmarked;
+    dataArray = data.map((d: ICourse) => ({ course: d }));
   }
+  console.log(dataArray, data, 78);
   return (
     <>
       <div className={styles.topheader}>

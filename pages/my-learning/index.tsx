@@ -8,13 +8,12 @@ import { wrapper } from 'store';
 
 interface Props {
   data?: any;
-  bookmarked?: any;
 }
 
-const MyLearning: React.FC<Props> = ({ data, bookmarked }) => {
+const MyLearning: React.FC<Props> = ({ data }) => {
   return (
     <>
-      <MyLearningPage data={data} bookmarked={bookmarked} />
+      <MyLearningPage data={data} />
     </>
   );
 };
@@ -40,10 +39,10 @@ export const getServerSideProps: GetServerSideProps =
 
       if (tab === 'bookmarked') {
         const { data } = await axios.get(`/bookmarks`);
-
+        console.log({ bookmark: data });
         return {
           props: {
-            bookmarked: data,
+            data,
           },
         };
       }
