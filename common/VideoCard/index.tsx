@@ -6,6 +6,9 @@ import { formatDate } from 'helpers';
 import Star from 'common/Ratings';
 import styles from './videocard.module.scss';
 import { useSelector } from 'store';
+import React, { useState } from 'react';
+import { bookMarkCourse, unbookMarkCourse } from './function';
+import classnames from 'classnames';
 
 interface Props {
   course: ICourse;
@@ -19,11 +22,19 @@ const VideoCard: React.FC<Props> = ({ course }) => {
 
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const router = useRouter();
-  const { plan: curPlan } = user?.currentSubscription || {};
+  const [bookMarked, setBookmarked] = useState(false);
 
   // const canWatch = (paid && curPlan?.id) || !paid;
   const i = !paid ? 'Free' : 'Available for premium users only';
-
+  const onBookMark = async (
+    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+    setBookmarked(true);
+    const { id, bookmarked } = course;
+    if (!bookmarked) return await bookMarkCourse(id);
+    unbookMarkCourse(id);
+  };
   return (
     <article className={`${styles.video_card}`}>
       <div
@@ -32,23 +43,24 @@ const VideoCard: React.FC<Props> = ({ course }) => {
       >
         <Image src={thumbnail?.url} layout="fill" alt="top-sec-img" />
         <div className={styles.overlay}>
-          <p>
-            <Icon id="bookmark" width={24} height={24} className="hand" />
+          <p onClick={(e) => onBookMark(e)} className={styles.bookmark}>
+            <span className={classnames({ [styles.bookmarked]: bookMarked })}>
+              <Icon id="bookmark" width={24} height={24} className="hand" />
+            </span>
           </p>
           {true && (
             <p style={{ visibility: 'hidden' }}>
               <Icon id="play" width={24} height={24} className="hand" />
             </p>
           )}
-          {!false && (
-            <p>
-              <Icon id={paid ? 'padlock' : 'pad-open'} width={24} height={24} />
-              &nbsp;
-              <span style={{ paddingTop: '4px' }}>
-                {!paid ? 'Free' : 'Available for premium users only'}
-              </span>
-            </p>
-          )}
+
+          <p>
+            <Icon id={paid ? 'padlock' : 'pad-open'} width={24} height={24} />
+            &nbsp;
+            <span style={{ paddingTop: '4px' }}>
+              {!paid ? 'Free' : 'Available for premium users only'}
+            </span>
+          </p>
         </div>
       </div>
       <div className={styles.video_info}>
