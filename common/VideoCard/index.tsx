@@ -13,9 +13,10 @@ import { updateCourses } from 'reducers/courses';
 
 interface Props {
   course: ICourse;
+  unBookMarkFunc?: (id: string) => void;
 }
 
-const VideoCard: React.FC<Props> = ({ course }) => {
+const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
   const { thumbnail, level, title, paid, categories, updatedAt, id, bookmark } =
     course;
 
@@ -35,7 +36,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
     const { id } = course;
     if (!bookmark?.id) {
       setBookmarked(true);
-      console.log(bookmark, '0000');
+      // console.log(bookmark, '0000');
       await bookMarkCourse(id);
 
       return dispatch(
@@ -44,6 +45,7 @@ const VideoCard: React.FC<Props> = ({ course }) => {
     }
 
     dispatch(updateCourses({ courseId: id, bookmark: {} }));
+    if (unBookMarkFunc) unBookMarkFunc(id);
     await unbookMarkCourse(id);
     setBookmarked(false);
   };

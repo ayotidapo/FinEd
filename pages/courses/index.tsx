@@ -15,7 +15,7 @@ interface Props {
 
 const Videos: React.FC<Props> = () => {
   const courses: any = useSelector((state) => state.courses.courses);
-  console.log(courses, 75);
+
   return (
     <>
       <VideoPage

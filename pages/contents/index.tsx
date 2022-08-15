@@ -14,7 +14,7 @@ interface Props {
 
 const Videos: React.FC<Props> = () => {
   const courses: any = useSelector((state) => state.courses.courses);
-  console.log(courses, 'poiui');
+
   return (
     <>
       <VideoPage
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps =
       const { data } = await axios.get(
         `/courses-user/noauth?skip=${page - 1}&take=12`,
       );
-      console.log(data, data.courses.length, 8);
+
       store.dispatch(setCourses(data));
       return {
         props: {},

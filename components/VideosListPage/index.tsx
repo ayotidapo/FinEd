@@ -40,7 +40,6 @@ const VideosListPage: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false);
   const { explorePage, courses, paginationUrl } = props;
 
-  console.log(courses, 'dapo');
   const fields = {
     discountCode: {
       name: 'discountCode',

@@ -36,11 +36,9 @@ export const courseSlice = createSlice({
 		    state.courses = {...action.payload}
 		},
     updateCourses(state: IState, action){
-      console.log(current(state),state.courses)
       const { courses } = state.courses;
        const courseIndex=courses?.findIndex((course:any) => course.id === action.payload?.courseId)
-       courses[courseIndex].bookmark=action.payload?.bookmark
-      
+       courses[courseIndex].bookmark=action.payload?.bookmark      
     }
 	},
 

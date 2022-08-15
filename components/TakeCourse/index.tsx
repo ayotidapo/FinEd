@@ -43,7 +43,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const { plans } = useSelector((state) => state?.plans);
 
   const { title, description, contents, categories, level, paid, id } = course;
-  console.log(contId, curVidId, 8999);
+
   const { plan: curPlan } = user?.currentSubscription || {};
 
   const cantWatch = paid && !curPlan?.id;
@@ -109,7 +109,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     // console.log('pow', cId, contId, curVidId);
     await sendContentProgress(contId, Math.floor(Number(progress)));
   };
-  console.log(latestCourseContent);
+
   const handleVideoMounted = (element: any) => {
     if (element !== null) {
       element.currentTime = latestCourseContent?.progress || 0;
@@ -139,7 +139,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
     const fileurl = data?.file?.url;
     setLatestCourseContent(data);
-    console.log(data, 4);
+
     setUrl(fileurl);
 
     if (data) {
@@ -154,7 +154,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   useEffect(() => {
     onLoadPage();
   }, []);
-  console.log(hasVideo, 78);
+
   return (
     <main className={styles.watch}>
       <Modal

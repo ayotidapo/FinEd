@@ -29,9 +29,10 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   const router = useRouter();
   const tab = router.query?.tab || 'ongoing';
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
-
+  // analytics is array of course
   const analytics: any = data?.analytics || [];
   const [sortedAnalytics, setSortedAnalytics] = useState<ICourse[]>([]);
+  const [courseArray, setCourseArray] = useState<ICourse[]>(analytics);
   const [lastAnalytics, setLastAnalytics] = useState<any>({});
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
 
@@ -73,11 +74,24 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   const onContinueCourse = () => {
     router.push(`/take-course/${lastViewed?.id}/${data.title}`);
   };
-  let dataArray = analytics;
-  if (tab === 'bookmarked') {
-    dataArray = data.map((d: ICourse) => ({ course: d }));
-  }
 
+  useEffect(() => {
+    if (tab === 'bookmarked') {
+      const formatbookMarkCourseData = data.map((d: ICourse) => ({
+        course: d,
+      }));
+      setCourseArray(formatbookMarkCourseData);
+    } else {
+      setCourseArray(analytics);
+    }
+  }, [tab]);
+  console.log(courseArray[0].bookmark, 'opopopo');
+  const unBookMarkCourse = (id: string) => {
+    if (tab === 'bookmarked') {
+      const onlybookmark = courseArray.filter((course) => course.id !== id);
+      setCourseArray(onlybookmark);
+    }
+  };
   return (
     <>
       <div className={styles.topheader}>
@@ -175,11 +189,15 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
           </section>
         )}
 
-        {dataArray.length < 1 && <EmptyView contentName={`${tab} course`} />}
+        {courseArray.length < 1 && <EmptyView contentName={`${tab} course`} />}
 
         <section className={styles.content_items_wrap}>
-          {dataArray?.map(({ course }: any) => (
-            <VideoCard key={course?.id} course={course} />
+          {courseArray?.map(({ course }: any) => (
+            <VideoCard
+              key={course?.id}
+              course={course}
+              unBookMarkFunc={unBookMarkCourse}
+            />
           ))}
         </section>
       </main>

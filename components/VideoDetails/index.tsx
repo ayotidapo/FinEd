@@ -63,7 +63,6 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
   };
 
   const onClickedUpgrade = () => {
-    console.log(courseId, 'pppp');
     if ((paid && curPlan?.id) || !paid)
       return router.push(`/take-course/${courseId}/${title}`);
     else setIsOpen(true);
