@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps =
 
       if (tab === 'bookmarked') {
         const { data } = await axios.get(`/bookmarks`);
-
+        console.log(data);
         return {
           props: {
             data,

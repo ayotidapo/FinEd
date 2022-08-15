@@ -27,8 +27,6 @@ const VideoCard: React.FC<Props> = ({ course }) => {
   const router = useRouter();
   const [bookMarked, setBookmarked] = useState(bookmark?.id);
 
-  // const canWatch = (paid && curPlan?.id) || !paid;
-  const i = !paid ? 'Free' : 'Available for premium users only';
   const onBookMark = async (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
   ) => {
@@ -37,8 +35,8 @@ const VideoCard: React.FC<Props> = ({ course }) => {
     const { id } = course;
     if (!bookmark?.id) {
       setBookmarked(true);
-
-      const response = await bookMarkCourse(id);
+      console.log(bookmark, '0000');
+      await bookMarkCourse(id);
 
       return dispatch(
         updateCourses({ courseId: id, bookmark: { id: 'mockId' } }),
