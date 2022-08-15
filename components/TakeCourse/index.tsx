@@ -154,7 +154,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   useEffect(() => {
     onLoadPage();
   }, []);
-
+  console.log(hasVideo, 78);
   return (
     <main className={styles.watch}>
       <Modal
