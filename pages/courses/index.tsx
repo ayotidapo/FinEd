@@ -27,10 +27,10 @@ const Videos: React.FC<Props> = () => {
 export default Videos;
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async ({ req, res }) => {
+  wrapper.getServerSideProps((store) => async ({ req, query, res }) => {
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
-
+    const page = Number(query?.page) || 1;
     if (!userId) {
       return {
         redirect: {
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      const { data } = await axios.get('/courses-user/?skip=0&take=20');
+      const { data } = await axios.get(`/courses-user/?skip=${page}&take=12`);
 
       store.dispatch(setCourses(data));
 

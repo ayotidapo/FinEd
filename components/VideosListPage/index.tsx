@@ -10,6 +10,8 @@ import Input from 'common/Input';
 import { useSelector } from 'store';
 import useForm from 'hooks/useForm';
 import Link from 'next/link';
+import Paginate from 'common/Paginate';
+import PageLoader from 'common/PageLoader';
 
 export interface ICourse {
   id: string;
@@ -34,7 +36,9 @@ interface Props {
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
   const [showFilter, setShowFilter] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { explorePage, courses } = props;
+
   console.log(courses, 'dapo');
   const fields = {
     discountCode: {
@@ -49,6 +53,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   };
   const { onChangeInput, onBlurInput, inputs } = useForm(fields);
   const { discountCode } = inputs;
+
   return (
     <>
       <header className={styles.video_header_wrap}>
@@ -186,11 +191,17 @@ const VideosListPage: React.FC<Props> = (props) => {
               )}
             </div>
           </section>
+          {loading && (
+            <div className="container">
+              <PageLoader />
+            </div>
+          )}
           <section className={styles.content_items_wrap}>
             {courses?.map((course: ICourse) => (
               <VideoCard key={course.id} course={course} />
             ))}
           </section>
+          <Paginate totalCount={props.totalCount} />
         </div>
       </main>
     </>

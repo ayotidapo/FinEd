@@ -63,7 +63,9 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
       const videos = courseVideos(lastViewed.contents);
       contentLen = videos.length;
       const percProgress = getCourseProgressPerc(contentLen, numberWatched);
-      const updateLastAnalytics = { ...lastAnalytics, progress: percProgress };
+      const updateLastAnalytics = {
+        ...lastAnalytics /*, progress: percProgress*/,
+      };
       setLastAnalytics(updateLastAnalytics);
     }
   }, [lastViewed?.id]);
