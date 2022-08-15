@@ -18,7 +18,7 @@ const Videos: React.FC<Props> = () => {
   return (
     <>
       <VideoPage
-        courses={courses?.courses?.slice(0, 6)}
+        courses={courses?.courses}
         explorePage
         totalCount={courses?.totalCount}
         paginationUrl="/contents"
