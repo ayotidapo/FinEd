@@ -21,6 +21,7 @@ const Videos: React.FC<Props> = () => {
         courses={courses?.courses?.slice(0, 6)}
         explorePage
         totalCount={courses?.totalCount}
+        paginationUrl="/contents"
       />
       <Footer />
     </>
@@ -48,7 +49,7 @@ export const getServerSideProps: GetServerSideProps =
       const { data } = await axios.get(
         `/courses-user/noauth?skip=${page - 1}&take=12`,
       );
-      console.log(data, 8);
+      console.log(data, data.courses.length, 8);
       store.dispatch(setCourses(data));
       return {
         props: {},

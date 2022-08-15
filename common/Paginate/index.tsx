@@ -4,6 +4,7 @@ import styles from './paginate.module.scss';
 
 interface Props {
   totalCount: number;
+  pageUrl?: string;
   onChangePage?: (e?: any) => void;
 }
 
@@ -12,11 +13,11 @@ const Paginate: React.FC<Props> = (props) => {
   const initialPg = Number(router.query?.page) || 1;
   const { totalCount, onChangePage } = props;
   const noOfPage = Math.ceil(totalCount / 12);
-
+  console.log(noOfPage, totalCount, 84848);
   const onPageChange = (e: { selected: number }) => {
     if (onChangePage) onChangePage();
     const { selected: pageNum } = e;
-    router.push(`/contents?page=${pageNum + 1}`);
+    router.push(`/${props.pageUrl}/?page=${pageNum + 1}`);
   };
   return (
     <div className={styles.pgnt_wrapper}>
@@ -25,7 +26,7 @@ const Paginate: React.FC<Props> = (props) => {
         nextLabel="Next  >"
         onPageChange={onPageChange}
         initialPage={initialPg - 1}
-        pageRangeDisplayed={6}
+        pageRangeDisplayed={1}
         pageCount={noOfPage}
         activeClassName={styles.activepagelink}
         previousLabel="<  Prev"

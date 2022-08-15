@@ -18,7 +18,11 @@ const Videos: React.FC<Props> = () => {
   console.log(courses, 75);
   return (
     <>
-      <VideoPage courses={courses?.courses} />
+      <VideoPage
+        courses={courses?.courses}
+        totalCount={courses?.totalCount}
+        paginationUrl="/courses"
+      />
       <Footer />
     </>
   );

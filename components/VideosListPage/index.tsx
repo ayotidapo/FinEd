@@ -31,13 +31,14 @@ export interface ICourse {
 interface Props {
   [key: string]: any;
   courses: ICourse[];
+  paginationUrl?: string;
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
   const [showFilter, setShowFilter] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { explorePage, courses } = props;
+  const { explorePage, courses, paginationUrl } = props;
 
   console.log(courses, 'dapo');
   const fields = {
@@ -201,7 +202,9 @@ const VideosListPage: React.FC<Props> = (props) => {
               <VideoCard key={course.id} course={course} />
             ))}
           </section>
-          <Paginate totalCount={props.totalCount} />
+          {paginationUrl !== '/contents' && (
+            <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
+          )}
         </div>
       </main>
     </>
