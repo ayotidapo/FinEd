@@ -41,8 +41,11 @@ export const courseSlice = createSlice({
       const courses = state.courses;
       
         const courseIndex=courses?.findIndex((course:any) => course.id === action.payload?.courseId)
-        console.log(courseIndex === -1)
-       if(courseIndex > -1) courses[courseIndex].bookmark=action.payload?.bookmark    
+        console.log(courseIndex === -1,courseIndex,action.payload?.bookmark)
+       if(courseIndex > -1) {
+         if(action.payload?.bookmark?.id) courses[courseIndex].bookmark=action.payload?.bookmark
+ 
+       }   
         state.bookmarkCourses.filter((course:any) => course.id !== action.payload?.courseId )
     },
     setBookMarkCourses(state: IState, action){

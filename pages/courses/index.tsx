@@ -9,18 +9,18 @@ import { setCourses } from 'reducers/courses';
 import { useSelector, wrapper } from 'store';
 
 interface Props {
-  courses: ICourse[];
+  totalCount: number;
   [key: string]: any;
 }
 
-const Videos: React.FC<Props> = () => {
+const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
 
   return (
     <>
       <VideoPage
         courses={courses?.courses}
-        totalCount={courses?.totalCount}
+        totalCount={totalCount}
         paginationUrl="/courses"
       />
       <Footer />
@@ -50,7 +50,9 @@ export const getServerSideProps: GetServerSideProps =
       store.dispatch(setCourses(data?.courses));
 
       return {
-        props: {},
+        props: {
+          totalCount: data.totalCount,
+        },
       };
     } catch (e) {
       store.dispatch(setCourses(null));

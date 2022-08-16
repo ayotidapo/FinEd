@@ -34,6 +34,7 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
     e.stopPropagation();
 
     const { id } = course;
+    console.log(course, 909090);
     if (!bookmark?.id) {
       setBookmarked(true);
       // console.log(bookmark, '0000');

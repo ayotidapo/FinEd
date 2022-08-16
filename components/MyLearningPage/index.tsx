@@ -40,7 +40,7 @@ const MyLearningPage: React.FC<Props> = () => {
   const onSetTab = (tab: string) => {
     router.push(`/my-learning?tab=${tab}`);
   };
-
+  console.log(courses, 12321);
   useEffect(() => {
     let contentLen = 0;
 
