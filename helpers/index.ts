@@ -77,3 +77,9 @@ export function toTimeString(seconds:number) {
  return '00:00:00'
 
 }
+
+export const sortedAsc = (arr: any[], key: string) => {
+  return arr.sort(
+    (objA: any, objB: any) => Date.parse(objA[key]) - Date.parse(objB[key]),
+  );
+};

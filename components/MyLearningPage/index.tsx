@@ -12,31 +12,26 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ICourse } from 'reducers/courses';
+import { useSelector } from 'store';
 
 import styles from './learning.module.scss';
 
-interface Props {
-  data?: any;
-}
+interface Props {}
 
-const sortedAsc = (arr: any[], key: string) => {
-  return arr.sort(
-    (objA: any, objB: any) => Date.parse(objA[key]) - Date.parse(objB[key]),
-  );
-};
-
-const MyLearningPage: React.FC<Props> = ({ data }) => {
+const MyLearningPage: React.FC<Props> = () => {
   const router = useRouter();
   const tab = router.query?.tab || 'ongoing';
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
-  // analytics is array of course
-  const analytics: any = data?.analytics || [];
-  const [sortedAnalytics, setSortedAnalytics] = useState<ICourse[]>([]);
-  const [courseArray, setCourseArray] = useState<ICourse[]>(analytics);
-  const [lastAnalytics, setLastAnalytics] = useState<any>({});
+
+  const { courses, bookmarkCourses }: any = useSelector(
+    (state) => state.courses,
+  );
+
+  const [courseArray, setCourseArray] = useState<ICourse[]>(courses);
+
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
 
-  const lastViewed: ICourse = lastAnalytics?.course;
+  const lastViewed: ICourse = courses[0];
 
   const rating = Math.round(lastViewed?.rating);
 
@@ -47,51 +42,33 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
   };
 
   useEffect(() => {
-    const sortedAnalytiks = sortedAsc(analytics, 'dateupdated');
-
-    setSortedAnalytics(sortedAnalytiks);
-
-    const lastAnalytics = sortedAnalytiks[0];
-
-    setLastAnalytics(lastAnalytics);
-  }, [tab]);
-
-  useEffect(() => {
     let contentLen = 0;
-    const numberWatched = lastAnalytics?.progress;
 
     if (lastViewed?.contents) {
       const videos = courseVideos(lastViewed.contents);
       contentLen = videos.length;
-      const percProgress = getCourseProgressPerc(contentLen, numberWatched);
-      const updateLastAnalytics = {
-        ...lastAnalytics /*, progress: percProgress*/,
-      };
-      setLastAnalytics(updateLastAnalytics);
     }
   }, [lastViewed?.id]);
 
   const onContinueCourse = () => {
-    router.push(`/take-course/${lastViewed?.id}/${data.title}`);
+    router.push(`/take-course/${lastViewed?.id}/${lastViewed.title}`);
   };
 
   useEffect(() => {
     if (tab === 'bookmarked') {
-      const formatbookMarkCourseData = data.map((d: ICourse) => ({
-        course: d,
-      }));
-      setCourseArray(formatbookMarkCourseData);
+      setCourseArray(bookmarkCourses);
     } else {
-      setCourseArray(analytics);
+      setCourseArray(courses);
     }
   }, [tab]);
-  console.log(courseArray[0].bookmark, 'opopopo');
+
   const unBookMarkCourse = (id: string) => {
     if (tab === 'bookmarked') {
       const onlybookmark = courseArray.filter((course) => course.id !== id);
       setCourseArray(onlybookmark);
     }
   };
+
   return (
     <>
       <div className={styles.topheader}>
@@ -164,7 +141,7 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
                 </span>
               </div>
               <div className={styles.progressbar}>
-                <Progressbar progress={lastAnalytics?.progress} />
+                <Progressbar progress={lastViewed?.analyticProgress} />
               </div>
             </div>
             <div className={styles.lblBx}>
@@ -192,9 +169,9 @@ const MyLearningPage: React.FC<Props> = ({ data }) => {
         {courseArray.length < 1 && <EmptyView contentName={`${tab} course`} />}
 
         <section className={styles.content_items_wrap}>
-          {courseArray?.map(({ course }: any) => (
+          {courseArray?.map((course: any) => (
             <VideoCard
-              key={course?.id}
+              key={course.id}
               course={course}
               unBookMarkFunc={unBookMarkCourse}
             />

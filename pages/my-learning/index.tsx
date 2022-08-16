@@ -3,17 +3,15 @@ import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
-import { setCourses } from 'reducers/courses';
+import { setBookMarkCourses, setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
-interface Props {
-  data?: any;
-}
+interface Props {}
 
-const MyLearning: React.FC<Props> = ({ data }) => {
+const MyLearning: React.FC<Props> = () => {
   return (
     <>
-      <MyLearningPage data={data} />
+      <MyLearningPage />
     </>
   );
 };
@@ -38,26 +36,30 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (tab === 'bookmarked') {
-        const { data } = await axios.get(`/bookmarks`);
-        console.log(data, 'bookmarked');
+        const { data: courses } = await axios.get(`/bookmarks`);
+        console.log('book', courses, 'marked');
+        store.dispatch(setBookMarkCourses(courses));
         return {
-          props: {
-            data,
-          },
+          props: {},
         };
       }
-
+      console.log(123444);
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
-
+      const analytics = data?.analytics;
+      const courses = analytics.map((analytic: any) => ({
+        ...analytic.course,
+        analyticProgress: analytic.progress,
+        analyticDateCreated: analytic.datecreated,
+        analyticDateUpreated: analytic.dateupdated,
+      }));
+      store.dispatch(setCourses(courses));
       return {
-        props: {
-          data,
-        },
+        props: {},
       };
     } catch (e) {
-      store.dispatch(setCourses(null));
+      store.dispatch(setCourses([]));
       return {
         props: {
           error: 'call failed',

@@ -7,13 +7,8 @@ import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
 
-interface Props {
-  courses: ICourse[];
-  [key: string]: any;
-}
-
-const Videos: React.FC<Props> = () => {
-  const courses: any = useSelector((state) => state.courses.courses);
+const Videos: React.FC = () => {
+  const courses: any = useSelector((state) => state.courses);
 
   return (
     <>
@@ -50,7 +45,7 @@ export const getServerSideProps: GetServerSideProps =
         `/courses-user/noauth?skip=${page - 1}&take=12`,
       );
 
-      store.dispatch(setCourses(data));
+      store.dispatch(setCourses(data?.courses));
       return {
         props: {},
       };

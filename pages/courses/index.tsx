@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Videos: React.FC<Props> = () => {
-  const courses: any = useSelector((state) => state.courses.courses);
+  const courses: any = useSelector((state) => state.courses);
 
   return (
     <>
@@ -46,8 +46,8 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get(`/courses-user/?skip=${page}&take=9`);
-
-      store.dispatch(setCourses(data));
+      console.log(data, '122453535353535');
+      store.dispatch(setCourses(data?.courses));
 
       return {
         props: {},

@@ -39,12 +39,12 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
       // console.log(bookmark, '0000');
       await bookMarkCourse(id);
 
-      return dispatch(
-        updateCourses({ courseId: id, bookmark: { id: 'mockId' } }),
-      );
+      dispatch(updateCourses({ courseId: id, bookmark: { id: 'mockId' } }));
+      return;
     }
 
     dispatch(updateCourses({ courseId: id, bookmark: {} }));
+
     if (unBookMarkFunc) unBookMarkFunc(id);
     await unbookMarkCourse(id);
     setBookmarked(false);
