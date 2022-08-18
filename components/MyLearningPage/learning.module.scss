@@ -1,11 +1,15 @@
 .topheader{
-    background-color: #ebebeb;
-   
+    
+    background-image: url("/assets/vidheaderbg.png");
    .section{
         
-        margin:50px auto 0px auto;
+ 
+        margin: 50px auto 0px auto;
         padding-bottom: 5px;
-        width:85%;
+        width: 85%;
+        margin-top: 0;
+        padding-top: 50px;
+    
     }
     :global(.navi){
         .uli{

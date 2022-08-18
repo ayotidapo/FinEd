@@ -17,7 +17,9 @@ const Header: React.FC = () => {
           <li>Services</li>
           <li>Tools</li>
           <li>Company</li>
-          <li>Explore</li>
+          <li>
+            <Link href="/contents">Explore</Link>
+          </li>
           <li>
             <Link href="/login">Login</Link>
           </li>

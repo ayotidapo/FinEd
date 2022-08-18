@@ -24,7 +24,7 @@
         cursor: pointer;
       }
       &::after {
-        content: url('../../svgs/caret-down.svg');
+       // content: url('../../svgs/caret-down.svg');
         margin-left: 8px;
         transition: transform 0.5s linear;
       }

@@ -108,7 +108,23 @@
     margin-right: 20px;
   }
 }
-
+.to_enjoy_course{
+  height: 100px;
+  font-family: var(--font-2);
+  font-size: var(--f-18);
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 40px;
+  line-height: 1.8;
+  a{
+    color: #015351; 
+    font-weight: bold;
+  }
+  
+}
+.modalClass{
+  width: 32%;
+}
 @media only screen and (max-width: 1076px) {
   .video_card {
     width: 48%;

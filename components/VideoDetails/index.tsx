@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Button from 'common/Button';
 import { useRouter } from 'next/router';
-import Header from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Star from 'common/Ratings';

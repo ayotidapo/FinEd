@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-between;
   background: transparent;
+  background-image: url("/assets/vidheaderbg.png");
   > div {
     display: flex;
     flex: 1;
@@ -20,6 +21,7 @@
   .inptClass {
     padding-top: 7px;
     border-bottom: 2px solid rgba(17, 17, 17, 0.5);
+    transform: translateY(5px);
   }
   .btn {
     background-color: #c03e21;
@@ -29,7 +31,6 @@
   .logIn {
     background: transparent;
     color: var(--pri-col);
-    margin: 0 20px;
   }
   .logo_box {
     position: relative;

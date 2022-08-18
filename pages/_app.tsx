@@ -9,10 +9,12 @@ import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { useEffect, useState } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
+import Header from 'common/HeaderLoggedIn';
 import PageLoader from 'common/PageLoader';
 import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../styles/globals.scss';
+import HeaderWtSearch from 'common/HeaderWtSearch';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(true);
@@ -47,6 +49,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         className="toast-container"
         toastClassName="dark-toast"
       />
+      {userId && (
+        <Header style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }} />
+      )}
       <Component {...pageProps} />
     </div>
   );

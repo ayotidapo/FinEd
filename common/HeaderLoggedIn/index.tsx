@@ -12,7 +12,7 @@ import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useState } from 'react';
 
-const Header = () => {
+const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`app-pad ${styles.header}`}>
+    <header className={`app-pad ${styles.header}`} style={style}>
       <Modal
         openModal={isOpen}
         onClose={onClose}
@@ -67,13 +67,17 @@ const Header = () => {
       </div>
       <nav className={`navi ${styles.navi_box}`}>
         <ul className={styles.nav_ul}>
-          <li>
-            <Link href="/contents">
-              <a className={path.includes('contents') ? styles.activelnk : ''}>
-                Explore
-              </a>
-            </Link>
-          </li>
+          {false && (
+            <li>
+              <Link href="/contents">
+                <a
+                  className={path.includes('contents') ? styles.activelnk : ''}
+                >
+                  Explore
+                </a>
+              </Link>
+            </li>
+          )}
           <li>
             <Link href="/">
               <a className={path.includes('course') ? styles.activelnk : ''}>

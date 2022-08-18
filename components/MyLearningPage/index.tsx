@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Button from 'common/Button';
 import EmptyView from 'common/EmptyView';
-import HeaderLoggedIn from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
@@ -72,7 +71,6 @@ const MyLearningPage: React.FC<Props> = () => {
   return (
     <>
       <div className={styles.topheader}>
-        <HeaderLoggedIn />
         <section className={styles.section}>
           <h2 className="title">My Learning</h2>
           <nav className={`navi ${styles.navUl}`}>

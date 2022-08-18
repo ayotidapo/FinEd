@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import cx from 'classnames';
-import Header from 'common/HeaderLoggedIn';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
 import Checkbox from 'common/Checkbox';
@@ -57,13 +56,11 @@ const VideosListPage: React.FC<Props> = (props) => {
   return (
     <>
       <header className={styles.video_header_wrap}>
-        <Header />
         <div className={styles.topics}>
           <h2 className="title">
-            Let&apos;s start learning,
+            Let&apos;s start learning
             <span style={{ textTransform: 'capitalize' }}>
-              {' '}
-              {user?.firstName}
+              {user?.firstName ? ` ,${user?.firstName}` : ' !'}
             </span>
           </h2>
           <span
@@ -75,7 +72,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               <Icon id="caret-down" width={24} height={24} />
             </span>
           </span>
-          {explorePage && (
+          {!explorePage && (
             <div className={styles.search_input}>
               <Input
                 field={discountCode}
@@ -173,7 +170,7 @@ const VideosListPage: React.FC<Props> = (props) => {
             <div className={styles.content_sort}>
               {/* <span style={{ color: '#7C7C7C' }}>Sort by &nbsp;&nbsp;</span>
               <span className={`hand`}>Latest videos</span> */}
-              {explorePage ? (
+              {false ? (
                 <div className={styles.vw_all}>
                   <span className={`hand`}>
                     <Link href="/courses">View all</Link>
@@ -201,9 +198,8 @@ const VideosListPage: React.FC<Props> = (props) => {
               <VideoCard key={course.id} course={course} />
             ))}
           </section>
-          {paginationUrl !== '/contents' && (
-            <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
-          )}
+
+          <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
         </div>
       </main>
     </>

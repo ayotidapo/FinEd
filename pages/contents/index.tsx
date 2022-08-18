@@ -6,16 +6,23 @@ import { useSelector, wrapper } from 'store';
 import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
+import HeaderWtSearch from 'common/HeaderWtSearch';
 
-const Videos: React.FC = () => {
+interface Props {
+  totalCount: number;
+  [key: string]: any;
+}
+
+const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
 
   return (
     <>
+      <HeaderWtSearch />
       <VideoPage
         courses={courses?.courses}
         explorePage
-        totalCount={courses?.totalCount}
+        totalCount={totalCount}
         paginationUrl="/contents"
       />
       <Footer />
@@ -31,10 +38,10 @@ export const getServerSideProps: GetServerSideProps =
     const { s_token, userId } = getToken(c_token as string);
     const page = Number(query?.page) || 1;
 
-    if (!userId) {
+    if (userId) {
       return {
         redirect: {
-          destination: '/login',
+          destination: '/videos',
           permanent: false,
         },
       };
@@ -42,12 +49,12 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get(
-        `/courses-user/noauth?skip=${page - 1}&take=12`,
+        `/courses-user/noauth?skip=${page - 1}&take=9`,
       );
 
       store.dispatch(setCourses(data?.courses));
       return {
-        props: {},
+        props: { totalCount: data.totalCount },
       };
     } catch (e) {
       store.dispatch(setCourses(null));

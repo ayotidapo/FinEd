@@ -1,4 +1,3 @@
-import Header from 'common/HeaderLoggedIn';
 import styles from './settings.module.scss';
 import MyProfile from 'components/MyProfile';
 import SubscriptionPage, { IPlan } from 'components/SubscriptionPage';
@@ -27,13 +26,11 @@ const SettingsPage: React.FC<Props> = (props) => {
 
   return (
     <>
-      <Header />
       <main className={styles.settings_main}>
         <section style={{ padding: '10px 0px' }}>
           <h2 className="title">My Settings</h2>
           <div className={styles.wrapper}>
             <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
-
             <div className={styles.display}>
               {activeTab === 'My Profile' && <MyProfile />}
               {activeTab === 'Subcriptions' && (
