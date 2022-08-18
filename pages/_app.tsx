@@ -11,16 +11,18 @@ import { useEffect, useState } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
 import Header from 'common/HeaderLoggedIn';
 import PageLoader from 'common/PageLoader';
+import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   axios.defaults.baseURL = 'https://api.themoneystaging.com';
   const { userId, s_token } = pageProps;
   const dispatch = useDispatch();
-  const path = global.window.location.pathname;
-  console.log(path);
+  const path = router.pathname;
+  console.log(router);
   // const hideHeader = ['take-course'];
   const isHideHeader = path.includes('take-course');
 

@@ -100,9 +100,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
           />
         }
       </Modal>
-      <header className={styles.header}>
-        <Header />
-      </header>
+      <header className={styles.header}></header>
       <div className={`app-pad ${styles.jumbotron}`}>
         <nav className={styles.breadcrumb}>
           <ul>

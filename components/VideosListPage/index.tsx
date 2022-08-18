@@ -60,7 +60,7 @@ const VideosListPage: React.FC<Props> = (props) => {
           <h2 className="title">
             Let&apos;s start learning
             <span style={{ textTransform: 'capitalize' }}>
-              {user?.firstName ? ` ,${user?.firstName}` : ' !'}
+              {user?.firstName ? `, ${user?.firstName}` : ' !'}
             </span>
           </h2>
           <span

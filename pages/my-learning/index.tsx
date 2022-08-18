@@ -3,7 +3,7 @@ import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
-import { setBookMarkCourses, setCourses } from 'reducers/courses';
+import { ICourse, setBookMarkCourses, setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
 interface Props {}
@@ -38,7 +38,11 @@ export const getServerSideProps: GetServerSideProps =
       if (tab === 'bookmarked') {
         const { data: courses } = await axios.get(`/bookmarks`);
         console.log('book', courses, 'marked');
-        store.dispatch(setBookMarkCourses(courses));
+        const addBk2courses = courses.map((course: ICourse) => ({
+          ...course,
+          bookmark: { id: 'fake-id' },
+        }));
+        store.dispatch(setBookMarkCourses(addBk2courses));
         return {
           props: {},
         };
