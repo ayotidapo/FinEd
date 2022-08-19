@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps =
     if (userId) {
       return {
         redirect: {
-          destination: '/videos',
+          destination: '/courses',
           permanent: false,
         },
       };
@@ -53,6 +53,13 @@ export const getServerSideProps: GetServerSideProps =
       );
 
       store.dispatch(setCourses(data?.courses));
+
+      if (page > 1 && data?.courses?.length < 1) {
+        return {
+          notFound: true,
+        };
+      }
+
       return {
         props: { totalCount: data.totalCount },
       };
