@@ -45,9 +45,18 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      const { data } = await axios.get(`/courses-user/?skip=${page}&take=9`);
-      console.log(data, '122453535353535');
+      const { data } = await axios.get(
+        `/courses-user/?skip=${(page - 1) * 12}&take=12`,
+      );
+
       store.dispatch(setCourses(data?.courses));
+
+      if (page > 1 && data?.courses?.length < 1) {
+        console.log(data?.courses?.length, '122453535353535');
+        return {
+          notFound: true,
+        };
+      }
 
       return {
         props: {

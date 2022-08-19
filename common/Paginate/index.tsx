@@ -12,7 +12,7 @@ const Paginate: React.FC<Props> = (props) => {
   const router = useRouter();
   const initialPg = Number(router.query?.page) || 1;
   const { totalCount, onChangePage } = props;
-  const noOfPage = Math.ceil(totalCount / 9);
+  const noOfPage = Math.ceil(totalCount / 12);
 
   const onPageChange = (e: { selected: number }) => {
     if (onChangePage) onChangePage();

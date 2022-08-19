@@ -11,6 +11,7 @@ import useForm from 'hooks/useForm';
 import Link from 'next/link';
 import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
+import EmptyView from 'common/EmptyView';
 
 export interface ICourse {
   id: string;
@@ -193,13 +194,19 @@ const VideosListPage: React.FC<Props> = (props) => {
               <PageLoader />
             </div>
           )}
-          <section className={styles.content_items_wrap}>
-            {courses?.map((course: ICourse) => (
-              <VideoCard key={course.id} course={course} />
-            ))}
-          </section>
+          {courses?.length > 1 ? (
+            <>
+              <section className={styles.content_items_wrap}>
+                {courses?.map((course: ICourse) => (
+                  <VideoCard key={course.id} course={course} />
+                ))}
+              </section>
 
-          <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
+              <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
+            </>
+          ) : (
+            <EmptyView contentName="course" />
+          )}
         </div>
       </main>
     </>

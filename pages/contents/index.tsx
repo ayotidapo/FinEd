@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get(
-        `/courses-user/noauth?skip=${page - 1}&take=9`,
+        `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
       );
 
       store.dispatch(setCourses(data?.courses));

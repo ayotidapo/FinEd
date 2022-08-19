@@ -47,10 +47,11 @@ export const getServerSideProps: GetServerSideProps =
           props: {},
         };
       }
-      console.log(123444);
+
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
+      console.log(7868686868789789, data, tab, 44);
       const analytics = data?.analytics;
       const courses = analytics.map((analytic: any) => ({
         ...analytic.course,
