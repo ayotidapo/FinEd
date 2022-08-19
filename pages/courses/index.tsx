@@ -52,7 +52,6 @@ export const getServerSideProps: GetServerSideProps =
       store.dispatch(setCourses(data?.courses));
 
       if (page > 1 && data?.courses?.length < 1) {
-        console.log(data?.courses?.length, '122453535353535');
         return {
           notFound: true,
         };

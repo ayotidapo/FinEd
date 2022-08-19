@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps =
 
       if (tab === 'bookmarked') {
         const { data: courses } = await axios.get(`/bookmarks`);
-        console.log('book', courses, 'marked');
+
         const addBk2courses = courses.map((course: ICourse) => ({
           ...course,
           bookmark: { id: 'fake-id' },
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps =
       const { data } = await axios.get(
         `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
-      console.log(7868686868789789, data, tab, 44);
+
       const analytics = data?.analytics;
       const courses = analytics.map((analytic: any) => ({
         ...analytic.course,

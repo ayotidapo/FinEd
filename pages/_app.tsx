@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { userId, s_token } = pageProps;
   const dispatch = useDispatch();
   const path = router.pathname;
-  console.log(router);
+
   // const hideHeader = ['take-course'];
   const isHideHeader = path.includes('take-course');
 
