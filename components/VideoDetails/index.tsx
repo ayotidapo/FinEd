@@ -135,7 +135,9 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
             onClick={onClickedUpgrade}
           >
             <section>
-              <Image src={thumbnail?.url} layout="fill" alt="video_img" />
+              {thumbnail?.url && (
+                <Image src={thumbnail?.url} layout="fill" alt="video_img" />
+              )}
               <div
                 className="overlay"
                 style={{ background: !hasVideo ? '#fff' : '' }}
