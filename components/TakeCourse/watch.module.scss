@@ -87,7 +87,7 @@
 					}
 				  }
 				}
-			  }
+			}
 			
 		}
         
@@ -100,40 +100,7 @@
 			font-family: var(--font-2);
 			line-height: 1.5;
 			flex: 1;
-			.video_player{
-				position: relative;
-				height: 430px;
-				width:100%;
-				background-color: #000;
-			}
-			.details{
-				width: 80%;
-				min-height: 250px;
-				padding: 0 25px;
-				padding-top: 50px;
-				padding-left: 35px;
-				padding-bottom: 50px;
-				:global(.title){
-					font-size: var(--f-24);
-				}
-				.barz_clock{
-					height: 50px;
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					margin-bottom: 40px;
-					margin-top: 20px;
-					label{
-						margin-right: 10px;
-					}
-				}
-				.min_details{
-					span{
-						display: flex;
-						align-items: center;
-					}
-				}
-			}
+			
 			.summary{
 				margin-top: 0px;
                 margin-bottom: 20px;
@@ -166,4 +133,48 @@
 	margin-bottom: 0;
 	color:#015351;
 	font-weight: bold;
+}
+.quiz_wrapper{
+	padding: 40px;
+	.top{
+		display: flex;
+		justify-content: space-between;
+		font-weight: bold;
+		background-color: transparent;
+		
+		span{
+			color:#C03E21;
+		}
+	}
+
+	:global(.title){
+		font-size: var(--f-24);
+		margin-bottom: 7px;
+		+p{
+			font-size: var(--f-16);
+			color:#637170;
+		}
+	}
+	.options_box{
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width:60%;
+		margin:20px 0px 40px 0px;
+
+		p{
+			display: flex;
+			margin: 10px 0px;
+			align-items: center;
+		}
+	}
+	.btn_nav{
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		button{
+			margin-left: 20px;
+		}
+	}
 }

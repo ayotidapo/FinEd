@@ -1,0 +1,37 @@
+
+.content {
+    padding-top: 0px;
+    font-size: var(--f-14);
+    font-family: var(--font-2);
+    max-height: 400px;
+    
+ul {
+    padding: 0;
+    li {
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 20px;
+      height: 40px;
+      padding-left: 20px;
+      margin-bottom: 5px;
+
+      .f_sp {
+          width: 60%;
+          display: inline-block;
+          text-decoration: none;
+          align-items: center;
+      }
+      .r_l{	
+          width: 80% ;
+      }
+      svg {
+        vertical-align: middle;
+      }
+      &:hover{
+          background-color: #091f1f;
+      }
+    }
+  }
+}

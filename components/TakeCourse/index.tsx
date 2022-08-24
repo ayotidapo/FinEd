@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import dynamic from 'next/dynamic';
 import Icon from 'common/Icon';
-import cx from 'classnames';
 import LabelTag from 'common/LabelTag';
 import { useRouter } from 'next/router';
 import styles from './watch.module.scss';
@@ -13,11 +12,16 @@ import {
   sendContentProgress,
 } from './functions';
 import { useEffect, useState } from 'react';
-import { BtnLoader } from 'common/Button';
-import { ifHasVideo, toTimeString } from 'helpers';
+import Button from 'common/Button';
+import { ifHasVideo } from 'helpers';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useSelector } from 'store';
+import TabCourseVideos from 'components/TabCourseVideos';
+import TabCourseResources from 'components/TabCourseResources';
+import TabCourseQuiz from 'components/TabCourseQuiz';
+import CoursePlayer from 'components/WatchCoursePlayer';
+import Radio from 'common/Radio';
 
 // const ReactPlayer = dynamic(() => import('react-player'), {
 //   ssr: false,
@@ -36,9 +40,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
 
-  const [curVidId, setCurVidId] = useState(contId);
+  const [curVidId, setCurVidId] = useState<any>(contId);
   const [step, setStep] = useState(0);
+  const [x, setX] = useState(1);
 
+  const onsetX = (act: string) => {
+    if (x < 10 && act === 'nxt') setX(x + 1);
+    if (x > 1 && act === 'prv') setX(x - 1);
+  };
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
 
@@ -50,6 +59,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(cantWatch);
 
   const [url, setUrl] = useState('');
+  const [showQuiz, setShowQuiz] = useState(false);
 
   let tHandler: any = null;
 
@@ -59,7 +69,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const videos = contents.filter(
     (content: IContent) => content.type?.toLowerCase() === 'video',
   );
-  const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
 
   useEffect(() => {
     const isHasVideo = ifHasVideo(contents);
@@ -76,6 +85,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   }, [contId]);
 
   const getUrl = async (contentId: string) => {
+    setShowQuiz(false);
     setCurVidId(contentId);
     setLoading(true);
     const data = await getContentUrl(contentId);
@@ -94,7 +104,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const onClickSubCard = (stp: number) => {
     setStep(stp);
   };
-
+  const toggleQuiz = (bool: boolean) => {
+    setShowQuiz(bool);
+  };
   const onClose = () => {
     setIsOpen(false);
     router.push(`/video/${id}/${title}`);
@@ -210,131 +222,67 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       </div>
       <div className={styles.wrapper}>
         <section className={styles.content_list}>
-          <p>Course content</p>
-
-          <div className={styles.content}>
-            <ul>
-              {videos.map((video: IContent, i: number) => (
-                <li
-                  key={video.id}
-                  className={cx('hand', {
-                    [styles.active_vid]: video.id === curVidId,
-                  })}
-                  onClick={() => getUrl(video.id)}
-                >
-                  <abbr title={video.title} className={`elips ${styles.f_sp}`}>
-                    <a>
-                      <Icon id="play" width={18} height={18} />
-                      &nbsp;{video.title}
-                    </a>
-                  </abbr>
-                  <a>
-                    <Icon id="clock" width={18} height={18} />
-                    &nbsp;{toTimeString(duration)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p>Resource</p>
-          <div className={styles.content}>
-            <ul>
-              {resources.map((resource: IContent, i: number) => (
-                <li key={i} className="hand">
-                  <abbr
-                    title={resource.title}
-                    className={`elips  ${styles.f_sp} ${styles.r_l}`}
-                  >
-                    <a download>
-                      <Icon id="file" width={20} height={20} />
-                      &nbsp;{resource.title}
-                    </a>
-                  </abbr>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TabCourseVideos
+            videos={videos}
+            duration={duration}
+            curVidId={curVidId}
+            onClickTab={getUrl}
+          />
+          <TabCourseResources resources={resources} />
+          <TabCourseQuiz resources={resources} onClickTab={toggleQuiz} />
         </section>
 
         <section className={styles.main_sec}>
-          <div className={styles.video_player}>
-            {!loading ? (
-              <>
-                {!hasVideo && (
-                  <div className="error-big abs-center">
-                    This course has no video content
-                  </div>
-                )}
-                {!cantWatch && (
-                  <>
-                    <video
-                      id="player"
-                      style={{ width: '100%', height: '100%' }}
-                      controls
-                      ref={handleVideoMounted}
-                    >
-                      <source src={url} type="video/mp4" />
-                      Your browser does not support this video player.
-                      <br /> Try update to latest version.
-                    </video>
-                  </>
-                )}
-              </>
-            ) : (
-              <BtnLoader classStyle="abs-center" />
-            )}
-          </div>
-          <div className={styles.details}>
-            <h2 className="title">{title}</h2>
-            <div className={styles.barz_clock}>
-              <div className={`${level} ${styles.min_details}`}>
-                <span>
-                  <span className="bar" />
-                  <span className="bar" />
-                  <span className="bar" />
-                  &nbsp;{level}
-                </span>
-                {duration && (
-                  <span>
-                    &nbsp;&nbsp;&nbsp;
-                    <Icon id="clock" width={20} height={20} />
-                    &nbsp;9 mins
-                  </span>
-                )}
-              </div>
-              <div>
-                {categories.slice(0, 3).map((cat, i) => (
-                  <LabelTag key={i} color={colors[i]}>
-                    {cat}
-                  </LabelTag>
-                ))}
-              </div>
+          {!showQuiz && (
+            <>
+              <CoursePlayer
+                videoRef={handleVideoMounted}
+                loading={loading}
+                cantWatch={cantWatch}
+                course={course}
+                hasVideo={hasVideo}
+                url={url}
+              />
+            </>
+          )}
+
+          <div className={styles.quiz_wrapper}>
+            <div className={styles.top}>
+              <h2 className="title">Quiz</h2>
+              <span>{x} out of 10 questions</span>
             </div>
-            <div style={{ marginBottom: '50px' }}>
-              <p className={styles.summary}>Summary of this video</p>
-              <span>{description}</span>
-            </div>
-            <div style={{ width: '250px' }}>
-              <p>Relevant links</p>
-              <div className={styles.reference}>
-                <a
-                  target="_blank"
-                  href="https://www.google.com"
-                  rel="noopener noreferrer"
-                >
-                  https://twitter.com/cci_lagos
-                </a>
-                <a target="_blank" href="/" rel="noopener noreferrer">
-                  https://twitter.com/cci_lagos
-                </a>
-                <a target="_blank" href="/" rel="noopener noreferrer">
-                  https://twitter.com/cci_lagos
-                </a>
-                <a target="_blank" href="/" rel="noopener noreferrer">
-                  https://twitter.com/cci_lagos
-                </a>
+            <article className={styles.quest_wrapper}>
+              <h2 className="title">
+                {x}. What is stock all about {x}?
+              </h2>
+              <p>Select your answer below</p>
+              <div className={styles.options_box}>
+                <p>
+                  <Radio name="option" value="x" id="x" />
+                  &nbsp;&nbsp;A. Making more money (Selected answer)
+                </p>
+                <p>
+                  <Radio name="option" value="y" id="y" />
+                  &nbsp;&nbsp;B. Investment
+                </p>
+                <p>
+                  <Radio name="option" value="z" id="z" />
+                  &nbsp;&nbsp;C. Option 3 (The correct answer)
+                </p>
+                <p>
+                  <Radio name="option" value="a" id="a" />
+                  &nbsp;&nbsp;D. Option 4
+                </p>
               </div>
-            </div>
+              <div className={styles.btn_nav}>
+                <Button className="invrt-btn" onClick={() => onsetX('prv')}>
+                  <Icon id="arrow-left" /> Previous question
+                </Button>
+                <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
+                  Submit answer <Icon id="arrow-right" />
+                </Button>
+              </div>
+            </article>
           </div>
         </section>
       </div>
