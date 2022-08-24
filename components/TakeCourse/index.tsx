@@ -47,7 +47,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const onsetX = (act: string) => {
     if (x < 10 && act === 'nxt') setX(x + 1);
-    if (x > 1 && act === 'prv') setX(x - 1);
+    if (x > 1 && act === 'prev') setX(x - 1);
   };
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
@@ -276,7 +276,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
                 </p>
               </div>
               <div className={styles.btn_nav}>
-                <Button className="invrt-btn" onClick={() => onsetX('prv')}>
+                <Button className="invrt-btn" onClick={() => onsetX('prev')}>
                   <Icon id="arrow-left" /> Previous question
                 </Button>
                 <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
