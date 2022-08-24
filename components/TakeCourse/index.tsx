@@ -30,6 +30,7 @@ import Radio from 'common/Radio';
 interface Props {
   course: ICourse;
 }
+
 const TakeCoursePage: React.FC<Props> = (props) => {
   const { course } = props;
 
