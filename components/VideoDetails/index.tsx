@@ -3,7 +3,7 @@ import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
-import Star from 'common/Ratings';
+import Star from 'common/Star';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';

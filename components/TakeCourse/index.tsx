@@ -22,6 +22,7 @@ import TabCourseResources from 'components/TabCourseResources';
 import TabCourseQuiz from 'components/TabCourseQuiz';
 import CoursePlayer from 'components/WatchCoursePlayer';
 import Radio from 'common/Radio';
+import RateReview from 'components/RateReview';
 
 // const ReactPlayer = dynamic(() => import('react-player'), {
 //   ssr: false,
@@ -170,6 +171,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   return (
     <main className={styles.watch}>
+      <RateReview />
       <Modal
         openModal={isOpen}
         onClose={onClose}

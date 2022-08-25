@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import { ICourse } from 'components/VideosListPage';
 import { formatDate } from 'helpers';
-import Star from 'common/Ratings';
+import Star from 'common/Star';
 import styles from './videocard.module.scss';
 import { useDispatch, useSelector } from 'store';
 import React, { useState } from 'react';

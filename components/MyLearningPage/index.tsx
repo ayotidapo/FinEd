@@ -4,7 +4,7 @@ import EmptyView from 'common/EmptyView';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
-import Star from 'common/Ratings';
+import Star from 'common/Star';
 import VideoCard from 'common/VideoCard';
 import { courseVideos, formatDate, getCourseProgressPerc } from 'helpers';
 import Image from 'next/image';

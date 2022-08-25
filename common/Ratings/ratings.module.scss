@@ -1,36 +1,19 @@
-.star_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+.ratings_gen{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
 
-.star_container {
-  position: relative;
-  // width: 16.78px;
-  // height: 15.38px;
-  width: 18.78px;
-  height: 18.38px;
-  background: #333;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-
-  .star_glider {
-    background: #d78806;
-    position: absolute;
-    width: 18.78px;
-    height: 18.38px;
-    inset: 0;
-  }
+    :global(.star_container){
+        width: 55px;
+        height: 55px;
+        :global(.star_glider){
+            width: 55px;
+            height: 55px;
+            
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }  
+    
 }

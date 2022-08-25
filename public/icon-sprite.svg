@@ -5,6 +5,13 @@
 		<path d="M11.25 4.375L16.875 10L11.25 15.625" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>	
 
+	<symbol id="arrow-left" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M5 12H19" stroke="#015351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M5 12L11 18" stroke="#015351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M5 12L11 6" stroke="#015351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+
     <symbol id="fb" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 12.5316L8 17.8649H12V27.1982H17.3333L17.3333 17.8649H21.3333L22.6667 12.5316H17.3333V9.86491C17.3333 9.51129 17.4738 9.17215 17.7239 8.9221C17.9739 8.67205 18.313 8.53158 18.6667 8.53158L22.6667 8.53158V3.19824L18.6667 3.19824C16.8986 3.19824 15.2029 3.90062 13.9526 5.15086C12.7024 6.40111 12 8.0968 12 9.86491L12 12.5316H8Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
