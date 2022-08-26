@@ -37,7 +37,7 @@ const WriteReview: React.FC<Props> = (props) => {
 };
 export default WriteReview;
 
-export const Rated = () => {
+export const Rated = ({ onClose }: { onClose: (x: boolean) => void }) => {
   return (
     <div className={styles.rated}>
       <div
@@ -62,7 +62,9 @@ export const Rated = () => {
         </p>
 
         <div className={styles.btns_div}>
-          <Button bg="#C03E21">Dismiss</Button>
+          <Button bg="#C03E21" onClick={() => onClose(false)}>
+            Dismiss
+          </Button>
         </div>
       </section>
     </div>

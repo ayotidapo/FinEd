@@ -1,4 +1,3 @@
-import Button from 'common/Button';
 import { useState } from 'react';
 import axios from 'axios';
 import Modal from 'common/Modal';
@@ -78,13 +77,12 @@ const RateReview: React.FC<Props> = (props) => {
   };
   return (
     <div className={styles.rate_review}>
-      <p onClick={() => setIsOpen(true)}>jjj</p>
       <Modal
         openModal={isOpen || lastVideoEnd}
         modalClass={mClass}
         onClose={onClose}
         isBodyClose
-        navigate={view > 1}
+        navigate={view > 1 && view < 5}
         onNavigate={onNavigate}
       >
         {view === 1 && <JustComplete onClickFn={onSetView} />}
@@ -112,7 +110,7 @@ const RateReview: React.FC<Props> = (props) => {
             onSubmit={onSubmit}
           />
         )}
-        {view === 5 && <Rated />}
+        {view === 5 && <Rated onClose={onClose} />}
       </Modal>
     </div>
   );

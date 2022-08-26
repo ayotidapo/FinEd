@@ -28,7 +28,7 @@ const Rate: React.FC<Props> = ({ onSetView, getUserRate, userRate }) => {
     <section className={styles.completed}>
       <h2 className="title">Rate this course</h2>
       <div>
-        <Ratings rating={0} getUserRate={getUserRate} />
+        <Ratings rating={userRate} getUserRate={getUserRate} />
       </div>
       <div className="flx_jc_sb">
         <span>Very Bad</span>
