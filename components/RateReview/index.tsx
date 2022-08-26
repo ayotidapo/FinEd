@@ -11,9 +11,12 @@ import { toast } from 'react-toastify';
 
 interface Props {
   courseId: string;
+  lastVideoEnd: boolean;
+  setLastVideoEnd: any;
 }
 
-const RateReview: React.FC<Props> = ({ courseId }) => {
+const RateReview: React.FC<Props> = (props) => {
+  const { courseId, lastVideoEnd, setLastVideoEnd } = props;
   const [view, setView] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -67,6 +70,7 @@ const RateReview: React.FC<Props> = ({ courseId }) => {
     setIsOpen(false);
     setUserRate(0);
     setView(1);
+    setLastVideoEnd(false);
   };
 
   const onNavigate = () => {
@@ -76,7 +80,7 @@ const RateReview: React.FC<Props> = ({ courseId }) => {
     <div className={styles.rate_review}>
       <p onClick={() => setIsOpen(true)}>jjj</p>
       <Modal
-        openModal={isOpen}
+        openModal={isOpen || lastVideoEnd}
         modalClass={mClass}
         onClose={onClose}
         isBodyClose

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import dynamic from 'next/dynamic';
 import Icon from 'common/Icon';
-import LabelTag from 'common/LabelTag';
 import { useRouter } from 'next/router';
 import styles from './watch.module.scss';
 import { ICourse } from 'components/VideosListPage';
@@ -41,7 +40,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
-
+  const [lastVideoEnd, setLastVideoEnd] = useState(false);
   const [curVidId, setCurVidId] = useState<any>(contId);
   const [step, setStep] = useState(0);
   const [x, setX] = useState(1);
@@ -53,7 +52,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
 
-  const { title, description, contents, categories, level, paid, id } = course;
+  const { title, contents, paid, id } = course;
 
   const { plan: curPlan } = user?.currentSubscription || {};
 
@@ -121,6 +120,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setDuration(duration);
     // const cId = contId || curVidId;
     // console.log('pow', cId, contId, curVidId);
+    const lastVidPos = videos.length - 1;
+    const isLastCourseVideo = videos[lastVidPos].id === contId;
+
+    if (isLastCourseVideo && player) {
+      player.onended = () => {
+        setLastVideoEnd(true);
+      };
+    }
     await sendContentProgress(contId, Math.floor(Number(progress)));
   };
 
@@ -171,7 +178,11 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   return (
     <main className={styles.watch}>
-      <RateReview courseId={id} />
+      <RateReview
+        courseId={id}
+        lastVideoEnd={lastVideoEnd}
+        setLastVideoEnd={setLastVideoEnd}
+      />
       <Modal
         openModal={isOpen}
         onClose={onClose}
