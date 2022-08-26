@@ -8,7 +8,7 @@ interface Props {
 
 const Radio: React.FC<Props> = (props) => {
   return (
-    <div className={styles.radio}>
+    <span className={styles.radio}>
       <input
         type="radio"
         name={props.name}
@@ -17,7 +17,7 @@ const Radio: React.FC<Props> = (props) => {
         style={{ display: 'none' }}
       />
       <label htmlFor={props.id} className={styles.radioLabel}></label>
-    </div>
+    </span>
   );
 };
 

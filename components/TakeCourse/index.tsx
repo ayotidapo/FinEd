@@ -171,7 +171,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   return (
     <main className={styles.watch}>
-      <RateReview />
+      <RateReview courseId={id} />
       <Modal
         openModal={isOpen}
         onClose={onClose}

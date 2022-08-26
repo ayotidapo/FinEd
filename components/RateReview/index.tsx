@@ -1,30 +1,113 @@
 import Button from 'common/Button';
-import Icon from 'common/Icon';
+import { useState } from 'react';
+import axios from 'axios';
 import Modal from 'common/Modal';
 import styles from './ratereview.module.scss';
 import WriteReview, { Rated } from './views/WriteReview';
 import Rate from './views/Rate';
 import LowRating from './views/LowRating';
 import JustComplete from './views/JustComplete';
-import { useState } from 'react';
+import { toast } from 'react-toastify';
 
-interface Props {}
+interface Props {
+  courseId: string;
+}
 
-const RateReview: React.FC<Props> = () => {
+const RateReview: React.FC<Props> = ({ courseId }) => {
   const [view, setView] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [userRate, setUserRate] = useState(0);
+  const [wfeedback, setWfeedback] = useState('');
+  const [feedback, setFeedback] = useState<string[]>([]);
   const mClass = view === 1 ? styles.modalClass : styles.rt_modalClass;
 
   const onSetView = (view: number) => {
     setView(view);
   };
 
+  const onGetUserRate = (user_rate: number) => {
+    setUserRate(user_rate);
+  };
+
+  const onChoose = (e: any) => {
+    const { checked, value } = e.target;
+    const fb = [...feedback];
+    fb.push(`${value}`);
+
+    if (checked) return setFeedback(fb);
+    const newFeedback = fb.filter((reason) => reason !== value);
+    setFeedback(newFeedback);
+  };
+
+  const onWriteReview = (e: any) => {
+    setWfeedback(e.target.value);
+  };
+
+  const onSubmit = async () => {
+    const fmessage = feedback.filter((msg) => msg !== 'others');
+    const body = {
+      courseId,
+      rating: userRate,
+      feedback: fmessage.join(',') + ',' + wfeedback,
+    };
+    try {
+      setLoading(true);
+      await axios.post('/ratings', body);
+      setView(5);
+      setLoading(false);
+    } catch {
+      toast.error('Review not submitted!');
+      setView(2);
+      setLoading(false);
+    }
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+    setUserRate(0);
+    setView(1);
+  };
+
+  const onNavigate = () => {
+    if (view > 1) return setView(view - 1);
+  };
   return (
     <div className={styles.rate_review}>
-      <Modal openModal onClose={() => null} modalClass={mClass}>
+      <p onClick={() => setIsOpen(true)}>jjj</p>
+      <Modal
+        openModal={isOpen}
+        modalClass={mClass}
+        onClose={onClose}
+        isBodyClose
+        navigate={view > 1}
+        onNavigate={onNavigate}
+      >
         {view === 1 && <JustComplete onClickFn={onSetView} />}
-        {view === 2 && <Rate onClickFn={onSetView} />}
-        {view === 3 && <LowRating />}
-        {view === 4 && <WriteReview />}
+        {view === 2 && (
+          <Rate
+            onSetView={onSetView}
+            userRate={userRate}
+            getUserRate={onGetUserRate}
+          />
+        )}
+        {view === 3 && (
+          <LowRating
+            loading={loading}
+            onSubmit={onSubmit}
+            onChoose={onChoose}
+            onChange={onWriteReview}
+            feedback={feedback}
+          />
+        )}
+        {view === 4 && (
+          <WriteReview
+            onChange={onWriteReview}
+            value={wfeedback}
+            loading={loading}
+            onSubmit={onSubmit}
+          />
+        )}
         {view === 5 && <Rated />}
       </Modal>
     </div>

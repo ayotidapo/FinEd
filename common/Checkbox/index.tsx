@@ -3,6 +3,7 @@ interface Props {
   isChecked?: boolean;
   type: 'checkbox' | 'radio';
   value: string;
+  onChange: (e: any) => void;
 }
 
 const Checkbox: React.FC<Props> = (props) => {

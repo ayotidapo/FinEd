@@ -3,14 +3,31 @@ import Image from 'next/image';
 import Icon from 'common/Icon';
 import styles from '../ratereview.module.scss';
 
-const WriteReview = () => {
+interface Props {
+  onChange: (e: any) => void;
+  onSubmit: () => void;
+  loading: boolean;
+  value: string;
+}
+
+const WriteReview: React.FC<Props> = (props) => {
+  const { loading, onSubmit, onChange, value } = props;
   return (
     <section className={styles.write_rvw}>
       <h2 className="title">Write a review</h2>
-      <textarea placeholder="Describe your experience (optional)"></textarea>
+      <textarea
+        placeholder="Describe your experience (optional)"
+        value={value}
+        onChange={onChange}
+      ></textarea>
 
       <div className={styles.btns_div}>
-        <Button bg="#C03E21" className={styles.rateBtn}>
+        <Button
+          bg="#C03E21"
+          className={styles.rateBtn}
+          onClick={onSubmit}
+          loading={loading}
+        >
           Submit
           <Icon id="arrow-right" />
         </Button>
@@ -28,7 +45,7 @@ export const Rated = () => {
           width: '200px',
           height: '200px',
           position: 'relative',
-          visibility: 'hidden',
+          display: 'none',
         }}
       >
         <Image
