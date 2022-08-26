@@ -260,44 +260,46 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             </>
           )}
 
-          <div className={styles.quiz_wrapper}>
-            <div className={styles.top}>
-              <h2 className="title">Quiz</h2>
-              <span>{x} out of 10 questions</span>
+          {false && (
+            <div className={styles.quiz_wrapper}>
+              <div className={styles.top}>
+                <h2 className="title">Quiz</h2>
+                <span>{x} out of 10 questions</span>
+              </div>
+              <article className={styles.quest_wrapper}>
+                <h2 className="title">
+                  {x}. What is stock all about {x}?
+                </h2>
+                <p>Select your answer below</p>
+                <div className={styles.options_box}>
+                  <p>
+                    <Radio name="option" value="x" id="x" />
+                    &nbsp;&nbsp;A. Making more money (Selected answer)
+                  </p>
+                  <p>
+                    <Radio name="option" value="y" id="y" />
+                    &nbsp;&nbsp;B. Investment
+                  </p>
+                  <p>
+                    <Radio name="option" value="z" id="z" />
+                    &nbsp;&nbsp;C. Option 3 (The correct answer)
+                  </p>
+                  <p>
+                    <Radio name="option" value="a" id="a" />
+                    &nbsp;&nbsp;D. Option 4
+                  </p>
+                </div>
+                <div className={styles.btn_nav}>
+                  <Button className="invrt-btn" onClick={() => onsetX('prev')}>
+                    <Icon id="arrow-left" /> Previous question
+                  </Button>
+                  <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
+                    Submit answer <Icon id="arrow-right" />
+                  </Button>
+                </div>
+              </article>
             </div>
-            <article className={styles.quest_wrapper}>
-              <h2 className="title">
-                {x}. What is stock all about {x}?
-              </h2>
-              <p>Select your answer below</p>
-              <div className={styles.options_box}>
-                <p>
-                  <Radio name="option" value="x" id="x" />
-                  &nbsp;&nbsp;A. Making more money (Selected answer)
-                </p>
-                <p>
-                  <Radio name="option" value="y" id="y" />
-                  &nbsp;&nbsp;B. Investment
-                </p>
-                <p>
-                  <Radio name="option" value="z" id="z" />
-                  &nbsp;&nbsp;C. Option 3 (The correct answer)
-                </p>
-                <p>
-                  <Radio name="option" value="a" id="a" />
-                  &nbsp;&nbsp;D. Option 4
-                </p>
-              </div>
-              <div className={styles.btn_nav}>
-                <Button className="invrt-btn" onClick={() => onsetX('prev')}>
-                  <Icon id="arrow-left" /> Previous question
-                </Button>
-                <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
-                  Submit answer <Icon id="arrow-right" />
-                </Button>
-              </div>
-            </article>
-          </div>
+          )}
         </section>
       </div>
     </main>
