@@ -7,13 +7,18 @@ import { GetServerSideProps } from 'next';
 import { ICourse } from 'components/VideosListPage';
 import { IPlan } from 'components/SubscriptionPage';
 
-const VideoDetails: React.FC<{ course: ICourse; plans: IPlan[] }> = ({
-  course,
-  plans,
-}) => {
+interface Props {
+  course: ICourse;
+  plans: IPlan[];
+  reviews: {
+    [key: string]: any;
+  };
+}
+
+const VideoDetails: React.FC<Props> = ({ course, plans, reviews }) => {
   return (
     <>
-      <VideoDetailsPage course={course} plans={plans} />
+      <VideoDetailsPage course={course} plans={plans} reviews={reviews} />
       <Footer />
     </>
   );
@@ -43,11 +48,12 @@ export const getServerSideProps: GetServerSideProps = async ({
     const { data } = await axios.get(`/courses-user/${paramz[0]}`);
 
     const { data: plans } = await axios.get('/plans/noauth');
-
+    const { data: reviews } = await axios.get(`/ratings/${paramz[0]}`);
     return {
       props: {
         course: data,
         plans,
+        reviews,
       },
     };
   } catch (e: any) {

@@ -1,16 +1,15 @@
-import styles from './checkbox.module.scss';
-
 interface Props {
   name: string;
   isChecked?: boolean;
   type: 'checkbox' | 'radio';
   value: string;
+  onChange: (e: any) => void;
 }
 
 const Checkbox: React.FC<Props> = (props) => {
   const { name, value, isChecked, ...rest } = props;
   return (
-    <label className={`hand ${styles.checkbox}`}>
+    <label className={`hand checkbox `}>
       <input
         name={name}
         value={value}
@@ -18,7 +17,7 @@ const Checkbox: React.FC<Props> = (props) => {
         checked={isChecked}
         {...rest}
       />
-      <span className={styles.cbox} />
+      <span className="cbox" />
     </label>
   );
 };

@@ -10,7 +10,8 @@
 	align-items: center;
 	opacity: 0;
     visibility: hidden;
-	transition: all .3s ease;
+    transition: opacity .3s ease, visibility .3s ease; 
+	
 	.span{
 		color: #fff;
 		font-size: var(--f-36);
@@ -34,6 +35,23 @@
 		}
 		
 	}
+	.arrow{
+		top: 0px;
+		right: 0px;
+		height: 32px;
+		width: 32px;
+		border:1px solid #111;
+		border-radius: 100%;
+		display: inline-flex;
+		align-items: center;
+		font-size: var(--f-24);
+		justify-content: center;
+		flex-shrink: 0;
+		&:hover{
+			cursor: pointer;
+			transform: scale(1);
+		 }
+	}
 	.modal_cont{
 		display: flex;
 		background-color: #fff;
@@ -43,7 +61,7 @@
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(-100px);
-		transition: all .5s ease;
+		transition: opacity .5s ease, visibility .5s ease, transform .5s ease ; 
 
 	}
 	

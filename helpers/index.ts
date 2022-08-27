@@ -83,3 +83,7 @@ export const sortedAsc = (arr: any[], key: string) => {
     (objA: any, objB: any) => Date.parse(objA[key]) - Date.parse(objB[key]),
   );
 };
+
+export const firstLetter = (name: string) => {
+  return (name.slice(0,1)).toUpperCase()
+};

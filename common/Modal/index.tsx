@@ -12,11 +12,14 @@ interface Props {
   closeBtn?: boolean;
   zIndex?: string;
   dizabled?: boolean;
+  navigate?: boolean;
+  onNavigate?: () => void;
 }
 
 const Modal: React.FC<Props> = (props) => {
   const {
     isBodyClose,
+    navigate,
     openModal,
     closeBtn,
     onClose,
@@ -24,6 +27,7 @@ const Modal: React.FC<Props> = (props) => {
     modalClass,
     zIndex,
     dizabled,
+    onNavigate,
   } = props;
 
   return (
@@ -37,10 +41,16 @@ const Modal: React.FC<Props> = (props) => {
           &times;
         </span>
       )}
+
       <section
         className={`modal-width ${styles.modal_cont} ${modalClass}`}
         onClick={(e) => e.stopPropagation()}
       >
+        {navigate && (
+          <span className={styles.arrow} onClick={onNavigate}>
+            &#8592;
+          </span>
+        )}
         {!dizabled && (
           <span
             className={styles.span}

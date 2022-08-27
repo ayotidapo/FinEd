@@ -3,7 +3,7 @@ import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
-import Star from 'common/Ratings';
+import Star from 'common/Star';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
@@ -12,10 +12,13 @@ import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useSelector } from 'store';
 import { IPlan } from 'reducers/plans';
+import Ratings from 'common/Ratings';
+import { firstLetter, formatDate } from 'helpers';
 
 interface Props {
   course: ICourse;
   plans: IPlan[];
+  reviews?: { [key: string]: any };
 }
 
 export interface IContent {
@@ -27,12 +30,12 @@ export interface IContent {
   [key: string]: any;
 }
 
-const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
+const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
   const router = useRouter();
   const [hasVideo, setHasVideo] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
-
+  const { ratings } = reviews || {};
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const {
     title,
@@ -43,6 +46,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
     level,
     id: courseId,
     paid,
+    rating,
   } = course;
   const { user } = useSelector((state) => state?.user?.user);
   const { plan: curPlan } = user?.currentSubscription || {};
@@ -165,10 +169,8 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
             </span>
             <h2 className={`title ${styles.title}`}>{title}</h2>
             <div className={styles.starwrap}>
-              {[1, 2, 3, 4, 5].map((n, i) => (
-                <Star key={n} id={i} rating={3} />
-              ))}
-              <span style={{ color: '#7c7c7c' }}>3</span>
+              <Ratings rating={Math.ceil(rating)} />
+              <span style={{ color: '#7c7c7c' }}>{Math.ceil(rating)}</span>
             </div>
             <div className={`${level} ${styles.min_details}`}>
               <span className="bar" />
@@ -246,84 +248,27 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans }) => {
         <h2 className="title" style={{ marginBottom: '20px' }}>
           Ratings
         </h2>
-        <article className={styles.comment}>
-          <div className={styles.avatar}>MA</div>
-          <div className={styles.comment_txt}>
-            <div className={styles.sp}>
-              <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
+        {ratings.map((rating: any) => (
+          <article className={styles.comment} key={rating.id}>
+            <div className={styles.avatar}>
+              {firstLetter(rating?.user?.firstName)}
+              {firstLetter(rating?.user?.lastName)}
             </div>
-            <div className="starwrap">
-              {[1, 2, 3, 4, 5].map((n, i) => (
-                <Star key={n} id={i} rating={3} />
-              ))}
-              <span style={{ color: '#7c7c7c' }}>3</span>
-            </div>
-            <p>
-              So far so good, first day of use was impressive, but the plastic
-              bucket is too light weight can break easily if handled by
-              children. But overall.... Good but time will tell.
-            </p>
-          </div>
-        </article>
-        <article className={styles.comment}>
-          <div className={styles.avatar}>MA</div>
-          <div className={styles.comment_txt}>
-            <div className={styles.sp}>
-              <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
-            </div>
-            <div className="starwrap">
-              {[1, 2, 3, 4, 5].map((n, i) => (
-                <Star key={n} id={i} rating={2} />
-              ))}
-              <span style={{ color: '#7c7c7c' }}>2</span>
-            </div>
-            <p>
-              So far so good, first day of use was impressive, but the plastic
-              bucket is too light weight can break easily if handled by
-              children. But overall.... Good but time will tell.
-            </p>
-          </div>
-        </article>
-        <article className={styles.comment}>
-          <div className={styles.avatar}>MA</div>
-          <div className={styles.comment_txt}>
-            <div className={styles.sp}>
-              <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
-            </div>
-            <div className="starwrap">
-              {[1, 2, 3, 4, 5].map((n, i) => (
-                <Star key={n} id={i} rating={1} />
-              ))}
-              <span style={{ color: '#7c7c7c' }}>1</span>
-            </div>
-            <p>
-              So far so good, first day of use was impressive, but the plastic
-              bucket is too light weight can break easily if handled by
-              children. But overall.... Good but time will tell.
-            </p>
-          </div>
-        </article>
-        <article className={styles.comment}>
-          <div className={styles.avatar}>MA</div>
-          <div className={styles.comment_txt}>
-            <div className={styles.sp}>
-              <span>Moronke Aniolaola</span>&nbsp;&nbsp;&nbsp;&nbsp;Aug 24,2021
-            </div>
-            <div className="starwrap">
-              <div className="starwrap">
-                {[1, 2, 3, 4, 5].map((n, i) => (
-                  <Star key={n} id={i} rating={4} />
-                ))}
-                <span style={{ color: '#7c7c7c' }}>4</span>
+            <div className={styles.comment_txt}>
+              <div className={styles.sp}>
+                <span>
+                  {rating?.user?.firstName} {rating?.user?.lastName}
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;{formatDate(rating?.dateCreated)}
               </div>
+              <div className="starwrap">
+                <Ratings rating={rating.rating} />
+                <span style={{ color: '#7c7c7c' }}>{rating.rating}</span>
+              </div>
+              <p>{rating.feedback}</p>
             </div>
-            <p>
-              So far so good, first day of use was impressive, but the plastic
-              bucket is too light weight can break easily if handled by
-              children. But overall.... Good but time will tell.
-            </p>
-          </div>
-        </article>
+          </article>
+        ))}
       </section>
     </>
   );

@@ -1,0 +1,36 @@
+.video_player{
+    position: relative;
+    height: 430px;
+    width:100%;
+    background-color: #000;
+}
+
+
+.details{
+    width: 80%;
+    min-height: 250px;
+    padding: 0 25px;
+    padding-top: 50px;
+    padding-left: 35px;
+    padding-bottom: 50px;
+    :global(.title){
+        font-size: var(--f-24);
+    }
+    .barz_clock{
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        margin-top: 20px;
+        label{
+            margin-right: 10px;
+        }
+    }
+    .min_details{
+        span{
+            display: flex;
+            align-items: center;
+        }
+    }
+}

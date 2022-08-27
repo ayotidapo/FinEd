@@ -109,6 +109,7 @@ const SubCard = (props) => {
   };
 
   const { onChangeInput, onBlurInput, inputs } = useForm(fields);
+
   const { discountCode } = inputs;
 
   const { plans, curPlan, step } = props;
