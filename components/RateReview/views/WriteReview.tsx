@@ -1,4 +1,5 @@
 import Button from 'common/Button';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Icon from 'common/Icon';
 import styles from '../ratereview.module.scss';
@@ -12,6 +13,7 @@ interface Props {
 
 const WriteReview: React.FC<Props> = (props) => {
   const { loading, onSubmit, onChange, value } = props;
+
   return (
     <section className={styles.write_rvw}>
       <h2 className="title">Write a review</h2>
@@ -38,6 +40,11 @@ const WriteReview: React.FC<Props> = (props) => {
 export default WriteReview;
 
 export const Rated = ({ onClose }: { onClose: (x: boolean) => void }) => {
+  const router = useRouter();
+  const onDismiss = () => {
+    onClose(false);
+    router.push('/courses');
+  };
   return (
     <div className={styles.rated}>
       <div
@@ -62,7 +69,7 @@ export const Rated = ({ onClose }: { onClose: (x: boolean) => void }) => {
         </p>
 
         <div className={styles.btns_div}>
-          <Button bg="#C03E21" onClick={() => onClose(false)}>
+          <Button bg="#C03E21" onClick={onDismiss}>
             Dismiss
           </Button>
         </div>

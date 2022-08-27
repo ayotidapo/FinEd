@@ -4,7 +4,7 @@ import styles from './ratings.module.scss';
 
 interface Props {
   rating: number;
-  getUserRate: (x: number) => void;
+  getUserRate?: (x: number) => void;
 }
 
 const Ratings: React.FC<Props> = ({ rating, getUserRate }) => {
@@ -13,11 +13,11 @@ const Ratings: React.FC<Props> = ({ rating, getUserRate }) => {
 
   const onSetRate = (num: number) => {
     setRate(num);
-    getUserRate(num);
+    getUserRate && getUserRate(num);
   };
 
   return (
-    <div className={`${styles.ratings_gen} rating_div`}>
+    <div className="ratings_gen rating_div">
       {ayraStars.map((n, i) => (
         <Star key={n} id={i} rating={rate} onClick={() => onSetRate(i + 1)} />
       ))}
