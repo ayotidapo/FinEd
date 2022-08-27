@@ -51,21 +51,25 @@ const VideosListPage: React.FC<Props> = (props) => {
       required: false,
     },
   };
-  const { onChangeInput, onBlurInput, inputs } = useForm(fields);
+  const { onChangeInput, inputs } = useForm(fields);
   const { search } = inputs;
   const [searchResult, setSearchResult] = useState<ICourse[]>([]);
   const [totalPageCount, setTotalPageCount] = useState<number>(0);
 
-  useEffect(() => {(
-    async () => {
+  useEffect(() => {
+    const handler = setTimeout(async() => {
       setLoading(true);
       let searchQuery = search.value;
       const {courses, totalCount} = await handleSearch(searchQuery);
       setSearchResult(courses);
       setTotalPageCount(totalCount);
       setLoading(false);
-    }
-  )()}, [search.value]);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, search.value]);
 
   const coursesData = searchResult.length ? searchResult : courses;
   const totalCount = totalPageCount ? totalPageCount : props.totalCount;
