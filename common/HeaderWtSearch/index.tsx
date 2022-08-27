@@ -1,22 +1,17 @@
-import Input from 'common/Input';
+import Input, { IField } from 'common/Input';
 import Icon from 'common/Icon';
 import Logo from 'common/Logo';
 import Button from 'common/Button';
 import styles from './headerwtsearch.module.scss';
 import { useRouter } from 'next/router';
+import { ChangeEvent } from 'react';
 
-const HeaderWtSearch: React.FC = () => {
+interface IProps {
+  search: IField
+  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void
+}
+const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
   const router = useRouter();
-  const fields = {
-    search: {
-      name: 'search',
-      value: '',
-      label: '',
-      type: 'text',
-      placeholder: 'search',
-      error: '',
-    },
-  };
 
   return (
     <>
@@ -38,10 +33,11 @@ const HeaderWtSearch: React.FC = () => {
         </div>
         <div className={styles.right}>
           <Input
-            field={fields.search}
+            field={search}
             leftIcon={{ name: 'search', pos: [35, 0] }}
             wrapperClass={styles.wrapClass}
             inputClass={styles.inptClass}
+            onChange={onChangeInput}
           />
 
           <Button

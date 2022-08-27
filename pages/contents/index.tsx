@@ -7,6 +7,9 @@ import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
 import HeaderWtSearch from 'common/HeaderWtSearch';
+import useForm from 'hooks/useForm';
+import { useEffect, useState } from 'react';
+import { handleSearch } from 'utils/handleSearch';
 
 interface Props {
   totalCount: number;
@@ -16,13 +19,46 @@ interface Props {
 const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
 
+  const fields = {
+    search: {
+      name: 'search',
+      value: '',
+      label: '',
+      type: 'text',
+      placeholder: 'search',
+      error: '',
+    },
+  };
+
+  const { onChangeInput, inputs } = useForm(fields);
+  const { search } = inputs;
+
+  const [searchResult, setSearchResult] = useState<ICourse[]>([]);
+  const [totalPageCount, setTotalPageCount] = useState<number>(0);
+
+  useEffect(() => {
+    const handler = setTimeout(async() => {
+      let searchQuery = search.value;
+      const {courses, totalCount} = await handleSearch(searchQuery);
+      setSearchResult(courses);
+      setTotalPageCount(totalCount);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, search.value]);
+
+  const coursesData = searchResult.length ? searchResult : courses?.courses;
+  const totalCourseCount = totalPageCount ? totalPageCount : totalCount;
+
   return (
     <>
-      <HeaderWtSearch />
+      <HeaderWtSearch onChangeInput={onChangeInput} search={search} />
       <VideoPage
-        courses={courses?.courses}
+        courses={coursesData}
         explorePage
-        totalCount={totalCount}
+        totalCount={totalCourseCount}
         paginationUrl="/contents"
       />
       <Footer />
