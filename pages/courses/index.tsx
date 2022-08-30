@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import VideoPage from 'components/VideosListPage';
 import Modal from 'common/Modal';
 import { getToken } from 'helpers/getToken';
@@ -10,7 +13,6 @@ import { setCourses } from 'reducers/courses';
 import { useSelector, wrapper } from 'store';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
-import { useState } from 'react';
 
 interface Props {
   totalCount: number;
@@ -21,7 +23,13 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user?.user);
-  console.log(user), 'CHECK';
+  const { dob, residentCountry, residentState } = user;
+  const router = useRouter();
+  useEffect(() => {
+    const completeInfo = dob && residentCountry && residentState;
+    if (!completeInfo) setIsOpen(true);
+    else setIsOpen(false);
+  }, []);
 
   return (
     <>
@@ -31,7 +39,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
         paginationUrl="/courses"
       />
       <Footer />
-      <Modal openModal={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal openModal={isOpen} onClose={() => setIsOpen(false)} isBodyClose>
         <div className="updateInfo">
           <div className="imgDiv">
             <Image
@@ -48,7 +56,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
               keep your account more secure and protected.
             </p>
             <div style={{ textAlign: 'right' }}>
-              <Button bg="#C03E21">
+              <Button bg="#C03E21" onClick={() => router.push('/settings')}>
                 Yes, Continue
                 <Icon id="arrow-right" />
               </Button>

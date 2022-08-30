@@ -67,7 +67,6 @@ const MyProfile: React.FC<Props> = () => {
       body.residentState = userState;
       body.gender = gender;
       delete body.nigeriaPhone;
-      delete body.dob;
 
       const { data } = await axios.patch(`/users/profile`, body);
 
