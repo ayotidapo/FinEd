@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cx from 'classnames';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
 import EmptyView from 'common/EmptyView';
-
+import { handleSearch } from 'utils/handleSearch';
 export interface ICourse {
   id: string;
   categories: string[];
@@ -41,8 +41,8 @@ const VideosListPage: React.FC<Props> = (props) => {
   const { explorePage, courses, paginationUrl } = props;
 
   const fields = {
-    discountCode: {
-      name: 'discountCode',
+    search: {
+      name: 'search',
       value: '',
       type: 'text',
       label: '',
@@ -51,8 +51,28 @@ const VideosListPage: React.FC<Props> = (props) => {
       required: false,
     },
   };
-  const { onChangeInput, onBlurInput, inputs } = useForm(fields);
-  const { discountCode } = inputs;
+  const { onChangeInput, inputs } = useForm(fields);
+  const { search } = inputs;
+  const [searchResult, setSearchResult] = useState<ICourse[]>([]);
+  const [totalPageCount, setTotalPageCount] = useState<number>(0);
+
+  useEffect(() => {
+    const handler = setTimeout(async() => {
+      setLoading(true);
+      let searchQuery = search.value;
+      const {courses, totalCount} = await handleSearch(searchQuery);
+      setSearchResult(courses);
+      setTotalPageCount(totalCount);
+      setLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, search.value]);
+
+  const coursesData = searchResult.length ? searchResult : courses;
+  const totalCount = totalPageCount ? totalPageCount : props.totalCount;
 
   return (
     <>
@@ -76,10 +96,11 @@ const VideosListPage: React.FC<Props> = (props) => {
           {!explorePage && (
             <div className={styles.search_input}>
               <Input
-                field={discountCode}
+                field={search}
                 leftIcon={{ name: 'search' }}
                 wrapperClass={styles.wrapClass}
                 inputClass={styles.inptClass}
+                onChange={onChangeInput}
               />
             </div>
           )}
@@ -209,15 +230,15 @@ const VideosListPage: React.FC<Props> = (props) => {
               <PageLoader />
             </div>
           )}
-          {courses?.length > 1 ? (
+          {coursesData.length ? (
             <>
               <section className={styles.content_items_wrap}>
-                {courses?.map((course: ICourse) => (
+                {coursesData?.map((course: ICourse) => (
                   <VideoCard key={course.id} course={course} />
                 ))}
               </section>
 
-              <Paginate totalCount={props.totalCount} pageUrl={paginationUrl} />
+              <Paginate totalCount={totalCount} pageUrl={paginationUrl} />
             </>
           ) : (
             <EmptyView contentName="course" />
