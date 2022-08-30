@@ -75,27 +75,29 @@ const CoursePlayer: React.FC<Props> = (props) => {
           <p className={styles.summary}>Summary of this video</p>
           <span>{course?.description}</span>
         </div>
-        <div style={{ width: '250px' }}>
-          <p>Relevant links</p>
-          <div className={styles.reference}>
-            <a
-              target="_blank"
-              href="https://www.google.com"
-              rel="noopener noreferrer"
-            >
-              https://twitter.com/cci_lagos
-            </a>
-            <a target="_blank" href="/" rel="noopener noreferrer">
-              https://twitter.com/cci_lagos
-            </a>
-            <a target="_blank" href="/" rel="noopener noreferrer">
-              https://twitter.com/cci_lagos
-            </a>
-            <a target="_blank" href="/" rel="noopener noreferrer">
-              https://twitter.com/cci_lagos
-            </a>
+        {false && (
+          <div style={{ width: '250px' }}>
+            <p>Relevant links</p>
+            <div className={styles.reference}>
+              <a
+                target="_blank"
+                href="https://www.google.com"
+                rel="noopener noreferrer"
+              >
+                https://twitter.com/cci_lagos
+              </a>
+              <a target="_blank" href="/" rel="noopener noreferrer">
+                https://twitter.com/cci_lagos
+              </a>
+              <a target="_blank" href="/" rel="noopener noreferrer">
+                https://twitter.com/cci_lagos
+              </a>
+              <a target="_blank" href="/" rel="noopener noreferrer">
+                https://twitter.com/cci_lagos
+              </a>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
