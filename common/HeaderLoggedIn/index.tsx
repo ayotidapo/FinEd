@@ -18,7 +18,6 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const [step, setStep] = useState(0);
   const { user } = useSelector((state) => state?.user?.user);
   const { plans } = useSelector((state) => state?.plans);
-  const state = useSelector((state) => state);
 
   const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};

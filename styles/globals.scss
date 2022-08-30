@@ -653,6 +653,35 @@ a {
   font-family: var(--font-2);
 }
 
+
+.updateInfo{
+  width:550px;
+  padding-bottom: 20px;
+  .imgDiv{    
+      width: 115px;
+      height: 115px;
+      position: relative;
+      margin: 0 auto;
+  }
+  .complete-info{
+ 
+    width:85%;
+    margin: 0 auto;
+    text-align: center;
+    h2{
+      margin-top: 20px;
+      
+    }
+   
+  }
+  button{
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+
 @media only screen and (max-width: 425px) {
   .login {
     padding: 40px 20px;

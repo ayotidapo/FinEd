@@ -1,12 +1,16 @@
-import VideoPage, { ICourse } from 'components/VideosListPage';
+import VideoPage from 'components/VideosListPage';
+import Modal from 'common/Modal';
 import { getToken } from 'helpers/getToken';
 import axios from 'axios';
 import Footer from 'common/Footer';
-
+import Image from 'next/image';
 import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
 import { useSelector, wrapper } from 'store';
+import Button from 'common/Button';
+import Icon from 'common/Icon';
+import { useState } from 'react';
 
 interface Props {
   totalCount: number;
@@ -15,6 +19,9 @@ interface Props {
 
 const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
+  const [isOpen, setIsOpen] = useState(false);
+  const { user }: any = useSelector((state) => state.user?.user);
+  console.log(user), 'CHECK';
 
   return (
     <>
@@ -24,6 +31,31 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
         paginationUrl="/courses"
       />
       <Footer />
+      <Modal openModal={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="updateInfo">
+          <div className="imgDiv">
+            <Image
+              src="/assets/update-info.png"
+              alt="update-user-info"
+              layout="fill"
+            />
+          </div>
+          <div className="complete-info">
+            <h2 className="title">We need more information from you.</h2>
+            <p>
+              We require you to complete all your account information such as
+              (date of birth, your state &amp; country etc..). This will help to
+              keep your account more secure and protected.
+            </p>
+            <div style={{ textAlign: 'right' }}>
+              <Button bg="#C03E21">
+                Yes, Continue
+                <Icon id="arrow-right" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
