@@ -3,37 +3,30 @@
 import axios from 'axios';
 import { useDispatch, wrapper } from 'store';
 import type { AppContext, AppProps } from 'next/app';
-import { getUser } from 'components/LoginPage/helpers';
-import App from 'next/app';
+import { useRouter } from 'next/router';
+
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { useEffect, useState } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
+import { setUser } from 'reducers/user';
 import Header from 'common/HeaderLoggedIn';
-import PageLoader from 'common/PageLoader';
-import { useRouter } from 'next/router';
+import App from 'next/app';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
   axios.defaults.baseURL = 'https://api.themoneystaging.com';
-  const { userId, s_token } = pageProps;
+  const { userId, s_token, user } = pageProps;
   const dispatch = useDispatch();
   const path = router.pathname;
 
-  // const hideHeader = ['take-course'];
   const isHideHeader = path.includes('take-course');
 
-  const loadUser = async () => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-    await getUser(userId)(dispatch);
-    setLoading(false);
-  };
-
   useEffect(() => {
-    loadUser();
+    dispatch(setUser({ user }));
+    console.log(user, 567);
   }, [userId, s_token]);
 
   return (
@@ -46,20 +39,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         toastClassName="dark-toast"
       />
 
-      {loading ? (
-        <div className="container">
-          <PageLoader />
-        </div>
-      ) : (
-        <>
-          {userId && !isHideHeader && (
-            <Header
-              style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }}
-            />
-          )}
-          <Component {...pageProps} />
-        </>
+      {userId && !isHideHeader && (
+        <Header style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }} />
       )}
+      <Component {...pageProps} />
     </div>
   );
 }
@@ -69,12 +52,14 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const { req, res } = appContext.ctx;
   const c_token = getCookie('c_token', { req, res });
   const { s_token, userId } = getToken(c_token as string);
+  const { data: user } = await axios.get(`/auth/profile`);
 
   return {
     pageProps: {
       ...appProps.pageProps,
       userId: userId,
       s_token,
+      user,
     },
   };
 };

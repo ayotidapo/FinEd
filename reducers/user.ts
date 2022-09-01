@@ -6,7 +6,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 interface IUSer{
 	user:{
 		// accessToken?:string;
-
+        
 	    [key:string]:any
 
 	}
@@ -14,7 +14,10 @@ interface IUSer{
 }
 
 const initialState : IUSer = {
-	user:{accessToken:''}
+	user:{
+		user:{},
+		accessToken:''
+	}
 }
 
 
