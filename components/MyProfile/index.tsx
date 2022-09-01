@@ -14,8 +14,6 @@ import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
 import { toast } from 'react-toastify';
-import { getCookie } from 'cookies-next';
-import { getToken } from 'helpers/getToken';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
@@ -70,10 +68,7 @@ const MyProfile: React.FC<Props> = () => {
       body.residentState = userState;
       body.gender = gender;
       delete body.nigeriaPhone;
-      const c_token = getCookie('c_token');
 
-      const s_token = getToken(c_token as string);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.patch(`/users/profile`, body);
 
       dispatch(setUser(data));
@@ -86,8 +81,8 @@ const MyProfile: React.FC<Props> = () => {
   };
 
   useEffect(() => {
-    if (userCountry) {
-      const states = getStates(userCountry);
+    if (user?.residentCountry) {
+      const states = getStates(user?.residentCountry);
 
       if (userState) states.unshift({ label: userState, value: userState });
       setStates(states);

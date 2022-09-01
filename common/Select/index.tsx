@@ -30,11 +30,12 @@ const Select: React.FC<Props> = (props: Props) => {
         <select
           name={name}
           {...rest}
-          defaultValue={optionSelected}
+          key={name}
+          value={optionSelected}
           style={{ textTransform: 'capitalize' }}
         >
           {options.map(({ value, label }) => (
-            <option key={name} value={value}>
+            <option key={label} value={value}>
               {label}
             </option>
           ))}

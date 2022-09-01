@@ -20,6 +20,10 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
+const c_token = getCookie('c_token');
+const { s_token, userId } = getToken(c_token as string);
+axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   axios.defaults.baseURL = 'https://api.themoneystaging.com';
@@ -56,12 +60,16 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const { req, res } = appContext.ctx;
   const c_token = getCookie('c_token', { req, res });
+  let user = {};
   const { s_token, userId } = getToken(c_token as string);
+  if (c_token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+    const { data } = await axios.get(
+      `https://api.themoneystaging.com/auth/profile`,
+    );
+    user = data;
+  }
 
-  const { data: user } = await axios.get(
-    `https://api.themoneystaging.com/auth/profile`,
-  );
-  console.log(user, 'lknvjknkvnun');
   return {
     pageProps: {
       ...appProps.pageProps,

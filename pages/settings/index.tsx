@@ -9,11 +9,12 @@ import { wrapper } from 'store';
 
 interface Props {
   plans: IPlan[];
+  s_token: string;
 }
 
 const Settings: React.FC<Props> = (props) => {
-  const { plans } = props;
-
+  const { plans, s_token } = props;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
   return (
     <>
       <SettingsPage plans={plans} />
@@ -40,11 +41,12 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/plans/noauth');
       const { data: user } = await axios.get(`/auth/profile`);
-      console.log(user);
-      store.dispatch(setUser(user));
+      console.log(user, 908765);
+      store.dispatch(setUser({ user }));
       return {
         props: {
           plans: data,
+          s_token,
         },
       };
     } catch (e) {
