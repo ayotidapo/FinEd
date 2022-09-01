@@ -1,18 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import cx from 'classnames';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
+import { useRouter } from 'next/router';
 import Checkbox from 'common/Checkbox';
 import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
-import { useSelector } from 'store';
+import { useSelector, useDispatch } from 'store';
 import useForm from 'hooks/useForm';
 import Link from 'next/link';
 import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
 import EmptyView from 'common/EmptyView';
-import { handleSearch } from 'utils/handleSearch';
+
 export interface ICourse {
   id: string;
   categories: string[];
@@ -36,9 +38,14 @@ interface Props {
 
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
+  const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
+  const [totalCount, setTotalCount] = useState(props.totalCount);
   const [loading, setLoading] = useState(false);
   const { explorePage, courses, paginationUrl } = props;
+  const coursesData = courses;
+  const router = useRouter();
+  const { page = '1' } = router.query;
 
   const fields = {
     search: {
@@ -53,26 +60,33 @@ const VideosListPage: React.FC<Props> = (props) => {
   };
   const { onChangeInput, inputs } = useForm(fields);
   const { search } = inputs;
-  const [searchResult, setSearchResult] = useState<ICourse[]>([]);
-  const [totalPageCount, setTotalPageCount] = useState<number>(0);
 
   useEffect(() => {
-    const handler = setTimeout(async() => {
-      setLoading(true);
-      let searchQuery = search.value;
-      const {courses, totalCount} = await handleSearch(searchQuery);
-      setSearchResult(courses);
-      setTotalPageCount(totalCount);
+    const handler = setTimeout(async () => {
+      const searchQstr = search.value ? `&s=${search.value}` : '';
+      router.push(`/${props.paginationUrl}/?page=${page}${searchQstr}`);
       setLoading(false);
     }, 500);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [search, search.value]);
+  }, [search.value]);
 
-  const coursesData = searchResult.length ? searchResult : courses;
-  const totalCount = totalPageCount ? totalPageCount : props.totalCount;
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLoading(true);
+    }
+  }, []);
+
+  const onChangePage = (e: { selected: number }) => {
+    if (search.value) return;
+    const { selected: pageNum } = e;
+    const searchQstr = search.value ? `&s=${search.value}` : '';
+    return router.push(
+      `/${props.paginationUrl}/?page=${pageNum + 1}${searchQstr}`,
+    );
+  };
 
   return (
     <>
@@ -230,7 +244,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               <PageLoader />
             </div>
           )}
-          {coursesData.length ? (
+          {coursesData.length > 0 && !loading && (
             <>
               <section className={styles.content_items_wrap}>
                 {coursesData?.map((course: ICourse) => (
@@ -238,11 +252,14 @@ const VideosListPage: React.FC<Props> = (props) => {
                 ))}
               </section>
 
-              <Paginate totalCount={totalCount} pageUrl={paginationUrl} />
+              <Paginate
+                totalCount={totalCount}
+                pageUrl={paginationUrl}
+                onChangePage={onChangePage}
+              />
             </>
-          ) : (
-            <EmptyView contentName="course" />
           )}
+          {coursesData.length < 1 && <EmptyView contentName="course" />}
         </div>
       </main>
     </>

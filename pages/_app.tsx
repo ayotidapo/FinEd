@@ -36,14 +36,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     loadUser();
   }, [userId, s_token]);
 
-  if (loading) {
-    return (
-      <div className="container">
-        <PageLoader />
-      </div>
-    );
-  }
-
   return (
     <div className="container">
       <ToastContainer
@@ -53,10 +45,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         className="toast-container"
         toastClassName="dark-toast"
       />
-      {userId && !isHideHeader && (
-        <Header style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }} />
+
+      {loading ? (
+        <div className="container">
+          <PageLoader />
+        </div>
+      ) : (
+        <>
+          {userId && !isHideHeader && (
+            <Header
+              style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }}
+            />
+          )}
+          <Component {...pageProps} />
+        </>
       )}
-      <Component {...pageProps} />
     </div>
   );
 }

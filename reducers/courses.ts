@@ -47,7 +47,6 @@ export const courseSlice = createSlice({
            
        }   
         state.bookmarkCourses.filter((course:any) => course.id !== action.payload?.courseId )
-        console.log(current(state),'bookingmarking')
     },
     setBookMarkCourses(state: IState, action){
    

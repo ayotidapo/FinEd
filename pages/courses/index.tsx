@@ -23,11 +23,12 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user?.user);
-  const { dob, residentCountry, residentState } = user;
+  const { dob, residentCountry, residentState, accessToken } = user;
   const router = useRouter();
+
   useEffect(() => {
     const completeInfo = dob && residentCountry && residentState;
-    if (!completeInfo) setIsOpen(true);
+    if (!completeInfo && accessToken) setIsOpen(true);
     else setIsOpen(false);
   }, []);
 
@@ -75,6 +76,7 @@ export const getServerSideProps: GetServerSideProps =
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
     const page = Number(query?.page) || 1;
+    const searchQuery = query?.s || '';
     if (!userId) {
       return {
         redirect: {
@@ -85,13 +87,28 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      const { data } = await axios.get(
-        `/courses-user/?skip=${(page - 1) * 12}&take=12`,
-      );
+      let courses = [];
+      let totalCount = 0;
 
-      store.dispatch(setCourses(data?.courses));
+      if (searchQuery) {
+        const { data } = await axios.get(
+          `/courses-user/search-courses?skip=0&take=12&searchQuery=${searchQuery}`,
+        );
+        courses = data.courses;
+        totalCount = data.totalCount;
+      } else {
+        const { data } = await axios.get(
+          `/courses-user/?skip=${(page - 1) * 12}&take=12`,
+        );
+        courses = data.courses;
+        totalCount = data.totalCount;
+      }
 
-      if (page > 1 && data?.courses?.length < 1) {
+      store.dispatch(setCourses(courses));
+
+      const emptyCourse = courses?.length < 1;
+
+      if ((page > 1 && emptyCourse) || (searchQuery && emptyCourse)) {
         return {
           notFound: true,
         };
@@ -99,7 +116,7 @@ export const getServerSideProps: GetServerSideProps =
 
       return {
         props: {
-          totalCount: data.totalCount,
+          totalCount: totalCount,
         },
       };
     } catch (e) {

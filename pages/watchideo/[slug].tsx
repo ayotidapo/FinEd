@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 const TakeCourse: React.FC<{ course: ICourse }> = ({ course }) => {
   const router = useRouter();
-  console.log(router, 12345678900);
+
   return (
     <>
       <TakeCoursePage course={course} />

@@ -5,7 +5,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 interface IUSer{
 	user:{
-		accessToken?:string;
+		// accessToken?:string;
 
 	    [key:string]:any
 

@@ -11,20 +11,15 @@ interface Props {
 const Paginate: React.FC<Props> = (props) => {
   const router = useRouter();
   const initialPg = Number(router.query?.page) || 1;
-  const { totalCount, onChangePage } = props;
+  const { totalCount } = props;
   const noOfPage = Math.ceil(totalCount / 12);
 
-  const onPageChange = (e: { selected: number }) => {
-    if (onChangePage) onChangePage();
-    const { selected: pageNum } = e;
-    router.push(`/${props.pageUrl}/?page=${pageNum + 1}`);
-  };
   return (
     <div className={styles.pgnt_wrapper}>
       <ReactPaginate
         breakLabel="..."
         nextLabel="Next  >"
-        onPageChange={onPageChange}
+        onPageChange={props.onChangePage}
         initialPage={initialPg - 1}
         pageRangeDisplayed={1}
         pageCount={noOfPage}
