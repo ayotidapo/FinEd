@@ -45,7 +45,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const coursesData = courses;
   const router = useRouter();
   const { page = '1', s } = router.query;
-
+  console.log(2, s, router.query);
   const fields = {
     search: {
       name: 'search',
@@ -63,7 +63,8 @@ const VideosListPage: React.FC<Props> = (props) => {
   useEffect(() => {
     const handler = setTimeout(async () => {
       const searchQ = search.value || s;
-      const searchQstr = searchQ ? `&s=${search.value}` : '';
+      const searchQstr = searchQ && `&s=${search.value}` : '';
+      console.log(1, searchQstr);
       router.push(`/${props.paginationUrl}/?page=${page}${searchQstr}`);
       setLoading(false);
     }, 500);
@@ -84,6 +85,7 @@ const VideosListPage: React.FC<Props> = (props) => {
     const { selected: pageNum } = e;
     const searchQ = search.value || s;
     const searchQstr = searchQ ? `&s=${search.value}` : '';
+    console.log(2, searchQstr);
     return router.push(
       `/${props.paginationUrl}/?page=${pageNum + 1}${searchQstr}`,
     );

@@ -37,7 +37,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
       <VideoPage
         courses={courses?.courses}
         totalCount={totalCount}
-        paginationUrl="/courses"
+        paginationUrl="courses"
       />
       <Footer />
       <Modal openModal={isOpen} onClose={() => setIsOpen(false)} isBodyClose>
@@ -77,6 +77,10 @@ export const getServerSideProps: GetServerSideProps =
     const { s_token, userId } = getToken(c_token as string);
     const page = Number(query?.page) || 1;
     const searchQuery = query?.s || '';
+
+    let courses = [];
+    let totalCount = 0;
+
     if (!userId) {
       return {
         redirect: {
@@ -87,12 +91,10 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
-      let courses = [];
-      let totalCount = 0;
 
       if (searchQuery) {
         const { data } = await axios.get(
-          `/courses-user/search-courses?skip==${
+          `/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
         );
@@ -121,8 +123,9 @@ export const getServerSideProps: GetServerSideProps =
           totalCount,
         },
       };
-    } catch (e) {
-      store.dispatch(setCourses(null));
+    } catch (e: any) {
+      console.log(e.response.data);
+      store.dispatch(setCourses(courses));
       return {
         props: {
           error: 'call failed',
