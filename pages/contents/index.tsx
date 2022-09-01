@@ -72,7 +72,9 @@ export const getServerSideProps: GetServerSideProps =
 
       if (searchQuery) {
         const { data } = await axios.get(
-          `/courses-user/search-courses?skip=0&take=12&searchQuery=${searchQuery}`,
+          `/courses-user/search-courses?skip=${
+            (page - 1) * 12
+          }&take=12&searchQuery=${searchQuery}`,
         );
         courses = data.courses;
         totalCount = data.totalCount;

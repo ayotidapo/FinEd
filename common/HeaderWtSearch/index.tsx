@@ -14,11 +14,13 @@ interface IProps {
 const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { page = '1' } = router.query;
+  const { page = '1', s } = router.query;
 
   useEffect(() => {
     const handler = setTimeout(async () => {
-      const searchQstr = search.value ? `&s=${search.value}` : '';
+      const searchQ = search.value || s;
+      const searchQstr = searchQ ? `&s=${search.value}` : '';
+
       router.push(`/contents/?page=${page}${searchQstr}`);
       setLoading(false);
     }, 500);
