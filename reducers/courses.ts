@@ -34,7 +34,7 @@ export const courseSlice = createSlice({
 
 	reducers:{
 		setCourses(state: IState, action){
-   
+
 		    state.courses = [...action.payload]
 		},
     updateCourses(state: IState, action){
