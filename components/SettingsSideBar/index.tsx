@@ -27,7 +27,7 @@ const tabs = [
   {
     text: 'Change password',
     icon: 'padlock',
-  }
+  },
 ];
 
 interface Props {
@@ -36,33 +36,30 @@ interface Props {
 }
 
 const SideBar: React.FC<Props> = (props: Props) => {
-  
-  const { user } = useSelector(state => state?.user?.user)
-  const refCode = user?.refCode
-  const [el,setEl]=useState<HTMLElement | null>(null);
+  const { user } = useSelector((state) => state?.user);
+  const refCode = user?.refCode;
+  const [el, setEl] = useState<HTMLElement | null>(null);
 
-	useEffect(()=>{
-		setEl(document.getElementById('codeSpan'))
-		
-	},[])
+  useEffect(() => {
+    setEl(document.getElementById('codeSpan'));
+  }, []);
 
   const { setActiveTab, activeTab } = props;
-  const router = useRouter()
+  const router = useRouter();
 
   const onSetTab = (text: string) => {
     if (text === 'Log out') return;
-    setActiveTab(text)
-  }
+    setActiveTab(text);
+  };
   const logOut = async () => {
     const nextApi = axios.create({
-      baseURL: '/api'
-    })
+      baseURL: '/api',
+    });
 
     await nextApi.post('/logout');
-    router.replace('/login')
-  }
-  
- 
+    router.replace('/login');
+  };
+
   return (
     <>
       <section className={styles.sidetab}>
@@ -85,20 +82,21 @@ const SideBar: React.FC<Props> = (props: Props) => {
             />
           </ul>
         </nav>
-        {activeTab !== 'Refer a friend' &&
-          (<div className={styles.refer_div}>
+        {activeTab !== 'Refer a friend' && (
+          <div className={styles.refer_div}>
             <div className={styles.refer_box}>
               <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
             </div>
             <span>Get 10% off when you refer a friend</span>
             <Tooltip el={el}>
               <Button className={styles.copy}>
-                <span id='codeSpan'>{refCode}</span><Icon id="copy" />
+                <span id="codeSpan">{refCode}</span>
+                <Icon id="copy" />
               </Button>
             </Tooltip>
-            <SocialMediaShare iconSize={18}/>
-          </div>)
-        }
+            <SocialMediaShare iconSize={18} />
+          </div>
+        )}
       </section>
     </>
   );

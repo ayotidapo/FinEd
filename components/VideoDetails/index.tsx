@@ -48,7 +48,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
     paid,
     rating,
   } = course;
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
   const { plan: curPlan } = user?.currentSubscription || {};
 
   const coursePaidTxt =

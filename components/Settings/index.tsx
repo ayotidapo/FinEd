@@ -5,7 +5,6 @@ import SideBar from 'components/SettingsSideBar';
 import { useEffect, useState } from 'react';
 import ReferFriend from 'components/ReferFriend';
 import ChangePassword from 'components/ChangePassword';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 
 interface Props {
@@ -21,7 +20,7 @@ const SettingsPage: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    getRefDetails();
+    // getRefDetails();
   }, []);
 
   return (

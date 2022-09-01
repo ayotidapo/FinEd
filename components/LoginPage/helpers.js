@@ -17,8 +17,9 @@ export const loginUser = (body) => async (dispatch) => {
       token: accessToken,
       userId: user?.id,
     });
-
-    dispatch(setUser(data));
+    // constructData so that the data will be reconstruct to match redux state in reducer/user.ts file
+    const constructData = { ...data.user, accessToken: data.accessToken };
+    dispatch(setUser(constructData));
   } catch (e) {
     toast.error(e?.response?.data?.messsage || 'Login failed');
   }
@@ -35,7 +36,7 @@ export const getPlans = () => async (dispatch) => {
 export const getUser = (id) => async (dispatch) => {
   try {
     const { data: datap } = await axios.get(`/auth/profile`);
-    await dispatch(setUser({ user: datap }));
+    await dispatch(setUser(datap));
 
     await dispatch(getPlans());
   } catch (e) {}

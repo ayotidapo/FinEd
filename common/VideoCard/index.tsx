@@ -22,7 +22,7 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
   const { thumbnail, level, title, paid, categories, updatedAt, id, bookmark } =
     course;
 
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
   const rating = Math.round(course?.rating);
 

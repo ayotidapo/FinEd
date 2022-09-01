@@ -653,6 +653,21 @@ a {
   font-family: var(--font-2);
 }
 
+#nprogress .bar {
+  background: #c03e21 !important;
+ border: 4px solid #c03e21 ;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #c03e21;
+  border-left-color: #FFBB00;
+  width:25px;
+  height: 25px;
+}
 
 .updateInfo{
   width:550px;

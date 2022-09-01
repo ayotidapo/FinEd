@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ req, res }) => {
     const c_token = getCookie('c_token', { req, res });
     const { s_token, userId } = getToken(c_token as string);
-
+    console.log(s_token, '040404040');
     if (!userId) {
       return {
         redirect: {
@@ -39,8 +39,9 @@ export const getServerSideProps: GetServerSideProps =
     try {
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/plans/noauth');
-      const { data: profile } = await axios.get(`/auth/profile`);
-      store.dispatch(setUser(profile));
+      const { data: user } = await axios.get(`/auth/profile`);
+      console.log(user);
+      store.dispatch(setUser(user));
       return {
         props: {
           plans: data,
