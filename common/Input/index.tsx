@@ -29,7 +29,7 @@ interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
-  autoFocus: boolean;
+  autoFocus?: boolean;
   field: IField;
 }
 

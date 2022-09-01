@@ -3,8 +3,8 @@
 import axios from 'axios';
 import { useDispatch, wrapper } from 'store';
 import type { AppContext, AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-
+import Router, { useRouter } from 'next/router';
+import NProgress from 'nprogress'; //nprogress module
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,12 @@ import { setUser } from 'reducers/user';
 import Header from 'common/HeaderLoggedIn';
 import App from 'next/app';
 import 'react-toastify/dist/ReactToastify.min.css';
+import 'nprogress/nprogress.css'; //styles of nprogress
 import '../styles/globals.scss';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -25,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const isHideHeader = path.includes('take-course');
 
   useEffect(() => {
-    dispatch(setUser({ user }));
+    dispatch(setUser(user));
     console.log(user, 567);
   }, [userId, s_token]);
 
@@ -52,8 +57,11 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const { req, res } = appContext.ctx;
   const c_token = getCookie('c_token', { req, res });
   const { s_token, userId } = getToken(c_token as string);
-  const { data: user } = await axios.get(`/auth/profile`);
 
+  const { data: user } = await axios.get(
+    `https://api.themoneystaging.com/auth/profile`,
+  );
+  console.log(user, 'lknvjknkvnun');
   return {
     pageProps: {
       ...appProps.pageProps,

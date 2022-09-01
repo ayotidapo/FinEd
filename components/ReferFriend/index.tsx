@@ -9,7 +9,7 @@ import styles from './referfriend.module.scss';
 const ReferFriend = () => {
   const [el, setEl] = useState<HTMLElement | null>(null);
   const [el2, setEl2] = useState<HTMLElement | null>(null);
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
   const browsUrl = window.location.origin;
   const { refCode } = user;
 

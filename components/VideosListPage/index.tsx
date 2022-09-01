@@ -37,7 +37,8 @@ interface Props {
 }
 
 const VideosListPage: React.FC<Props> = (props) => {
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
+
   const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const coursesData = courses;
   const router = useRouter();
   const { page = '1', s } = router.query;
-  console.log(2, s, router.query);
+
   const fields = {
     search: {
       name: 'search',

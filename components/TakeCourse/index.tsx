@@ -49,7 +49,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     if (x < 10 && act === 'nxt') setX(x + 1);
     if (x > 1 && act === 'prev') setX(x - 1);
   };
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
   const { plans } = useSelector((state) => state?.plans);
 
   const { title, contents, paid, id } = course;

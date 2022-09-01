@@ -16,7 +16,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
   const { plans } = useSelector((state) => state?.plans);
 
   const path = router.pathname;

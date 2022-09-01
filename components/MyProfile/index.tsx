@@ -14,10 +14,13 @@ import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
 import { toast } from 'react-toastify';
+import { getCookie } from 'cookies-next';
+import { getToken } from 'helpers/getToken';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
-  const { user } = useSelector((state) => state?.user?.user);
+  const { user } = useSelector((state) => state?.user);
+  console.log(user, 'settinhgs');
   const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
@@ -67,14 +70,17 @@ const MyProfile: React.FC<Props> = () => {
       body.residentState = userState;
       body.gender = gender;
       delete body.nigeriaPhone;
+      const c_token = getCookie('c_token');
 
+      const s_token = getToken(c_token as string);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.patch(`/users/profile`, body);
 
       dispatch(setUser(data));
       setSubmitting(false);
       toast.success('Profile updated!');
     } catch (e) {
-      toast.success('Profile update!');
+      toast.error('Profile update fail!');
       setSubmitting(false);
     }
   };
@@ -91,9 +97,15 @@ const MyProfile: React.FC<Props> = () => {
     Object.keys(mInputs).forEach((field) => {
       if (field === 'dob') mInputs[field].value = user[field]?.substr(0, 10);
       else mInputs[field].value = user[field];
+      console.log(user, 'ehen');
     });
+    console.log(mInputs, 90101010101010);
     setInputs(mInputs);
-  }, []);
+  }, [user]);
+
+  // useEffect(() => {
+  //   setUserCountry(user?.residentCountry);
+  // }, [user?.residentCountry]);
 
   return (
     <form className={styles.profile_wrapper}>
@@ -209,7 +221,7 @@ const MyProfile: React.FC<Props> = () => {
           <Select
             name="residentCountry"
             options={countries}
-            optionSelected={userCountry}
+            optionSelected={user?.residentCountry}
             onChange={onSelect}
           />
           <Select
