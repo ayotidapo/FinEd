@@ -1,17 +1,38 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Input, { IField } from 'common/Input';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Icon from 'common/Icon';
 import Logo from 'common/Logo';
 import Button from 'common/Button';
 import styles from './headerwtsearch.module.scss';
-import { useRouter } from 'next/router';
-import { ChangeEvent } from 'react';
 
 interface IProps {
-  search: IField
-  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void
+  search: IField;
+  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { page = '1' } = router.query;
+
+  useEffect(() => {
+    const handler = setTimeout(async () => {
+      const searchQstr = search.value ? `&s=${search.value}` : '';
+      router.push(`/contents/?page=${page}${searchQstr}`);
+      setLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search.value]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLoading(true);
+    }
+  }, []);
 
   return (
     <>

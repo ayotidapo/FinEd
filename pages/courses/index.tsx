@@ -116,7 +116,7 @@ export const getServerSideProps: GetServerSideProps =
 
       return {
         props: {
-          totalCount: totalCount,
+          totalCount,
         },
       };
     } catch (e) {
