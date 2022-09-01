@@ -63,7 +63,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   useEffect(() => {
     const handler = setTimeout(async () => {
       const searchQ = search.value || s;
-      const searchQstr = searchQ && `&s=${search.value}` : '';
+      const searchQstr = searchQ ? `&s=${search.value}` : '';
       console.log(1, searchQstr);
       router.push(`/${props.paginationUrl}/?page=${page}${searchQstr}`);
       setLoading(false);
