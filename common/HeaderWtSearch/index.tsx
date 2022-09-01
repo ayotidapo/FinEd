@@ -6,15 +6,27 @@ import Icon from 'common/Icon';
 import Logo from 'common/Logo';
 import Button from 'common/Button';
 import styles from './headerwtsearch.module.scss';
+import useForm from 'hooks/useForm';
 
-interface IProps {
-  search: IField;
-  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
+interface IProps {}
+const HeaderWtSearch: React.FC<IProps> = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { page = '1', s } = router.query;
+
+  const fields = {
+    search: {
+      name: 'search',
+      value: s?.toString() || '',
+      label: '',
+      type: 'text',
+      placeholder: 'search',
+      error: '',
+    },
+  };
+
+  const { onChangeInput, inputs } = useForm(fields);
+  const { search } = inputs;
 
   useEffect(() => {
     const handler = setTimeout(async () => {
@@ -60,6 +72,7 @@ const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
             wrapperClass={styles.wrapClass}
             inputClass={styles.inptClass}
             onChange={onChangeInput}
+            autoFocus={search?.value}
           />
 
           <Button

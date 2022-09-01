@@ -17,26 +17,12 @@ interface Props {
 const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
 
-  const fields = {
-    search: {
-      name: 'search',
-      value: '',
-      label: '',
-      type: 'text',
-      placeholder: 'search',
-      error: '',
-    },
-  };
-
-  const { onChangeInput, inputs } = useForm(fields);
-  const { search } = inputs;
-
   const coursesData = courses?.courses;
   const totalCourseCount = totalCount;
 
   return (
     <>
-      <HeaderWtSearch onChangeInput={onChangeInput} search={search} />
+      <HeaderWtSearch />
       <VideoPage
         courses={coursesData}
         explorePage

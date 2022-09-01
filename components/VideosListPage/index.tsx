@@ -49,7 +49,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const fields = {
     search: {
       name: 'search',
-      value: '',
+      value: s?.toString() || '',
       type: 'text',
       label: '',
       placeholder: 'Search',
@@ -115,6 +115,7 @@ const VideosListPage: React.FC<Props> = (props) => {
                 wrapperClass={styles.wrapClass}
                 inputClass={styles.inptClass}
                 onChange={onChangeInput}
+                autoFocus={search?.value}
               />
             </div>
           )}
