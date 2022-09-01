@@ -40,7 +40,6 @@ const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
-  const [totalCount, setTotalCount] = useState(props.totalCount);
   const [loading, setLoading] = useState(false);
   const { explorePage, courses, paginationUrl } = props;
   const coursesData = courses;
@@ -253,7 +252,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               </section>
 
               <Paginate
-                totalCount={totalCount}
+                totalCount={props.totalCount}
                 pageUrl={paginationUrl}
                 onChangePage={onChangePage}
               />
