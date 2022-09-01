@@ -62,8 +62,7 @@ const VideosListPage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const handler = setTimeout(async () => {
-      const searchQ = search.value || s;
-      const searchQstr = searchQ ? `&s=${search.value}` : '';
+      const searchQstr = search.value || s ? `&s=${search.value || s}` : '';
       console.log(1, searchQstr);
       router.push(`/${props.paginationUrl}/?page=${page}${searchQstr}`);
       setLoading(false);
@@ -83,9 +82,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const onChangePage = (e: { selected: number }) => {
     if (search.value) return;
     const { selected: pageNum } = e;
-    const searchQ = search.value || s;
-    const searchQstr = searchQ ? `&s=${search.value}` : '';
-    console.log(2, searchQstr);
+    const searchQstr = search.value || s ? `&s=${search.value || s}` : '';
     return router.push(
       `/${props.paginationUrl}/?page=${pageNum + 1}${searchQstr}`,
     );

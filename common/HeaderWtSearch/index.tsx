@@ -18,8 +18,7 @@ const HeaderWtSearch: React.FC<IProps> = ({ search, onChangeInput }) => {
 
   useEffect(() => {
     const handler = setTimeout(async () => {
-      const searchQ = search.value || s;
-      const searchQstr = searchQ ? `&s=${search.value}` : '';
+      const searchQstr = search.value || s ? `&s=${search.value || s}` : '';
 
       router.push(`/contents/?page=${page}${searchQstr}`);
       setLoading(false);
