@@ -23,7 +23,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
   const courses: any = useSelector((state) => state.courses);
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user);
-  console.log(user, 9000);
+
   const { dob, residentCountry, residentState, accessToken } = user;
   const router = useRouter();
 
@@ -31,7 +31,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
     const completeInfo = dob && residentCountry && residentState;
     if (!completeInfo && accessToken) setIsOpen(true);
     else setIsOpen(false);
-  }, []);
+  }, [user]);
 
   return (
     <>
