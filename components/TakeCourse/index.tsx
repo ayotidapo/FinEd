@@ -36,8 +36,10 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const router = useRouter();
   const { contId } = router.query;
+
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
+
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
   const [lastVideoEnd, setLastVideoEnd] = useState(false);
@@ -54,27 +56,35 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const { title, contents, paid, id } = course;
 
-  const { plan: curPlan } = user?.currentSubscription || {};
+  const [resources, setResources] = useState([{ id: '' }]);
+  const [videos, setVideos] = useState([{ id: '' }]);
 
-  const cantWatch = paid && !curPlan?.id;
-  const [isOpen, setIsOpen] = useState(cantWatch);
+  // const { plan: curPlan } = user?.currentSubscription || {};
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const [url, setUrl] = useState('');
   const [showQuiz, setShowQuiz] = useState(false);
 
   let tHandler: any = null;
 
-  const resources = contents.filter(
-    (content: IContent) => content.type?.toLowerCase() !== 'video',
-  );
-  const videos = contents.filter(
-    (content: IContent) => content.type?.toLowerCase() === 'video',
-  );
-
   useEffect(() => {
+    const resources = contents.filter(
+      (content: IContent) => content.type?.toLowerCase() !== 'video',
+    );
+
+    const videos = contents.filter(
+      (content: IContent) => content.type?.toLowerCase() === 'video',
+    );
+
+    if (paid && !user?.currentSubscription?.id) setIsOpen(true);
+    else setIsOpen(false);
+
     const isHasVideo = ifHasVideo(contents);
 
     setHasVideo(isHasVideo);
+    setVideos(videos);
+    setResources(resources);
 
     tHandler = window.setInterval(() => {
       if (contId) onSendProgress(contId as string);
@@ -83,7 +93,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     return () => {
       window.clearInterval(tHandler);
     };
-  }, [contId]);
+  }, [user?.id, plans.length]);
 
   const getUrl = async (contentId: string) => {
     setShowQuiz(false);
@@ -176,6 +186,8 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     onLoadPage();
   }, []);
 
+  //  if (!user.id || plans.length < 0) return null;
+
   return (
     <main className={styles.watch}>
       <RateReview
@@ -196,7 +208,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
           <div style={{ display: 'flex', gap: '25px' }}>
             <SubCard
               plans={plans}
-              curPlan={curPlan}
+              curPlan={user?.currentSubscription}
               step={step}
               onClickSubCard={onClickSubCard}
             />
@@ -252,7 +264,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
               <CoursePlayer
                 videoRef={handleVideoMounted}
                 loading={loading}
-                cantWatch={cantWatch}
+                cantWatch={paid && !user?.currentSubscription?.id}
                 course={course}
                 hasVideo={hasVideo}
                 url={url}

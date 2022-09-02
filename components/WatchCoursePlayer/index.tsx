@@ -1,7 +1,7 @@
 import { BtnLoader } from 'common/Button';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
-import { title } from 'process';
+// import { title } from 'process';
 import { ICourse } from 'reducers/courses';
 import styles from './watchcourse.module.scss';
 
@@ -46,7 +46,7 @@ const CoursePlayer: React.FC<Props> = (props) => {
         )}
       </div>
       <div className={styles.details}>
-        <h2 className="title">{title}</h2>
+        <h2 className="title">{course?.title}</h2>
         <div className={styles.barz_clock}>
           <div className={`${course?.level} ${styles.min_details}`}>
             <span>

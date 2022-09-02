@@ -15,13 +15,14 @@ import App from 'next/app';
 import 'react-toastify/dist/ReactToastify.min.css';
 import 'nprogress/nprogress.css'; //styles of nprogress
 import '../styles/globals.scss';
+import { getPlans } from 'components/LoginPage/helpers';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const c_token = getCookie('c_token');
-const { s_token, userId } = getToken(c_token as string);
+const { s_token } = getToken(c_token as string);
 axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -35,6 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     dispatch(setUser(user));
+    dispatch(getPlans());
   }, [userId, s_token]);
 
   return (

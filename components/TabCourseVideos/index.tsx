@@ -6,7 +6,7 @@ import styles from './tabvideos.module.scss';
 import { ICourse } from 'components/VideosListPage';
 
 interface Props {
-  videos: IContent[];
+  videos: any;
   duration: number;
   curVidId: string;
   onClickTab: (id: string) => void;

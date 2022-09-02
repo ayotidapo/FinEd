@@ -8,10 +8,13 @@ import { ICourse } from 'components/VideosListPage';
 
 interface Props {
   course: ICourse;
+  token: string;
 }
 
 const TakeCourse: React.FC<Props> = (props) => {
-  const { course } = props;
+  const { course, token } = props;
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return (
     <>
       <TakeCoursePage course={course} />
@@ -44,9 +47,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
     const { data } = await axios.get(`/courses-user/${courseId}`);
+
     return {
       props: {
         course: data,
+        token: s_token,
       },
     };
   } catch (e: any) {
