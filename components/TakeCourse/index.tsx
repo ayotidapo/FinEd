@@ -11,7 +11,7 @@ import {
   sendContentProgress,
 } from './functions';
 import { useEffect, useState } from 'react';
-import Button from 'common/Button';
+
 import { ifHasVideo } from 'helpers';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
@@ -20,8 +20,9 @@ import TabCourseVideos from 'components/TabCourseVideos';
 import TabCourseResources from 'components/TabCourseResources';
 import TabCourseQuiz from 'components/TabCourseQuiz';
 import CoursePlayer from 'components/WatchCoursePlayer';
-import Radio from 'common/Radio';
+
 import RateReview from 'components/RateReview';
+import QuizPage, { IQuiz } from 'components/QuizPage';
 
 // const ReactPlayer = dynamic(() => import('react-player'), {
 //   ssr: false,
@@ -29,11 +30,12 @@ import RateReview from 'components/RateReview';
 
 interface Props {
   course: ICourse;
+  quiz: IQuiz;
 }
 
 const TakeCoursePage: React.FC<Props> = (props) => {
-  const { course } = props;
-
+  const { course, quiz } = props;
+  const questionsLen = quiz?.questions?.length;
   const router = useRouter();
   const { contId } = router.query;
 
@@ -59,7 +61,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  console.log(!curPlan?.id, paid, 7877, curPlan, user, plans);
   const [url, setUrl] = useState('');
   const [showQuiz, setShowQuiz] = useState(false);
 
@@ -252,7 +253,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             onClickTab={getUrl}
           />
           <TabCourseResources resources={resources} />
-          <TabCourseQuiz resources={resources} onClickTab={toggleQuiz} />
+          {questionsLen > 0 && (
+            <TabCourseQuiz resources={resources} onClickTab={toggleQuiz} />
+          )}
         </section>
 
         <section className={styles.main_sec}>
@@ -269,46 +272,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             </>
           )}
 
-          {false && (
-            <div className={styles.quiz_wrapper}>
-              <div className={styles.top}>
-                <h2 className="title">Quiz</h2>
-                <span>{x} out of 10 questions</span>
-              </div>
-              <article className={styles.quest_wrapper}>
-                <h2 className="title">
-                  {x}. What is stock all about {x}?
-                </h2>
-                <p>Select your answer below</p>
-                <div className={styles.options_box}>
-                  <p>
-                    <Radio name="option" value="x" id="x" />
-                    &nbsp;&nbsp;A. Making more money (Selected answer)
-                  </p>
-                  <p>
-                    <Radio name="option" value="y" id="y" />
-                    &nbsp;&nbsp;B. Investment
-                  </p>
-                  <p>
-                    <Radio name="option" value="z" id="z" />
-                    &nbsp;&nbsp;C. Option 3 (The correct answer)
-                  </p>
-                  <p>
-                    <Radio name="option" value="a" id="a" />
-                    &nbsp;&nbsp;D. Option 4
-                  </p>
-                </div>
-                <div className={styles.btn_nav}>
-                  <Button className="invrt-btn" onClick={() => onsetX('prev')}>
-                    <Icon id="arrow-left" /> Previous question
-                  </Button>
-                  <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
-                    Submit answer <Icon id="arrow-right" />
-                  </Button>
-                </div>
-              </article>
-            </div>
-          )}
+          <QuizPage quiz={quiz} />
         </section>
       </div>
     </main>
