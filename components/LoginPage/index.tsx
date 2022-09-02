@@ -87,6 +87,12 @@ const LoginPage = () => {
               Login <Icon id="arrow-right" width={20} height={20} />
             </Button>
           </div>
+          <div className="sign_up" style={{ display: 'block' }}>
+            <span>You can explore our interesting courses</span>
+            <Link href="/contents">
+              <a className="a">here</a>
+            </Link>
+          </div>
         </form>
       </section>
     </main>
