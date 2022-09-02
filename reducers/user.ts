@@ -30,7 +30,7 @@ export const userSlice = createSlice({
 		setUser(state: IUSer, action){
 			
 		    state.user = {...action.payload}
-			console.log(current(state),'11ododoo',action.payload)
+			
 		}
 	},
 

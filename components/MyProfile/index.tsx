@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user);
-  console.log(user, 'settinhgs');
+
   const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
@@ -92,9 +92,8 @@ const MyProfile: React.FC<Props> = () => {
     Object.keys(mInputs).forEach((field) => {
       if (field === 'dob') mInputs[field].value = user[field]?.substr(0, 10);
       else mInputs[field].value = user[field];
-      console.log(user, 'ehen');
     });
-    console.log(mInputs, 90101010101010);
+
     setInputs(mInputs);
   }, [user]);
 
@@ -222,7 +221,7 @@ const MyProfile: React.FC<Props> = () => {
           <Select
             name="residentState"
             options={states}
-            // optionSelected={userState}
+            optionSelected={user?.residentState}
             onChange={onSelect}
           />
 

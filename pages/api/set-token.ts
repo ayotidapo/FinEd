@@ -15,7 +15,6 @@ export default function handler(
 ) {
   if(req.method==='POST'){
     const {token,userId} = req.body
- console.log('jwt',process.env.JWT_SECRET)
     var c_token = jwt.sign({
       userId,
       s_token:token

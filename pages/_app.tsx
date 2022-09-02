@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     dispatch(setUser(user));
-    console.log(user, 567);
   }, [userId, s_token]);
 
   return (
