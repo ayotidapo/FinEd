@@ -39,7 +39,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
-
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
   const [lastVideoEnd, setLastVideoEnd] = useState(false);
@@ -56,35 +55,27 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const { title, contents, paid, id } = course;
 
-  const [resources, setResources] = useState([{ id: '' }]);
-  const [videos, setVideos] = useState([{ id: '' }]);
-
-  // const { plan: curPlan } = user?.currentSubscription || {};
+  const { plan: curPlan } = user?.currentSubscription || {};
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  console.log(!curPlan?.id, paid, 7877, curPlan, user, plans);
   const [url, setUrl] = useState('');
   const [showQuiz, setShowQuiz] = useState(false);
 
   let tHandler: any = null;
 
+  const resources = contents.filter(
+    (content: IContent) => content.type?.toLowerCase() !== 'video',
+  );
+  const videos = contents.filter(
+    (content: IContent) => content.type?.toLowerCase() === 'video',
+  );
+
   useEffect(() => {
-    const resources = contents.filter(
-      (content: IContent) => content.type?.toLowerCase() !== 'video',
-    );
-
-    const videos = contents.filter(
-      (content: IContent) => content.type?.toLowerCase() === 'video',
-    );
-
-    if (paid && !user?.currentSubscription?.id) setIsOpen(true);
-    else setIsOpen(false);
-
     const isHasVideo = ifHasVideo(contents);
 
     setHasVideo(isHasVideo);
-    setVideos(videos);
-    setResources(resources);
 
     tHandler = window.setInterval(() => {
       if (contId) onSendProgress(contId as string);
@@ -93,6 +84,11 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     return () => {
       window.clearInterval(tHandler);
     };
+  }, [contId]);
+
+  useEffect(() => {
+    if (paid && !curPlan?.id) setIsOpen(true);
+    else setIsOpen(false);
   }, [user?.id, plans.length]);
 
   const getUrl = async (contentId: string) => {
@@ -111,6 +107,48 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     }
     setLoading(false);
   };
+
+  const onLoadPage = async () => {
+    setLoading(true);
+
+    let contentId = '';
+    if (!contId) contentId = videos[0]?.id;
+    else contentId = contId as string;
+    setCurVidId(contentId);
+
+    let data: any = {};
+    let withcontentIDdata: any = {};
+
+    if (contentId) {
+      withcontentIDdata = await getContentUrl(contentId);
+      data = withcontentIDdata;
+    } else {
+      const withcourseIDdata = await getLastWatchContent(course?.id);
+
+      data = withcourseIDdata;
+      if (withcourseIDdata.error === 404)
+        // withcontentIDdata = await getContentUrl(contentId);
+        data = withcontentIDdata;
+    }
+
+    const fileurl = data?.file?.url;
+    setLatestCourseContent(data);
+
+    setUrl(fileurl);
+
+    if (data) {
+      const Coursetitle = data?.title || '';
+      const contentIDquery = contentId ? `?contId=${contentId}` : '';
+      let urlpath = `/take-course/${course.id}/${Coursetitle}/${contentIDquery}`;
+      router.push(urlpath);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (!hasVideo) return;
+    onLoadPage();
+  }, [hasVideo]);
 
   const onClickSubCard = (stp: number) => {
     setStep(stp);
@@ -147,47 +185,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     }
   };
 
-  const onLoadPage = async () => {
-    setLoading(true);
-    let contentId = '';
-    if (!contId) contentId = videos[0]?.id;
-    else contentId = contId as string;
-    setCurVidId(contentId);
-    let data: any = {};
-    let withcontentIDdata: any = {};
-
-    if (contentId) {
-      withcontentIDdata = await getContentUrl(contentId);
-      data = withcontentIDdata;
-    } else {
-      const withcourseIDdata = await getLastWatchContent(course?.id);
-
-      data = withcourseIDdata;
-      if (withcourseIDdata.error === 404)
-        withcontentIDdata = await getContentUrl(contentId);
-      data = withcontentIDdata;
-    }
-
-    const fileurl = data?.file?.url;
-    setLatestCourseContent(data);
-
-    setUrl(fileurl);
-
-    if (data) {
-      const Coursetitle = data?.title || '';
-      const ContentID = contentId || '';
-      let urlpath = `/take-course/${course.id}/${Coursetitle}/?contId=${ContentID}`;
-      router.push(urlpath);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    onLoadPage();
-  }, []);
-
-  //  if (!user.id || plans.length < 0) return null;
-
   return (
     <main className={styles.watch}>
       <RateReview
@@ -208,7 +205,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
           <div style={{ display: 'flex', gap: '25px' }}>
             <SubCard
               plans={plans}
-              curPlan={user?.currentSubscription}
+              curPlan={curPlan}
               step={step}
               onClickSubCard={onClickSubCard}
             />
@@ -264,7 +261,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
               <CoursePlayer
                 videoRef={handleVideoMounted}
                 loading={loading}
-                cantWatch={paid && !user?.currentSubscription?.id}
+                cantWatch={paid && !curPlan?.id}
                 course={course}
                 hasVideo={hasVideo}
                 url={url}
