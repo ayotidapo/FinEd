@@ -284,7 +284,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             </>
           )}
 
-          {showQuiz && (
+          {showQuiz && false && (
             <QuizPage
               quiz={quiz}
               setLastVideoEnd={setLastVideoEnd}
