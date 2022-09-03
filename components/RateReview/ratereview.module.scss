@@ -22,7 +22,11 @@
             padding: 20px 40px;
             width: 100%;
         }
-      
+        .descq_z{
+            padding: 20px 40px;
+            width: 100%;
+            display:block;
+        }
        
     }
     :global(.rating_div){
@@ -147,6 +151,10 @@
     :nth-child(2){
         padding: 10px 35px;
     }
+}
+.btns_div_fe{
+    display: flex;
+    justify-content: center;
 }
 .rateBtn{
     margin-left: auto;

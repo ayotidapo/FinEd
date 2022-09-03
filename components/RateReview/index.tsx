@@ -6,16 +6,20 @@ import WriteReview, { Rated } from './views/WriteReview';
 import Rate from './views/Rate';
 import LowRating from './views/LowRating';
 import JustComplete from './views/JustComplete';
+import JustCompleteWtQuiz from './views/CompleteWtQuiz';
 import { toast } from 'react-toastify';
 
 interface Props {
   courseId: string;
+  courseTitle: string;
   lastVideoEnd: boolean;
   setLastVideoEnd: any;
+  noQuiz?: boolean;
+  setShowQuiz: any;
 }
 
 const RateReview: React.FC<Props> = (props) => {
-  const { courseId, lastVideoEnd, setLastVideoEnd } = props;
+  const { courseId, lastVideoEnd, setLastVideoEnd, noQuiz } = props;
   const [view, setView] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -85,7 +89,14 @@ const RateReview: React.FC<Props> = (props) => {
         navigate={view > 1 && view < 5}
         onNavigate={onNavigate}
       >
-        {view === 1 && <JustComplete onClickFn={onSetView} />}
+        {view === 1 && !noQuiz && <JustComplete onClickFn={onSetView} />}
+        {view === 1 && noQuiz && (
+          <JustCompleteWtQuiz
+            closeModal={onClose}
+            courseTitle={props.courseTitle}
+            setShowQuiz={props.setShowQuiz}
+          />
+        )}
         {view === 2 && (
           <Rate
             onSetView={onSetView}

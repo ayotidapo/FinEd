@@ -1,9 +1,9 @@
 import axios from "axios"
 
-export const getCourseQuiz =async(courseId:string)=> {
+export const submitQuiz =async(quizId:string,body:any)=> {
 
 	try{
-	   const {data} = await axios.patch(`/quizes/course/{courseId}`)
+	   const {data} = await axios.post(`/quizes/${quizId}/submit`,body)
 
 	   return data   
 	   }catch(e:any){

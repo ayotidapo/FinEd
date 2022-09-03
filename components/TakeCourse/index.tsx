@@ -44,6 +44,8 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
   const [lastVideoEnd, setLastVideoEnd] = useState(false);
+  const [isCourseCompleted, setIsCourseCompleted] = useState(false);
+  const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [curVidId, setCurVidId] = useState<any>(contId);
   const [step, setStep] = useState(0);
   const [x, setX] = useState(1);
@@ -146,6 +148,8 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setLoading(false);
   };
 
+  useEffect(() => {}, [lastVideoEnd]);
+
   useEffect(() => {
     if (!hasVideo) return;
     onLoadPage();
@@ -175,6 +179,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     if (isLastCourseVideo && player) {
       player.onended = () => {
         setLastVideoEnd(true);
+        setIsCourseCompleted(true);
       };
     }
     await sendContentProgress(contId, Math.floor(Number(progress)));
@@ -190,8 +195,11 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     <main className={styles.watch}>
       <RateReview
         courseId={id}
+        courseTitle={course?.title}
         lastVideoEnd={lastVideoEnd}
         setLastVideoEnd={setLastVideoEnd}
+        noQuiz={questionsLen > 0}
+        setShowQuiz={setShowQuiz}
       />
       <Modal
         openModal={isOpen}
@@ -254,7 +262,10 @@ const TakeCoursePage: React.FC<Props> = (props) => {
           />
           <TabCourseResources resources={resources} />
           {questionsLen > 0 && (
-            <TabCourseQuiz resources={resources} onClickTab={toggleQuiz} />
+            <TabCourseQuiz
+              onClickTab={toggleQuiz}
+              isCourseCompleted={isCourseCompleted}
+            />
           )}
         </section>
 
@@ -272,7 +283,13 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             </>
           )}
 
-          <QuizPage quiz={quiz} />
+          {showQuiz && (
+            <QuizPage
+              quiz={quiz}
+              setLastVideoEnd={setLastVideoEnd}
+              setIsQuizCompleted={setIsQuizCompleted}
+            />
+          )}
         </section>
       </div>
     </main>

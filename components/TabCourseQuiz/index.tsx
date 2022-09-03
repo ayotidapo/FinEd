@@ -3,21 +3,28 @@ import { IContent } from 'components/VideoDetails';
 import styles from './tabquiz.module.scss';
 
 interface Props {
-  resources: any[];
   onClickTab: (id: boolean) => void;
+  isCourseCompleted: boolean;
 }
 
 const TabCourseQuiz: React.FC<Props> = (props) => {
-  const { resources, onClickTab } = props;
+  const { onClickTab, isCourseCompleted } = props;
 
+  const takeQuiz = () => {
+    if (!isCourseCompleted) return;
+    onClickTab(true);
+  };
   return (
-    <>
-      <p className="hand" onClick={() => onClickTab(true)}>
+    <span className={styles.takequiz}>
+      <p
+        className={`hand ${!isCourseCompleted ? styles.not_allowed : ''}`}
+        onClick={takeQuiz}
+      >
         Quiz
       </p>
       <div className={styles.content}>
         <ul>
-          {resources.map((resource: IContent, i: number) => (
+          {[].map((resource: IContent, i: number) => (
             <li key={i} className="hand">
               <abbr
                 title={resource.title}
@@ -32,7 +39,7 @@ const TabCourseQuiz: React.FC<Props> = (props) => {
           ))}
         </ul>
       </div>
-    </>
+    </span>
   );
 };
 

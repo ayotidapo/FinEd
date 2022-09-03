@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Radio from 'common/Radio';
 import styles from './quiz.module.scss';
-import { getCourseQuiz } from './function';
+import { submitQuiz } from './function';
 
 export interface IQuestion {
   id: string;
   question: string;
   correctAnswer: string;
-  answers: string[];
+  answers: { answer: string; position: number }[];
+  [key: string]: any;
 }
 
 export interface IQuiz {
@@ -20,13 +21,19 @@ export interface IQuiz {
 
 interface Props {
   quiz: IQuiz;
+  setLastVideoEnd: any;
+  setIsQuizCompleted: any;
 }
 
 const QuizPage: React.FC<Props> = (props) => {
   const { questions } = props.quiz;
   const queLen = questions?.length;
+
   const [num, setNum] = useState(0);
-  console.log(queLen, 9000);
+  const [disabled, setDisabled] = useState(true);
+  const [numAnsd, setNumAnsd] = useState(-1);
+  const [loading, setLoading] = useState(false);
+
   const [que, setQue] = useState(questions);
 
   const onsetX = (act: string) => {
@@ -34,7 +41,42 @@ const QuizPage: React.FC<Props> = (props) => {
     if (num > 0 && act === 'prev') setNum(num - 1);
   };
 
-  console.log(que[num]?.answers, 70);
+  const nxtBtnText = num < queLen - 1 ? 'Next Question' : 'Submit';
+
+  const onChoose = (e: any) => {
+    const { checked, value } = e.target;
+    if (checked) {
+      setDisabled(false);
+      const quez = [...que];
+      const curQue = quez[num];
+
+      curQue.myAnswerPos = Number(value);
+      setNumAnsd(num);
+      setQue(quez);
+      console.log(quez);
+    }
+  };
+
+  const onSubmit = async () => {
+    if (num < queLen - 1) return onsetX('nxt');
+    setLoading(true);
+    const myAnswers = que.map((q) => ({
+      questionId: q?.id,
+      answer: q?.myAnswerPos,
+    }));
+    const body = {
+      answers: myAnswers,
+    };
+    await submitQuiz(props?.quiz?.id, body);
+    props.setLastVideoEnd(true); // this always open the Entire Modal which is RareReview Component
+    props.setIsQuizCompleted(true);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (num > numAnsd) setDisabled(true);
+    else setDisabled(false);
+  }, [num, numAnsd]);
 
   return (
     <div className={styles.quiz_wrapper}>
@@ -54,7 +96,13 @@ const QuizPage: React.FC<Props> = (props) => {
           <ol className={styles.options_box}>
             {que[num]?.answers.map((ans: any, i: number) => (
               <li key={i}>
-                <Radio name="option" value={ans.answer} id={ans.answer} />
+                <Radio
+                  name="option"
+                  value={ans.position}
+                  checked={ans.position === que[num].myAnswerPos}
+                  id={ans.position}
+                  onChange={onChoose}
+                />
                 &nbsp;&nbsp; {ans.answer}
               </li>
             ))}
@@ -62,11 +110,19 @@ const QuizPage: React.FC<Props> = (props) => {
         </>
 
         <div className={styles.btn_nav}>
-          <Button className="invrt-btn" onClick={() => onsetX('prev')}>
-            <Icon id="arrow-left" /> Previous question
-          </Button>
-          <Button bg="#c03e21" onClick={() => onsetX('nxt')}>
-            Submit answer <Icon id="arrow-right" />
+          {num > 0 && (
+            <Button className="invrt-btn" onClick={() => onsetX('prev')}>
+              <Icon id="arrow-left" />
+              &nbsp; Previous question
+            </Button>
+          )}
+          <Button
+            bg="#c03e21"
+            onClick={onSubmit}
+            disabled={disabled}
+            loading={loading}
+          >
+            {nxtBtnText} <Icon id="arrow-right" />
           </Button>
         </div>
       </article>
