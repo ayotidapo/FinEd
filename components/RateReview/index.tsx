@@ -5,8 +5,8 @@ import styles from './ratereview.module.scss';
 import WriteReview, { Rated } from './views/WriteReview';
 import Rate from './views/Rate';
 import LowRating from './views/LowRating';
-import JustComplete from './views/JustComplete';
-import JustCompleteWtQuiz from './views/CompleteWtQuiz';
+import JustCompleteCourse from './views/JustComplete';
+import JustCompleteQuizCourse, { CompletedQuiz } from './views/CompleteWtQuiz';
 import { toast } from 'react-toastify';
 
 interface Props {
@@ -14,12 +14,13 @@ interface Props {
   courseTitle: string;
   lastVideoEnd: boolean;
   setLastVideoEnd: any;
-  noQuiz?: boolean;
+  hasQuiz: boolean;
   setShowQuiz: any;
+  isQuizCompleted: boolean;
 }
 
 const RateReview: React.FC<Props> = (props) => {
-  const { courseId, lastVideoEnd, setLastVideoEnd, noQuiz } = props;
+  const { isQuizCompleted, lastVideoEnd, setLastVideoEnd, hasQuiz } = props;
   const [view, setView] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ const RateReview: React.FC<Props> = (props) => {
   const onSubmit = async () => {
     const fmessage = feedback.filter((msg) => msg !== 'others');
     const body = {
-      courseId,
+      courseId: props.courseId,
       rating: userRate,
       feedback: fmessage.join(',') + ',' + wfeedback,
     };
@@ -89,13 +90,16 @@ const RateReview: React.FC<Props> = (props) => {
         navigate={view > 1 && view < 5}
         onNavigate={onNavigate}
       >
-        {view === 1 && !noQuiz && <JustComplete onClickFn={onSetView} />}
-        {view === 1 && noQuiz && (
-          <JustCompleteWtQuiz
+        {view === 1 && !hasQuiz && <JustCompleteCourse onClickFn={onSetView} />}
+        {view === 1 && hasQuiz && !isQuizCompleted && (
+          <JustCompleteQuizCourse
             closeModal={onClose}
             courseTitle={props.courseTitle}
             setShowQuiz={props.setShowQuiz}
           />
+        )}
+        {view === 1 && hasQuiz && isQuizCompleted && (
+          <CompletedQuiz onClickFn={onSetView} />
         )}
         {view === 2 && (
           <Rate

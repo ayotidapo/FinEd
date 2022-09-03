@@ -1,5 +1,6 @@
 import Button from 'common/Button';
 import Icon from 'common/Icon';
+import { useSelector } from 'store';
 import styles from '../ratereview.module.scss';
 
 interface Props {
@@ -39,9 +40,14 @@ const JustCompleteWtQuiz: React.FC<Props> = (props) => {
 };
 export default JustCompleteWtQuiz;
 
-export const CompleteDQuiz = () => {
+interface IProps {
+  onClickFn: (num: number) => void;
+}
+
+export const CompletedQuiz: React.FC<IProps> = ({ onClickFn }) => {
+  const { user } = useSelector((state) => state.user);
   const highestText =
-    'You did an outstanding job, and we are proud of you. Now you have taken a step further to become more knowledgeable about your finance';
+    'You did an outstanding job,indicating you have performed above average and we are proud of you. Now you have taken a step further to become more knowledgeable about your finance';
   const highText =
     'You have done well,Keep Learning to become more knowledgeable about your finance';
   const avergeText =
@@ -51,13 +57,18 @@ export const CompleteDQuiz = () => {
   return (
     <section className={styles.completed}>
       <h2 className="title">Quiz Completed!</h2>
-      <p>Weldone Thelma!</p>
-      <div className={`${styles.desc} ${styles.descqz}`}>
+
+      <div className={`${styles.desc} ${styles.descq_zx}`}>
+        <p>
+          <strong>Weldone {user?.firstName}!</strong>
+        </p>
         You scored 8 out of 10 {highestText}
       </div>
-      <div className={styles.btns_div}>
-        <Button className="invrt-btn">&nbsp; View quiz answer</Button>
-        <Button bg="#C03E21">
+      <div className={styles.btns_div_fe}>
+        {false && (
+          <Button className="invrt-btn">&nbsp; View quiz answer</Button>
+        )}
+        <Button bg="#C03E21" onClick={() => onClickFn(2)}>
           Rate this course
           <Icon id="arrow-right" />
         </Button>

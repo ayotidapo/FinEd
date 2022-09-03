@@ -26,6 +26,17 @@
             padding: 20px 40px;
             width: 100%;
             display:block;
+          
+        }
+        .descq_zx{
+            padding: 20px 40px;
+            width: 100%;
+            display:block;
+            padding-bottom: 40px;
+            height: auto;
+        }
+        button{
+            padding: 10px 32px;
         }
        
     }
@@ -151,10 +162,12 @@
     :nth-child(2){
         padding: 10px 35px;
     }
+   
 }
 .btns_div_fe{
     display: flex;
     justify-content: center;
+   
 }
 .rateBtn{
     margin-left: auto;

@@ -198,8 +198,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
         courseTitle={course?.title}
         lastVideoEnd={lastVideoEnd}
         setLastVideoEnd={setLastVideoEnd}
-        noQuiz={questionsLen > 0}
+        hasQuiz={questionsLen > 0}
         setShowQuiz={setShowQuiz}
+        isQuizCompleted={isQuizCompleted}
       />
       <Modal
         openModal={isOpen}

@@ -68,7 +68,7 @@ const QuizPage: React.FC<Props> = (props) => {
       answers: myAnswers,
     };
     await submitQuiz(props?.quiz?.id, body);
-    props.setLastVideoEnd(true); // this always open the Entire Modal which is RareReview Component
+    props.setLastVideoEnd(true); // this always open the Entire Modal which is RateReview Component
     props.setIsQuizCompleted(true);
     setLoading(false);
   };
