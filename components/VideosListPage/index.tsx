@@ -233,11 +233,13 @@ const VideosListPage: React.FC<Props> = (props) => {
                   </span>
                 </div>
               ) : (
-                <div className={`hand ${styles.sortby_div}`}>
-                  <span style={{ color: '#747474' }}>Sort by </span>
-                  <span> Latest videos</span>
-                  <Icon id="caret-down" width={18} height={18} />
-                </div>
+                false && (
+                  <div className={`hand ${styles.sortby_div}`}>
+                    <span style={{ color: '#747474' }}>Sort by </span>
+                    <span> Latest videos</span>
+                    <Icon id="caret-down" width={18} height={18} />
+                  </div>
+                )
               )}
             </div>
           </section>

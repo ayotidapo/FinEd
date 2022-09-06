@@ -126,21 +126,25 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
               <span className="bar" />
               &nbsp;{level}
             </span>
-            <span>
-              &nbsp;&nbsp;&nbsp;
-              <Icon id="clock" width={20} height={20} />
-              &nbsp;9 mins
-            </span>
+            {false && (
+              <span>
+                &nbsp;&nbsp;&nbsp;
+                <Icon id="clock" width={20} height={20} />
+                &nbsp;9 mins
+              </span>
+            )}
             <span>
               &nbsp;&nbsp;&nbsp;
               <Icon id="file" width={20} height={20} />
               &nbsp;{course?.contents?.length || 0} content(s)
             </span>
-            <span>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <Icon id="see" width={20} height={20} />
-              &nbsp;2,456
-            </span>
+            {false && (
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Icon id="see" width={20} height={20} />
+                &nbsp;2,456
+              </span>
+            )}
           </div>
           <p className={styles.content_labels}>
             {categories.slice(0, 3).map((category: string, i) => (
@@ -153,12 +157,14 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
               </label>
             ))}
 
-            <Icon
-              id="ellipsisY"
-              width={20}
-              height={20}
-              className={styles.elipsis_y}
-            />
+            {false && (
+              <Icon
+                id="ellipsisY"
+                width={20}
+                height={20}
+                className={styles.elipsis_y}
+              />
+            )}
           </p>
         </div>
       </article>
