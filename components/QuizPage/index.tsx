@@ -131,3 +131,5 @@ const QuizPage: React.FC<Props> = (props) => {
 };
 
 export default QuizPage;
+
+// Quiz Page
