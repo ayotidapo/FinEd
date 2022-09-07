@@ -14,6 +14,7 @@ import Link from 'next/link';
 import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
 import EmptyView from 'common/EmptyView';
+import axios from 'axios';
 
 export interface ICourse {
   id: string;
@@ -41,12 +42,16 @@ const VideosListPage: React.FC<Props> = (props) => {
 
   const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
+  const [filterValue, setFilterValue] = useState<string[]>([]);
+  const [levels, setLevels] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
   const { explorePage, courses, paginationUrl } = props;
   const coursesData = courses;
   const router = useRouter();
   const { page = '1', s } = router.query;
 
+  console.log(categories, 677388, coursesData);
   const fields = {
     search: {
       name: 'search',
@@ -64,20 +69,35 @@ const VideosListPage: React.FC<Props> = (props) => {
   useEffect(() => {
     const handler = setTimeout(async () => {
       const searchQstr = search.value ? `&s=${search.value}` : '';
+      const filterQstr =
+        filterValue.length > 0 ? `&category=${filterValue.join(',')}` : '';
+      const levelsQstr = levels.length > 0 ? `&level=${levels.join(',')}` : '';
 
-      router.push(`/${props.paginationUrl}/?page=${page}${searchQstr}`);
+      router.push(
+        `/${props.paginationUrl}/?page=${page}${searchQstr}${filterQstr}${levelsQstr}`,
+      );
       setLoading(false);
-    }, 500);
+    }, 2000);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [search.value]);
+  }, [search.value, filterValue.length, levels.length]);
 
+  const getCategories = async () => {
+    try {
+      const { data } = await axios.get(`/categories`);
+
+      setCategories(data);
+    } catch {}
+  };
+
+  console.log(categories, 78);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setLoading(true);
     }
+    getCategories();
   }, []);
 
   const onChangePage = (e: { selected: number }) => {
@@ -87,6 +107,29 @@ const VideosListPage: React.FC<Props> = (props) => {
     return router.push(
       `/${props.paginationUrl}/?page=${pageNum + 1}${searchQstr}`,
     );
+  };
+
+  const onChooseFilter = (e: any) => {
+    const { checked, name, value } = e.target;
+    if (name === 'category') {
+      let filters: string[] = [...filterValue];
+      if (checked) {
+        filters.push(value);
+      } else {
+        const re_f = filters.filter((f) => f !== value);
+        filters = [...re_f];
+      }
+      setFilterValue(filters);
+    } else {
+      let level_s: string[] = [...levels];
+      if (checked) {
+        level_s.push(value);
+      } else {
+        const re_f = level_s.filter((f) => f !== value);
+        level_s = [...re_f];
+      }
+      setLevels(level_s);
+    }
   };
 
   return (
@@ -135,33 +178,16 @@ const VideosListPage: React.FC<Props> = (props) => {
             <div className={styles.by_topics}>
               <p>Filter by Topics</p>
               <div className={styles.tags_div}>
-                <LabelCheck
-                  tag="MoneyAfrica"
-                  value="MoneyAfrica"
-                  type="checkbox"
-                />
-                <LabelCheck
-                  tag="Blockchain"
-                  value="Blockchain"
-                  type="checkbox"
-                />
-                <LabelCheck tag="Ethereum" value="Ethereum" type="checkbox" />
-                <LabelCheck
-                  tag="Technical analysis"
-                  value="Technical analysis"
-                  type="checkbox"
-                />
-                <LabelCheck
-                  tag="Cryptocurrency"
-                  value="Cryptocurrency"
-                  type="checkbox"
-                />
-                <LabelCheck
-                  tag="Essentials"
-                  value="Essentials"
-                  type="checkbox"
-                />
-                <LabelCheck tag="Security" value="Security" type="checkbox" />
+                {categories?.map((category: any, i: number) => (
+                  <LabelCheck
+                    key={i}
+                    tag={category.category}
+                    rname="category"
+                    value={category.category}
+                    type="checkbox"
+                    onChange={onChooseFilter}
+                  />
+                ))}
               </div>
             </div>
 
@@ -170,10 +196,10 @@ const VideosListPage: React.FC<Props> = (props) => {
               <div className={styles.levels_div}>
                 <span className="Beginner">
                   <Checkbox
-                    name="beginner"
-                    value=""
+                    name="level"
+                    value="beginner"
                     type="checkbox"
-                    onChange={() => null}
+                    onChange={onChooseFilter}
                   />
                   &nbsp;&nbsp;
                   <span className="bar" />
@@ -183,10 +209,10 @@ const VideosListPage: React.FC<Props> = (props) => {
                 </span>
                 <span className="Intermediate">
                   <Checkbox
-                    name="intermediate"
-                    value=""
+                    name="level"
+                    value="intermediate"
                     type="checkbox"
-                    onChange={() => null}
+                    onChange={onChooseFilter}
                   />
                   &nbsp;&nbsp;
                   <span className="bar" />
@@ -196,10 +222,10 @@ const VideosListPage: React.FC<Props> = (props) => {
                 </span>
                 <span className="Advanced">
                   <Checkbox
-                    name="advanced"
-                    value=""
+                    name="level"
+                    value="advanced"
                     type="checkbox"
-                    onChange={() => null}
+                    onChange={onChooseFilter}
                   />
                   &nbsp;&nbsp;
                   <span className="bar" />

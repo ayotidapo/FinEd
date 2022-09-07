@@ -16,16 +16,19 @@ import Icon from 'common/Icon';
 
 interface Props {
   totalCount: number;
+  token: string;
   [key: string]: any;
 }
 
-const Videos: React.FC<Props> = ({ totalCount }) => {
+const Videos: React.FC<Props> = ({ totalCount, token }) => {
   const courses: any = useSelector((state) => state.courses);
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user);
 
   const { dob, residentCountry, residentState, accessToken } = user;
   const router = useRouter();
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   useEffect(() => {
     const completeInfo = dob && residentCountry && residentState;
@@ -78,6 +81,8 @@ export const getServerSideProps: GetServerSideProps =
     const { s_token, userId } = getToken(c_token as string);
     const page = Number(query?.page) || 1;
     const searchQuery = query?.s || '';
+    const category = query?.category || '';
+    const level = query?.level || '';
 
     let courses = [];
     let totalCount = 0;
@@ -103,7 +108,9 @@ export const getServerSideProps: GetServerSideProps =
         totalCount = data.totalCount;
       } else {
         const { data } = await axios.get(
-          `/courses-user/?skip=${(page - 1) * 12}&take=12`,
+          `/courses-user/?skip=${
+            (page - 1) * 12
+          }&take=12&category=${category}&level=${level}`,
         );
         courses = data.courses;
         totalCount = data.totalCount;
@@ -122,6 +129,7 @@ export const getServerSideProps: GetServerSideProps =
       return {
         props: {
           totalCount,
+          token: s_token,
         },
       };
     } catch (e: any) {
