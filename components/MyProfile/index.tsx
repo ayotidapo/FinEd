@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Image from 'next/image';
 import Input from 'common/Input';
 import Icon from 'common/Icon';
 import { LabelCheck } from 'common/LabelTag';
@@ -14,6 +13,7 @@ import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
 import { toast } from 'react-toastify';
+import ProfileAvatar from 'components/avatar';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
@@ -100,7 +100,6 @@ const MyProfile: React.FC<Props> = () => {
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
-
   return (
     <form className={styles.profile_wrapper}>
       <div className={styles.profile_imgr}>
@@ -111,19 +110,24 @@ const MyProfile: React.FC<Props> = () => {
         <div className={`${styles.ryt}  ${styles.dx_al}`}>
           <span className={styles.avatar_wrapper}>
             <span className={`avatar ${styles.avatar}`}>
-              <Image
-                src="/assets/girl.png"
-                layout="fill"
-                alt="profile-picture"
+              <ProfileAvatar
+                user={{
+                  avatar: user?.avatar,
+                  firstName: user?.firstName,
+                  lastName: user?.lastName,
+                }}
+                height={50}
+                width={50}
               />
             </span>
           </span>
           <Icon
-            className="hand"
             id="img-logo"
             style={{ margin: '0px 7px 0px 15px', color: '#015351' }}
           />
-          <h4 className="hand" style={{ fontSize: '1.4rem', color: '#015351' }}>
+          <h4
+            style={{ fontSize: '1.4rem', color: '#015351' }}
+          >
             Edit Profile
           </h4>
         </div>

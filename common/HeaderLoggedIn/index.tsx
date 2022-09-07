@@ -1,5 +1,4 @@
 import Icon from 'common/Icon';
-import Image from 'next/image';
 import Logo from 'common/Logo';
 import styles from './headerloggedIn.module.scss';
 import Button from 'common/Button';
@@ -11,6 +10,7 @@ import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useState } from 'react';
+import ProfileAvatar from 'components/avatar';
 
 const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
@@ -112,7 +112,13 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
           onClick={() => router.push('/settings')}
         >
           <span className={styles.avatar}>
-            <Image src="/assets/girl.png" layout="fill" alt="top-sec-img" />
+            <ProfileAvatar
+              user={{
+                avatar: user?.avatar,
+                firstName: user?.firstName,
+                lastName: user?.lastName,
+              }}
+            />
           </span>
           <Icon id="caret-down" />
           <nav className={styles.setlog}>

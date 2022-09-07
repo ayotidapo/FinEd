@@ -10,6 +10,7 @@ interface Props {
 }
 
 const JustCompleteWtQuiz: React.FC<Props> = (props) => {
+  const { user } = useSelector((state) => state?.user);
   const { closeModal, courseTitle } = props;
 
   const onStatrQuiz = () => {
@@ -22,7 +23,7 @@ const JustCompleteWtQuiz: React.FC<Props> = (props) => {
       <h2 className="title">Course Completed!</h2>
       <div className={`${styles.desc} ${styles.descqz}`}>
         <p>
-          Way to go Thelma, you just completed all the videos in the{' '}
+          Way to go {user?.firstName}, you just completed all the videos in the{' '}
           <strong>{courseTitle}</strong>
           &nbsp;course. Please take a brief quiz to assist retain knowledge and
           enhance your confidence on this course before moving on to other
