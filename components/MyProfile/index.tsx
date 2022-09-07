@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import Input from 'common/Input';
 import Icon from 'common/Icon';
-import { useRcfUploader } from 'files-uploader-rc';
 import { LabelCheck } from 'common/LabelTag';
 import Select from 'common/Select';
 import Button from 'common/Button';
@@ -19,11 +18,12 @@ import { toast } from 'react-toastify';
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user);
-  // useRcfUploader()
+
   const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
 
+  const [userImg, setUserImg] = useState(user?.avatar?.url);
   const [userState, setUserState] = useState(user?.residentState);
   const [gender, setGender] = useState(user?.gender);
   const [userCountry, setUserCountry] = useState(user?.residentCountry);
@@ -89,6 +89,7 @@ const MyProfile: React.FC<Props> = () => {
       setStates(states);
     }
 
+    setUserImg(user?.avatar?.url);
     const mInputs = { ...inputs };
     Object.keys(mInputs).forEach((field) => {
       if (field === 'dob') mInputs[field].value = user[field]?.substr(0, 10);
@@ -98,9 +99,22 @@ const MyProfile: React.FC<Props> = () => {
     setInputs(mInputs);
   }, [user]);
 
-  // useEffect(() => {
-  //   setUserCountry(user?.residentCountry);
-  // }, [user?.residentCountry]);
+  const onUpload = (e: any) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    // reader.onloadstart = () => this.setState({ loading: true })
+
+    reader.onload = (evt: any) => {
+      setUserImg(evt.target.result);
+    };
+
+    //call endpoint
+  };
 
   return (
     <form className={styles.profile_wrapper}>
@@ -112,11 +126,9 @@ const MyProfile: React.FC<Props> = () => {
         <div className={`${styles.ryt}  ${styles.dx_al}`}>
           <span className={styles.avatar_wrapper}>
             <span className={`avatar ${styles.avatar}`}>
-              <Image
-                src="/assets/girl.png"
-                layout="fill"
-                alt="profile-picture"
-              />
+              {userImg && (
+                <Image src={userImg} layout="fill" alt="profile-picture" />
+              )}
             </span>
           </span>
           <Icon
@@ -124,9 +136,20 @@ const MyProfile: React.FC<Props> = () => {
             id="img-logo"
             style={{ margin: '0px 7px 0px 15px', color: '#015351' }}
           />
-          <h4 className="hand" style={{ fontSize: '1.4rem', color: '#015351' }}>
-            Edit Profile
-          </h4>
+          <input
+            type="file"
+            id="upload"
+            accept="image/png, image/jpeg"
+            onChange={onUpload}
+          />
+          <label htmlFor="upload">
+            <h4
+              className="hand"
+              style={{ fontSize: '1.4rem', color: '#015351' }}
+            >
+              Edit Picture
+            </h4>
+          </label>
         </div>
       </div>
 
