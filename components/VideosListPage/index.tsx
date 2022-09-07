@@ -142,15 +142,17 @@ const VideosListPage: React.FC<Props> = (props) => {
               {user?.firstName ? `, ${user?.firstName}` : ' !'}
             </span>
           </h2>
-          <span
-            className="d-flx"
-            onClick={() => setShowFilter((state) => !state)}
-          >
-            <span className={`hand ${styles.xplore}`}>Filter Topics</span>
-            <span className={`hand ${styles.cr_dn}`}>
-              <Icon id="caret-down" width={24} height={24} />
+          {!search.value && (
+            <span
+              className="d-flx"
+              onClick={() => setShowFilter((state) => !state)}
+            >
+              <span className={`hand ${styles.xplore}`}>Filter Topics</span>
+              <span className={`hand ${styles.cr_dn}`}>
+                <Icon id="caret-down" width={24} height={24} />
+              </span>
             </span>
-          </span>
+          )}
           {!explorePage && (
             <div className={styles.search_input}>
               <Input
