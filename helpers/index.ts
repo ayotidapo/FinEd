@@ -28,9 +28,9 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
   } else {
 
     validatedInputs[name].error = ``;
-    
+
   }
-  if (type==='password' && inputsObj['password2']?.value) { 
+  if (type==='password' && inputsObj['password2']?.value) {
 
     validatedInputs['password2'].error =
       inputsObj['password2']?.value !== inputsObj['password']?.value  ? 'Password does not match' : '';
@@ -46,7 +46,7 @@ export const formatDate =(dt:string)=>{
   const dateType=new Date(dt)
   const day=dateType.getUTCDay()
   const dd=day < 10 ? `0${day}` : day;
-  const mm = months[(dateType.getUTCMonth()) + 1] 
+  const mm = months[(dateType.getUTCMonth()) + 1]
   const yr=dateType.getUTCFullYear();
   return `${dd} ${mm} ${yr}`
 
@@ -86,4 +86,16 @@ export const sortedAsc = (arr: any[], key: string) => {
 
 export const firstLetter = (name: string) => {
   return (name.slice(0,1)).toUpperCase()
+};
+
+export const capitalize = (string: string): string | null => {
+  if (string) {
+    return (
+      string
+        .toString()
+        .charAt(0)
+        .toUpperCase() + string.toString().slice(1)
+    );
+  }
+  return null;
 };
