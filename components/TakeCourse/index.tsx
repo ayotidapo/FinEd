@@ -68,13 +68,13 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   let tHandler: any = null;
 
-  const resources = contents.filter(
+  const resources = contents?.filter(
     (content: IContent) => content.type?.toLowerCase() !== 'video',
   );
-  const videos = contents.filter(
+  const videos = contents?.filter(
     (content: IContent) => content.type?.toLowerCase() === 'video',
   );
-
+  console.log(resources, videos, 90909090);
   useEffect(() => {
     const isHasVideo = ifHasVideo(contents);
 

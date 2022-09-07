@@ -125,7 +125,8 @@ export const getServerSideProps: GetServerSideProps =
         },
       };
     } catch (e: any) {
-      console.log(e.response.data);
+      console.log(e, '00000');
+      console.log(e?.response?.data);
       store.dispatch(setCourses(courses));
       return {
         props: {
