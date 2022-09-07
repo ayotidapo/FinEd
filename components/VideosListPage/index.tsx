@@ -168,7 +168,7 @@ const VideosListPage: React.FC<Props> = (props) => {
             <div className={styles.by_levels}>
               <p>Filter by Levels</p>
               <div className={styles.levels_div}>
-                <span className="beginner">
+                <span className="Beginner">
                   <Checkbox
                     name="beginner"
                     value=""
@@ -181,7 +181,7 @@ const VideosListPage: React.FC<Props> = (props) => {
                   <span className="bar" />
                   &nbsp;Beginner
                 </span>
-                <span className="intermediate">
+                <span className="Intermediate">
                   <Checkbox
                     name="intermediate"
                     value=""
@@ -194,7 +194,7 @@ const VideosListPage: React.FC<Props> = (props) => {
                   <span className="bar" />
                   &nbsp;Intermediate
                 </span>
-                <span className="advanced">
+                <span className="Advanced">
                   <Checkbox
                     name="advanced"
                     value=""

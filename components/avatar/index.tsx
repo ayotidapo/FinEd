@@ -21,6 +21,7 @@ interface IProps {
 const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
   const [previewAvatar, setPreviewAvatar] = useState<any>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+
   const focusFileInput = (): void => {
     if (fileInput.current !== null) {
       fileInput.current.click();
@@ -43,6 +44,7 @@ const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
 
     await axios.post('users/avatar', formData);
   };
+
   return (
     <>
       {user?.avatar?.url || previewAvatar ? (
