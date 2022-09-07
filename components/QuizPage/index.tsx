@@ -51,7 +51,7 @@ const QuizPage: React.FC<Props> = (props) => {
       const curQue = quez[num];
 
       curQue.myAnswerPos = Number(value);
-      setNumAnsd(num);
+      if (num > numAnsd) setNumAnsd(num);
       setQue(quez);
       console.log(quez);
     }
