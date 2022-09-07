@@ -130,7 +130,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
       data = withcourseIDdata;
       if (withcourseIDdata.error === 404)
-        // withcontentIDdata = await getContentUrl(contentId);
+        /// withcontentIDdata = await getContentUrl(contentId);;;;
         data = withcontentIDdata;
     }
 
