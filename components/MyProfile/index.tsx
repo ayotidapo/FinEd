@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Input from 'common/Input';
 import Icon from 'common/Icon';
+import { useRcfUploader } from 'files-uploader-rc';
 import { LabelCheck } from 'common/LabelTag';
 import Select from 'common/Select';
 import Button from 'common/Button';
@@ -18,7 +19,7 @@ import { toast } from 'react-toastify';
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user);
-
+  // useRcfUploader()
   const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
