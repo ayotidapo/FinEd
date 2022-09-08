@@ -262,7 +262,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             onClickTab={getUrl}
           />
           <TabCourseResources resources={resources} />
-          {questionsLen > 0 && false && (
+          {questionsLen > 0 && (
             <TabCourseQuiz
               onClickTab={toggleQuiz}
               isCourseCompleted={isCourseCompleted}
