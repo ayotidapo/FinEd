@@ -18,7 +18,9 @@ import '../styles/globals.scss';
 import { getPlans } from 'components/LoginPage/helpers';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeComplete', () => {
+  NProgress.done();
+});
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const c_token = getCookie('c_token');
@@ -40,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [userId, s_token]);
 
   return (
-    <div className="container">
+    <div className="container" id="top">
       <ToastContainer
         autoClose={5000}
         transition={Zoom}

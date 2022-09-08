@@ -63,11 +63,11 @@ export const getCourseProgressPerc=(totalVideos:number,numberWatched:number)=>{
 export const isVideo = (type: string) => type.toLowerCase() === 'video';
 
 export const ifHasVideo = (contents:IContent[])=>{
-  return contents.some((content: IContent) => isVideo(content.type))
+  return contents?.some((content: IContent) => isVideo(content.type))
 }
 
 export const courseVideos = (contents:IContent[])=>{
-  return contents.filter((content: IContent) => content.type?.toLowerCase() === 'video')
+  return contents?.filter((content: IContent) => content.type?.toLowerCase() === 'video')
 }
 
 export function toTimeString(seconds:number) {

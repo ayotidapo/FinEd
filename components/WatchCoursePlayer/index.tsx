@@ -64,7 +64,7 @@ const CoursePlayer: React.FC<Props> = (props) => {
             )}
           </div>
           <div>
-            {course?.categories.slice(0, 3).map((cat, i) => (
+            {course?.categories?.slice(0, 3).map((cat, i) => (
               <LabelTag key={i} color={colors[i]}>
                 {cat}
               </LabelTag>

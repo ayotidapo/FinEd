@@ -13,7 +13,7 @@ const TabCourseResources: React.FC<Props> = (props) => {
       <p className="hand">Resource</p>
       <div className={styles.content}>
         <ul>
-          {resources.map((resource: IContent, i: number) => (
+          {resources?.map((resource: IContent, i: number) => (
             <li key={i} className="hand">
               <abbr
                 title={resource.title}

@@ -20,7 +20,7 @@ const TabCourseVideos: React.FC<Props> = (props) => {
 
       <div className={styles.content}>
         <ul>
-          {videos.map((video: IContent, i: number) => (
+          {videos?.map((video: IContent, i: number) => (
             <li
               key={video.id}
               className={cx('hand', {
