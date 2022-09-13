@@ -38,7 +38,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const questionsLen = quiz?.questions?.length;
   const router = useRouter();
   const { contId } = router.query;
-
+  const [showNavs, setShowNavs] = useState(false);
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -254,7 +254,18 @@ const TakeCoursePage: React.FC<Props> = (props) => {
         <div className={styles.controls}></div>
       </div>
       <div className={styles.wrapper}>
-        <section className={styles.content_list}>
+        <section
+          className={`${styles.content_list} ${showNavs ? '' : styles.hideIt}`}
+          onClick={() => setShowNavs(false)}
+        >
+          <span className={styles.close_videotab}>
+            <Icon
+              id="close-videotab"
+              width={94}
+              height={94}
+              onClick={() => setShowNavs(false)}
+            />
+          </span>
           <TabCourseVideos
             videos={videos}
             duration={duration}
@@ -271,6 +282,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
         </section>
 
         <section className={styles.main_sec}>
+          {!showNavs && (
+            <p
+              className={styles.view_Mcontents}
+              onClick={() => setShowNavs(true)}
+            >
+              &#60;&#60; View Course Content
+            </p>
+          )}
           {!showQuiz && (
             <>
               <CoursePlayer
@@ -292,6 +311,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             />
           )}
         </section>
+        {showNavs && <div className={styles.simulate}></div>}
       </div>
     </main>
   );

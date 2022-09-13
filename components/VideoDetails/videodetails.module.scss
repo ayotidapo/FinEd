@@ -53,6 +53,7 @@
       color: red;
       font-size: var(--f-20);
       font-weight: bold;
+      background: rgba(0, 0, 0, 0.7);
     }
     img {
       object-position: center;
@@ -141,7 +142,7 @@
     font-size: var(--f-24);
   }
   .si_btn {
-    background-color: #c03e21;
+    background-color: #c03e21 ;
 
     margin-top: 40px;
     margin-bottom: 15px;
@@ -350,6 +351,18 @@
     padding-left: 20px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .getstarted {
+    display: none;
+   
+  }
+  .about{
+    padding-top: 40px;
+  }
+}
+
+
 
 @media only screen and (max-width: 500px) {
   .tabs {
