@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import Header from 'common/Header';
+import Header, { MobileHeader } from 'common/Header';
 import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
 import Icon from 'common/Icon';
@@ -8,12 +9,15 @@ import Button from '../common/Button';
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
+import useSetNav from 'hooks/useSetNav';
 
 const Home: NextPage = () => {
+  const { open, onSetNav } = useSetNav();
+
   return (
     <div style={{ overflow: 'hidden' }}>
-      <Header />
-
+      <Header setNav={onSetNav} />
+      {open && <MobileHeader toOpen={open} setNav={onSetNav} />}
       <main className={styles.main}>
         <div className="app-pad">
           <section className={styles.top_sec}>

@@ -581,8 +581,21 @@ a {
 // end of 5-ratings star css
 
 
+.hide{
+   visibility: hidden;
+   opacity: 0;
+   width:0px;
+   height: 0px;
+}
 
 
+
+.show{
+  visibility: visible;
+  opacity: 1;
+  width:auto;
+  height: auto;
+}
 
 
 .navi {

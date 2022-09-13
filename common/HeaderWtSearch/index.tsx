@@ -9,7 +9,7 @@ import styles from './headerwtsearch.module.scss';
 import useForm from 'hooks/useForm';
 
 interface IProps {}
-const HeaderWtSearch: React.FC<IProps> = () => {
+const HeaderWtSearch: React.FC<any> = ({ setNav }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { page = '1', s } = router.query;
@@ -85,7 +85,7 @@ const HeaderWtSearch: React.FC<IProps> = () => {
             Get Started
           </Button>
         </div>
-        <span className={styles.hamburger}>
+        <span className={styles.hamburger} onClick={setNav}>
           <Icon id="hamburger" width={24} height={24} />
         </span>
       </div>

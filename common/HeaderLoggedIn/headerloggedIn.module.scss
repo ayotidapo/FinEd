@@ -3,6 +3,9 @@
   height: 70px;
   align-items: center;
   padding-top: 12px;
+  .hamburger{
+    display: none;
+  }
   .logo_box {
     position: relative;
     width: 148px;
@@ -115,4 +118,17 @@
     left:50%;
   }
   
+}
+
+@media only screen and (max-width: 768px) {
+  .header{
+    justify-content: space-between;
+    margin-bottom: 40px;
+    .navi_box ,.avatar_div{
+      display: none;
+    }
+    .hamburger{
+      display: inline-block
+    }
+  }
 }

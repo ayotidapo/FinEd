@@ -15,6 +15,7 @@ import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
 import EmptyView from 'common/EmptyView';
 import axios from 'axios';
+import { MobileHeader } from 'common/Header';
 
 export interface ICourse {
   id: string;
