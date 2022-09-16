@@ -109,16 +109,25 @@ const SignUpPage: React.FC<Props> = () => {
                 <Input
                   field={inputs.nigeriaPhone}
                   leftIcon={{ name: 'phone' }}
-                  rightIcon={{ name: 'caret-down', pos: [28, 72] }}
+                  rightIcon={{ name: 'caret-down####', pos: [28, 72] }}
                   onChange={onChangeInput}
-                  onBlur={onBlurInput}
                 >
                   <Icon
                     id="nigeria"
                     width={24}
                     height={24}
                     className={styles.nigeria}
-                  />
+                  />{' '}
+                  <span
+                    style={{
+                      color: 'red',
+                      fontSize: '1.8rem',
+                      position: 'relative',
+                      top: '-2px',
+                    }}
+                  >
+                    *
+                  </span>
                 </Input>
                 <Input
                   field={inputs.phone}
@@ -126,7 +135,7 @@ const SignUpPage: React.FC<Props> = () => {
                   onChange={onChangeInput}
                   onBlur={onBlurInput}
                 >
-                  <span className={styles.number}>+234</span>
+                  {<span className={styles.number}>+234</span>}
                 </Input>
               </div>
               <Input

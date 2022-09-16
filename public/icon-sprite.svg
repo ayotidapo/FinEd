@@ -249,7 +249,10 @@
 		<path d="M5.83398 10H17.5007L15.0007 12.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
 
-
+     <symbol id="open-eye" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.5845 11.3291C10.2092 11.7041 9.99823 12.2129 9.99805 12.7434C9.99786 13.2739 10.2084 13.7828 10.5835 14.1581C10.9585 14.5334 11.4672 14.7443 11.9977 14.7445C12.5283 14.7447 13.0372 14.5341 13.4125 14.1591" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17.357 18.0912C15.726 19.1912 13.942 19.7422 12 19.7422C8 19.7422 4.667 17.4092 2 12.7422C3.369 10.3472 4.913 8.56725 6.632 7.40125M9.363 6.10725C10.2204 5.86197 11.1082 5.73909 12 5.74225C16 5.74225 19.333 8.07525 22 12.7422C21.222 14.1032 20.388 15.2662 19.497 16.2302L9.363 6.10725Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
 
 </svg>
 

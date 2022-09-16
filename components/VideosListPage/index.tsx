@@ -74,7 +74,7 @@ const VideosListPage: React.FC<Props> = (props) => {
       const levelsQstr = levels.length > 0 ? `&level=${levels.join(',')}` : '';
 
       router.push(
-        `/${props.paginationUrl}/?page=${page}${searchQstr}${filterQstr}${levelsQstr}`,
+        `/${props.paginationUrl}/?page=1${searchQstr}${filterQstr}${levelsQstr}`,
       );
       setLoading(false);
     }, 2000);
