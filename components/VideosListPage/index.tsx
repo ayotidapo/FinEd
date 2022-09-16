@@ -15,7 +15,7 @@ import Paginate from 'common/Paginate';
 import PageLoader from 'common/PageLoader';
 import EmptyView from 'common/EmptyView';
 import axios from 'axios';
-import { MobileHeader } from 'common/Header';
+import useIFMobile from 'hooks/useIFMobile';
 
 export interface ICourse {
   id: string;
@@ -40,7 +40,7 @@ interface Props {
 
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user);
-
+  const isMobile = useIFMobile();
   const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
   const [filterValue, setFilterValue] = useState<string[]>([]);
@@ -51,7 +51,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const coursesData = courses;
   const router = useRouter();
   const { page = '1', s } = router.query;
-
+  const isCoursePage = router.pathname === '/courses';
   console.log(categories, 677388, coursesData);
   const fields = {
     search: {
@@ -75,7 +75,7 @@ const VideosListPage: React.FC<Props> = (props) => {
       const levelsQstr = levels.length > 0 ? `&level=${levels.join(',')}` : '';
 
       router.push(
-        `/${props.paginationUrl}/?page=${page}${searchQstr}${filterQstr}${levelsQstr}`,
+        `/${props.paginationUrl}/?page=1${searchQstr}${filterQstr}${levelsQstr}`,
       );
       setLoading(false);
     }, 2000);
@@ -133,6 +133,7 @@ const VideosListPage: React.FC<Props> = (props) => {
     }
   };
 
+  const showSearch = (explorePage && isMobile) || isCoursePage;
   return (
     <>
       <header className={styles.video_header_wrap}>
@@ -154,7 +155,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               </span>
             </span>
           )}
-          {!explorePage && (
+          {showSearch && (
             <div className={styles.search_input}>
               <Input
                 field={search}

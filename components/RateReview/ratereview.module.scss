@@ -175,3 +175,91 @@
 .rt_modalClass{
     width:40%;
 }
+
+
+@media only screen and (max-width: 1246px) {
+    .rt_modalClass{
+        width:45%;
+    }
+    .rate_review{
+       
+       .completed{
+        padding: 0;
+        
+       }
+        
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .rt_modalClass{
+        width:55%;
+    }
+    .modalClass{
+        width:100%;
+        
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .rt_modalClass{
+        width:60%;
+    }
+   
+    .rate_review{
+       :global(.rating_div){
+        padding-left: 0;
+        transform: translateX(-20px);
+        
+       }
+       .completed{
+         :global(.flx_jc_sb){
+            transform: translateX(-20px);
+            padding-left: 0;
+        }
+       }
+       :global(.title){
+        + p{
+            font-size: var(--f-14);
+        }
+        
+   
+    }
+    .lowrating{
+        .fdbk_option{
+            p{
+             font-size: var(--f-14);
+            }
+        }
+    }
+    }
+}
+
+
+@media only screen and (max-width: 640px) {
+    .rt_modalClass{
+        width:100%;
+    }
+    .rate_review{
+        :global(.rating_div){
+            padding-left: 0;
+           padding-right: 0;
+            
+           }
+
+        .completed{
+            padding: 10px;
+            .desc{
+                height: auto;
+                font-size: var(--f-14);
+                
+            }
+        }
+        .btns_div{
+            button{
+                margin-left: 0;
+            }
+        }
+    }
+}

@@ -256,7 +256,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       <div className={styles.wrapper}>
         <section
           className={`${styles.content_list} ${showNavs ? '' : styles.hideIt}`}
-          onClick={() => setShowNavs(false)}
         >
           <span className={styles.close_videotab}>
             <Icon
@@ -287,7 +286,10 @@ const TakeCoursePage: React.FC<Props> = (props) => {
               className={styles.view_Mcontents}
               onClick={() => setShowNavs(true)}
             >
-              &#60;&#60; View Course Content
+              <span>
+                <Icon id="hamburger" />
+              </span>
+              View Course Content
             </p>
           )}
           {!showQuiz && (

@@ -46,3 +46,9 @@
 .activeTab {
   background-color: rgba(245, 195, 200, 0.5);
 }
+
+@media only screen and (max-width: 927px) {
+  .sidetab {
+    display: none;
+  }
+}

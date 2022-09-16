@@ -46,6 +46,7 @@ export default Header;
 
 export const MobileHeader: React.FC<any> = ({ toOpen, setNav }) => {
   const router = useRouter();
+  const isExplorePage = router.pathname === '/contents';
 
   const [open] = useState(toOpen);
 
@@ -64,12 +65,16 @@ export const MobileHeader: React.FC<any> = ({ toOpen, setNav }) => {
           <div className={styles.navWrapper}>
             <nav className={styles.header_nav}>
               <ul className={styles.header_ul}>
-                <li>Services</li>
-                <li>Tools</li>
-                <li>Company</li>
-                <li>
-                  <Link href="/contents">Explore</Link>
-                </li>
+                {!isExplorePage && (
+                  <>
+                    <li>Services</li>
+                    <li>Tools</li>
+                    <li>Company</li>
+                    <li>
+                      <Link href="/contents">Explore</Link>
+                    </li>
+                  </>
+                )}
                 <li>
                   <Link href="/login">Login</Link>
                 </li>
@@ -80,7 +85,7 @@ export const MobileHeader: React.FC<any> = ({ toOpen, setNav }) => {
             <Button onClick={() => router.push('/signup')} bg="#c03e21">
               Get Started
             </Button>
-            <Button>Financial Health Check</Button>
+            {false && <Button>Financial Health Check</Button>}
           </div>
         </header>
       ) : (

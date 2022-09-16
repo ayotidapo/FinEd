@@ -146,23 +146,28 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
                 className="overlay"
                 style={{ background: !hasVideo ? '#fff' : '' }}
               >
-                {!hasVideo && <span>This course contains no video</span>}
-                {paid && !curPlan?.id ? (
-                  <Button className={styles.si_btn} bg="#C03E21">
-                    &nbsp;&nbsp;&nbsp;UPGRADE TO PRO
-                    <Icon id="arrow-right" width={20} height={20} />
-                    &nbsp;&nbsp;&nbsp;
-                  </Button>
+                {!hasVideo ? (
+                  <span>This course contains no video</span>
                 ) : (
-                  <Button
-                    className={styles.si_btn}
-                    style={{ width: '60%' }}
-                    bg="#C03E21"
-                  >
-                    &nbsp;&nbsp;&nbsp;Watch Video
-                    <Icon id="arrow-right" width={20} height={20} />
-                    &nbsp;&nbsp;&nbsp;
-                  </Button>
+                  <>
+                    {paid && !curPlan?.id ? (
+                      <Button className={styles.si_btn} bg="#C03E21">
+                        &nbsp;&nbsp;&nbsp;UPGRADE TO PRO
+                        <Icon id="arrow-right" width={20} height={20} />
+                        &nbsp;&nbsp;&nbsp;
+                      </Button>
+                    ) : (
+                      <Button
+                        className={styles.si_btn}
+                        style={{ width: '60%' }}
+                        bg="#C03E21"
+                      >
+                        &nbsp;&nbsp;&nbsp;Watch Video
+                        <Icon id="arrow-right" width={20} height={20} />
+                        &nbsp;&nbsp;&nbsp;
+                      </Button>
+                    )}
+                  </>
                 )}
               </div>
             </section>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-const useSetNav = () => {
+const useSetNav = (status?: boolean) => {
   const [open, setOpen] = useState(false);
+
   const onSetNav = () => {
+    if (status) return setOpen(status);
     setOpen(!open);
   };
   return { open, onSetNav };

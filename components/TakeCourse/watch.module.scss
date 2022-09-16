@@ -132,8 +132,14 @@
 		color: #fff; 
 		padding: 20px;
 		display: none;
+		font-size: 1.4rem;
 		&:hover{
 			cursor: pointer;
+		}
+		> span{	
+			color: #fff;
+			display: inline-block;
+			transform: translate(-5px, 6px)			
 		}
 	}
 	.simulate{
@@ -213,7 +219,7 @@
 		.wrapper{
 			.content_list{
 				position: fixed;
-				z-index: 10;
+				z-index: 20;
 				width: 50%;
 			}
 		}
@@ -235,7 +241,7 @@
 			width: 50%;
 			right: 0;
 			position: fixed;
-			z-index: 200;		 
+			z-index: 10;		 
 		}
 	}
 	

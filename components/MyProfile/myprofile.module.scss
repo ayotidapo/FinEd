@@ -9,7 +9,13 @@
   }
   .personal_info {
     margin-bottom: 10px;
+  } 
+  .title{
+    display: none;
+    font-size: var(--f-18);
+    
   }
+ 
   .lft {
     width: 27%;
 
@@ -102,4 +108,48 @@
       background-color: var(--btn-col-1);
     }
   }
+}
+
+
+@media only screen and (max-width: 927px) {
+  .profile_wrapper {
+    padding-left: 0;
+   
+    .title{
+      display: flex;
+      justify-content: center;
+      border: none;
+    }
+    .lft{
+      display: none;
+      padding-left: 0;
+    }
+    .ryt{
+      width: 100%;
+      padding-left: 0;
+      flex-direction: column;
+      
+    }
+    .avatar_wrapper {
+      margin-bottom: 10px;
+      + svg{
+        display: none;
+      }
+    }
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+  .profile_wrapper {
+    .radio_div{
+      display: flex;
+    }
+  }
+  .btn_con {
+    button{
+      width: 100%;
+    }
+  }
+
 }

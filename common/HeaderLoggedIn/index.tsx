@@ -12,7 +12,7 @@ import SubCard from 'common/SubCard';
 import { useState } from 'react';
 import ProfileAvatar from 'components/avatar';
 import useSetNav from 'hooks/useSetNav';
-import { MobileHeader } from 'common/Header';
+import MobileAuthHeader from './MobileAuthHeader';
 
 const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
@@ -65,12 +65,19 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
         }
       </Modal>
 
-      {open && <MobileHeader setNav={onSetNav} toOpen={open} />}
-
+      {open && (
+        <MobileAuthHeader
+          user={user}
+          upgrade={onClickedUpgrade}
+          subId={subId}
+          setNav={onSetNav}
+          open={open}
+        />
+      )}
       <div className={styles.logo_box}>
         <Logo />
       </div>
-      <span className={styles.hamburger} onClick={onSetNav}>
+      <span className={styles.hamburger} onClick={() => onSetNav()}>
         <Icon id="hamburger" width={24} height={24} />
       </span>
       <nav className={`navi ${styles.navi_box}`}>

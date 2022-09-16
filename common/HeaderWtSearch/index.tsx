@@ -50,9 +50,11 @@ const HeaderWtSearch: React.FC<any> = ({ setNav }) => {
   return (
     <>
       <div className={`app-pad ${styles.header_sec}`}>
-        <span className={styles.hamburger}>
-          <Icon id="search" width={24} height={24} />
-        </span>
+        {false && (
+          <span className={styles.hamburger}>
+            <Icon id="search" width={24} height={24} />
+          </span>
+        )}
         <div>
           <div className={styles.logo_box}>
             <Logo />

@@ -51,9 +51,9 @@
     }
   }
 }
- .header_btn_div {
+.header_btn_div {
     display: flex;
-    width: 42%;
+    width: 500px;
     justify-content: space-between;
       button,
       a {
@@ -76,12 +76,12 @@
         }
       }
     }
-    .bambg{      
-      display:none ;
+  .bambg{      
+    display:none ;
       
-    }
-
   }
+
+}
 
 @media only screen and (max-width: 1087px) {
   .header {
@@ -92,8 +92,43 @@
 }
 
 
+@media only screen and (max-width: 1295px) and (min-width: 941px) {
+  .header{
+    .header_btn_div{
+      width: 300px;
+      button{
+        font-size: var(--f-12);
+      }
+    }
+    .header_nav{
+      .header_ul{
+        padding-left: 35px;
+        li{
+          font-size: var(--f-12);
+        }
+      }
+    }
+  }
 
-@media only screen and (max-width: 768px) {
+}
+
+
+@media only screen and (max-width: 768px)  {
+  .header {
+    padding: 0 10px;
+    .logo_box {
+      position: relative;
+      width: 148px;
+      height: 26px;
+    }
+  }
+
+}
+
+
+// Mobile Header without loggedIn Starts here
+
+@media only screen and (max-width: 940px) {
   .header{
     .navWrapper{
       display: none;
@@ -164,6 +199,12 @@
         margin-top: 20px;
       }
 
+
+      :global(.logo_div){
+        width: 148px;
+        height: 26px;
+      }
+
       .header_btn_div {
         display: flex;
         flex-direction: column;
@@ -198,36 +239,6 @@
     
 }
 
+// Mobile Header without loggedIn Ends here
 
 
-// @media only screen and (max-width: 990px) {
-//    .header {
-//   //   .header_btn_div {
-//   //     display: none;
-//   //   }
-    
-//   }
-// }
-
-@media only screen and (max-width: 425px) {
-  .header {
-    padding: 0 10px;
-    .logo_box {
-      position: relative;
-      width: 148px;
-      height: 26px;
-    }
-  }
-}
-
-
-// .mobheader{
-//   position:fixed;
-//   padding: 40px 20px;
-//   top:0;
-//   width:100%;
-//   height:100vh;
-//   background-color:#fff;
-//   z-index: 700;
-
-// }

@@ -10,7 +10,8 @@ const ReferFriend = () => {
   const [el, setEl] = useState<HTMLElement | null>(null);
   const [el2, setEl2] = useState<HTMLElement | null>(null);
   const { user } = useSelector((state) => state?.user);
-  const browsUrl = window.location.origin;
+  const browsUrl =
+    typeof window !== 'undefined' && global?.window?.location.origin;
   const { refCode } = user;
 
   useEffect(() => {
@@ -20,12 +21,15 @@ const ReferFriend = () => {
 
   return (
     <section className={styles.refer_friend}>
+      <h2 className={`title ${styles.title}`}>Refer a friend</h2>
       <div className={styles.left}>
         <h3>
           {' '}
           Refer a friend to get{' '}
-          <span style={{ color: '#C03E21' }}>10% off</span> your next
-          subscription
+          <span style={{ color: '#C03E21' }}>
+            <strong>10% off</strong>
+          </span>{' '}
+          your next subscription
         </h3>
         <p>
           When you refer a friend, they need to become paid subscribers for this

@@ -21,3 +21,22 @@
   padding-left: 20px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .settings_main{
+    width:90%;
+  }
+}
+
+@media only screen and (max-width: 927px) {
+  .settings_main{
+    .wrapper {
+      padding-top: 20px;
+    }
+    :global(.title){
+      display: none;
+    }
+  }
+  .display {
+    padding-left: 0px;
+  }
+}

@@ -39,7 +39,8 @@
       height: 46px;
       background-color: gold;
       border-radius: 50%;
-
+      justify-content: center;
+      align-items: center;
       img {
         border-radius: 50%;
         object-position: top center;
@@ -120,7 +121,7 @@
   
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 792px) {
   .header{
     justify-content: space-between;
     margin-bottom: 40px;
@@ -132,3 +133,6 @@
     }
   }
 }
+
+
+

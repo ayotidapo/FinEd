@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import Header, { MobileHeader } from 'common/Header';
+import useSetNav from 'hooks/useSetNav';
 import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
 import Icon from 'common/Icon';
@@ -9,7 +10,6 @@ import Button from '../common/Button';
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
-import useSetNav from 'hooks/useSetNav';
 
 const Home: NextPage = () => {
   const { open, onSetNav } = useSetNav();

@@ -102,11 +102,13 @@ const MyProfile: React.FC<Props> = () => {
   // }, [user?.residentCountry]);
   return (
     <form className={styles.profile_wrapper}>
+      <h2 className={`title ${styles.title}`}>My Profile</h2>
       <div className={styles.profile_imgr}>
         <div className={styles.lft}>
           <h3>Profile Image</h3>
           <p>Choose a new avatar to be used across your MoneyAfrica account.</p>
         </div>
+
         <div className={`${styles.ryt}  ${styles.dx_al}`}>
           <span className={styles.avatar_wrapper}>
             <span className={`avatar ${styles.avatar}`}>
@@ -125,11 +127,7 @@ const MyProfile: React.FC<Props> = () => {
             id="img-logo"
             style={{ margin: '0px 7px 0px 15px', color: '#015351' }}
           />
-          <h4
-            style={{ fontSize: '1.4rem', color: '#015351' }}
-          >
-            Edit Profile
-          </h4>
+          <h4 style={{ fontSize: '1.4rem', color: '#015351' }}>Edit Profile</h4>
         </div>
       </div>
 
