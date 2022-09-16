@@ -83,7 +83,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
             />
           </ul>
         </nav>
-        {props.tabname !== 'Refer a friend' && (
+        {props.tabname !== 'refer' && (
           <div className={styles.refer_div}>
             <div className={styles.refer_box}>
               <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
