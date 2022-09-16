@@ -51,6 +51,8 @@
   }
 }
 
+
+
 @media screen and (max-width: 880px) {
   .header_sec {
     padding: 0 20px;
@@ -66,5 +68,11 @@
     .hamburger {
       display: inline-block;
     }
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .header_sec {
+    padding-top: 40px;
   }
 }

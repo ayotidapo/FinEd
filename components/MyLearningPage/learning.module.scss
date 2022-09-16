@@ -45,12 +45,13 @@
         display: flex;
         border: 1px solid #E5E5E5;
         border-radius: 8px;
-        height: 185px;
         margin-top:20px;
+        height: 190px;
     }
     .imgBx{
         position: relative;
         width:20%;
+        flex-shrink: 0;
         border-radius: 8px 0px 0px 8px;
         height: 100%;
         &:hover{
@@ -101,6 +102,9 @@
         padding-left: 20px;
         padding-top: 15px;
         padding-bottom: 15px;
+        :global(.elips){
+            width: 400px;
+        }
     }
     .rating_div {
         display: flex;
@@ -118,6 +122,7 @@
         align-items: center;
         margin-top: 20px;
         font-family: var(--font-2);
+        margin-bottom: 10px;
         span{
             display: flex;
             align-items: center;
@@ -125,15 +130,23 @@
     }
     .labeltag{
         display: inline-flex;
+        justify-content: flex-end;
         flex-wrap: wrap;
+       
+
         label{
             margin-right: 7px;
+            margin-bottom: 10px;
         }
     }
 
       .progressbar{
         width:80%;
         margin-top: auto;
+      }
+
+      .btnDv{
+        width:180px
       }
 }
 
@@ -142,4 +155,67 @@
     display: flex;
     flex-wrap: wrap;
     gap:40px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .topheader{
+        .section{
+            padding-top: 0;
+        }
+    }
+    .main{
+        width: 95%;
+        .lastviewed_details{
+          display: block;
+          height:auto;
+        }
+        .lblBx{
+            width: 100%;
+            flex-direction: row;
+            padding-left: 10px;
+            flex-wrap: wrap;
+            label{
+                margin-bottom: 10px;
+            }
+        }
+        .progressbar{
+            width: 100%;
+        }
+
+        .btnDv{
+            width:200px;
+            margin-left: auto;
+            button{
+                width: 100%;
+            }
+        }
+        .midBx{
+            :global(.elips){
+                width: 250px;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 425px) {
+    .topheader{
+        background-image: none;
+    }
+    .main{
+        width:92%;
+        .labeltag{
+            justify-content: flex-start;
+        }
+        .rating_div {
+            font-size: var(--f-12);
+        }
+        .btnDv{
+            width: 80%;
+            margin: auto;
+        }
+       
+    }
+
 }

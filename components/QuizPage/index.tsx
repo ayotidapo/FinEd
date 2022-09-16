@@ -90,7 +90,7 @@ const QuizPage: React.FC<Props> = (props) => {
       <article className={styles.quest_wrapper}>
         <>
           <h2 className="title">
-            {num + 1}. {que[num]?.question}?
+            {num + 1}. {que[num]?.question}
           </h2>
           <p>Select your answer below</p>
           <ol className={styles.options_box}>

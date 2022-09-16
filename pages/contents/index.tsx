@@ -1,4 +1,5 @@
-import VideoPage, { ICourse } from 'components/VideosListPage';
+import { useState } from 'react';
+import VideoPage from 'components/VideosListPage';
 import { getToken } from 'helpers/getToken';
 import axios from 'axios';
 import Footer from 'common/Footer';
@@ -7,7 +8,8 @@ import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
 import HeaderWtSearch from 'common/HeaderWtSearch';
-import useForm from 'hooks/useForm';
+import { MobileAuthHeader } from 'common/Header';
+import useSetNav from 'hooks/useSetNav';
 
 interface Props {
   totalCount: number;
@@ -15,6 +17,8 @@ interface Props {
 }
 
 const Videos: React.FC<Props> = ({ totalCount }) => {
+  const { open, onSetNav } = useSetNav();
+
   const courses: any = useSelector((state) => state.courses);
 
   const coursesData = courses?.courses;
@@ -22,12 +26,14 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
 
   return (
     <>
-      <HeaderWtSearch />
+      <HeaderWtSearch setNav={onSetNav} />
+      {open && <MobileAuthHeader toOpen={open} setNav={onSetNav} />}
       <VideoPage
         courses={coursesData}
         explorePage
         totalCount={totalCourseCount}
         paginationUrl="contents"
+        setNav={onSetNav}
       />
       <Footer />
     </>

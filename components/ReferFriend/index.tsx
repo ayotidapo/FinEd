@@ -9,23 +9,29 @@ import styles from './referfriend.module.scss';
 const ReferFriend = () => {
   const [el, setEl] = useState<HTMLElement | null>(null);
   const [el2, setEl2] = useState<HTMLElement | null>(null);
+  const [url, setUrl] = useState('');
   const { user } = useSelector((state) => state?.user);
-  const browsUrl = window.location.origin;
+
   const { refCode } = user;
 
   useEffect(() => {
+    const browsUrl = global?.window?.location.origin;
+    setUrl(browsUrl);
     setEl(document.getElementById('codeSpan'));
     setEl2(document.getElementById('codeSpan2'));
   }, []);
 
   return (
     <section className={styles.refer_friend}>
+      <h2 className={`title ${styles.title}`}>Refer a friend</h2>
       <div className={styles.left}>
         <h3>
           {' '}
           Refer a friend to get{' '}
-          <span style={{ color: '#C03E21' }}>10% off</span> your next
-          subscription
+          <span style={{ color: '#C03E21' }}>
+            <strong>10% off</strong>
+          </span>{' '}
+          your next subscription
         </h3>
         <p>
           When you refer a friend, they need to become paid subscribers for this
@@ -58,7 +64,7 @@ const ReferFriend = () => {
             <h3 className="title">
               <span id="codeSpan">{refCode}</span>
               <span id="codeSpan2" style={{ display: 'none' }}>
-                {`${browsUrl}/signup?referrer=${refCode}`}
+                {`${url}/signup?referrer=${refCode}`}
               </span>
               <Tooltip el={el2}>
                 <Button>Copy referral link</Button>

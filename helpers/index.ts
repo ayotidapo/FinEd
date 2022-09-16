@@ -102,3 +102,8 @@ export const capitalize = (string: string): string | null => {
   }
   return null;
 };
+
+
+export const isMobile = () => {
+  global?.window?.matchMedia('(max-width: 768px)').matches;
+}

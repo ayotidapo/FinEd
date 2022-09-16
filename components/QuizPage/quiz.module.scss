@@ -47,3 +47,20 @@
 		}
 	}
 }
+
+
+@media only screen and (max-width: 768px) {
+	.quiz_wrapper{
+	  padding: 20px;
+	}  
+}
+
+@media only screen and (max-width: 445px) {
+    .quiz_wrapper{
+        .btn_nav{
+            button{
+				font-size: var(--f-12);
+			}
+        }
+    }
+}

@@ -102,45 +102,52 @@ const MyLearningPage: React.FC<Props> = () => {
         <h2 className="title">{textHeader}</h2>
         {tab === 'ongoing' && (
           <section className={styles.lastviewed_details}>
-            <div className={styles.imgBx}>
-              {lastViewed?.thumbnail && (
-                <Image
-                  src={lastViewed?.thumbnail?.url}
-                  layout="fill"
-                  alt="alu"
-                />
-              )}
-              <span>
-                <Icon id="play" />
-              </span>
-              <div className={styles.overlay} />
-            </div>
-            <div className={styles.midBx}>
-              <h2 className="title">{lastViewed?.title}</h2>
-              <div className={styles.rating_div}>
-                {ayraStars.map((n, i) => (
-                  <Star key={n} id={i} rating={rating - 1} />
-                ))}
-                &nbsp;{rating > 0 && rating}
-                <span style={{ color: '#7C7C7C' }}>
-                  &nbsp;&nbsp;&nbsp;Updated {formatDate(lastViewed?.updatedAt)}
-                </span>
-              </div>
-              <div className={`${lastViewed?.level} ${styles.min_details}`}>
+            <div style={{ flex: '1', display: 'flex', height: '190px' }}>
+              <div className={styles.imgBx}>
+                {lastViewed?.thumbnail && (
+                  <Image
+                    src={lastViewed?.thumbnail?.url}
+                    layout="fill"
+                    alt="alu"
+                  />
+                )}
                 <span>
-                  <span className="bar" />
-                  <span className="bar" />
-                  <span className="bar" />
-                  &nbsp;{lastViewed?.level}
+                  <Icon id="play" />
                 </span>
-                <span>
-                  &nbsp;&nbsp;&nbsp;
-                  <Icon id="clock" width={20} height={20} />
-                  &nbsp;9 mins
-                </span>
+                <div className={styles.overlay} />
               </div>
-              <div className={styles.progressbar}>
-                <Progressbar progress={lastViewed?.analyticProgress} />
+              <div className={styles.midBx}>
+                <h2>
+                  <abbr title={lastViewed?.title} className="title elips">
+                    {lastViewed?.title}
+                  </abbr>
+                </h2>
+                <div className={styles.rating_div}>
+                  {ayraStars.map((n, i) => (
+                    <Star key={n} id={i} rating={rating - 1} />
+                  ))}
+                  &nbsp;{rating > 0 && rating}
+                  <span style={{ color: '#7C7C7C' }} className={styles.date}>
+                    &nbsp;&nbsp;&nbsp;Updated{' '}
+                    {formatDate(lastViewed?.updatedAt)}
+                  </span>
+                </div>
+                <div className={`${lastViewed?.level} ${styles.min_details}`}>
+                  <span>
+                    <span className="bar" />
+                    <span className="bar" />
+                    <span className="bar" />
+                    &nbsp;{lastViewed?.level}
+                  </span>
+                  <span>
+                    &nbsp;&nbsp;&nbsp;
+                    <Icon id="clock" width={20} height={20} />
+                    &nbsp;9 mins
+                  </span>
+                </div>
+                <div className={styles.progressbar}>
+                  <Progressbar progress={lastViewed?.analyticProgress} />
+                </div>
               </div>
             </div>
             <div className={styles.lblBx}>
@@ -156,7 +163,7 @@ const MyLearningPage: React.FC<Props> = () => {
                   <LabelTag>+ {lastViewed?.categories?.length - 2}</LabelTag>
                 )}
               </span>
-              <div style={{ width: '180px' }}>
+              <div className={styles.btnDv}>
                 <Button bg="#c03e21" onClick={onContinueCourse}>
                   Continue course <Icon id="arrow-right" />
                 </Button>

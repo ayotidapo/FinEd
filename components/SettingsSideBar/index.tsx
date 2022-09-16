@@ -6,33 +6,37 @@ import cx from 'classnames';
 import styles from './settingssidebar.module.scss';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tooltip from 'common/Tooltip';
 import { useSelector } from 'store';
 import SocialMediaShare from 'common/SocialShare';
 
 const tabs = [
   {
-    text: 'My Profile',
+    tabname: 'profile',
+    text: 'Profile',
     icon: 'user',
   },
   {
-    text: 'Subcriptions',
+    tabname: 'subscriptions',
+    text: 'Subscriptions',
     icon: 'sub',
   },
   {
+    tabname: 'refer',
     text: 'Refer a friend',
     icon: 'hamper',
   },
   {
-    text: 'Change password',
+    tabname: 'change-password',
+    text: 'Change Password',
     icon: 'padlock',
   },
 ];
 
 interface Props {
-  setActiveTab: (tab: string) => void;
-  activeTab: string;
+  onChangeTab: (tab: string) => void;
+  tabname: string;
 }
 
 const SideBar: React.FC<Props> = (props: Props) => {
@@ -44,13 +48,8 @@ const SideBar: React.FC<Props> = (props: Props) => {
     setEl(document.getElementById('codeSpan'));
   }, []);
 
-  const { setActiveTab, activeTab } = props;
   const router = useRouter();
 
-  const onSetTab = (text: string) => {
-    if (text === 'Log out') return;
-    setActiveTab(text);
-  };
   const logOut = async () => {
     const nextApi = axios.create({
       baseURL: '/api',
@@ -68,9 +67,11 @@ const SideBar: React.FC<Props> = (props: Props) => {
             {tabs.map((tab) => (
               <LabelTab
                 tab={tab}
-                key={tab.text}
-                onClick={() => onSetTab(tab.text)}
-                className={cx({ [styles.activeTab]: activeTab === tab.text })}
+                key={tab.tabname}
+                onClick={() => props.onChangeTab(tab.tabname)}
+                className={cx({
+                  [styles.activeTab]: props.tabname === tab.tabname,
+                })}
               />
             ))}
             <LabelTab
@@ -82,7 +83,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
             />
           </ul>
         </nav>
-        {activeTab !== 'Refer a friend' && (
+        {props.tabname !== 'Refer a friend' && (
           <div className={styles.refer_div}>
             <div className={styles.refer_box}>
               <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />

@@ -102,11 +102,13 @@ const MyProfile: React.FC<Props> = () => {
   // }, [user?.residentCountry]);
   return (
     <form className={styles.profile_wrapper}>
+      <h2 className={`title ${styles.title}`}>My Profile</h2>
       <div className={styles.profile_imgr}>
         <div className={styles.lft}>
           <h3>Profile Image</h3>
           <p>Choose a new avatar to be used across your MoneyAfrica account.</p>
         </div>
+
         <div className={`${styles.ryt}  ${styles.dx_al}`}>
           <span className={styles.avatar_wrapper}>
             <span className={`avatar ${styles.avatar}`}>

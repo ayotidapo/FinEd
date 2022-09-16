@@ -11,7 +11,7 @@
 	opacity: 0;
     visibility: hidden;
     transition: opacity .3s ease, visibility .3s ease; 
-	
+	z-index:1000;
 	.span{
 		color: #fff;
 		font-size: var(--f-36);
@@ -75,4 +75,36 @@
 		opacity: 1;
 		visibility: visible;
 	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.modal_wrapper{
+		.modal_cont{
+			max-width: 90%;
+		}
+
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.modal_wrapper{
+		.span{
+			height: 35px;
+			width: 35px;
+			top: 15px;
+			svg{
+				width: 1px;
+				height: 1px;
+			}
+
+		}
+		.arrow{
+			height: 25px;
+			width: 25px;
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			
+		}
+    }
 }
