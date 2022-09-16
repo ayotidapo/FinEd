@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Icon from 'common/Icon';
 import Logo from 'common/Logo';
 import styles from './headerloggedIn.module.scss';
@@ -9,8 +10,7 @@ import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
-import { useState } from 'react';
-import ProfileAvatar from 'components/avatar';
+import ProfileAvatar from 'components/Avatar';
 
 const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const [step, setStep] = useState(0);
   const { user } = useSelector((state) => state?.user);
   const { plans } = useSelector((state) => state?.plans);
-
+  console.log({ i: user?.avatar }, 0);
   const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 

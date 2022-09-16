@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { capitalize } from 'helpers';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { setUser } from 'reducers/user';
+import { useDispatch } from 'store';
 import styles from './avatar.module.scss';
 
 interface IProps {
@@ -19,7 +21,8 @@ interface IProps {
 }
 
 const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
-  const [previewAvatar, setPreviewAvatar] = useState<any>(null);
+  const dispatch = useDispatch();
+  const [previewAvatar, setPreviewAvatar] = useState<any>(user?.avatar?.url);
   const fileInput = useRef<HTMLInputElement>(null);
 
   const focusFileInput = (): void => {
@@ -42,14 +45,19 @@ const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
       setPreviewAvatar(readerEvent.target?.result);
     };
 
-    await axios.post('users/avatar', formData);
+    const { data } = await axios.post('users/avatar', formData);
+    dispatch(setUser(data));
   };
 
+  useEffect(() => {
+    setPreviewAvatar(user?.avatar?.url);
+  }, [user?.avatar?.url]);
+  console.log(previewAvatar, user?.avatar?.url, 98765);
   return (
     <div className={styles.avatar_wrapper}>
       {user?.avatar?.url || previewAvatar ? (
         <Image
-          src={previewAvatar !== null ? previewAvatar : user?.avatar?.url}
+          src={previewAvatar || '/assets/bag.png'}
           alt={`${user?.firstName} ${user?.lastName}`}
           height={height}
           width={width}
