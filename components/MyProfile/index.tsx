@@ -125,11 +125,7 @@ const MyProfile: React.FC<Props> = () => {
             id="img-logo"
             style={{ margin: '0px 7px 0px 15px', color: '#015351' }}
           />
-          <h4
-            style={{ fontSize: '1.4rem', color: '#015351' }}
-          >
-            Edit Profile
-          </h4>
+          <h4 style={{ fontSize: '1.4rem', color: '#015351' }}>Edit Profile</h4>
         </div>
       </div>
 
@@ -163,7 +159,7 @@ const MyProfile: React.FC<Props> = () => {
             <Input
               field={inputs.nigeriaPhone}
               leftIcon={{ name: 'phone' }}
-              rightIcon={{ name: 'caret-down', pos: [28, 72] }}
+              rightIcon={{ name: 'caret-down', pos: [35, 72] }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
             >

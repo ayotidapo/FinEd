@@ -46,7 +46,7 @@ const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
   };
 
   return (
-    <>
+    <div className={styles.avatar_wrapper}>
       {user?.avatar?.url || previewAvatar ? (
         <Image
           src={previewAvatar !== null ? previewAvatar : user?.avatar?.url}
@@ -76,7 +76,7 @@ const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
         style={{ display: 'none' }}
         ref={fileInput}
       />
-    </>
+    </div>
   );
 };
 

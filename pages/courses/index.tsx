@@ -25,14 +25,14 @@ const Videos: React.FC<Props> = ({ totalCount, token }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user);
 
-  const { dob, residentCountry, residentState, accessToken } = user;
+  const { dob, residentCountry, residentState, id } = user;
   const router = useRouter();
 
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   useEffect(() => {
     const completeInfo = dob && residentCountry && residentState;
-    if (!completeInfo && accessToken) setIsOpen(true);
+    if (!completeInfo && id) setIsOpen(true);
     else setIsOpen(false);
   }, [user]);
 

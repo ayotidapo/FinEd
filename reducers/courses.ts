@@ -59,8 +59,8 @@ export const courseSlice = createSlice({
       
       const coursesData=action?.payload?.courses
       // console.log('ak',current(state),'akin',action.payload.courses.bookmarkCourses)
-      if(coursesData?.courses?.length > 0) state.courses = coursesData?.courses
-      if(coursesData?.bookmarkCourses?.length > 0) state.bookmarkCourses = coursesData?.bookmarkCourses
+      if(coursesData?.courses?.length >= 0) state.courses = coursesData?.courses
+      if(coursesData?.bookmarkCourses?.length >= 0) state.bookmarkCourses = coursesData?.bookmarkCourses
                 		
 			// state.courses=action.payload.courses.courses
       return state	

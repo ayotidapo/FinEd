@@ -109,7 +109,7 @@ const SignUpPage: React.FC<Props> = () => {
                 <Input
                   field={inputs.nigeriaPhone}
                   leftIcon={{ name: 'phone' }}
-                  rightIcon={{ name: 'caret-down####', pos: [28, 72] }}
+                  rightIcon={{ name: 'caret-down####', pos: [35, 72] }}
                   onChange={onChangeInput}
                 >
                   <Icon
@@ -141,14 +141,14 @@ const SignUpPage: React.FC<Props> = () => {
               <Input
                 field={inputs.password}
                 leftIcon={{ name: 'padlock' }}
-                rightIcon={{ name: 'lock-password', pos: [18, '95%'] }}
+                rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
                 onChange={onChangeInput}
                 onBlur={onBlurInput}
               />
               <Input
                 field={inputs.password2}
                 leftIcon={{ name: 'padlock' }}
-                rightIcon={{ name: 'lock-password', pos: [18, '95%'] }}
+                rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
                 onChange={onChangeInput}
                 onBlur={onBlurInput}
               />

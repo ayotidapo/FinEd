@@ -49,11 +49,11 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
 
   const l = leftIcon as IconType;
   const leftIname = l?.name;
-  const leftIpos = l?.pos || [28, 0];
+  const leftIpos = l?.pos || [35, 0];
 
   const r = rightIcon as IconType;
   const rytIname = r?.name;
-  const rytIpos = r?.pos || [28, 0];
+  const rytIpos = r?.pos || [35, 0];
 
   const onChangeAttr = (field: IField) => {
     const { name } = field;
