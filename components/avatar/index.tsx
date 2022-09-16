@@ -37,7 +37,7 @@ const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
     const formData: FormData = new FormData();
 
     if (fileList) {
-      formData.append('file', fileList[0], fileList[0].name);
+      formData.append('file', fileList[0], fileList[0]?.name);
       reader.readAsDataURL(fileList[0]);
     }
 
