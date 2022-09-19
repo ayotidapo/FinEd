@@ -161,14 +161,14 @@ const SubCard = (props) => {
       setFwConfig(config);
       setSubdata(data);
       showPayPlan(false);
-      setIsOpen(false);
+      // setIsOpen(false);
     } catch (e) {
-      console.log(e);
+      console.log(e, 100);
       toast.error('Subscription failed');
     }
     setLoading(false);
   };
-
+  console.log(fwConfig, 90);
   const onConfirmCode = async (e) => {
     e.preventDefault();
     if (discountCode.value < 1) return;

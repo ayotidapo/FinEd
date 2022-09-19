@@ -54,6 +54,7 @@ const SubscriptionCard = (props) => {
 
   useEffect(() => {
     if (!fwConfig.tx_ref) return;
+    console.log(fwConfig, 9);
     handleFlutterPayment({
       callback: (response) => {
         closePaymentModal(); // this will close the modal programmatically
@@ -89,6 +90,7 @@ const SubscriptionCard = (props) => {
       setIsOpen(false);
       setLoading(false);
     } catch (e) {
+      console.log(e, 200);
       toast.error('Subscription failed');
       setLoading(false);
     }
