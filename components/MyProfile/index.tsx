@@ -13,7 +13,7 @@ import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
 import { toast } from 'react-toastify';
-import ProfileAvatar from 'components/Avatar';
+import ProfileAvatar from 'common/Avatar';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
