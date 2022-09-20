@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
 import { useState } from 'react';
-import ProfileAvatar from 'components/avatar';
+import ProfileAvatar from 'common/Avatar';
 import useSetNav from 'hooks/useSetNav';
 import MobileAuthHeader from './MobileAuthHeader';
 
