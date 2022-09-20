@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { BtnLoader } from 'common/Button';
 import axios from 'axios';
 import { Router, useRouter } from 'next/router';
+import { getCookie } from 'cookies-next';
 
 const VerifyPaymentPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -24,6 +25,8 @@ const VerifyPaymentPage: React.FC = () => {
   };
 
   useEffect(() => {
+    const token = getCookie('c_token');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const res = verifyPayment(Number(transaction_id));
     setResponse(res);
   }, [transaction_id]);
