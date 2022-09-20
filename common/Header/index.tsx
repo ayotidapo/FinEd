@@ -29,9 +29,11 @@ const Header: React.FC = () => {
         <Button onClick={() => router.push('/signup')}>Get Started</Button>
         <Button>Financial Health Check</Button>
       </div>
-      <span className={styles.hamburger}>
-        <Icon id="hamburger" width={24} height={24} />
-      </span>
+      {false && (
+        <span className={styles.hamburger}>
+          <Icon id="hamburger" width={24} height={24} />
+        </span>
+      )}
     </header>
   );
 };
