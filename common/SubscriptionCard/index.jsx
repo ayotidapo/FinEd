@@ -57,7 +57,8 @@ const SubscriptionCard = (props) => {
     console.log(fwConfig, 9);
     handleFlutterPayment({
       callback: (response) => {
-        closePaymentModal(); // this will close the modal programmatically
+        closePaymentModal();
+        // this will close the modal programmatically
       },
       onClose: () => {},
     });
