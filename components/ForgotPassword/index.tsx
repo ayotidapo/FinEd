@@ -8,6 +8,7 @@ import forgotPasswordFields from './fields';
 import Logo from 'common/Logo';
 import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const ForgotPwPage = () => {
   const { onChangeInput, onBlurInput, inputs } = useForm(forgotPasswordFields);
@@ -25,8 +26,10 @@ const ForgotPwPage = () => {
       });
 
       const res = await axios.post('/auth/forgot-password', body);
+      toast.success('Reset link sent to email');
       setSubmitting(false);
     } catch (e) {
+      toast.success('Reset link not sent to email');
       setSubmitting(false);
     }
   };
@@ -46,7 +49,7 @@ const ForgotPwPage = () => {
         <form style={{ marginTop: '20px' }}>
           <Input
             field={inputs.email}
-            leftIcon={{ name: 'envelope', pos: [28, 0] }}
+            leftIcon={{ name: 'envelope', pos: [35, 0] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />

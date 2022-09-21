@@ -7,7 +7,6 @@ const fields = {
 	  label: ' ',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	pin2: {
@@ -18,7 +17,6 @@ const fields = {
 	  label: ' ',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	pin3: {
@@ -29,7 +27,6 @@ const fields = {
 	  label: ' ',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	pin4: {
@@ -40,7 +37,6 @@ const fields = {
 	  label: '',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	pin5: {
@@ -51,7 +47,6 @@ const fields = {
 	  label: ' ',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	pin6: {
@@ -62,7 +57,6 @@ const fields = {
 	  label: ' ',
 	  error: '',
 	  maxLength:1,
-	  required: true,
 	  no_validate:true
 	},
 	
@@ -76,7 +70,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'First name',
 	  error: '111111',
-	  required: true,
 	},
 	lastName: {
 	  name: 'lastName',
@@ -85,7 +78,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'Last name',
 	  error: '',
-	  required: true,
 	},
 	email: {
 	  name: 'email',
@@ -94,7 +86,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'Email Address',
 	  error: '',
-	  required: true,
 	},
 	phone: {
 	  name: 'phone',
@@ -103,7 +94,6 @@ const fields = {
 	  placeholder: '',
 	  label: '',
 	  error: '',
-	  required: true,
 	},
 	refCode: {
 	  name: 'refCode',
@@ -112,7 +102,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'Referral code (optional)',
 	  error: '',
-	  required: true,
 	},
 	password: {
 	  name: 'password',
@@ -121,7 +110,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'Password',
 	  error: '',
-	  required: true,
 	},
 	password2: {
 	  name: 'password2',
@@ -130,7 +118,6 @@ const fields = {
 	  placeholder: '',
 	  label: 'Re-enter Password',
 	  error: '',
-	  required: true,
 	},
 	nigeriaPhone: {
 	  name: 'nigeria',

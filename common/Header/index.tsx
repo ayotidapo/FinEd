@@ -38,6 +38,11 @@ const Header: React.FC<any> = ({ setNav }) => {
           <Button>Financial Health Check</Button>
         </div>
       </div>
+      {false && (
+        <span className={styles.hamburger}>
+          <Icon id="hamburger" width={24} height={24} />
+        </span>
+      )}
     </header>
   );
 };

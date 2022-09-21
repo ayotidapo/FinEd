@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import Icon from '../Icon';
 import styles from './input.module.scss';
@@ -45,20 +45,22 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
     ...rest
   } = props;
   const { label, value, name, error, ...fRest } = field || { error: '' };
+  const [see, setSee] = useState(false);
 
   const l = leftIcon as IconType;
   const leftIname = l?.name;
-  const leftIpos = l?.pos || [28, 0];
+  const leftIpos = l?.pos || [35, 0];
 
   const r = rightIcon as IconType;
   const rytIname = r?.name;
-  const rytIpos = r?.pos || [28, 0];
+  const rytIpos = r?.pos || [35, 0];
 
   const onChangeAttr = (field: IField) => {
     const { name } = field;
 
     const lCase = name.toLowerCase();
     if (lCase.includes('password')) {
+      setSee(!see);
       const el = document.getElementById(name);
       if (el?.getAttribute('type') === 'password')
         el?.setAttribute('type', 'text');
@@ -72,7 +74,12 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
         [styles.err_brd]: error,
       })}
     >
-      <span className={styles.label}>{label}</span>
+      <span className={styles.label}>
+        {label}{' '}
+        {field.required && name !== 'phone' && (
+          <span style={{ color: 'red', fontSize: '1.8rem' }}>*</span>
+        )}
+      </span>
       {leftIcon && (
         <span
           className="icon icon-left"
@@ -87,7 +94,7 @@ const Input: React.FC<Props> = React.forwardRef((props, ref) => {
           style={{ top: rytIpos[0], left: rytIpos[1] }}
         >
           <Icon
-            id={rytIname}
+            id={see ? 'open-eye' : rytIname}
             width={24}
             height={24}
             onClick={() => onChangeAttr(field)}

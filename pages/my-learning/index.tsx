@@ -6,9 +6,12 @@ import { GetServerSideProps } from 'next';
 import { ICourse, setBookMarkCourses, setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
-interface Props {}
+interface Props {
+  token: string;
+}
 
-const MyLearning: React.FC<Props> = () => {
+const MyLearning: React.FC<Props> = ({ token }) => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return (
     <>
       <MyLearningPage />
@@ -42,9 +45,11 @@ export const getServerSideProps: GetServerSideProps =
           ...course,
           bookmark: { id: 'fake-id' },
         }));
+
+        console.log({ addBk2courses });
         store.dispatch(setBookMarkCourses(addBk2courses));
         return {
-          props: {},
+          props: { token: s_token },
         };
       }
 
@@ -60,8 +65,10 @@ export const getServerSideProps: GetServerSideProps =
         analyticDateUpreated: analytic.dateupdated,
       }));
       store.dispatch(setCourses(courses));
+
+      console.log({ courses });
       return {
-        props: {},
+        props: { token: s_token },
       };
     } catch (e) {
       store.dispatch(setCourses([]));
