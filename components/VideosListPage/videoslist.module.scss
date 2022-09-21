@@ -49,6 +49,9 @@
     font-size: var(--f-16);
     font-family: var(--font-2);
     font-weight: 700;
+    &:hover{
+      cursor: pointer;
+    }
   }
   .cr_dn {
     color: var(--pri-col);
