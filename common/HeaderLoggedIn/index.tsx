@@ -106,7 +106,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
             <Icon id="book-mark" />
           </a>
         </Link>
-        <Icon id="bell" />
+        {false && <Icon id="bell" />}
         <div
           className={`hand ${styles.log_auth}`}
           onClick={() => router.push('/settings')}
