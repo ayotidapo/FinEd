@@ -51,15 +51,9 @@
     }
   }
 }
-<<<<<<< HEAD
- .header_btn_div {
-    display: flex;
-    width: 42%;
-=======
 .header_btn_div {
     display: flex;
     width: 500px;
->>>>>>> quiz
     justify-content: space-between;
       button,
       a {
@@ -82,21 +76,12 @@
         }
       }
     }
-<<<<<<< HEAD
-    .bambg{      
-      display:none ;
-      
-    }
-
-  }
-=======
   .bambg{      
     display:none ;
       
   }
 
 }
->>>>>>> quiz
 
 @media only screen and (max-width: 1087px) {
   .header {
@@ -107,126 +92,6 @@
 }
 
 
-<<<<<<< HEAD
-
-@media only screen and (max-width: 768px) {
-  .header{
-    .navWrapper{
-      display: none;
-    }
-    .bambg{
-      display: inline-block;
-        top: 25px;
-        right: 12px;
-        &::after{
-         
-          content: url('../../svgs/hamburger.svg');
-        }
-      }
-
-    }
-    .mobileHeader{
-      flex-direction: column;
-      height: auto;
-      width: 100%;
-      height: auto;
-      position: fixed;
-      width:100%;
-      margin-top: 0;
-      top: 0;
-      left: 0;
-      height:100vh;
-      z-index:200;
-      background-color: #fff;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding: 32px 20px;
-        .header_nav {
-          flex-direction: column;
-  
-
-          .header_ul{
-            flex-direction: column;
-            padding-left: 0;
-            align-items: flex-start;
-           
-              li {
-                margin-bottom: 40px;
-                display: block;
-                font-size: var(--f-14);
-                font-family: Helvetica Neue Medium;
-                &:hover {
-                  cursor: pointer;
-                }
-                &::after {
-                  content: url('../../svgs/caret-down.svg');
-                  margin-left: 8px;
-                  transition: transform 0.5s linear;
-                }
-                &:last-of-type {
-                  &::after {
-                    content: '';
-                  }
-                }
-              }
-          
-        
-        }
-      }
-      .logo_box{
-      
-        margin-bottom: 40px;
-        margin-top: 20px;
-      }
-
-      .header_btn_div {
-        display: flex;
-        flex-direction: column;
-        button{
-          margin-left: 0;
-          margin-bottom: 40px;
-          font-size: var(--f-14);
-          width:250px;
-          &:nth-of-type(1) {
-            width:180px;
-          }
-          &:nth-of-type(2) {
-            background-color: var(--col-sec);
-            margin-left: 0px;
-          }
-        }
-       
-      }
-      .headerIcon{
-        display: inline-block;
-        position: absolute;
-        top: 27px;
-        right: 7px;
-        &::after{       
-          content: url('../../svgs/times.svg');
-        }
-      }
-    
-    }
- 
-    
-    
-}
-
-
-
-// @media only screen and (max-width: 990px) {
-//    .header {
-//   //   .header_btn_div {
-//   //     display: none;
-//   //   }
-    
-//   }
-// }
-
-@media only screen and (max-width: 425px) {
-=======
 @media only screen and (max-width: 1295px) and (min-width: 941px) {
   .header{
     .header_btn_div{
@@ -249,7 +114,6 @@
 
 
 @media only screen and (max-width: 768px)  {
->>>>>>> quiz
   .header {
     padding: 0 10px;
     .logo_box {
@@ -266,18 +130,6 @@
 }
 
 
-<<<<<<< HEAD
-// .mobheader{
-//   position:fixed;
-//   padding: 40px 20px;
-//   top:0;
-//   width:100%;
-//   height:100vh;
-//   background-color:#fff;
-//   z-index: 700;
-
-// }
-=======
 // Mobile Header without loggedIn Starts here
 
 @media only screen and (max-width: 940px) {
@@ -394,4 +246,3 @@
 // Mobile Header without loggedIn Ends here
 
 
->>>>>>> quiz
