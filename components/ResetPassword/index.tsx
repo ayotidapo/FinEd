@@ -34,6 +34,7 @@ const ResetPasswordPage = () => {
 
       const res = await axios.post('/auth/reset-password', body);
       toast.success('Password reset successful');
+      router.push('/login');
       setSubmitting(false);
     } catch (e) {
       setSubmitting(false);
