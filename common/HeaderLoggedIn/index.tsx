@@ -10,7 +10,7 @@ import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
-import ProfileAvatar from 'components/Avatar';
+import ProfileAvatar from 'common/Avatar';
 import useSetNav from 'hooks/useSetNav';
 import MobileAuthHeader from './MobileAuthHeader';
 
