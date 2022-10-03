@@ -64,6 +64,7 @@ const EmailVerificationPage = () => {
 
       router.push('/choose-plan');
     } catch {
+      toast.error(`Email verification failed`);
       setSubmitting(false);
     }
   };

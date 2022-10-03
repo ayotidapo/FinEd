@@ -116,12 +116,10 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
           </a>
         </Link>
         {false && <Icon id="bell" />}
-        <div
-          className={`hand ${styles.log_auth}`}
-          onClick={() => router.push('/settings')}
-        >
+        <div className={`hand ${styles.log_auth}`}>
           <span className={styles.avatar}>
             <ProfileAvatar
+              isDisabled
               user={{
                 avatar: user?.avatar,
                 firstName: user?.firstName,
