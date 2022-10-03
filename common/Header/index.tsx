@@ -21,9 +21,9 @@ const Header: React.FC<any> = ({ setNav }) => {
       <div className={styles.navWrapper}>
         <nav className={styles.header_nav}>
           <ul className={styles.header_ul}>
-            <li>Services</li>
-            <li>Tools</li>
-            <li>Company</li>
+            <li className={styles.tent}>Services</li>
+            <li className={styles.tent}>Tools</li>
+            <li className={styles.tent}>Company</li>
             <li>
               <Link href="/contents">Explore</Link>
             </li>
