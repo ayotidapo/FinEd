@@ -100,7 +100,7 @@ const MyLearningPage: React.FC<Props> = () => {
       </div>
       <main className={styles.main}>
         <h2 className="title">{textHeader}</h2>
-        {tab === 'ongoing' && (
+        {tab === 'ongoing' && lastViewed?.title && (
           <section className={styles.lastviewed_details}>
             <div className={styles.imgBx}>
               {lastViewed?.thumbnail && (
