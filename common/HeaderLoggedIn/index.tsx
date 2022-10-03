@@ -10,9 +10,9 @@ import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
-import ProfileAvatar from 'common/Avatar';
-import useSetNav from 'hooks/useSetNav';
 import MobileAuthHeader from './MobileAuthHeader';
+import useSetNav from 'hooks/useSetNav';
+import ProfileAvatar from 'common/Avatar';
 
 const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const router = useRouter();
@@ -122,13 +122,11 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
             <Icon id="book-mark" />
           </a>
         </Link>
-        <Icon id="bell" />
-        <div
-          className={`hand ${styles.log_auth}`}
-          onClick={() => router.push('/settings')}
-        >
+        {false && <Icon id="bell" />}
+        <div className={`hand ${styles.log_auth}`}>
           <span className={styles.avatar}>
             <ProfileAvatar
+              isDisabled
               user={{
                 avatar: user?.avatar,
                 firstName: user?.firstName,

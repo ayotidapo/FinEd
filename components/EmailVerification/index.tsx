@@ -10,10 +10,11 @@ import useForm from 'hooks/useForm';
 // React.KeyboardEvent<HTMLInputElement>
 import styles from './verify.module.scss';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 const EmailVerificationPage = () => {
   const [id, setId] = useState('pin1');
   const router = useRouter();
-
   const [submitting, setSubmitting] = useState(false);
 
   const { onChangeInput, setInputs, inputs } = useForm(pinFields);
@@ -63,10 +64,24 @@ const EmailVerificationPage = () => {
 
       router.push('/choose-plan');
     } catch {
+      toast.error(`Email verification failed`);
       setSubmitting(false);
     }
   };
 
+  const onResendCode = async () => {
+    const { email } = router.query;
+    if (!email) toast.error(`Could not find user email`);
+    try {
+      setSubmitting(true);
+      await axios.post(`/auth/resend-verification`, { email });
+      toast.success(`Code resent to ${email}`);
+      setSubmitting(false);
+    } catch {
+      if (email) toast.error(`Code resent failed`);
+      setSubmitting(false);
+    }
+  };
   useEffect(() => {
     const inputF = { ...inputs };
     //	const query = router.query?.token || '';
@@ -138,7 +153,7 @@ const EmailVerificationPage = () => {
               />
             </div>
             <div className={styles.complete}>
-              <p>
+              <p onClick={onResendCode}>
                 Didn&apos;t receive code? <span className="hand">Resend</span>
               </p>
               <Button bg="#C03E21" onClick={onSubmit} loading={submitting}>

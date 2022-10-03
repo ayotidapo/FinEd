@@ -26,6 +26,7 @@ interface LCProps extends LTProps {
   tag: string;
   value: string;
   type: 'checkbox' | 'radio';
+  disabled?: boolean;
   rname?: string;
   defaultChecked?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -38,6 +39,7 @@ export const LabelCheck: React.FC<LCProps> = (props) => {
     type,
     color,
     defaultChecked,
+    disabled,
     onChange,
     tag,
     className,
@@ -54,6 +56,7 @@ export const LabelCheck: React.FC<LCProps> = (props) => {
         value={value}
         defaultChecked={defaultChecked}
         onChange={onChange}
+        disabled={disabled}
       />{' '}
       &nbsp;
       <label

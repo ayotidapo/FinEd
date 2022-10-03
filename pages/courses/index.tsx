@@ -25,13 +25,13 @@ const Videos: React.FC<Props> = ({ totalCount, token }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user }: any = useSelector((state) => state.user);
 
-  const { dob, residentCountry, residentState, id } = user;
+  const { dob, residentCountry, residentState, gender, id } = user;
   const router = useRouter();
 
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   useEffect(() => {
-    const completeInfo = dob && residentCountry && residentState;
+    const completeInfo = dob && residentCountry && residentState && gender;
     if (!completeInfo && id) setIsOpen(true);
     else setIsOpen(false);
   }, [user]);
@@ -56,9 +56,10 @@ const Videos: React.FC<Props> = ({ totalCount, token }) => {
           <div className="complete-info">
             <h2 className="title">We need more information from you.</h2>
             <p>
-              We require you to complete all your account information such as
-              (date of birth, your state &amp; country etc..). This will help to
-              keep your account more secure and protected.
+              We require you to complete all your account information such as (
+              <strong>gender,date of birth,your state &amp; country </strong>{' '}
+              etc...) This will help to keep your account more secure and
+              protected.
             </p>
             <div style={{ textAlign: 'right' }}>
               <Button bg="#C03E21" onClick={() => router.push('/settings')}>

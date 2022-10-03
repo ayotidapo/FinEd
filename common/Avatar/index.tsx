@@ -9,6 +9,7 @@ import styles from './avatar.module.scss';
 interface IProps {
   height?: number;
   width?: number;
+  isDisabled?: boolean;
   user: {
     avatar: {
       id: string;
@@ -20,12 +21,18 @@ interface IProps {
   };
 }
 
-const ProfileAvatar: React.FC<IProps> = ({ height = 35, width = 35, user }) => {
+const ProfileAvatar: React.FC<IProps> = ({
+  height = 35,
+  width = 35,
+  user,
+  isDisabled,
+}) => {
   const dispatch = useDispatch();
   const [previewAvatar, setPreviewAvatar] = useState<any>(user?.avatar?.url);
   const fileInput = useRef<HTMLInputElement>(null);
 
   const focusFileInput = (): void => {
+    if (isDisabled) return;
     if (fileInput.current !== null) {
       fileInput.current.click();
     }

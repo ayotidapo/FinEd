@@ -39,7 +39,10 @@ const SignUpPage: React.FC<Props> = () => {
       delete body.nigeriaPhone;
 
       const res = await axios.post('/auth/signup', body);
-      router.push('/email-verification');
+      router.push({
+        pathname: '/email-verification',
+        query: { email: body.email },
+      });
     } catch (e: any) {
       const errMsg = e?.response?.data?.message;
 

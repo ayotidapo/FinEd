@@ -96,7 +96,7 @@ const MyProfile: React.FC<Props> = () => {
 
     setInputs(mInputs);
   }, [user]);
-
+  console.log(user);
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
@@ -143,12 +143,14 @@ const MyProfile: React.FC<Props> = () => {
               leftIcon={{ name: 'user' }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
+              readOnly={user?.firstName}
             />
             <Input
               field={inputs.lastName}
               leftIcon={{ name: 'user' }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
+              readOnly={user?.lastName}
             />
           </div>
           <Input
@@ -156,6 +158,7 @@ const MyProfile: React.FC<Props> = () => {
             leftIcon={{ name: 'envelope' }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
+            readOnly={user?.email}
           />
           <div className={styles.split_phone}>
             <Input
@@ -189,6 +192,7 @@ const MyProfile: React.FC<Props> = () => {
               type="radio"
               defaultChecked={user?.gender === 'female'}
               onChange={onSelectGender}
+              disabled={user?.gender}
             />
             <LabelCheck
               tag="male"
@@ -197,6 +201,7 @@ const MyProfile: React.FC<Props> = () => {
               type="radio"
               defaultChecked={user?.gender === 'male'}
               onChange={onSelectGender}
+              disabled={user?.gender}
             />
           </div>
           <Input
@@ -204,6 +209,7 @@ const MyProfile: React.FC<Props> = () => {
             leftIcon={{ name: 'dob' }}
             max={minVal}
             onChange={onChangeInput}
+            disabled={user?.dob}
           />
         </div>
       </div>
@@ -219,12 +225,14 @@ const MyProfile: React.FC<Props> = () => {
             options={countries}
             optionSelected={user?.residentCountry}
             onChange={onSelect}
+            label="Country of Residence"
           />
           <Select
             name="residentState"
             options={states}
             optionSelected={user?.residentState}
             onChange={onSelect}
+            label="State of Residence"
           />
 
           {resErr && (

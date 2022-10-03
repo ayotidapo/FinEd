@@ -23,6 +23,7 @@ interface Props {
   rightIcon?: IconType;
   children?: React.ReactNode;
   inputClass?: string;
+  disabled?: boolean;
   wrapperClass?: string;
   readOnly?: boolean | undefined;
   max?: string;
