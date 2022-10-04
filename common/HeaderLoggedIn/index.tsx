@@ -66,7 +66,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
       </Modal>
 
       {open && (
-        <MobileAuthHeader
+        <MobileHeader
           user={user}
           upgrade={onClickedUpgrade}
           subId={subId}
