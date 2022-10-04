@@ -40,6 +40,14 @@
       }
     }
 
+    .tent_{
+      &::after {
+        content: ' ';
+        margin-left: 8px;
+      }
+      
+    }
+    
     li {
       display: inline;
       font-size: var(--f-14);
