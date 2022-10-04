@@ -150,8 +150,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               style={{
                 height: '40px',
                 display: 'inline-flex',
-                alignItems: 'flex-start',
-                transform: 'translateY(-5px)',
+                alignItems: 'center',
               }}
             >
               <label className={`hand ${styles.xplore}`}>Filter Topics</label>

@@ -24,7 +24,7 @@ const Header: React.FC<any> = ({ setNav }) => {
             <li className={styles.tent}>Services</li>
             <li className={styles.tent}>Tools</li>
             <li className={styles.tent}>Company</li>
-            <li>
+            <li className={styles.tent_}>
               <Link href="/contents">Explore</Link>
             </li>
             <li>
