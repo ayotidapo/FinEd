@@ -49,7 +49,7 @@ export const formatDate =(dt:string)=>{
   const dateType=new Date(dt)
   const day=dateType.getUTCDay()
   const dd=day < 10 ? `0${day}` : day;
-  const mm = months[(dateType.getUTCMonth()) + 1]
+  const mm = months[(dateType.getUTCMonth())]
   const yr=dateType.getUTCFullYear();
   return `${dd} ${mm} ${yr}`
 
