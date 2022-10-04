@@ -8,7 +8,7 @@ import { GetServerSideProps } from 'next';
 import { getCookie } from 'cookies-next';
 import { setCourses } from 'reducers/courses';
 import HeaderWtSearch from 'common/HeaderWtSearch';
-import { MobileAuthHeader } from 'common/Header';
+import { MobileHeader } from 'common/Header';
 import useSetNav from 'hooks/useSetNav';
 
 interface Props {
@@ -27,7 +27,7 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
   return (
     <>
       <HeaderWtSearch setNav={onSetNav} />
-      {open && <MobileAuthHeader toOpen={open} setNav={onSetNav} />}
+      {open && <MobileHeader toOpen={open} setNav={onSetNav} />}
       <VideoPage
         courses={coursesData}
         explorePage

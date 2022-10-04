@@ -10,7 +10,7 @@ import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
-import MobileAuthHeader from './MobileAuthHeader';
+import MobileHeader from './MobileAuthHeader';
 import useSetNav from 'hooks/useSetNav';
 import ProfileAvatar from 'common/Avatar';
 
@@ -66,7 +66,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
       </Modal>
 
       {open && (
-        <MobileAuthHeader
+        <MobileHeader
           user={user}
           upgrade={onClickedUpgrade}
           subId={subId}
