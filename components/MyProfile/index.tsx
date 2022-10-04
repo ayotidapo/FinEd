@@ -13,7 +13,7 @@ import { countries, getStates } from 'utils/country';
 import axios from 'axios';
 import { setUser } from 'reducers/user';
 import { toast } from 'react-toastify';
-import ProfileAvatar from 'components/avatar';
+import ProfileAvatar from 'common/Avatar';
 
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
@@ -96,7 +96,7 @@ const MyProfile: React.FC<Props> = () => {
 
     setInputs(mInputs);
   }, [user]);
-
+  console.log(user);
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
@@ -143,12 +143,14 @@ const MyProfile: React.FC<Props> = () => {
               leftIcon={{ name: 'user' }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
+              readOnly={user?.firstName}
             />
             <Input
               field={inputs.lastName}
               leftIcon={{ name: 'user' }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
+              readOnly={user?.lastName}
             />
           </div>
           <Input
@@ -156,12 +158,13 @@ const MyProfile: React.FC<Props> = () => {
             leftIcon={{ name: 'envelope' }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
+            readOnly={user?.email}
           />
           <div className={styles.split_phone}>
             <Input
               field={inputs.nigeriaPhone}
               leftIcon={{ name: 'phone' }}
-              rightIcon={{ name: 'caret-down', pos: [28, 72] }}
+              rightIcon={{ name: 'caret-down', pos: [35, 72] }}
               onChange={onChangeInput}
               onBlur={onBlurInput}
             >
@@ -189,6 +192,7 @@ const MyProfile: React.FC<Props> = () => {
               type="radio"
               defaultChecked={user?.gender === 'female'}
               onChange={onSelectGender}
+              disabled={user?.gender}
             />
             <LabelCheck
               tag="male"
@@ -197,6 +201,7 @@ const MyProfile: React.FC<Props> = () => {
               type="radio"
               defaultChecked={user?.gender === 'male'}
               onChange={onSelectGender}
+              disabled={user?.gender}
             />
           </div>
           <Input
@@ -204,6 +209,7 @@ const MyProfile: React.FC<Props> = () => {
             leftIcon={{ name: 'dob' }}
             max={minVal}
             onChange={onChangeInput}
+            disabled={user?.dob}
           />
         </div>
       </div>
@@ -219,12 +225,14 @@ const MyProfile: React.FC<Props> = () => {
             options={countries}
             optionSelected={user?.residentCountry}
             onChange={onSelect}
+            label="Country of Residence"
           />
           <Select
             name="residentState"
             options={states}
             optionSelected={user?.residentState}
             onChange={onSelect}
+            label="State of Residence"
           />
 
           {resErr && (

@@ -129,6 +129,8 @@ const SubCard = (props) => {
 
   useEffect(() => {
     if (!fwConfig.tx_ref) return;
+    console.log(fwConfig, 90, handleFlutterPayment);
+
     handleFlutterPayment({
       callback: (response) => {
         closePaymentModal(); // this will close the modal programmatically
@@ -161,9 +163,9 @@ const SubCard = (props) => {
       setFwConfig(config);
       setSubdata(data);
       showPayPlan(false);
-      setIsOpen(false);
+      // setIsOpen(false);
     } catch (e) {
-      console.log(e);
+      console.log(e, 100);
       toast.error('Subscription failed');
     }
     setLoading(false);

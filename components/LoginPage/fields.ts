@@ -4,7 +4,7 @@ const fields = {
     type: 'text',
     value: '',
     placeholder: '',
-    label: 'Email Address or Username',
+    label: 'Email Address',
     error: '',
     required: true,
   },

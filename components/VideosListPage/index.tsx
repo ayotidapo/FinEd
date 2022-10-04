@@ -137,7 +137,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   return (
     <>
       <header className={styles.video_header_wrap}>
-        <div className={styles.topics}>
+        <div className={`${styles.topics}`}>
           <h2 className="title">
             Let&apos;s start learning
             <span style={{ textTransform: 'capitalize' }}>
@@ -145,15 +145,20 @@ const VideosListPage: React.FC<Props> = (props) => {
             </span>
           </h2>
           {!search.value && (
-            <span
-              className="d-flx"
+            <div
+              className="hand"
               onClick={() => setShowFilter((state) => !state)}
+              style={{
+                height: '40px',
+                display: 'inline-flex',
+                alignItems: 'center',
+              }}
             >
-              <span className={`hand ${styles.xplore}`}>Filter Topics</span>
+              <label className={`hand ${styles.xplore}`}>Filter Topics</label>
               <span className={`hand ${styles.cr_dn}`}>
                 <Icon id="caret-down" width={24} height={24} />
               </span>
-            </span>
+            </div>
           )}
           {showSearch && (
             <div className={styles.search_input}>

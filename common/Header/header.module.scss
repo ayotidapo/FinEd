@@ -31,6 +31,23 @@
     padding-left: 70px;
     width: 100%;
     margin: 0;
+
+    .tent{
+      color: transparent !important;
+      &::after {
+        content: ' ';
+        margin-left: 8px;
+      }
+    }
+
+    .tent_{
+      &::after {
+        content: ' ';
+        margin-left: 8px;
+      }
+      
+    }
+    
     li {
       display: inline;
       font-size: var(--f-14);
@@ -121,6 +138,13 @@
       width: 148px;
       height: 26px;
     }
+<<<<<<< HEAD
+=======
+    .hamburger{
+      display: none;
+     
+    }
+>>>>>>> quiz
   }
 
 }
@@ -164,12 +188,12 @@
         .header_nav {
           flex-direction: column;
   
-
+         
           .header_ul{
             flex-direction: column;
             padding-left: 0;
             align-items: flex-start;
-           
+             
               li {
                 margin-bottom: 40px;
                 display: block;

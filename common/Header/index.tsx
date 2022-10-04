@@ -21,10 +21,10 @@ const Header: React.FC<any> = ({ setNav }) => {
       <div className={styles.navWrapper}>
         <nav className={styles.header_nav}>
           <ul className={styles.header_ul}>
-            <li>Services</li>
-            <li>Tools</li>
-            <li>Company</li>
-            <li>
+            <li className={styles.tent}>Services</li>
+            <li className={styles.tent}>Tools</li>
+            <li className={styles.tent}>Company</li>
+            <li className={styles.tent_}>
               <Link href="/contents">Explore</Link>
             </li>
             <li>
@@ -38,6 +38,11 @@ const Header: React.FC<any> = ({ setNav }) => {
           <Button>Financial Health Check</Button>
         </div>
       </div>
+      {false && (
+        <span className={styles.hamburger}>
+          <Icon id="hamburger" width={24} height={24} />
+        </span>
+      )}
     </header>
   );
 };

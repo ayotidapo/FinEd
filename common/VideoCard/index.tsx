@@ -108,8 +108,8 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
             </p>
           </div>
         </div>
-        <div className={styles.video_info}>
-          <p className="title">{title}</p>
+        <div className={`${styles.video_info} `}>
+          <p className="title elips">{title}</p>
           <div className={styles.rating_div}>
             {[1, 2, 3, 4, 5].map((n, i) => (
               <Star key={n} id={i} rating={rating} />

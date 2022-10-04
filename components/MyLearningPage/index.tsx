@@ -26,6 +26,7 @@ const MyLearningPage: React.FC<Props> = () => {
     (state) => state.courses,
   );
 
+  console.log({ courses, j: bookmarkCourses });
   const [courseArray, setCourseArray] = useState<ICourse[]>(courses);
 
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;
@@ -99,7 +100,7 @@ const MyLearningPage: React.FC<Props> = () => {
       </div>
       <main className={styles.main}>
         <h2 className="title">{textHeader}</h2>
-        {tab === 'ongoing' && (
+        {tab === 'ongoing' && lastViewed?.title && (
           <section className={styles.lastviewed_details}>
             <div style={{ flex: '1', display: 'flex', height: '190px' }}>
               <div className={styles.imgBx}>
