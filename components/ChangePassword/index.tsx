@@ -44,22 +44,22 @@ const ChangePassword = () => {
         <form>
           <Input
             field={fields.OldPassword}
-            leftIcon={{ name: 'padlock', pos: [28, 0] }}
-            rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
+            leftIcon={{ name: 'padlock', pos: [35, 0] }}
+            rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />
           <Input
             field={fields.password}
-            leftIcon={{ name: 'padlock', pos: [28, 0] }}
-            rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
+            leftIcon={{ name: 'padlock', pos: [35, 0] }}
+            rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />
           <Input
             field={fields.password2}
-            leftIcon={{ name: 'padlock', pos: [28, 0] }}
-            rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
+            leftIcon={{ name: 'padlock', pos: [35, 0] }}
+            rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />

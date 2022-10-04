@@ -8,7 +8,7 @@ export const isPasswordStrong = (value: string) =>
 
 export const ValidateInput = (field: IField, inputsObj: IState) => {
 
-  const { name, value, label, type,no_validate,required} = field;
+  const { name, value, label, type,no_validate,required} = field 
 
   const validatedInputs = { ...inputsObj };
   if (value?.trim()?.length < 1 && required) {
@@ -18,7 +18,10 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
     if (!emailRegex.test(value))
       validatedInputs[name].error = `Invalid email address `;
     else validatedInputs[name].error = ``;
-  } else if (name === 'password' || type === 'password') {
+  }else if (name === 'phone') {
+    if (value.length < 10) validatedInputs[name].error = 'Invalid phone number';
+    else validatedInputs[name].error = '';
+  }else if (name === 'password' || type === 'password') {
     if (value.length < 8)
       validatedInputs[name].error = 'Password must be atleast 6 characters';
     else if (!isPasswordStrong(value))

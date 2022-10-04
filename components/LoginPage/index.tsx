@@ -55,14 +55,14 @@ const LoginPage = () => {
         <form style={{ marginTop: '20px' }}>
           <Input
             field={inputs.username}
-            leftIcon={{ name: 'envelope', pos: [28, 0] }}
+            leftIcon={{ name: 'envelope', pos: [35, 0] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />
           <Input
             field={inputs.password}
-            leftIcon={{ name: 'padlock', pos: [28, 0] }}
-            rightIcon={{ name: 'lock-password', pos: [28, '95%'] }}
+            leftIcon={{ name: 'padlock', pos: [35, 0] }}
+            rightIcon={{ name: 'lock-password', pos: [35, '95%'] }}
             onChange={onChangeInput}
             onBlur={onBlurInput}
           />

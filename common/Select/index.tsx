@@ -2,6 +2,7 @@ import Icon from 'common/Icon';
 import styles from './select.module.scss';
 interface Props {
   name: string;
+  label: string;
   options: {
     label: string;
     value: string;
@@ -13,11 +14,11 @@ interface Props {
 }
 
 const Select: React.FC<Props> = (props: Props) => {
-  const { options, name, icon, error, optionSelected, ...rest } = props;
+  const { options, name, icon, error, optionSelected, label, ...rest } = props;
 
   return (
     <label className={styles.select_wrapper}>
-      <span>Country of Residence</span>
+      <span>{label}</span>
       <div
         style={{
           display: 'flex',
