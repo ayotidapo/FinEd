@@ -130,7 +130,7 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
               <span>
                 &nbsp;&nbsp;&nbsp;
                 <Icon id="clock" width={20} height={20} />
-                &nbsp;9 mins
+                &nbsp;
               </span>
             )}
             <span>

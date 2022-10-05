@@ -59,7 +59,7 @@ const CoursePlayer: React.FC<Props> = (props) => {
               <span>
                 &nbsp;&nbsp;&nbsp;
                 <Icon id="clock" width={20} height={20} />
-                &nbsp;9 mins
+                &nbsp;
               </span>
             )}
           </div>
