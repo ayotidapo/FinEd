@@ -270,7 +270,8 @@
     .wallet_div {
       position: relative;
       left: 0px;
-      top: 70px;
+      height: 80%;
+      // top: 70px;
       img {
         transform: scale(1.2);
       }
@@ -288,20 +289,25 @@
 }
 
 
-// @media only screen and (min-width: 1476px) {
-//   .options {
-//     .article{
-//       .img_opt_box {
-//         position: relative;
-//         height: 600px;
-//         width: 424px;
-//         margin-right: 0px;
-//         right: -254px;
-//         bottom: -77px;
-//       }
-//     }
-//   }
-// }
+@media only screen and (min-width: 1445px) {
+  .options {
+    > article{
+      .img_opt_box {
+          position: relative;
+          height: 400px;
+          width: 400px;
+          margin-right: 0px;
+          right: -184px;
+          bottom: -122px;
+          margin-left: auto;
+      }
+    }
+  }
+}
+
+
+
+
 @media only screen and (min-width: 1024px) {
   .options {
     width: 75%;
@@ -456,7 +462,7 @@
     .wallet_div {
       position: relative;
       width: 100%;
-      top: -20px;
+      // top: -20px;
       left: 20%;
 
       img {
@@ -488,7 +494,7 @@
   .options {
     .learnMore {
       .wallet_div {
-        top: 8px;
+       // top: 8px;
         left: 0px;
       }
     }
