@@ -31,6 +31,11 @@ export const userSlice = createSlice({
 			
 		    state.user = {...action.payload}
 			
+		},
+		updateUser(state: IUSer, action){
+			
+		    state.user = {...state.user, ...action.payload}
+			
 		}
 	},
 
@@ -42,5 +47,5 @@ export const userSlice = createSlice({
 })
 
 
-export const {setUser} = userSlice.actions
+export const {setUser,updateUser} = userSlice.actions
 export default userSlice.reducer

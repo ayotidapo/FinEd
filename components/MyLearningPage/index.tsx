@@ -142,7 +142,7 @@ const MyLearningPage: React.FC<Props> = () => {
                   <span>
                     &nbsp;&nbsp;&nbsp;
                     <Icon id="clock" width={20} height={20} />
-                    &nbsp;9 mins
+                    &nbsp;
                   </span>
                 </div>
                 <div className={styles.progressbar}>
