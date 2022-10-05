@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Radio from 'common/Radio';
@@ -21,8 +21,9 @@ export interface IQuiz {
 
 interface Props {
   quiz: IQuiz;
-  setLastVideoEnd: any;
-  setIsQuizCompleted: any;
+  setLastVideoEnd: React.Dispatch<SetStateAction<boolean>>;
+  setIsQuizCompleted: React.Dispatch<SetStateAction<boolean>>;
+  setScore: React.Dispatch<SetStateAction<number>>;
 }
 
 const QuizPage: React.FC<Props> = (props) => {
@@ -67,7 +68,10 @@ const QuizPage: React.FC<Props> = (props) => {
     const body = {
       answers: myAnswers,
     };
-    await submitQuiz(props?.quiz?.id, body);
+    const data = await submitQuiz(props?.quiz?.id, body);
+    const score = data?.filter((res: any) => res.correct)?.length;
+
+    props.setScore(score);
     props.setLastVideoEnd(true); // this always open the Entire Modal which is RateReview Component
     props.setIsQuizCompleted(true);
     setLoading(false);
