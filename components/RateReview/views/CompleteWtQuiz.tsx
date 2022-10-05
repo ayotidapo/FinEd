@@ -43,18 +43,34 @@ export default JustCompleteWtQuiz;
 
 interface IProps {
   onClickFn: (num: number) => void;
+  score: number;
+  totalQuestion: number;
 }
 
-export const CompletedQuiz: React.FC<IProps> = ({ onClickFn }) => {
+export const CompletedQuiz: React.FC<IProps> = (props) => {
+  const { onClickFn, score, totalQuestion } = props;
   const { user } = useSelector((state) => state.user);
-  const highestText =
-    'You did an outstanding job,indicating you have performed above average and we are proud of you. Now you have taken a step further to become more knowledgeable about your finance';
-  const highText =
-    'You have done well,Keep Learning to become more knowledgeable about your finance';
-  const avergeText =
-    'you performance is not bad but will advise you take a brief quiz to assist retain knowledge and enhance your confidence on this course before moving on to other courses.';
-  const lowText =
-    'which is kind of low,please take a brief quiz to assist retain knowledge and enhance your confidence on this course before moving on to other courses.';
+  const percScore = (100 * score) / totalQuestion;
+  let remark = `which is ${percScore}%`;
+
+  switch (true) {
+    case percScore <= 50:
+      remark =
+        'which is kind of low,please take a brief quiz to retain knowledge and enhance your confidence on this course before moving on to other courses.';
+      break;
+    case percScore > 50 && percScore < 70:
+      remark =
+        'you performance is not bad but will advise you take a brief quiz to assist retain knowledge and enhance your confidence on this course before moving on to other courses.';
+      break;
+    case percScore > 70 && percScore < 100:
+      remark =
+        'You have done well,even though you can still do better keep Learning to become more knowledgeable about this course';
+      break;
+    default:
+      remark =
+        'You did an outstanding job,indicating you have performed above average and we are proud of you. Now you have taken a step further to become more knowledgeable about your finance';
+  }
+
   return (
     <section className={styles.completed}>
       <h2 className="title">Quiz Completed!</h2>
@@ -63,7 +79,7 @@ export const CompletedQuiz: React.FC<IProps> = ({ onClickFn }) => {
         <p>
           <strong>Weldone {user?.firstName}!</strong>
         </p>
-        You scored 8 out of 10 {highestText}
+        You scored {score} out of {totalQuestion} {remark}
       </div>
       <div className={styles.btns_div_fe}>
         {false && (

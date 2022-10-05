@@ -17,6 +17,8 @@ interface Props {
   hasQuiz: boolean;
   setShowQuiz: any;
   isQuizCompleted: boolean;
+  score: number;
+  totalQuestion: number;
 }
 
 const RateReview: React.FC<Props> = (props) => {
@@ -99,7 +101,11 @@ const RateReview: React.FC<Props> = (props) => {
           />
         )}
         {view === 1 && hasQuiz && isQuizCompleted && (
-          <CompletedQuiz onClickFn={onSetView} />
+          <CompletedQuiz
+            onClickFn={onSetView}
+            score={props.score}
+            totalQuestion={props.totalQuestion}
+          />
         )}
         {view === 2 && (
           <Rate

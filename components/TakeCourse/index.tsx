@@ -20,7 +20,6 @@ import TabCourseVideos from 'components/TabCourseVideos';
 import TabCourseResources from 'components/TabCourseResources';
 import TabCourseQuiz from 'components/TabCourseQuiz';
 import CoursePlayer from 'components/WatchCoursePlayer';
-
 import RateReview from 'components/RateReview';
 import QuizPage, { IQuiz } from 'components/QuizPage';
 
@@ -41,6 +40,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [showNavs, setShowNavs] = useState(false);
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
+  const [score, setScore] = useState(0);
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
   const [lastVideoEnd, setLastVideoEnd] = useState(false);
@@ -193,6 +193,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   return (
     <main className={styles.watch}>
+      {/* RateReview component house the modal display views that happens on the /take-course page */}
       <RateReview
         courseId={id}
         courseTitle={course?.title}
@@ -201,6 +202,8 @@ const TakeCoursePage: React.FC<Props> = (props) => {
         hasQuiz={questionsLen > 0}
         setShowQuiz={setShowQuiz}
         isQuizCompleted={isQuizCompleted}
+        score={score}
+        totalQuestion={questionsLen}
       />
       <Modal
         openModal={isOpen}
@@ -310,6 +313,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
               quiz={quiz}
               setLastVideoEnd={setLastVideoEnd}
               setIsQuizCompleted={setIsQuizCompleted}
+              setScore={setScore}
             />
           )}
         </section>
