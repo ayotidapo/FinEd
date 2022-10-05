@@ -95,7 +95,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
                 <Icon id="copy" />
               </Button>
             </Tooltip>
-            <SocialMediaShare iconSize={18} />
+            {false && <SocialMediaShare iconSize={18} />}
           </div>
         )}
       </section>

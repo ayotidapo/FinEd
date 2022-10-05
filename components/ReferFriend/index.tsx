@@ -78,7 +78,7 @@ const ReferFriend = () => {
               <span className="hand">Copy code</span>
             </Tooltip>
 
-            <SocialMediaShare />
+            {false && <SocialMediaShare />}
           </div>
         </div>
       </div>
