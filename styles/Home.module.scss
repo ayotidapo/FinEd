@@ -197,11 +197,12 @@
     }
     .img_opt_box {
       position: relative;
-      height: 400px;
-      width: 400px;
+      height: 350px;
+      width: 350px;
       margin-right: 0px;
-      right: -174px;
-      bottom: -77px;
+      bottom: -143px;
+      margin-left: auto;
+      margin-right: -110px;
     }
     // &:nth-of-type(1) {
     //   .img_opt_box {
@@ -270,7 +271,7 @@
     .wallet_div {
       position: relative;
       left: 0px;
-      height: 80%;
+      height: 100%;
       // top: 70px;
       img {
         transform: scale(1.2);
@@ -326,6 +327,22 @@
     }
   }
 }
+
+@media only screen and (max-width: 2560px) and (min-width: 1670px) {
+  .options {
+    .learnMore {
+      
+        height: 700px;
+        img{
+          top: 185px;
+          min-width: 82%;
+          max-width: 99%;
+          min-height: 74%;
+          max-height: 69%;
+        }
+    }  
+  }
+} 
 @media only screen and (max-width: 1024px) {
   .welcome_div,
   .top_sec,
@@ -443,7 +460,7 @@
         }
       }
       .img_opt_box {
-        right: -400px;
+        right: 0px;
         bottom: 6px;
       }
     }
@@ -466,8 +483,9 @@
       // top: -20px;
       left: 20%;
 
-      img {
-        transform: scale(1);
+      img {    
+         top: 0;   
+         min-width: 79%;
       }
     }
     :global(.title) {
@@ -491,6 +509,8 @@
 //     }
 // }
 
+
+
 @media only screen and (max-width: 425px) {
   .options {
     .learnMore {
@@ -510,6 +530,9 @@
           font-size: var(--f-16);
           line-height: 20px;
         }
+      }
+      .optbtn{
+        font-size: var(--f-12);
       }
     }
   }

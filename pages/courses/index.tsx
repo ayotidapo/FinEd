@@ -138,7 +138,7 @@ export const getServerSideProps: GetServerSideProps =
       store.dispatch(setCourses(courses));
       return {
         props: {
-          error: 'call failed',
+          error: `call failed,${e?.response?.data},${e?.message}`,
         },
       };
     }
