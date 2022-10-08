@@ -75,11 +75,11 @@ export const MobileHeader: React.FC<any> = ({ toOpen, setNav }) => {
                     <li>Services</li>
                     <li>Tools</li>
                     <li>Company</li>
-                    <li>
-                      <Link href="/contents">Explore</Link>
-                    </li>
                   </>
                 )}
+                <li>
+                  <Link href="/contents">Explore</Link>
+                </li>
                 <li>
                   <Link href="/login">Login</Link>
                 </li>
