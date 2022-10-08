@@ -197,11 +197,12 @@
     }
     .img_opt_box {
       position: relative;
-      height: 400px;
-      width: 400px;
+      height: 350px;
+      width: 350px;
       margin-right: 0px;
-      right: -174px;
-      bottom: -77px;
+      bottom: -143px;
+      margin-left: auto;
+      margin-right: -110px;
     }
     // &:nth-of-type(1) {
     //   .img_opt_box {
@@ -270,7 +271,7 @@
     .wallet_div {
       position: relative;
       left: 0px;
-      height: 80%;
+      height: 100%;
       // top: 70px;
       img {
         transform: scale(1.2);
@@ -491,6 +492,16 @@
 //     }
 // }
 
+
+@media only screen and (min-width: 1670px) {
+  .options {
+    .learnMore {
+      .wallet_div {
+        height: 600px;
+      }
+    }  
+  }
+}
 @media only screen and (max-width: 425px) {
   .options {
     .learnMore {
