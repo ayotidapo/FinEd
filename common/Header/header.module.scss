@@ -100,6 +100,10 @@
 
 }
 
+.mobileHeader{
+  display: none;
+ }
+ 
 @media only screen and (max-width: 1087px) {
   .header {
     .header_ul {
@@ -166,6 +170,7 @@
 
     }
     .mobileHeader{
+      display:block;
       flex-direction: column;
       height: auto;
       width: 100%;

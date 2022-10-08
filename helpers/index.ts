@@ -47,12 +47,11 @@ const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov'
 
 export const formatDate =(dt:string)=>{
   const dateType=new Date(dt)
-  const day=dateType.getUTCDay()
+  const day=dateType.getDate()
   const dd=day < 10 ? `0${day}` : day;
   const mm = months[(dateType.getUTCMonth())]
   const yr=dateType.getUTCFullYear();
   return `${dd} ${mm} ${yr}`
-
 }
 
 
