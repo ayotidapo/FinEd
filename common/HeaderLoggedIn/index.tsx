@@ -10,8 +10,8 @@ import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';
 import SubCard from 'common/SubCard';
+import MobileHeader from './MobileAuthHeader';
 import useSetNav from 'hooks/useSetNav';
-import { MobileHeader } from 'common/Header';
 import ProfileAvatar from 'common/Avatar';
 
 const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {

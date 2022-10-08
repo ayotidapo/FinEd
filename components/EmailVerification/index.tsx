@@ -84,7 +84,8 @@ const EmailVerificationPage = () => {
   };
   useEffect(() => {
     const inputF = { ...inputs };
-    // const query = router.query?.token || '';
+    //	const query = router.query?.token || '';
+
     const query = '';
     const code = (query as string)?.split('');
 
