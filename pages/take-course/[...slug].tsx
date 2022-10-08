@@ -5,21 +5,19 @@ import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';
 import { ICourse } from 'components/VideosListPage';
-import { IQuiz } from 'components/QuizPage';
 
 interface Props {
   course: ICourse;
   token: string;
-  quiz: IQuiz;
 }
 
 const TakeCourse: React.FC<Props> = (props) => {
-  const { course, token, quiz } = props;
+  const { course, token } = props;
 
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return (
     <>
-      <TakeCoursePage course={course} quiz={quiz} />
+      <TakeCoursePage course={course} />
       <Footer />
     </>
   );
@@ -49,16 +47,16 @@ export const getServerSideProps: GetServerSideProps = async ({
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
     const { data } = await axios.get(`/courses-user/${courseId}`);
-    const { data: quiz } = await axios.get(`/quizes/course/${courseId}`);
-    console.log(quiz, 90000);
+
     return {
       props: {
         course: data,
         token: s_token,
-        quiz,
       },
     };
   } catch (e: any) {
+    console.log(e.response);
+
     return {
       props: {
         course: {},

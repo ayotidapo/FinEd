@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import dynamic from 'next/dynamic';
+import axios from 'axios';
 import Icon from 'common/Icon';
 import { useRouter } from 'next/router';
 import styles from './watch.module.scss';
@@ -21,7 +22,7 @@ import TabCourseResources from 'components/TabCourseResources';
 import TabCourseQuiz from 'components/TabCourseQuiz';
 import CoursePlayer from 'components/WatchCoursePlayer';
 import RateReview from 'components/RateReview';
-import QuizPage, { IQuiz } from 'components/QuizPage';
+import QuizPage from 'components/QuizPage';
 
 // const ReactPlayer = dynamic(() => import('react-player'), {
 //   ssr: false,
@@ -29,12 +30,10 @@ import QuizPage, { IQuiz } from 'components/QuizPage';
 
 interface Props {
   course: ICourse;
-  quiz: IQuiz;
 }
 
 const TakeCoursePage: React.FC<Props> = (props) => {
-  const { course, quiz } = props;
-  const questionsLen = quiz?.questions?.length;
+  const { course } = props;
   const router = useRouter();
   const { contId } = router.query;
   const [showNavs, setShowNavs] = useState(false);
@@ -48,16 +47,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [curVidId, setCurVidId] = useState<any>(contId);
   const [step, setStep] = useState(0);
-  const [x, setX] = useState(1);
+  const [quiz, setQuiz] = useState<any>({});
 
-  const onsetX = (act: string) => {
-    if (x < 10 && act === 'nxt') setX(x + 1);
-    if (x > 1 && act === 'prev') setX(x - 1);
-  };
   const { user } = useSelector((state) => state?.user);
   const { plans } = useSelector((state) => state?.plans);
 
   const { title, contents, paid, id } = course;
+
+  const questionsLen = quiz?.questions?.length;
 
   const { plan: curPlan } = user?.currentSubscription || {};
 
@@ -75,14 +72,21 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     (content: IContent) => content.type?.toLowerCase() === 'video',
   );
   console.log(resources, videos, 90909090);
+
+  const getQuiz = async () => {
+    const { data: quiz } = await axios.get(`/quizes/course/${id}`);
+    setQuiz(quiz);
+  };
+
   useEffect(() => {
     const isHasVideo = ifHasVideo(contents);
-
     setHasVideo(isHasVideo);
 
     tHandler = window.setInterval(() => {
       if (contId) onSendProgress(contId as string);
     }, 2000);
+
+    getQuiz();
 
     return () => {
       window.clearInterval(tHandler);
@@ -148,7 +152,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setLoading(false);
   };
 
-  useEffect(() => {}, [lastVideoEnd]);
+  // useEffect(() => {}, [lastVideoEnd]);
 
   useEffect(() => {
     if (!hasVideo) return;

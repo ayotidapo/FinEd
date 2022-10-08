@@ -58,6 +58,7 @@ export const courseSlice = createSlice({
 		[HYDRATE]:(state:IState,action)=>{
       
       const coursesData=action?.payload?.courses
+      console.log({coursesData})
       // console.log('ak',current(state),'akin',action.payload.courses.bookmarkCourses)
       if(coursesData?.courses?.length >= 0) state.courses = coursesData?.courses
       if(coursesData?.bookmarkCourses?.length >= 0) state.bookmarkCourses = coursesData?.bookmarkCourses
@@ -76,7 +77,7 @@ export default courseSlice.reducer
 
 
 
-//N.B Inside hydrate action.payload.['sliceReducerName'] === or represents state
+//N.B Inside hydrate action.payload.['sliceReducerName'] === or represents state(store)
 // and the it takes the initialState of SliceReducer, i.e slice by slice  thats the current(state)
 //inside HYDRATE or anywhere in redux tool  
 //cos it uses immer u can just mutate directly without return value or state I THINK

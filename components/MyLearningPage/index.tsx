@@ -6,7 +6,7 @@ import LabelTag from 'common/LabelTag';
 import Progressbar from 'common/ProgressBar';
 import Star from 'common/Star';
 import VideoCard from 'common/VideoCard';
-import { courseVideos, formatDate, getCourseProgressPerc } from 'helpers';
+import { courseVideos, formatDate } from 'helpers';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
