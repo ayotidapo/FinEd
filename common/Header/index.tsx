@@ -70,7 +70,7 @@ export const MobileHeader: React.FC<any> = ({ toOpen, setNav }) => {
           <div className={styles.navWrapper}>
             <nav className={styles.header_nav}>
               <ul className={styles.header_ul}>
-                {!isExplorePage && (
+                {!isExplorePage && false && (
                   <>
                     <li>Services</li>
                     <li>Tools</li>
