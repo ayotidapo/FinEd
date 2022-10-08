@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useForm from 'hooks/useForm';
 import Button from 'common/Button';
@@ -15,7 +16,7 @@ const LoginPage = () => {
 
   const dispatch = useDispatch();
 
-  const { isTouched, onChangeInput, onBlurInput, isError, inputs } =
+  const { isTouched, onChangeInput, setInputs, onBlurInput, isError, inputs } =
     useForm(LogInFields);
   const [submitting, setSubmitting] = useState(false);
 
@@ -38,6 +39,14 @@ const LoginPage = () => {
       setSubmitting(false);
     }
   };
+  useEffect(() => {
+    const inputF = { ...LogInFields };
+
+    inputF.username.value = '';
+    inputF.password.value = '';
+
+    setInputs(inputF);
+  }, []);
 
   return (
     <main className="auth_page">
