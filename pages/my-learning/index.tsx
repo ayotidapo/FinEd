@@ -59,10 +59,10 @@ export const getServerSideProps: GetServerSideProps =
 
       const analytics = data?.analytics;
       const courses = analytics.map((analytic: any) => ({
-        ...analytic.course,
-        analyticProgress: analytic.progress,
-        analyticDateCreated: analytic.datecreated,
-        analyticDateUpreated: analytic.dateupdated,
+        ...analytic?.course,
+        analyticProgress: analytic?.progress,
+        analyticDateCreated: analytic?.datecreated,
+        analyticDateUpreated: analytic?.dateupdated,
       }));
       store.dispatch(setCourses(courses));
 
