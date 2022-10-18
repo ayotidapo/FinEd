@@ -158,7 +158,7 @@ const SubCard = (props) => {
         amount,
         user,
         plan,
-        host: global.window.location.origin,
+        host: global?.window?.location.origin,
       });
 
       setFwConfig(config);
