@@ -8,7 +8,7 @@ import Checkbox from 'common/Checkbox';
 import VideoCard from 'common/VideoCard';
 import styles from './videoslist.module.scss';
 import Input from 'common/Input';
-import { useSelector, useDispatch } from 'store';
+import { useSelector } from 'store';
 import useForm from 'hooks/useForm';
 import Link from 'next/link';
 import Paginate from 'common/Paginate';
@@ -41,7 +41,6 @@ interface Props {
 const VideosListPage: React.FC<Props> = (props) => {
   const { user } = useSelector((state) => state?.user);
   const isMobile = useIFMobile();
-  const dispatch = useDispatch();
   const [showFilter, setShowFilter] = useState(false);
   const [filterValue, setFilterValue] = useState<string[]>([]);
   const [levels, setLevels] = useState<string[]>([]);
