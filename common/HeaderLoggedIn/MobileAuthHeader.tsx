@@ -45,6 +45,7 @@ const MobileAuthHeader: React.FC<Props> = (props) => {
   };
 
   if (!props.open) return <></>;
+  console.log(user?.avatar, 'poooo');
   return (
     <header className={styles.mobAuthHeader}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -59,7 +60,7 @@ const MobileAuthHeader: React.FC<Props> = (props) => {
         <span className={styles.avatar}>
           <ProfileAvatar
             user={{
-              avatar: user?.avatar?.url,
+              avatar: user?.avatar,
               firstName: user?.firstName,
               lastName: user?.lastName,
             }}

@@ -46,7 +46,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const onClickedUpgrade = () => {
     setIsOpen(true);
   };
-
+  console.log(433, user?.avatar);
   return (
     <header className={`app-pad ${styles.header}`} style={style}>
       <Modal

@@ -59,12 +59,14 @@ const ProfileAvatar: React.FC<IProps> = ({
   useEffect(() => {
     setPreviewAvatar(user?.avatar?.url);
   }, [user?.avatar?.url]);
-  console.log(previewAvatar, user?.avatar?.url, 98765);
+
+  console.log(previewAvatar, user?.avatar, 98765);
+
   return (
     <div className={styles.avatar_wrapper}>
-      {user?.avatar?.url || previewAvatar ? (
+      {user?.avatar?.url ? (
         <Image
-          src={previewAvatar || '/assets/bag.png'}
+          src={user?.avatar?.url || '/assets/bag.png'}
           alt={`${user?.firstName} ${user?.lastName}`}
           height={height}
           width={width}
