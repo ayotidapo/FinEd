@@ -13,10 +13,40 @@ const Footer = () => {
         </div>
         <p>&copy; 2021 The Money Africa. All rights reserved.</p>
         <div className={styles.socials}>
-          <Icon id="fb" width={32} height={32} />
-          <Icon id="linkdIn" width={32} height={32} />
-          <Icon id="whatsapp" width={32} height={32} />
-          <Icon id="twitter" width={32} height={32} />
+          <Icon
+            id="fb"
+            width={32}
+            height={32}
+            onClick={() =>
+              window.open(
+                'https://web.facebook.com/groups/812950645554339?_rdc=1&_rdr',
+              )
+            }
+          />
+          <Icon
+            id="linkdIn"
+            width={32}
+            height={32}
+            onClick={() =>
+              window.open(
+                'https://www.linkedin.com/company/money-africa/?originalSubdomain=ng',
+              )
+            }
+          />
+          <Icon
+            id="whatsapp"
+            width={32}
+            height={32}
+            onClick={() =>
+              window.open('https://www.instagram.com/moneyafrica/')
+            }
+          />
+          <Icon
+            id="twitter"
+            width={32}
+            height={32}
+            onClick={() => window.open('https://twitter.com/themoneyafrica')}
+          />
         </div>
       </div>
       <div className={styles.mid_div}>

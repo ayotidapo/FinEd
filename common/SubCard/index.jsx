@@ -171,7 +171,7 @@ const SubCard = (props) => {
     }
     setLoading(false);
   };
-
+  console.log(global?.window?.location.origin);
   const onConfirmCode = async (e) => {
     e.preventDefault();
     if (discountCode.value < 1) return;
