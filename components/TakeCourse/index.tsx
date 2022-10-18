@@ -170,6 +170,10 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     router.push(`/video/${id}/${title}`);
   };
 
+  const markAsCourseComplete = async () => {
+    await axios.post(`/analytics/course/${id}`, { progress: 100 });
+  };
+
   const onSendProgress = async (contId: string) => {
     const player: any = document.getElementById('player');
     const progress = player ? player.currentTime : null;
@@ -184,6 +188,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       player.onended = () => {
         setLastVideoEnd(true);
         setIsCourseCompleted(true);
+        markAsCourseComplete();
       };
     }
     await sendContentProgress(contId, Math.floor(Number(progress)));
