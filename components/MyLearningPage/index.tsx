@@ -101,7 +101,7 @@ const MyLearningPage: React.FC<Props> = () => {
         <h2 className="title">{textHeader}</h2>
         {tab === 'ongoing' && lastViewed?.title && (
           <section className={styles.lastviewed_details}>
-            <div style={{ flex: '1', display: 'flex', height: '190px' }}>
+            <div>
               <div className={styles.imgBx}>
                 {lastViewed?.thumbnail && (
                   <Image

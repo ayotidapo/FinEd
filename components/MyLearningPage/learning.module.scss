@@ -47,6 +47,12 @@
         border-radius: 8px;
         margin-top:20px;
         height: 190px;
+        
+        > div{
+           flex: 1; 
+           display: flex; 
+           height: 190px
+        }
     }
     .imgBx{
         position: relative;
@@ -212,10 +218,36 @@
             font-size: var(--f-12);
         }
         .btnDv{
-            width: 80%;
+            width: 100%;
             margin: auto;
+        }
+        .lastviewed_details{
+            > div{
+                flex-direction: column;
+                height: auto;
+            }           
+        }
+        .imgBx{
+            position: relative;
+            width: 100%;
+            flex-shrink: 0;
+            border-radius: 8px 0px 0px 8px;
+            height: 150px;
+
+            .overlay{
+                border-radius: 8px 8px 0px 0px;
+            }
+        }
+        .lblBx{
+            align-items: flex-start;
         }
        
     }
 
 }
+
+// osition: relative;
+//     width: 100%;
+//     flex-shrink: 0;
+//     border-radius: 8px 0px 0px 8px;
+//     height: 150px;
