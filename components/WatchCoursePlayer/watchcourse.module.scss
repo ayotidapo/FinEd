@@ -35,3 +35,15 @@
         
     }
 }
+
+
+@media only screen and (max-width: 425px) {
+    .details{
+        .barz_clock{
+            display: block;
+        }
+    }
+    .min_details{
+       margin-bottom: 10px;       
+    }
+}
