@@ -44,8 +44,13 @@ const MobileAuthHeader: React.FC<Props> = (props) => {
     if (path) router.push(path);
   };
 
+  const onClickedUpgrade = () => {
+    props.upgrade();
+    props.setNav();
+  };
+
   if (!props.open) return <></>;
-  console.log(user?.avatar, 'poooo');
+
   return (
     <header className={styles.mobAuthHeader}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -70,7 +75,7 @@ const MobileAuthHeader: React.FC<Props> = (props) => {
         {!props.subId && (
           <Button
             // className={classnames(styles.upgrade, { hide: subId })}
-            onClick={props.upgrade}
+            onClick={onClickedUpgrade}
           >
             UPGRADE
           </Button>

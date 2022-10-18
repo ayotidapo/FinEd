@@ -258,3 +258,14 @@
 		margin-bottom: 3rem;
 	
 }
+
+@media only screen and (max-width: 425px) {
+	.sub_card{
+		width: 100%;
+		.p{
+			+ button {
+				font-size: 1.4rem;
+			}
+		}
+	}
+}

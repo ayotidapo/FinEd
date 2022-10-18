@@ -21,7 +21,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const [step, setStep] = useState(0);
   const { user } = useSelector((state) => state?.user);
   const { plans } = useSelector((state) => state?.plans);
-  console.log({ i: user?.avatar }, 0);
+
   const path = router.pathname;
   const { id: subId, plan: curPlan } = user?.currentSubscription || {};
 
@@ -46,7 +46,7 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
   const onClickedUpgrade = () => {
     setIsOpen(true);
   };
-  console.log(433, user?.avatar);
+
   return (
     <header className={`app-pad ${styles.header}`} style={style}>
       <Modal

@@ -26,7 +26,6 @@ const MyLearningPage: React.FC<Props> = () => {
     (state) => state.courses,
   );
 
-  console.log({ courses, j: bookmarkCourses });
   const [courseArray, setCourseArray] = useState<ICourse[]>(courses);
 
   const textHeader = tab === 'ongoing' ? 'Last Viewed' : `Courses`;

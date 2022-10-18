@@ -13,7 +13,7 @@ const Paginate: React.FC<Props> = (props) => {
   const initialPg = Number(router.query?.page) || 1;
   const { totalCount } = props;
   const noOfPage = Math.ceil(totalCount / 12);
-  console.log({ initialPg });
+
   return (
     <div className={styles.pgnt_wrapper}>
       <ReactPaginate

@@ -60,8 +60,6 @@ const ProfileAvatar: React.FC<IProps> = ({
     setPreviewAvatar(user?.avatar?.url);
   }, [user?.avatar?.url]);
 
-  console.log(previewAvatar, user?.avatar, 98765);
-
   return (
     <div className={styles.avatar_wrapper}>
       {user?.avatar?.url ? (

@@ -71,7 +71,6 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const videos = contents?.filter(
     (content: IContent) => content.type?.toLowerCase() === 'video',
   );
-  console.log(resources, videos, 90909090);
 
   const getQuiz = async () => {
     const { data: quiz } = await axios.get(`/quizes/course/${id}`);

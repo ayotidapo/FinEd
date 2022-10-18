@@ -54,7 +54,7 @@ const SubscriptionCard = (props) => {
 
   useEffect(() => {
     if (!fwConfig.tx_ref) return;
-    console.log(fwConfig, 9);
+
     handleFlutterPayment({
       callback: (response) => {
         closePaymentModal();

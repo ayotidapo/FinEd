@@ -51,7 +51,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const router = useRouter();
   const { page = '1', s } = router.query;
   const isCoursePage = router.pathname === '/courses';
-  console.log(categories, 677388, coursesData);
+
   const fields = {
     search: {
       name: 'search',
@@ -92,7 +92,6 @@ const VideosListPage: React.FC<Props> = (props) => {
     } catch {}
   };
 
-  console.log(categories, 78);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setLoading(true);

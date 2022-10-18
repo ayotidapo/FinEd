@@ -129,7 +129,6 @@ const SubCard = (props) => {
 
   useEffect(() => {
     if (!fwConfig.tx_ref) return;
-    console.log(fwConfig, 90, handleFlutterPayment);
 
     handleFlutterPayment({
       callback: (response) => {
@@ -171,7 +170,7 @@ const SubCard = (props) => {
     }
     setLoading(false);
   };
-  console.log(global?.window?.location.origin);
+
   const onConfirmCode = async (e) => {
     e.preventDefault();
     if (discountCode.value < 1) return;

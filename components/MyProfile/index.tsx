@@ -40,7 +40,7 @@ const MyProfile: React.FC<Props> = () => {
 
   const onSelect = (e: any) => {
     const { name, value } = e.target;
-    console.log(name, value);
+
     if (name === 'residentCountry') {
       setUserCountry(value);
       const states = getStates(value);
@@ -96,7 +96,7 @@ const MyProfile: React.FC<Props> = () => {
 
     setInputs(mInputs);
   }, [user]);
-  console.log(user);
+
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
