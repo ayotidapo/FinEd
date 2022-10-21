@@ -140,7 +140,7 @@ const MyLearningPage: React.FC<Props> = () => {
                   </span>
                   <span>
                     &nbsp;&nbsp;&nbsp;
-                    <Icon id="clock" width={20} height={20} />
+                    <Icon id="clock_" width={20} height={20} />
                     &nbsp;
                   </span>
                 </div>

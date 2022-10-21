@@ -192,7 +192,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
               <span className="bar" />
               <span className="bar" />
               &nbsp; Intermediate &nbsp;&nbsp;
-              <Icon id="clock" width={20} height={20} /> &nbsp;
+              <Icon id="clock_" width={20} height={20} /> &nbsp;
             </div>
           </section>
         </div>
@@ -253,7 +253,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
                 &nbsp;<span className="elips">{content.title}</span>
               </div>
               <span>
-                <Icon id="clock" width={20} height={20} /> &nbsp;
+                <Icon id="clock_" width={20} height={20} /> &nbsp;
               </span>
             </li>
           ))}
