@@ -170,7 +170,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   };
 
   const markAsCourseComplete = async () => {
-    await axios.post(`/analytics/course/${id}`, { progress: 100 });
+    await axios.patch(`/analytics/course/${id}`, { progress: 100 });
   };
 
   const onSendProgress = async (contId: string) => {

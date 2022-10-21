@@ -253,7 +253,12 @@
             .desc{
                 height: auto;
                 font-size: var(--f-14);
-                
+                padding: 20px;
+                width:90%;
+            }
+            button{
+                padding: 10px;
+                font-size: 1.4rem;
             }
         }
         .btns_div{
