@@ -78,7 +78,7 @@ const ReferFriend = () => {
           </div>
           <div>
             <h3>Total amount gotten</h3>
-            <h2 className="title">{`N${amountGotten}`}</h2>
+            <h2 className="title">&#8358;{`${amountGotten}`}</h2>
           </div>
         </article>
         <p>
