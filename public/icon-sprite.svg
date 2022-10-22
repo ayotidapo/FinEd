@@ -313,6 +313,32 @@
 	</defs>
 	</symbol>
 
+	<symbol id="play-prev" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<g clip-path="url(#clip0_10245_9016)">
+		<path d="M17 7V17L9 12L17 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M6 7V17" stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"/>
+		</g>
+		<defs>
+		<clipPath id="clip0_10245_9016">
+		<rect width="24" height="24" fill="white"/>
+		</clipPath>
+		</defs>
+	</symbol>
+
+
+	<symbol id="play-next" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<g clip-path="url(#clip0_10245_9009)">
+		<path d="M5.99988 7V17L14.5713 12L5.99988 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M17.5713 7V17" stroke="#C03E21" stroke-linecap="round" stroke-linejoin="round"/>
+		</g>
+		<defs>
+		<clipPath id="clip0_10245_9009">
+		<rect width="24" height="24" fill="white"/>
+		</clipPath>
+		</defs>
+	</symbol>
+
+
 	<symbol id="camera" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<g clip-path="url(#clip0_9915_11151)">
 		<path d="M2.26562 4.53125H11.2656C11.8624 4.53125 12.4347 4.7683 12.8566 5.19026C13.2786 5.61222 13.5156 6.18451 13.5156 6.78125V13.5312C13.5156 13.6804 13.4564 13.8235 13.3509 13.929C13.2454 14.0345 13.1023 14.0938 12.9531 14.0938H3.95312C3.35639 14.0938 2.78409 13.8567 2.36213 13.4347C1.94018 13.0128 1.70313 12.4405 1.70312 11.8438V5.09375C1.70312 4.94457 1.76239 4.80149 1.86788 4.696C1.97337 4.59051 2.11644 4.53125 2.26562 4.53125V4.53125Z" stroke="#637170" stroke-linecap="round" stroke-linejoin="round"/>

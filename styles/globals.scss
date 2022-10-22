@@ -191,6 +191,10 @@ button > svg {
 .hand:hover {
   cursor: pointer;
 }
+.no-allow:hover{
+  cursor: not-allowed;
+  color: #B3AFAF
+}
 a {
   color: inherit;
   text-decoration: none;

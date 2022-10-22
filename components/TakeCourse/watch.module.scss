@@ -1,13 +1,14 @@
 .watch{
 	.top{
 		display: flex;
+		width: 100%;
 		background-color: #fff;
 		height: 70px;
-	align-items: center;
-	padding: 0 20px;
+		align-items: center;
+		padding: 0 20px;
 		.breadcrumb {
 			font-family: var(--font-2);
-			
+			flex: 1;
 		  
 			ul {
 			  margin-top: 0;
@@ -145,7 +146,37 @@
 	.simulate{
 		display: none;
 	}
+	.controls{
+		display: flex;
+		align-items: center;
+		font-size: var(--f-14);
+		font-family: var(--font-2);
+		font-weight: bold;
+		span {
+			
+			display: flex;
+			align-items: center;
+			margin: 0 20px;			
+		}
+	}
+	.allow{
+		color: #C03E21;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+	.no_allow{
+		color: #B3AFAF;
+		&:hover{
+			cursor: not-allowed;
+		}	
+		
+	  }
+	
 }
+
+
+
 .modalClass{
 	display: flex;
 	gap: 25px;
