@@ -32,7 +32,7 @@ const MyProfile: React.FC<Props> = () => {
   const today = new Date();
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
-
+  console.log(userCountry, user, userState);
   // const updateStates = (country: string) => {
   //   const states = getStates(country);
   //   if (states) setStates(states);
@@ -59,7 +59,8 @@ const MyProfile: React.FC<Props> = () => {
     if (checked) setGender(value);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
     try {
       if (userCountry && !userState) return setResErr(true);
       setSubmitting(true);
@@ -97,6 +98,7 @@ const MyProfile: React.FC<Props> = () => {
     setInputs(mInputs);
   }, [user]);
 
+  console.log({ user, a: 8 });
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
@@ -223,14 +225,14 @@ const MyProfile: React.FC<Props> = () => {
           <Select
             name="residentCountry"
             options={countries}
-            optionSelected={user?.residentCountry}
+            optionSelected={userCountry}
             onChange={onSelect}
             label="Country of Residence"
           />
           <Select
             name="residentState"
             options={states}
-            optionSelected={user?.residentState}
+            optionSelected={userState}
             onChange={onSelect}
             label="State of Residence"
           />
