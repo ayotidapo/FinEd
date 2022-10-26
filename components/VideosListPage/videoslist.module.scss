@@ -7,7 +7,16 @@
 
 }
 .search_input{
+  position: relative;
   margin-left: auto;
+  > span {
+    position: absolute;
+    top: 32px;
+    right: 5px;
+    font-size: var(--f-20);
+    font-weight: bolder;
+    color: grey;
+  }
 }
 .cr_dn {
   margin-top: 5px; 

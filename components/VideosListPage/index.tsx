@@ -63,7 +63,7 @@ const VideosListPage: React.FC<Props> = (props) => {
       required: false,
     },
   };
-  const { onChangeInput, inputs } = useForm(fields);
+  const { onChangeInput, setInputs, inputs } = useForm(fields);
   const { search } = inputs;
 
   useEffect(() => {
@@ -131,6 +131,12 @@ const VideosListPage: React.FC<Props> = (props) => {
     }
   };
 
+  const onClear = () => {
+    const newInputs = { ...inputs };
+    newInputs.search.value = '';
+    setInputs(newInputs);
+  };
+
   const showSearch = (explorePage && isMobile) || isCoursePage;
   return (
     <>
@@ -168,6 +174,9 @@ const VideosListPage: React.FC<Props> = (props) => {
                 onChange={onChangeInput}
                 autoFocus={search?.value}
               />
+              <span className="hand" onClick={onClear}>
+                &times;
+              </span>
             </div>
           )}
           <span
@@ -176,13 +185,12 @@ const VideosListPage: React.FC<Props> = (props) => {
           >
             <Icon id="filter" width={24} height={24} />
           </span>
-
-          <section
-            className={cx([styles.filter_box], {
-              [styles.filter_box_show]: showFilter,
-            })}
-          >
-            {!search.value && (
+          {!search.value && (
+            <section
+              className={cx([styles.filter_box], {
+                [styles.filter_box_show]: showFilter,
+              })}
+            >
               <div className={styles.by_topics}>
                 <p>Filter by Topics</p>
                 <div className={styles.tags_div}>
@@ -198,53 +206,53 @@ const VideosListPage: React.FC<Props> = (props) => {
                   ))}
                 </div>
               </div>
-            )}
 
-            <div className={styles.by_levels}>
-              <p>Filter by Levels</p>
-              <div className={styles.levels_div}>
-                <span className="Beginner">
-                  <Checkbox
-                    name="level"
-                    value="beginner"
-                    type="checkbox"
-                    onChange={onChooseFilter}
-                  />
-                  &nbsp;&nbsp;
-                  <span className="bar" />
-                  <span className="bar" />
-                  <span className="bar" />
-                  &nbsp;Beginner
-                </span>
-                <span className="Intermediate">
-                  <Checkbox
-                    name="level"
-                    value="intermediate"
-                    type="checkbox"
-                    onChange={onChooseFilter}
-                  />
-                  &nbsp;&nbsp;
-                  <span className="bar" />
-                  <span className="bar" />
-                  <span className="bar" />
-                  &nbsp;Intermediate
-                </span>
-                <span className="Advanced">
-                  <Checkbox
-                    name="level"
-                    value="advanced"
-                    type="checkbox"
-                    onChange={onChooseFilter}
-                  />
-                  &nbsp;&nbsp;
-                  <span className="bar" />
-                  <span className="bar" />
-                  <span className="bar" />
-                  &nbsp;Advanced
-                </span>
+              <div className={styles.by_levels}>
+                <p>Filter by Levels</p>
+                <div className={styles.levels_div}>
+                  <span className="Beginner">
+                    <Checkbox
+                      name="level"
+                      value="beginner"
+                      type="checkbox"
+                      onChange={onChooseFilter}
+                    />
+                    &nbsp;&nbsp;
+                    <span className="bar" />
+                    <span className="bar" />
+                    <span className="bar" />
+                    &nbsp;Beginner
+                  </span>
+                  <span className="Intermediate">
+                    <Checkbox
+                      name="level"
+                      value="intermediate"
+                      type="checkbox"
+                      onChange={onChooseFilter}
+                    />
+                    &nbsp;&nbsp;
+                    <span className="bar" />
+                    <span className="bar" />
+                    <span className="bar" />
+                    &nbsp;Intermediate
+                  </span>
+                  <span className="Advanced">
+                    <Checkbox
+                      name="level"
+                      value="advanced"
+                      type="checkbox"
+                      onChange={onChooseFilter}
+                    />
+                    &nbsp;&nbsp;
+                    <span className="bar" />
+                    <span className="bar" />
+                    <span className="bar" />
+                    &nbsp;Advanced
+                  </span>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
         </div>
       </header>
 
