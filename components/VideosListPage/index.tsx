@@ -174,9 +174,11 @@ const VideosListPage: React.FC<Props> = (props) => {
                 onChange={onChangeInput}
                 autoFocus={search?.value}
               />
-              <span className="hand" onClick={onClear}>
-                &times;
-              </span>
+              {search.value && (
+                <span className="hand" onClick={onClear}>
+                  &times;
+                </span>
+              )}
             </div>
           )}
           <span
