@@ -182,21 +182,23 @@ const VideosListPage: React.FC<Props> = (props) => {
               [styles.filter_box_show]: showFilter,
             })}
           >
-            <div className={styles.by_topics}>
-              <p>Filter by Topics</p>
-              <div className={styles.tags_div}>
-                {categories?.map((category: any, i: number) => (
-                  <LabelCheck
-                    key={i}
-                    tag={category.category}
-                    rname="category"
-                    value={category.category}
-                    type="checkbox"
-                    onChange={onChooseFilter}
-                  />
-                ))}
+            {!search.value && (
+              <div className={styles.by_topics}>
+                <p>Filter by Topics</p>
+                <div className={styles.tags_div}>
+                  {categories?.map((category: any, i: number) => (
+                    <LabelCheck
+                      key={i}
+                      tag={category.category}
+                      rname="category"
+                      value={category.category}
+                      type="checkbox"
+                      onChange={onChooseFilter}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className={styles.by_levels}>
               <p>Filter by Levels</p>

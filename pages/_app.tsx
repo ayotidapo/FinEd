@@ -34,7 +34,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const path = router.pathname;
 
-  const isHideHeader = path.includes('take-course');
+  const isHideHeader =
+    path.includes('take-course') || path.includes('choose-plan');
 
   useEffect(() => {
     dispatch(setUser(user));
