@@ -121,7 +121,7 @@ export const getServerSideProps: GetServerSideProps =
       return {
         props: { totalCount },
       };
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.message);
       store.dispatch(setCourses(courses));
       return {
