@@ -60,20 +60,48 @@ export const getServerSideProps: GetServerSideProps =
       };
     }
     try {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+      //  axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (searchQuery) {
-        const { data } = await axios.get(
+        // const { data } = await axios.get(
+        //   `/courses-user/search-courses?skip=${
+        //     (page - 1) * 12
+        //   }&take=12&searchQuery=${searchQuery}`,
+        // );
+
+        const res = await fetch(
           `/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
+          {
+            headers: {
+              Authorization: `Bearer ${s_token}`,
+              'Content-Type': 'application/json',
+            },
+          },
         );
+
+        const data = await res.json();
+
         courses = data.courses;
         totalCount = data.totalCount;
       } else {
-        const { data } = await axios.get(
+        // const { data } = await axios.get(
+        //   `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
+        // );
+
+        const res = await fetch(
           `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
+          {
+            headers: {
+              Authorization: `Bearer ${s_token}`,
+              'Content-Type': 'application/json',
+            },
+          },
         );
+
+        const data = await res.json();
+
         courses = data.courses;
         totalCount = data.totalCount;
       }
