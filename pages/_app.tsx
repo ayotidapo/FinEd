@@ -7,7 +7,7 @@ import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
-import { useEffect, useState } from 'react';
+import { useEffect, useCallback } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { setUser } from 'reducers/user';
 import Header from 'common/HeaderLoggedIn';
