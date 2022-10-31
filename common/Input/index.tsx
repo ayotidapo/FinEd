@@ -31,6 +31,7 @@ interface Props {
   onKeyDown?: (e: any) => void | undefined;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   autoFocus?: boolean;
+  onPaste?: (e: any) => void;
   field: IField;
 }
 
