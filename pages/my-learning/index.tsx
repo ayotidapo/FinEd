@@ -36,26 +36,46 @@ export const getServerSideProps: GetServerSideProps =
       };
     }
     try {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
+      // axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (tab === 'bookmarked') {
-        const { data: courses } = await axios.get(`/bookmarks`);
+        // const { data: courses } = await axios.get(`/bookmarks`);
+
+        const res = await fetch(`https://api.themoneystaging.com/bookmarks`, {
+          headers: {
+            Authorization: `Bearer ${s_token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const courses = await res.json();
 
         const addBk2courses = courses.map((course: ICourse) => ({
           ...course,
           bookmark: { id: 'fake-id' },
         }));
 
-        console.log({ addBk2courses });
         store.dispatch(setBookMarkCourses(addBk2courses));
         return {
           props: { token: s_token },
         };
       }
 
-      const { data } = await axios.get(
-        `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+      // const { data } = await axios.get(
+      //   `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+      // );
+
+      const res = await fetch(
+        `https://api.themoneystaging.com/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+        {
+          headers: {
+            Authorization: `Bearer ${s_token}`,
+            'Content-Type': 'application/json',
+          },
+        },
       );
+
+      const data = await res.json();
 
       const analytics = data?.analytics;
       const courses = analytics.map((analytic: any) => ({
@@ -66,7 +86,6 @@ export const getServerSideProps: GetServerSideProps =
       }));
       store.dispatch(setCourses(courses));
 
-      console.log({ courses });
       return {
         props: { token: s_token },
       };
