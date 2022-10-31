@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps =
 
       if (searchQuery) {
         const { data } = await axios.get(
-          `/courses-user/search-courses?skip=${
+          `https://api.themoneystaging.com/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
         );
@@ -109,7 +109,7 @@ export const getServerSideProps: GetServerSideProps =
         totalCount = data.totalCount;
       } else {
         const { data } = await axios.get(
-          `/courses-user/?skip=${
+          `https://api.themoneystaging.com/courses-user/?skip=${
             (page - 1) * 12
           }&take=12&category=${category}&level=${level}`,
         );

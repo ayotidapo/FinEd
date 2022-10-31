@@ -46,6 +46,7 @@ export const getServerSideProps: GetServerSideProps =
           bookmark: { id: 'fake-id' },
         }));
 
+        console.log({ addBk2courses });
         store.dispatch(setBookMarkCourses(addBk2courses));
         return {
           props: { token: s_token },
@@ -65,6 +66,7 @@ export const getServerSideProps: GetServerSideProps =
       }));
       store.dispatch(setCourses(courses));
 
+      console.log({ courses });
       return {
         props: { token: s_token },
       };
