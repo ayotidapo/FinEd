@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps =
         // );
 
         const res = await fetch(
-          `/courses-user/search-courses?skip=${
+          `https://api.themoneystaging.com/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
           {
@@ -91,7 +91,9 @@ export const getServerSideProps: GetServerSideProps =
         // );
 
         const res = await fetch(
-          `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
+          `https://api.themoneystaging.com/courses-user/noauth?skip=${
+            (page - 1) * 12
+          }&take=12`,
           {
             headers: {
               Authorization: `Bearer ${s_token}`,
@@ -120,6 +122,7 @@ export const getServerSideProps: GetServerSideProps =
         props: { totalCount },
       };
     } catch (e) {
+      console.log(e.message);
       store.dispatch(setCourses(courses));
       return {
         props: {
