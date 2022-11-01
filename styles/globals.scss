@@ -1,6 +1,8 @@
 @import 'font.css';
 
 :root {
+  height: 100vh;
+  overflow: scroll;
   font-size: 10px;
   -webkit-font-smoothing: antialiased;
   color: var(--pri-col);
@@ -263,12 +265,12 @@ a {
   color:#015351;
 }
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: var(--pg-bg-col);
   padding: 0px;
   padding-bottom: 0px;
-  // overflow: scroll;
+  overflow: scroll;
   max-width: 2500px;
   margin: 0 auto;
 }

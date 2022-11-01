@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [userId, s_token]);
 
   return (
-    <div className="container" id="top">
+    <div className="container">
       <ToastContainer
         autoClose={5000}
         transition={Zoom}
