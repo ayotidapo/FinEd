@@ -64,7 +64,9 @@ export const getServerSideProps: GetServerSideProps =
 
       if (searchQuery) {
         const { data } = await axios.get(
-          `/courses-user/search-courses?skip=${
+          `${
+            process.env.NEXT_PUBLIC_BASE_URL
+          }/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
         );
@@ -72,7 +74,9 @@ export const getServerSideProps: GetServerSideProps =
         totalCount = data.totalCount;
       } else {
         const { data } = await axios.get(
-          `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/courses-user/noauth?skip=${
+            (page - 1) * 12
+          }&take=12`,
         );
         courses = data.courses;
         totalCount = data.totalCount;

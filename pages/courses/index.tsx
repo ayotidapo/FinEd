@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import VideoPage from 'components/VideosListPage';
 import Modal from 'common/Modal';
 import { getToken } from 'helpers/getToken';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import Footer from 'common/Footer';
 import Image from 'next/image';
 import { GetServerSideProps } from 'next';

@@ -39,7 +39,9 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (tab === 'bookmarked') {
-        const { data: courses } = await axios.get(`/bookmarks`);
+        const { data: courses } = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks`,
+        );
 
         const addBk2courses = courses.map((course: ICourse) => ({
           ...course,
@@ -53,7 +55,7 @@ export const getServerSideProps: GetServerSideProps =
       }
 
       const { data } = await axios.get(
-        `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
 
       const analytics = data?.analytics;
