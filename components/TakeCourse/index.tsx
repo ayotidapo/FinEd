@@ -83,6 +83,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   };
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const isHasVideo = ifHasVideo(contents);
     setHasVideo(isHasVideo);
 
@@ -218,6 +219,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   };
 
   const onSendProgress = async (contId: string) => {
+    if (typeof window === 'undefined') return;
     const player: any = document.getElementById('player');
     const progress = player ? player.currentTime : null;
     const duration = player ? player.duration : 0;
