@@ -58,7 +58,7 @@ export const courseSlice = createSlice({
 		[HYDRATE]:(state:IState,action)=>{
       
       const coursesData=action?.payload?.courses
-      console.log({coursesData})
+      // console.log({coursesData})
       // console.log('ak',current(state),'akin',action.payload.courses.bookmarkCourses)
       if(coursesData?.courses?.length >= 0) state.courses = coursesData?.courses
       if(coursesData?.bookmarkCourses?.length >= 0) state.bookmarkCourses = coursesData?.bookmarkCourses

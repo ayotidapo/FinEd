@@ -18,7 +18,7 @@ import ProfileAvatar from 'common/Avatar';
 interface Props {}
 const MyProfile: React.FC<Props> = () => {
   const { user } = useSelector((state) => state?.user);
-  console.log(user, 3636);
+
   const dispatch = useDispatch();
   const { inputs, onChangeInput, onBlurInput, getPayload, setInputs } =
     useForm(fields);
@@ -32,7 +32,7 @@ const MyProfile: React.FC<Props> = () => {
   const today = new Date();
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
-  console.log(userCountry, user, userState, 1);
+
   // const updateStates = (country: string) => {
   //   const states = getStates(country);
   //   if (states) setStates(states);
@@ -82,7 +82,6 @@ const MyProfile: React.FC<Props> = () => {
   };
 
   useEffect(() => {
-    console.log(98, user);
     if (user?.residentCountry) {
       const states = getStates(user?.residentCountry);
 
@@ -104,7 +103,6 @@ const MyProfile: React.FC<Props> = () => {
     setUserCountry(user?.residentCountry);
   }, [user?.residentCountry, user?.residentState]);
 
-  console.log({ user, a: 8, userCountry, userState });
   // useEffect(() => {
   //   setUserCountry(user?.residentCountry);
   // }, [user?.residentCountry]);
