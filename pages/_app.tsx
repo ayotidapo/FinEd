@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className="container">
-      {userId}
       <ToastContainer
         autoClose={5000}
         transition={Zoom}
