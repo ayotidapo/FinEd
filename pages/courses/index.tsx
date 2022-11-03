@@ -97,6 +97,7 @@ export const getServerSideProps: GetServerSideProps =
       };
     }
     try {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       if (searchQuery) {
         // const res = await fetch(
         //   `https://api.themoneystaging.com/courses-user/search-courses?skip=${
