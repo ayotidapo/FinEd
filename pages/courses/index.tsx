@@ -110,7 +110,7 @@ export const getServerSideProps: GetServerSideProps =
           },
         );
 
-        const { data } = await res.json();
+        const data = await res.json();
 
         // const { data } = await axios.get(
         //   `/courses-user/search-courses?skip=${
