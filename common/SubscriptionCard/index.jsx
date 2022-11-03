@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'common/Modal';
 import useForm from 'hooks/useForm';
 import Input from 'common/Input';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { toast } from 'react-toastify';
 import { initConfig, configureFW } from './function';
 

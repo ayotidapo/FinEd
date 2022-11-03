@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { useRouter } from 'next/router';
 import { Logo2 } from 'common/Logo';
 import Input from 'common/Input';

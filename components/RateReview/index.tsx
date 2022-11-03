@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import Modal from 'common/Modal';
 import styles from './ratereview.module.scss';
 import WriteReview, { Rated } from './views/WriteReview';

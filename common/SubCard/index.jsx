@@ -9,7 +9,7 @@ import Icon from 'common/Icon';
 import React, { useEffect, useState } from 'react';
 import useForm from 'hooks/useForm';
 import Input from 'common/Input';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { initConfig, configureFW } from './function';
 import { toast } from 'react-toastify';
 

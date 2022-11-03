@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import axios from 'helpers/axios';
 import MyLearningPage from 'components/MyLearningPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
-import { GetServerSideProps } from 'next';
 import { ICourse, setBookMarkCourses, setCourses } from 'reducers/courses';
 import { wrapper } from 'store';
 
@@ -39,9 +39,16 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (tab === 'bookmarked') {
-        const { data: courses } = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/bookmarks`,
-        );
+        const { data: courses } = await axios.get(`/bookmarks`);
+
+        // const res = await fetch(`https://api.themoneystaging.com/bookmarks`, {
+        //   headers: {
+        //     Authorization: `Bearer ${s_token}`,
+        //     'Content-Type': 'application/json',
+        //   },
+        // });
+
+        // const courses = await res.json();
 
         const addBk2courses = courses.map((course: ICourse) => ({
           ...course,
@@ -55,8 +62,20 @@ export const getServerSideProps: GetServerSideProps =
       }
 
       const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+        `/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
       );
+
+      // const res = await fetch(
+      //   `https://api.themoneystaging.com/courses-user/my-learning?skip=0&take=20&progress=${tab}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${s_token}`,
+      //       'Content-Type': 'application/json',
+      //     },
+      //   },
+      // );
+
+      // const data = await res.json();
 
       const analytics = data?.analytics;
       const courses = analytics.map((analytic: any) => ({

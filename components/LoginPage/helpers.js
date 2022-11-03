@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { setUser } from 'reducers/user';
 import { setPlans } from 'reducers/plans';
 import { toast } from 'react-toastify';

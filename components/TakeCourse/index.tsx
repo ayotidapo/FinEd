@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import dynamic from 'next/dynamic';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import Icon from 'common/Icon';
 import { useRouter } from 'next/router';
 import styles from './watch.module.scss';
@@ -24,10 +24,6 @@ import CoursePlayer from 'components/WatchCoursePlayer';
 import RateReview from 'components/RateReview';
 import QuizPage from 'components/QuizPage';
 
-// const ReactPlayer = dynamic(() => import('react-player'), {
-//   ssr: false,
-// });
-
 interface Props {
   course: ICourse;
 }
@@ -36,6 +32,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const { course } = props;
   const router = useRouter();
   const { contId } = router.query;
+
   const [showNavs, setShowNavs] = useState(false);
   const [loading, setLoading] = useState(false);
   const [hasVideo, setHasVideo] = useState(false);
@@ -43,10 +40,12 @@ const TakeCoursePage: React.FC<Props> = (props) => {
   const [duration, setDuration] = useState(0);
   const [latestCourseContent, setLatestCourseContent] = useState<any>(null);
   const [lastVideoEnd, setLastVideoEnd] = useState(false);
+
   const [isCourseCompleted, setIsCourseCompleted] = useState(false);
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [curVidId, setCurVidId] = useState<any>(contId);
   const [step, setStep] = useState(0);
+  const [curPlaying, setCurPlaying] = useState(0);
   const [quiz, setQuiz] = useState<any>({});
 
   const { user } = useSelector((state) => state?.user);
@@ -72,6 +71,12 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     (content: IContent) => content.type?.toLowerCase() === 'video',
   );
 
+  const contentIDs = videos.map((content: IContent) => content.id);
+  const contLen = contentIDs.length;
+
+  const cantNext = curPlaying === contLen - 1;
+  const cantPrev = curPlaying === 0;
+
   const getQuiz = async () => {
     const { data: quiz } = await axios.get(`/quizes/course/${id}`);
     setQuiz(quiz);
@@ -85,7 +90,14 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       if (contId) onSendProgress(contId as string);
     }, 2000);
 
-    getQuiz();
+    getQuiz(); // get course Quiz
+
+    const curIndex = contentIDs.findIndex(
+      (itemId: string) => itemId === contId,
+    );
+
+    if (curIndex < 0) setCurPlaying(0);
+    else setCurPlaying(curIndex);
 
     return () => {
       window.clearInterval(tHandler);
@@ -97,6 +109,37 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     else setIsOpen(false);
   }, [user?.id, plans.length]);
 
+  const onNavigateVideo = async (stage: string) => {
+    let indexToPlay = 0;
+
+    if (stage === 'nxt') {
+      if (cantNext) return;
+      indexToPlay = curPlaying < contLen - 1 ? curPlaying + 1 : curPlaying;
+    } else if (stage === 'prv') {
+      if (cantPrev) return;
+      indexToPlay = curPlaying > 0 ? curPlaying - 1 : curPlaying;
+    }
+
+    setLoading(true);
+
+    setCurPlaying(indexToPlay);
+
+    const contentId = contentIDs[indexToPlay];
+    setCurVidId(contentId);
+
+    const data = await getContentUrl(contentId);
+    const fileurl = data?.file?.url;
+    setUrl(fileurl);
+
+    if (data) {
+      const Videotitle = data?.title || '';
+      const ContentID = contentId || '';
+      let urlpath = `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`;
+      router.push(urlpath);
+    }
+    setLoading(false);
+  };
+
   const getUrl = async (contentId: string) => {
     setShowQuiz(false);
     setCurVidId(contentId);
@@ -106,9 +149,12 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setUrl(fileurl);
 
     if (data) {
-      const Coursetitle = data?.title || '';
+      const Videotitle = data?.title || '';
       const ContentID = contentId || '';
-      let urlpath = `/take-course/${course.id}/${Coursetitle}/?contId=${ContentID}`;
+      let urlpath = `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`;
+      console.log(
+        `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`,
+      );
       router.push(urlpath);
     }
     setLoading(false);
@@ -143,15 +189,13 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setUrl(fileurl);
 
     if (data) {
-      const Coursetitle = data?.title || '';
+      const Videotitle = data?.title || '';
       const contentIDquery = contentId ? `?contId=${contentId}` : '';
-      let urlpath = `/take-course/${course.id}/${Coursetitle}/${contentIDquery}`;
+      let urlpath = `/take-course/${course.id}/${Videotitle}/${contentIDquery}`;
       router.push(urlpath);
     }
     setLoading(false);
   };
-
-  // useEffect(() => {}, [lastVideoEnd]);
 
   useEffect(() => {
     if (!hasVideo) return;
@@ -178,8 +222,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     const progress = player ? player.currentTime : null;
     const duration = player ? player.duration : 0;
     setDuration(duration);
-    // const cId = contId || curVidId;
-    // console.log('pow', cId, contId, curVidId);
+
     const lastVidPos = videos.length - 1;
     const isLastCourseVideo = videos[lastVidPos].id === contId;
 
@@ -261,8 +304,20 @@ const TakeCoursePage: React.FC<Props> = (props) => {
             </li>
           </ul>
         </nav>
-
-        <div className={styles.controls}></div>
+        <div className={styles.controls}>
+          <span
+            className={cantPrev ? styles.no_allow : styles.allow}
+            onClick={() => onNavigateVideo('prv')}
+          >
+            <Icon id="play-prev" /> Previous
+          </span>
+          <span
+            className={cantNext ? styles.no_allow : styles.allow}
+            onClick={() => onNavigateVideo('nxt')}
+          >
+            Next <Icon id="play-next" />
+          </span>
+        </div>
       </div>
       <div className={styles.wrapper}>
         <section
@@ -332,3 +387,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 };
 
 export default TakeCoursePage;
+
+// const ReactPlayer = dynamic(() => import('react-player'), {
+//   ssr: false,
+// });

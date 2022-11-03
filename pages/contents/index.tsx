@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import VideoPage from 'components/VideosListPage';
 import { getToken } from 'helpers/getToken';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import Footer from 'common/Footer';
 import { useSelector, wrapper } from 'store';
 import { GetServerSideProps } from 'next';
@@ -64,20 +63,46 @@ export const getServerSideProps: GetServerSideProps =
 
       if (searchQuery) {
         const { data } = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_BASE_URL
-          }/courses-user/search-courses?skip=${
+          `/courses-user/search-courses?skip=${
             (page - 1) * 12
           }&take=12&searchQuery=${searchQuery}`,
         );
+
+        // const res = await fetch(
+        //   `https://api.themoneystaging.com/courses-user/search-courses?skip=${
+        //     (page - 1) * 12
+        //   }&take=12&searchQuery=${searchQuery}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${s_token}`,
+        //       'Content-Type': 'application/json',
+        //     },
+        //   },
+        // );
+
+        // const data = await res.json();
+
         courses = data.courses;
         totalCount = data.totalCount;
       } else {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/courses-user/noauth?skip=${
-            (page - 1) * 12
-          }&take=12`,
+          `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
         );
+
+        // const res = await fetch(
+        //   `https://api.themoneystaging.com/courses-user/noauth?skip=${
+        //     (page - 1) * 12
+        //   }&take=12`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${s_token}`,
+        //       'Content-Type': 'application/json',
+        //     },
+        //   },
+        // );
+
+        // const data = await res.json();
+
         courses = data.courses;
         totalCount = data.totalCount;
       }
@@ -95,7 +120,8 @@ export const getServerSideProps: GetServerSideProps =
       return {
         props: { totalCount },
       };
-    } catch (e) {
+    } catch (e: any) {
+      console.log(e.message);
       store.dispatch(setCourses(courses));
       return {
         props: {

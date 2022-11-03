@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import LoginPage from 'components/LoginPage';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';

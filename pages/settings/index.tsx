@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import SettingsPage from 'components/Settings';
 import { IPlan } from 'components/SubscriptionPage';
 import { getCookie } from 'cookies-next';
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
       const { data } = await axios.get('/plans/noauth');
       const { data: user } = await axios.get(`/auth/profile`);
-
+      //console.log({ l: user });
       store.dispatch(setUser({ user }));
       return {
         props: {

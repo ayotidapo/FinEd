@@ -1,6 +1,6 @@
 import VideoDetailsPage from 'components/VideoDetails';
 import Footer from 'common/Footer';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 import { GetServerSideProps } from 'next';

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { capitalize } from 'helpers';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';

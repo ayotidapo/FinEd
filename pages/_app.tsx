@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { useDispatch, wrapper } from 'store';
 import type { AppContext, AppProps } from 'next/app';
 import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
-import { useEffect, useState } from 'react';
+import { useEffect, useCallback } from 'react';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { setUser } from 'reducers/user';
 import Header from 'common/HeaderLoggedIn';
@@ -34,7 +34,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const path = router.pathname;
 
-  const isHideHeader = path.includes('take-course');
+  const isHideHeader =
+    path.includes('take-course') || path.includes('choose-plan');
 
   useEffect(() => {
     dispatch(setUser(user));
@@ -42,7 +43,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [userId, s_token]);
 
   return (
-    <div className="container" id="top">
+    <div className="container">
+      {userId}
       <ToastContainer
         autoClose={5000}
         transition={Zoom}
@@ -63,6 +65,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const { req, res } = appContext.ctx;
   const c_token = getCookie('c_token', { req, res });
+  console.log('DAP');
   let user = {};
   const { s_token, userId } = getToken(c_token as string);
   if (c_token) {

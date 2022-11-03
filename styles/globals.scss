@@ -1,6 +1,8 @@
 @import 'font.css';
 
 :root {
+  height: 100vh;
+  overflow: scroll;
   font-size: 10px;
   -webkit-font-smoothing: antialiased;
   color: var(--pri-col);
@@ -13,6 +15,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: var(--pg-bg-col);
   font-family: Gascogne-DemiBold, sans-serif;
   font-size: 10px;
   --font-2: Helvetica Neue Regular, sans-serif;
@@ -191,6 +194,10 @@ button > svg {
 .hand:hover {
   cursor: pointer;
 }
+.no-allow:hover{
+  cursor: not-allowed;
+  color: #B3AFAF
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -258,7 +265,7 @@ a {
   color:#015351;
 }
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: var(--pg-bg-col);
   padding: 0px;

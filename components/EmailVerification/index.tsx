@@ -9,7 +9,7 @@ import Icon from 'common/Icon';
 import useForm from 'hooks/useForm';
 // React.KeyboardEvent<HTMLInputElement>
 import styles from './verify.module.scss';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { toast } from 'react-toastify';
 
 const EmailVerificationPage = () => {
@@ -38,8 +38,8 @@ const EmailVerificationPage = () => {
     }
   };
 
-  const onSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const onSubmit = async (e?: React.MouseEvent<HTMLButtonElement> | null) => {
+    if (e instanceof MouseEvent) e.preventDefault();
     try {
       setSubmitting(true);
       const body: { [key: string]: any } = {};
@@ -65,6 +65,11 @@ const EmailVerificationPage = () => {
       router.push('/choose-plan');
     } catch {
       toast.error(`Email verification failed`);
+      const inputF = { ...inputs };
+      Object.keys(inputs).forEach((field, i) => {
+        inputF[field].value = '';
+      });
+      setInputs(inputF);
       setSubmitting(false);
     }
   };
@@ -82,6 +87,23 @@ const EmailVerificationPage = () => {
       setSubmitting(false);
     }
   };
+
+  const onPaste = (e: any) => {
+    const value = e.clipboardData.getData('Text');
+    const inputF = { ...inputs };
+
+    if (value.length !== 6)
+      return toast.error(`"${value}" is an invalid token`);
+    const code = value?.split('');
+
+    Object.keys(inputs).forEach((field, i) => {
+      inputF[field].value = code[i];
+    });
+
+    setInputs(inputF);
+    onSubmit();
+  };
+
   useEffect(() => {
     const inputF = { ...inputs };
     //	const query = router.query?.token || '';
@@ -125,31 +147,37 @@ const EmailVerificationPage = () => {
                 field={inputs.pin1}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
               <Input
                 field={inputs.pin2}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
               <Input
                 field={inputs.pin3}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
               <Input
                 field={inputs.pin4}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
               <Input
                 field={inputs.pin5}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
               <Input
                 field={inputs.pin6}
                 onChange={onChange}
                 onKeyDown={onInputKeyDown}
+                onPaste={onPaste}
               />
             </div>
             <div className={styles.complete}>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 
 
 export const getContentUrl =async(id:string)=> {
@@ -9,6 +9,7 @@ export const getContentUrl =async(id:string)=> {
 	return data
 
 	}catch(e:any){
+		console.log(e)
 		return false
 	}
 	
@@ -24,6 +25,7 @@ export const sendContentProgress =async(contentId:string,timeWatched:number)=> {
 	   return data
    
 	   }catch(e:any){
+		console.log(e)
 		   return false
 	   }
 	   
@@ -37,6 +39,7 @@ export const sendContentProgress =async(contentId:string,timeWatched:number)=> {
 
 	   return data   
 	   }catch(e:any){
+		console.log(e)
 		   if(e?.response.status === 404) return {error:404}
 		   return false
 	   }

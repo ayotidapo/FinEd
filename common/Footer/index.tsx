@@ -34,7 +34,7 @@ const Footer = () => {
             }
           />
           <Icon
-            id="whatsapp"
+            id="insta"
             width={32}
             height={32}
             onClick={() =>

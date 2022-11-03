@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.scss';
 import Icon from 'common/Icon';
 import Footer from 'common/Footer';
 import Button from '../common/Button';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { getCookie } from 'cookies-next';
 import { getToken } from 'helpers/getToken';
 

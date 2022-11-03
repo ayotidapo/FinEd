@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import Button from 'common/Button';
 import Icon from 'common/Icon';
 import Input from 'common/Input';

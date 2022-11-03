@@ -90,8 +90,10 @@ const LowRatings: React.FC<Props> = (props) => {
         </p>
         {feedback.includes('others') && (
           <section className={styles.others}>
-            <small>Share more details with us</small>
-            <textarea onChange={props.onChange}></textarea>
+            <textarea
+              onChange={props.onChange}
+              placeholder="Share more details with us"
+            ></textarea>
           </section>
         )}
       </div>

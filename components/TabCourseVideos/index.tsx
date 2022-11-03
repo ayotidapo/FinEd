@@ -35,7 +35,7 @@ const TabCourseVideos: React.FC<Props> = (props) => {
                 </a>
               </abbr>
               <a>
-                <Icon id="clock" width={18} height={18} />
+                <Icon id="clock_" width={18} height={18} />
                 &nbsp;{toTimeString(duration)}
               </a>
             </li>

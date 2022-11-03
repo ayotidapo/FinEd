@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'helpers/axios';
 import ChoosePlanPage from 'components/ChoosePlan';
 import { IPlan } from 'components/SubscriptionPage';
 import { getCookie } from 'cookies-next';

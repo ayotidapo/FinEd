@@ -5,7 +5,7 @@ import styles from './mobileheader.module.scss';
 import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { useSelector } from 'store';
 import classnames from 'classnames';
 import Modal from 'common/Modal';

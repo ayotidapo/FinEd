@@ -5,7 +5,7 @@ import Input from 'common/Input';
 import resetFields from './fields';
 import Logo from 'common/Logo';
 import useForm from 'hooks/useForm';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 

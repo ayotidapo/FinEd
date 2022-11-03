@@ -86,7 +86,9 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
     setIsOpen(false);
     setStep(0);
   };
-
+  let btnText = 'Start watching video';
+  if (paid && !curPlan?.id) btnText = 'Upgrade to pro';
+  if (!hasVideo) btnText = 'View course content';
   return (
     <>
       <Modal
@@ -192,7 +194,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
               <span className="bar" />
               <span className="bar" />
               &nbsp; Intermediate &nbsp;&nbsp;
-              <Icon id="clock" width={20} height={20} /> &nbsp;
+              {false && <Icon id="clock_" width={20} height={20} />} &nbsp;
             </div>
           </section>
         </div>
@@ -208,7 +210,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
 
           <p className={styles.pp}>{coursePaidTxt}</p>
           <Button className={styles.si_btn} onClick={onClickedUpgrade}>
-            {paid && !curPlan?.id ? 'Upgrade to pro' : 'Start watching video'}{' '}
+            {btnText}
             <Icon id="arrow-right" width={20} height={20} />
           </Button>
         </article>
@@ -253,7 +255,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
                 &nbsp;<span className="elips">{content.title}</span>
               </div>
               <span>
-                <Icon id="clock" width={20} height={20} /> &nbsp;
+                {false && <Icon id="clock_" width={20} height={20} />} &nbsp;
               </span>
             </li>
           ))}

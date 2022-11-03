@@ -6,7 +6,7 @@ import Input from 'common/Input';
 import styles from './forgot.module.scss';
 import forgotPasswordFields from './fields';
 import Logo from 'common/Logo';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
