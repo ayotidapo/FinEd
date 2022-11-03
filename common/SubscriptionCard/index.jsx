@@ -69,7 +69,7 @@ const SubscriptionCard = (props) => {
       setLoading(true);
       const body = { planId };
       const payPlan = auto ? props.plan?.fwPlan?.id : null;
-
+      body.autoRenew = auto;
       if (discountCode?.value) body.discountCode = discountCode?.value;
       else delete body.discountCode;
 

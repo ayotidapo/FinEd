@@ -20,6 +20,7 @@ export const getContentUrl =async(id:string)=> {
 export const sendContentProgress =async(contentId:string,timeWatched:number)=> {
 
 	try{
+		console.log({progress:timeWatched})
 	   const {data} = await axios.patch(`/analytics/content/${contentId}`,{progress:timeWatched})
 
 	   return data

@@ -70,7 +70,7 @@ const MyProfile: React.FC<Props> = () => {
       body.gender = gender;
       delete body.nigeriaPhone;
 
-      const { data } = await axios.patch(`/users/profile`, body);
+      const { data } = await axios.put(`/users/profile`, body);
 
       dispatch(setUser(data));
       setSubmitting(false);
