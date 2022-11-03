@@ -98,47 +98,47 @@ export const getServerSideProps: GetServerSideProps =
     }
     try {
       if (searchQuery) {
-        const res = await fetch(
-          `https://api.themoneystaging.com/courses-user/search-courses?skip=${
-            (page - 1) * 12
-          }&take=12&searchQuery=${searchQuery}`,
-          {
-            headers: {
-              Authorization: `Bearer ${s_token}`,
-              'Content-Type': 'application/json',
-            },
-          },
-        );
-
-        const data = await res.json();
-
-        // const { data } = await axios.get(
-        //   `/courses-user/search-courses?skip=${
+        // const res = await fetch(
+        //   `https://api.themoneystaging.com/courses-user/search-courses?skip=${
         //     (page - 1) * 12
         //   }&take=12&searchQuery=${searchQuery}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${s_token}`,
+        //       'Content-Type': 'application/json',
+        //     },
+        //   },
         // );
+
+        // const data = await res.json();
+
+        const { data } = await axios.get(
+          `/courses-user/search-courses?skip=${
+            (page - 1) * 12
+          }&take=12&searchQuery=${searchQuery}`,
+        );
         courses = data.courses;
         totalCount = data.totalCount;
       } else {
-        // const { data } = await axios.get(
-        //   `/courses-user/?skip=${
-        //     (page - 1) * 12
-        //   }&take=12&category=${category}&level=${level}`,
-        // );
-
-        const res = await fetch(
-          `https://api.themoneystaging.com/courses-user/?skip=${
+        const { data } = await axios.get(
+          `/courses-user/?skip=${
             (page - 1) * 12
           }&take=12&category=${category}&level=${level}`,
-          {
-            headers: {
-              Authorization: `Bearer ${s_token}`,
-              'Content-Type': 'application/json',
-            },
-          },
         );
 
-        const data = await res.json();
+        // const res = await fetch(
+        //   `https://api.themoneystaging.com/courses-user/?skip=${
+        //     (page - 1) * 12
+        //   }&take=12&category=${category}&level=${level}`,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${s_token}`,
+        //       'Content-Type': 'application/json',
+        //     },
+        //   },
+        // );
+
+        // const data = await res.json();
 
         courses = data.courses;
         totalCount = data.totalCount;
