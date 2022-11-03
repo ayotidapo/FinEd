@@ -4,7 +4,7 @@ import Image from 'next/image';
 import LabelTab from 'common/LabelTab';
 import cx from 'classnames';
 import styles from './settingssidebar.module.scss';
-import axios from 'helpers/axios';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Tooltip from 'common/Tooltip';
