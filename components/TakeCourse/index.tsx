@@ -152,6 +152,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       const Videotitle = data?.title || '';
       const ContentID = contentId || '';
       let urlpath = `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`;
+      console.log(
+        `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`,
+      );
       router.push(urlpath);
     }
     setLoading(false);

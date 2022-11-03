@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className="container">
+      {userId}
       <ToastContainer
         autoClose={5000}
         transition={Zoom}
@@ -64,6 +65,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const { req, res } = appContext.ctx;
   const c_token = getCookie('c_token', { req, res });
+  console.log('DAP');
   let user = {};
   const { s_token, userId } = getToken(c_token as string);
   if (c_token) {
