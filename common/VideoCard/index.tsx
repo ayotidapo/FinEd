@@ -30,20 +30,20 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
   const router = useRouter();
   const [bookMarked, setBookmarked] = useState(bookmark?.id);
   const [openModal, setOpenModal] = useState(false);
-
+  console.log({ bookmark, course });
   const onBookMark = async (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
   ) => {
     e.stopPropagation();
 
     const { id } = course;
-
-    if (!bookmark?.id) {
+    console.log({ bookmark, course });
+    if (!bookmark?.id || !bookMarked) {
       setBookmarked(true);
-      // console.log(bookmark, '0000');
+
       await bookMarkCourse(id);
 
-      dispatch(updateCourses({ courseId: id, bookmark: { id: 'mockId' } }));
+      dispatch(updateCourses({ courseId: id, bookmark: { id: 'mockId' } })); // not sure if this is needed though
       return;
     }
 
