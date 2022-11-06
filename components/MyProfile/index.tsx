@@ -32,7 +32,7 @@ const MyProfile: React.FC<Props> = () => {
   const today = new Date();
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
-
+  console.log({ user });
   // const updateStates = (country: string) => {
   //   const states = getStates(country);
   //   if (states) setStates(states);
@@ -103,9 +103,6 @@ const MyProfile: React.FC<Props> = () => {
     setUserCountry(user?.residentCountry);
   }, [user?.residentCountry, user?.residentState]);
 
-  // useEffect(() => {
-  //   setUserCountry(user?.residentCountry);
-  // }, [user?.residentCountry]);
   return (
     <form className={styles.profile_wrapper}>
       <h2 className={`title ${styles.title}`}>My Profile</h2>
