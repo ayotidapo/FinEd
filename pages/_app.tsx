@@ -29,7 +29,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  axios.defaults.baseURL = 'https://api.themoneystaging.com';
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
   const { userId, s_token, user } = pageProps;
   const dispatch = useDispatch();
   const path = router.pathname;
@@ -70,7 +70,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   if (c_token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
     const { data } = await axios.get(
-      `https://api.themoneystaging.com/auth/profile`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/profile`,
     );
     user = data;
   }
@@ -113,3 +113,5 @@ export default wrapper.withRedux(MyApp);
 //     </div>
 //   );
 // }
+
+// Reason for this getInitialProps and what is talked about useEffect in SR performance
