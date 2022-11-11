@@ -123,14 +123,21 @@ const MyProfile: React.FC<Props> = () => {
                 }}
                 height={50}
                 width={50}
-              />
+                inputID="img-upload"
+              ></ProfileAvatar>
             </span>
           </span>
           <Icon
             id="img-logo"
             style={{ margin: '0px 7px 0px 15px', color: '#015351' }}
           />
-          <h4 style={{ fontSize: '1.4rem', color: '#015351' }}>Edit Profile</h4>
+          <label
+            style={{ fontSize: '1.4rem', color: '#015351', fontWeight: 'bold' }}
+            className="hand"
+            htmlFor="img-upload"
+          >
+            Edit Profile
+          </label>
         </div>
       </div>
 

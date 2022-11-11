@@ -1,7 +1,7 @@
 import axios from 'helpers/axios';
 import { capitalize } from 'helpers';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Children, useEffect, useRef, useState } from 'react';
 import { setUser } from 'reducers/user';
 import { useDispatch } from 'store';
 import styles from './avatar.module.scss';
@@ -19,6 +19,7 @@ interface IProps {
     firstName: string;
     lastName: string;
   };
+  inputID?: string;
 }
 
 const ProfileAvatar: React.FC<IProps> = ({
@@ -26,6 +27,7 @@ const ProfileAvatar: React.FC<IProps> = ({
   width = 35,
   user,
   isDisabled,
+  inputID,
 }) => {
   const dispatch = useDispatch();
   const [previewAvatar, setPreviewAvatar] = useState<any>(user?.avatar?.url);
@@ -89,6 +91,7 @@ const ProfileAvatar: React.FC<IProps> = ({
         multiple={false}
         onChange={addImageToPost}
         style={{ display: 'none' }}
+        id={inputID}
         ref={fileInput}
       />
     </div>
