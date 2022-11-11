@@ -33,5 +33,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 # local env files
- .env*.local
- .env
+.env*.local
+.env
