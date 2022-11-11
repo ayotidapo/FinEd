@@ -51,6 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         className="toast-container"
         toastClassName="dark-toast"
       />
+      {process.env.nj}
 
       {userId && !isHideHeader && (
         <Header style={{ backgroundImage: 'url("/assets/vidheaderbg.png")' }} />
