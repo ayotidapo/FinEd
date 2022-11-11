@@ -32,7 +32,7 @@ const MyProfile: React.FC<Props> = () => {
   const today = new Date();
   const tenYrsAgo = today.setFullYear(today.getFullYear() - 10);
   const minVal = new Date(tenYrsAgo).toISOString().substr(0, 10);
-  console.log({ user });
+
   // const updateStates = (country: string) => {
   //   const states = getStates(country);
   //   if (states) setStates(states);

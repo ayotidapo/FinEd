@@ -84,6 +84,7 @@ export const getServerSideProps: GetServerSideProps =
         analyticDateCreated: analytic?.datecreated,
         analyticDateUpreated: analytic?.dateupdated,
       }));
+
       store.dispatch(setCourses(courses));
 
       return {

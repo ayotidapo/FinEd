@@ -41,7 +41,7 @@ export const userSlice = createSlice({
 
 	extraReducers:{
 		[HYDRATE]:(state,action)=>{
-			if(!action.payload?.user?.user?.user?.id)  return state
+			if(!action.payload?.user?.user?.id)  return state
 			state.user = action.payload?.user
 		
 		
