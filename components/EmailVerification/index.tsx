@@ -9,7 +9,7 @@ import Icon from 'common/Icon';
 import useForm from 'hooks/useForm';
 // React.KeyboardEvent<HTMLInputElement>
 import styles from './verify.module.scss';
-import axios from 'axios';
+import axios from 'helpers/axios';
 import { toast } from 'react-toastify';
 
 const EmailVerificationPage = () => {
