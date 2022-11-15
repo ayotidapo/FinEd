@@ -21,7 +21,10 @@ export const loginUser = (body) => async (dispatch) => {
     const constructData = { ...data.user, accessToken: data.accessToken };
     dispatch(setUser(constructData));
   } catch (e) {
-    toast.error(e?.response?.data?.messsage || 'Login failed');
+    toast.error(
+      e?.response?.data?.messsage ||
+        'Login failed: Incorrect Email or Password',
+    );
   }
 };
 

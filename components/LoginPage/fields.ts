@@ -16,7 +16,7 @@ const fields = {
     placeholder: '',
     label: 'Password',
     error: '',
-    required: true,
+    required: false,
   },
 };
 

@@ -621,6 +621,11 @@ a {
   z-index: 999999 !important;
 }
 
+.Toastify__toast-body>div:last-child {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
 .right_for_sub{
   display: flex;
   padding-left: 40px;

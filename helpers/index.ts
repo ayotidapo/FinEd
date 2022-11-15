@@ -28,15 +28,17 @@ export const ValidateInput = (field: IField, inputsObj: IState) => {
       validatedInputs[name].error =
         'use atleast a uppercase,lowercase,number and special character';
     else validatedInputs[name].error = '';
+    if(!required) validatedInputs[name].error = '';
   } else {
 
     validatedInputs[name].error = ``;
 
   }
   if (type==='password' && inputsObj['password2']?.value) {
-
+   
     validatedInputs['password2'].error =
       inputsObj['password2']?.value !== inputsObj['password']?.value  ? 'Password does not match' : '';
+    if(!required) validatedInputs[name].error = '';
   }
   if (no_validate) validatedInputs[name].error = ``;
   return validatedInputs;
