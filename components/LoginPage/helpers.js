@@ -1,11 +1,12 @@
-import axios from 'helpers/axios';
+import axios from 'axios';
+import axiosCall from 'helpers/axios';
 import { setUser } from 'reducers/user';
 import { setPlans } from 'reducers/plans';
 import { toast } from 'react-toastify';
 
 export const loginUser = (body) => async (dispatch) => {
   try {
-    const { data } = await axios.post('/auth/login', body);
+    const { data } = await axiosCall.post('/auth/login', body);
     toast.success('Login successful');
     const { accessToken, user } = data;
 
@@ -30,7 +31,7 @@ export const loginUser = (body) => async (dispatch) => {
 
 export const getPlans = () => async (dispatch) => {
   try {
-    const { data: plans } = await axios.get('/plans/noauth');
+    const { data: plans } = await axiosCall.get('/plans/noauth');
 
     dispatch(setPlans(plans));
   } catch (e) {}
@@ -38,7 +39,7 @@ export const getPlans = () => async (dispatch) => {
 
 export const getUser = (id) => async (dispatch) => {
   try {
-    const { data: datap } = await axios.get(`/auth/profile`);
+    const { data: datap } = await axiosCall.get(`/auth/profile`);
     await dispatch(setUser(datap));
 
     await dispatch(getPlans());

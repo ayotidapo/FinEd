@@ -9,7 +9,8 @@ import Icon from 'common/Icon';
 import useForm from 'hooks/useForm';
 // React.KeyboardEvent<HTMLInputElement>
 import styles from './verify.module.scss';
-import axios from 'helpers/axios';
+import axios from 'axios';
+import axiosCall from 'helpers/axios';
 import { toast } from 'react-toastify';
 
 const EmailVerificationPage = () => {
@@ -51,7 +52,7 @@ const EmailVerificationPage = () => {
       body.token = value;
       const {
         data: { accessToken, user },
-      } = await axios.post('/auth/verify-email', body);
+      } = await axiosCall.post('/auth/verify-email', body);
 
       const nextApi = axios.create({
         baseURL: '/api',
@@ -79,7 +80,7 @@ const EmailVerificationPage = () => {
     if (!email) toast.error(`Could not find user email`);
     try {
       setSubmitting(true);
-      await axios.post(`/auth/resend-verification`, { email });
+      await axiosCall.post(`/auth/resend-verification`, { email });
       toast.success(`Code resent to ${email}`);
       setSubmitting(false);
     } catch {
