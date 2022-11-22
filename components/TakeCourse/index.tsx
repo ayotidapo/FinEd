@@ -87,9 +87,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     const isHasVideo = ifHasVideo(contents);
     setHasVideo(isHasVideo);
 
-    // tHandler = window.setInterval(() => {
-    if (contId) onSendProgress(contId as string);
-    //}, 2000);
+    tHandler = window.setInterval(() => {
+      if (contId) onSendProgress(contId as string);
+    }, 2000);
 
     getQuiz(); // get course Quiz
 
@@ -100,9 +100,9 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     if (curIndex < 0) setCurPlaying(0);
     else setCurPlaying(curIndex);
 
-    // return () => {
-    //   window.clearInterval(tHandler);
-    // };
+    return () => {
+      window.clearInterval(tHandler);
+    };
   }, [contId]);
 
   useEffect(() => {
@@ -129,6 +129,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setCurVidId(contentId);
 
     const data = await getContentUrl(contentId);
+    console.log(data, 567890);
     const fileurl = data?.file?.url;
     setUrl(fileurl);
 

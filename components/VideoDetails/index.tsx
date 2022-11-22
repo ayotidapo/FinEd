@@ -3,7 +3,8 @@ import Button from 'common/Button';
 import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
-import Star from 'common/Star';
+import cx from 'classnames';
+import useIFMobile from 'hooks/useIFMobile';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
@@ -35,6 +36,8 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
+  const [showMore, setShowMore] = useState(false);
+  const isMobile = useIFMobile();
   const { ratings } = reviews || {};
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const {
@@ -89,6 +92,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
   let btnText = 'Start watching video';
   if (paid && !curPlan?.id) btnText = 'Upgrade to pro';
   if (!hasVideo) btnText = 'View course content';
+  const stringCount = isMobile ? 320 : 420;
   return (
     <>
       <Modal
@@ -107,6 +111,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
         }
       </Modal>
       <header className={styles.header}></header>
+
       <div className={`app-pad ${styles.jumbotron}`}>
         <nav className={styles.breadcrumb}>
           <ul>
@@ -215,7 +220,7 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
           </Button>
         </article>
       </div>
-      <section className={styles.about}>
+      <section className={cx(styles.about, { [styles.aboutz]: showMore })}>
         <h2 className="title">About this course</h2>
         {false && (
           <p>
@@ -224,17 +229,19 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
             apply in order to have a better outcome in your photographs.
           </p>
         )}
-        <p>
-          {description}
-          {description.length > 600 && (
-            <span
-              style={{ color: '#C03E21', fontWeight: 'bold' }}
-              className="hand"
-            >
-              {' '}
-              Show more.
-            </span>
-          )}
+        <p className={cx(styles.showMore, { [styles.extend]: showMore })}>
+          {showMore
+            ? description.substring(0)
+            : description.substring(0, stringCount)}
+
+          <span
+            onClick={() => setShowMore((status) => !status)}
+            style={{ color: '#C03E21', fontWeight: 'bold' }}
+            className="hand"
+          >
+            {' '}
+            {showMore ? 'Show less.' : '...Show more.'}
+          </span>
         </p>
       </section>
       <section className={styles.content}>
@@ -290,5 +297,4 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
     </>
   );
 };
-
 export default VideoDetailsPage;

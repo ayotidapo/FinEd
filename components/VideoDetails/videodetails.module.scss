@@ -7,7 +7,13 @@
   flex-wrap: wrap;
   gap: 10px;  
 }
-
+.showMore{
+  max-height: 20rem;
+  overflow: hidden;
+}
+.extend{
+  max-height: none;
+}
 .jumbotron {
   background: #e3eee7;
   min-height: 410px;
@@ -180,7 +186,6 @@
   min-height: 220px;
   max-height: 300px;
   padding-left: 65px;
-  overflow: auto;
   :global(.title) {
     font-size: var(--f-24);
     ~ p {
@@ -189,6 +194,9 @@
       line-height: 1.5;
     }
   }
+}
+.aboutz{
+  max-height:none;
 }
 
 .content {
