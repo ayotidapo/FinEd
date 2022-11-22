@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "helpers/axios"
 
 export const submitQuiz =async(quizId:string,body:any)=> {
 
