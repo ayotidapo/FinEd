@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Icon from 'common/Icon';
 import LabelTag from 'common/LabelTag';
 import cx from 'classnames';
-import useIFMobile from 'hooks/useIFMobile';
+import { isPhone } from 'hooks/useIFMobile';
 import Image from 'next/image';
 import styles from './videodetails.module.scss';
 import { ICourse } from 'components/VideosListPage';
@@ -37,7 +37,6 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [showMore, setShowMore] = useState(false);
-  const isMobile = useIFMobile();
   const { ratings } = reviews || {};
   const colors = ['#F9D68A', '#F5C3C8', '#ABEAD3'];
   const {
@@ -92,7 +91,8 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
   let btnText = 'Start watching video';
   if (paid && !curPlan?.id) btnText = 'Upgrade to pro';
   if (!hasVideo) btnText = 'View course content';
-  const stringCount = isMobile ? 320 : 420;
+  const stringCount = isPhone ? 320 : 420;
+
   return (
     <>
       <Modal
@@ -229,20 +229,24 @@ const VideoDetailsPage: React.FC<Props> = ({ course, plans, reviews }) => {
             apply in order to have a better outcome in your photographs.
           </p>
         )}
-        <p className={cx(styles.showMore, { [styles.extend]: showMore })}>
-          {showMore
-            ? description.substring(0)
-            : description.substring(0, stringCount)}
+        {description.length <= stringCount ? (
+          <p>{description}</p>
+        ) : (
+          <p className={cx(styles.showMore, { [styles.extend]: showMore })}>
+            {showMore
+              ? description.substring(0)
+              : description.substring(0, stringCount)}
 
-          <span
-            onClick={() => setShowMore((status) => !status)}
-            style={{ color: '#C03E21', fontWeight: 'bold' }}
-            className="hand"
-          >
-            {' '}
-            {showMore ? 'Show less.' : '...Show more.'}
-          </span>
-        </p>
+            <span
+              onClick={() => setShowMore((status) => !status)}
+              style={{ color: '#C03E21', fontWeight: 'bold' }}
+              className="hand"
+            >
+              {' '}
+              {showMore ? 'Show less.' : '...Show more.'}
+            </span>
+          </p>
+        )}
       </section>
       <section className={styles.content}>
         <h2 className="title">Course content</h2>
