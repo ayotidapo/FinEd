@@ -46,6 +46,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   const [levels, setLevels] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [searchText, setSearchText] = useState('');
   const { explorePage, courses, paginationUrl } = props;
   const coursesData = courses;
   const router = useRouter();
@@ -67,8 +68,13 @@ const VideosListPage: React.FC<Props> = (props) => {
   const { search } = inputs;
 
   useEffect(() => {
+    const text = search.value || props.searchValue;
+    setSearchText(text);
+  }, [search.value, props.searchValue]);
+
+  useEffect(() => {
     const handler = setTimeout(async () => {
-      const searchQstr = search.value ? `&s=${search.value}` : '';
+      const searchQstr = searchText ? `&s=${searchText}` : '';
       const filterQstr =
         filterValue.length > 0 ? `&category=${filterValue.join(',')}` : '';
       const levelsQstr = levels.length > 0 ? `&level=${levels.join(',')}` : '';
@@ -82,7 +88,7 @@ const VideosListPage: React.FC<Props> = (props) => {
     return () => {
       clearTimeout(handler);
     };
-  }, [search.value, filterValue.length, levels.length]);
+  }, [searchText, filterValue.length, levels.length]);
 
   const getCategories = async () => {
     try {
@@ -100,7 +106,7 @@ const VideosListPage: React.FC<Props> = (props) => {
   }, []);
 
   const onChangePage = (e: { selected: number }) => {
-    if (search.value) return;
+    if (searchText) return;
     const { selected: pageNum } = e;
     const searchQstr = s ? `&s=${s}` : '';
     return router.push(
@@ -148,7 +154,7 @@ const VideosListPage: React.FC<Props> = (props) => {
               {user?.firstName ? `, ${user?.firstName}` : ' !'}
             </span>
           </h2>
-          {!search.value && (
+          {!searchText && (
             <div
               className="hand"
               onClick={() => setShowFilter((state) => !state)}
@@ -174,7 +180,7 @@ const VideosListPage: React.FC<Props> = (props) => {
                 onChange={onChangeInput}
                 autoFocus={search?.value}
               />
-              {search.value && (
+              {searchText && (
                 <span className="hand" onClick={onClear}>
                   &times;
                 </span>
@@ -187,7 +193,7 @@ const VideosListPage: React.FC<Props> = (props) => {
           >
             <Icon id="filter" width={24} height={24} />
           </span>
-          {!search.value && (
+          {!searchText && (
             <section
               className={cx([styles.filter_box], {
                 [styles.filter_box_show]: showFilter,

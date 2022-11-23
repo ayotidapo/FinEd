@@ -17,12 +17,24 @@
   }
   .wrapClass {
     width: 304px;
+    .times{
+      font-size: var(--f-20);
+      font-weight: bolder;
+      color: grey;
+      left: 28rem;
+      top: 3.4rem;
+      z-index: 200;
+
+    }
   }
   .inptClass {
+    position: relative;
     padding-top: 7px;
     border-bottom: 2px solid rgba(17, 17, 17, 0.5);
     transform: translateY(5px);
     font-weight: bolder;
+
+    
   }
   .btn {
     background-color: #c03e21;
@@ -49,6 +61,9 @@
   .hamburger {
     display: none;
   }
+
+    
+  
 }
 
 
