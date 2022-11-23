@@ -62,8 +62,8 @@ const ReferFriend = () => {
           your next subscription
         </h3>
         <p>
-          When you refer a friend, they need to become paid subscribers for this
-          offer to be valid.
+          When you refer a friend, they need to become a paid subscriber for
+          this offer to be valid.
         </p>
       </div>
       <div className={styles.right}>
