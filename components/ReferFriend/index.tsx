@@ -57,7 +57,7 @@ const ReferFriend = () => {
           {' '}
           Refer a friend to get{' '}
           <span style={{ color: '#C03E21' }}>
-            <strong>10% off</strong>
+            <strong>5% off</strong>
           </span>{' '}
           your next subscription
         </h3>
