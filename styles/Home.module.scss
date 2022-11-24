@@ -224,13 +224,13 @@
     //     bottom: -62.5px;
     //   }
     // }
-    // &:nth-of-type(4) {
-    //   .img_opt_box {
-    //     height: 370px;
-    //     right: -144px;
-    //     bottom: -35px;
-    //   }
-    // }
+    &:nth-of-type(4) {
+      .img_opt_box {
+        height: 370px;
+        right: 52px;
+       // bottom: -35px;
+      }
+    }
     .optbtn {
       @extend .btnWt_arr;
       position: absolute;
