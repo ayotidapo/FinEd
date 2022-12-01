@@ -11,3 +11,5 @@ const useIFMobile = () => {
 };
 
 export default useIFMobile;
+
+export const isPhone = global?.window?.matchMedia('(max-width: 425px)').matches;

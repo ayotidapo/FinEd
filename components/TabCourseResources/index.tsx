@@ -32,21 +32,34 @@ const TabCourseResources: React.FC<Props> = (props) => {
       <div className={styles.content}>
         <ul>
           {resources?.map((resource: IContent, i: number) => (
-            <li
-              key={i}
-              className="hand"
-              onClick={() => onDowload(resource?.id)}
-            >
-              <abbr
-                title={resource.title}
-                className={`elips  ${styles.f_sp} ${styles.r_l}`}
+            <>
+              <li
+                key={i}
+                className="hand"
+                onClick={() => onDowload(resource?.id)}
               >
-                <a id={resource?.id} href={file?.fileUrl} download>
-                  <Icon id="file" width={20} height={20} />
-                  &nbsp;{resource.title}
-                </a>
-              </abbr>
-            </li>
+                <abbr
+                  title={resource.title}
+                  className={`elips  ${styles.f_sp} ${styles.r_l}`}
+                >
+                  <span>
+                    <Icon id="file" width={20} height={20} />
+                    &nbsp;{resource.title}
+                  </span>
+                </abbr>
+              </li>
+              <a
+                style={{ display: 'none' }}
+                id={resource?.id}
+                href="/vercel.svg"
+                download
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icon id="file" width={20} height={20} />
+                &nbsp;{resource.title}
+              </a>
+            </>
           ))}
         </ul>
       </div>

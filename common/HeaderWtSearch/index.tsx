@@ -9,7 +9,8 @@ import styles from './headerwtsearch.module.scss';
 import useForm from 'hooks/useForm';
 
 interface IProps {}
-const HeaderWtSearch: React.FC<any> = ({ setNav }) => {
+const HeaderWtSearch: React.FC<any> = (props) => {
+  const { setNav } = props;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { page = '1', s } = router.query;
@@ -25,20 +26,17 @@ const HeaderWtSearch: React.FC<any> = ({ setNav }) => {
     },
   };
 
-  const { onChangeInput, inputs } = useForm(fields);
+  const { onChangeInput, setInputs, inputs } = useForm(fields);
   const { search } = inputs;
 
+  const onClear = () => {
+    const newInputs = { ...inputs };
+    newInputs.search.value = '';
+    setInputs(newInputs);
+  };
+
   useEffect(() => {
-    const handler = setTimeout(async () => {
-      const searchQstr = search.value || s ? `&s=${search.value || s}` : '';
-
-      router.push(`/contents/?page=${page}${searchQstr}`);
-      setLoading(false);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
+    props.setSearchValue(search.value);
   }, [search.value]);
 
   useEffect(() => {
@@ -75,7 +73,13 @@ const HeaderWtSearch: React.FC<any> = ({ setNav }) => {
             inputClass={styles.inptClass}
             onChange={onChangeInput}
             autoFocus={search?.value}
-          />
+          >
+            {search.value && (
+              <span className={`hand ${styles.times}`} onClick={onClear}>
+                &times;
+              </span>
+            )}
+          </Input>
 
           <Button
             className={styles.logIn}

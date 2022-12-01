@@ -88,7 +88,7 @@ const SideBar: React.FC<Props> = (props: Props) => {
             <div className={styles.refer_box}>
               <Image alt="gift_box" src="/assets/gift_box.png" layout="fill" />
             </div>
-            <span>Get 10% off when you refer a friend</span>
+            <span>Get 5% off when you refer a friend</span>
             <Tooltip el={el}>
               <Button className={styles.copy}>
                 <span id="codeSpan">{refCode}</span>

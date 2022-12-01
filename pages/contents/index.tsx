@@ -9,6 +9,7 @@ import { setCourses } from 'reducers/courses';
 import HeaderWtSearch from 'common/HeaderWtSearch';
 import { MobileHeader } from 'common/Header';
 import useSetNav from 'hooks/useSetNav';
+import { useState } from 'react';
 
 interface Props {
   totalCount: number;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const Videos: React.FC<Props> = ({ totalCount }) => {
+  const [searchValue, setSearchValue] = useState('');
   const { open, onSetNav } = useSetNav();
 
   const courses: any = useSelector((state) => state.courses);
@@ -25,13 +27,14 @@ const Videos: React.FC<Props> = ({ totalCount }) => {
 
   return (
     <>
-      <HeaderWtSearch setNav={onSetNav} />
+      <HeaderWtSearch setNav={onSetNav} setSearchValue={setSearchValue} />
       {open && <MobileHeader toOpen={open} setNav={onSetNav} />}
       <VideoPage
         courses={coursesData}
         explorePage
         totalCount={totalCourseCount}
         paginationUrl="contents"
+        searchValue={searchValue}
         setNav={onSetNav}
       />
       <Footer />
@@ -49,7 +52,7 @@ export const getServerSideProps: GetServerSideProps =
     const searchQuery = query?.s || '';
     let courses = [];
     let totalCount = 0;
-
+    console.log(searchQuery, 987);
     if (userId) {
       return {
         redirect: {
@@ -62,6 +65,7 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (searchQuery) {
+        console.log('herew');
         const { data } = await axios.get(
           `/courses-user/search-courses?skip=${
             (page - 1) * 12
@@ -85,6 +89,7 @@ export const getServerSideProps: GetServerSideProps =
         courses = data.courses;
         totalCount = data.totalCount;
       } else {
+        console.log('here');
         const { data } = await axios.get(
           `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
         );

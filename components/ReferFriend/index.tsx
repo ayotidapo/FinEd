@@ -57,13 +57,13 @@ const ReferFriend = () => {
           {' '}
           Refer a friend to get{' '}
           <span style={{ color: '#C03E21' }}>
-            <strong>10% off</strong>
+            <strong>5% off</strong>
           </span>{' '}
-          your next subscription
+          their subscription while you earn.
         </h3>
         <p>
-          When you refer a friend, they need to become paid subscribers for this
-          offer to be valid.
+          When you refer a friend, they need to become a paid subscriber for
+          this offer to be valid.
         </p>
       </div>
       <div className={styles.right}>

@@ -165,7 +165,7 @@ const Home: NextPage = () => {
                 answering a few questions we’ll ask you.
               </p>
               <Button className={styles.optbtn}>
-                Register your kids
+                Learn More
                 <Icon id="arrow-right" width={20} height={20} />
               </Button>
             </div>
