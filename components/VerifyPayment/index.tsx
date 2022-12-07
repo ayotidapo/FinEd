@@ -24,7 +24,7 @@ const VerifyPaymentPage: React.FC = () => {
 
       dispatch(updateUser(response?.data?.user));
       setLoading(false);
-      return response;
+      setResponse(response?.data);
     } catch {
       setLoading(false);
       return null;
@@ -32,8 +32,7 @@ const VerifyPaymentPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const res = verifyPayment(Number(transaction_id));
-    setResponse(res);
+    verifyPayment(Number(transaction_id));
   }, [transaction_id]);
 
   const onToggleModal = () => {
@@ -46,7 +45,7 @@ const VerifyPaymentPage: React.FC = () => {
   const onContinue = () => {
     router.push(`/courses`);
   };
-
+  console.log(response);
   return (
     <Modal
       openModal={isOpen}
@@ -63,7 +62,13 @@ const VerifyPaymentPage: React.FC = () => {
             <h3 className="title" style={{ color: '#015351' }}>
               Payment Successful
             </h3>
-            <p>You have successfully subscribed to {response?.plan?.name} </p>
+            <p>
+              You have successfully subscribed to{' '}
+              <strong style={{ color: '#C03E21' }}>
+                {response?.plan?.name}{' '}
+              </strong>{' '}
+              plan!
+            </p>
             <span
               className="link hand"
               style={{ marginTop: '15px' }}

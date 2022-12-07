@@ -71,6 +71,14 @@
       padding: 0px 15px;
     }
   }
+  .subCardsWrapper{
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-height: 90vh;
+    overflow-y: scroll;
+  }
 }
 .tooltip_nav{
   width: 180px;

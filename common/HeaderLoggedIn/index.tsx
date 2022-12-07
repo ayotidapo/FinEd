@@ -56,12 +56,14 @@ const Header: React.FC<{ style?: { [key: string]: string } }> = ({ style }) => {
         zIndex="99"
       >
         {
-          <SubCard
-            plans={plans}
-            curPlan={curPlan}
-            step={step}
-            onClickSubCard={onClickSubCard}
-          />
+          <div className={styles.subCardsWrapper}>
+            <SubCard
+              plans={plans}
+              curPlan={curPlan}
+              step={step}
+              onClickSubCard={onClickSubCard}
+            />
+          </div>
         }
       </Modal>
 

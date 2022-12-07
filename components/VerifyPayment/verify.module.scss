@@ -1,6 +1,6 @@
 .modalClass{
 	width:40%;
-	height:200px;	  
+	height:auto;
 }
 
 .codeloading{
@@ -14,3 +14,9 @@
 	padding-top: 20px;
 	text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+	.modalClass{
+		width:60%;		
+	}
+  }

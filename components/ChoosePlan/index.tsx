@@ -38,6 +38,7 @@ const ChoosePlan: React.FC<IPlans> = (props) => {
           <div
             className={`hand ${styles.link}`}
             onClick={() => router.push('/courses')}
+            style={{ margin: '40px auto' }}
           >
             I&apos;ll do this later
           </div>

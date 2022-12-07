@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import cx from 'classnames';
 import styles from './modal.module.scss';
 import { toast } from 'react-toastify';
@@ -29,6 +29,16 @@ const Modal: React.FC<Props> = (props) => {
     dizabled,
     onNavigate,
   } = props;
+
+  useEffect(() => {
+    if (openModal) {
+      document.body.style.height = '100vh';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+    }
+  }, [openModal]);
 
   return (
     <div
