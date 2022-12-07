@@ -129,7 +129,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
     setCurVidId(contentId);
 
     const data = await getContentUrl(contentId);
-    console.log(data, 567890);
+
     const fileurl = data?.file?.url;
     setUrl(fileurl);
 
@@ -154,9 +154,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
       const Videotitle = data?.title || '';
       const ContentID = contentId || '';
       let urlpath = `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`;
-      console.log(
-        `/take-course/${course.id}/${Videotitle}/?contId=${ContentID}`,
-      );
+
       router.push(urlpath);
     }
     setLoading(false);
@@ -217,6 +215,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
 
   const markAsCourseComplete = async () => {
     await axios.patch(`/analytics/course/${id}`, { progress: 100 });
+    window.clearInterval(tHandler);
   };
 
   const onSendProgress = async (contId: string) => {
@@ -234,6 +233,7 @@ const TakeCoursePage: React.FC<Props> = (props) => {
         setLastVideoEnd(true);
         setIsCourseCompleted(true);
         markAsCourseComplete();
+        console.log('complete');
       };
     }
     await sendContentProgress(contId, Math.floor(Number(progress)));

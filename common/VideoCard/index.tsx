@@ -58,7 +58,7 @@ const VideoCard: React.FC<Props> = ({ course, unBookMarkFunc }) => {
     if (user?.id) return router.push(`/video/${id}/${title}`);
     setOpenModal(true);
   };
-  console.log({ bookmark, bookMarked }, course.title);
+
   return (
     <>
       <Modal

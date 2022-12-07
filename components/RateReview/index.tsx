@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'helpers/axios';
 import Modal from 'common/Modal';
 import styles from './ratereview.module.scss';
@@ -82,6 +82,16 @@ const RateReview: React.FC<Props> = (props) => {
   const onNavigate = () => {
     if (view > 1) return setView(view - 1);
   };
+
+  // useEffect(() => {
+  //   const markAsCourseComplete = async () => {
+  //     await axios.patch(`/analytics/course/${props.courseId}`, {
+  //       progress: 100,
+  //     });
+  //   };
+  //   markAsCourseComplete();
+  // }, [props.courseId]);
+
   return (
     <div className={styles.rate_review}>
       <Modal
