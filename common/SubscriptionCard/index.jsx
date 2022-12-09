@@ -12,7 +12,7 @@ import useForm from 'hooks/useForm';
 import Input from 'common/Input';
 import axios from 'helpers/axios';
 import { toast } from 'react-toastify';
-import { initConfig, configureFW } from './function';
+import { initConfig, configureFW } from 'common/SubCard/function';
 
 const SubscriptionCard = (props) => {
   const fields = {

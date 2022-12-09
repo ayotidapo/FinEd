@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps =
     const searchQuery = query?.s || '';
     let courses = [];
     let totalCount = 0;
-    console.log(searchQuery, 987);
+
     if (userId) {
       return {
         redirect: {
@@ -65,7 +65,6 @@ export const getServerSideProps: GetServerSideProps =
       axios.defaults.headers.common['Authorization'] = `Bearer ${s_token}`;
 
       if (searchQuery) {
-        console.log('herew');
         const { data } = await axios.get(
           `/courses-user/search-courses?skip=${
             (page - 1) * 12
@@ -89,7 +88,6 @@ export const getServerSideProps: GetServerSideProps =
         courses = data.courses;
         totalCount = data.totalCount;
       } else {
-        console.log('here');
         const { data } = await axios.get(
           `/courses-user/noauth?skip=${(page - 1) * 12}&take=12`,
         );

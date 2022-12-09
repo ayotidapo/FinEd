@@ -45,7 +45,7 @@ const VerifyPaymentPage: React.FC = () => {
   const onContinue = () => {
     router.push(`/courses`);
   };
-  console.log(response);
+
   return (
     <Modal
       openModal={isOpen}
