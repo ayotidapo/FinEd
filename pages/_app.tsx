@@ -116,3 +116,86 @@ export default wrapper.withRedux(MyApp);
 // }
 
 // Reason for this getInitialProps and what is talked about useEffect in SR performance
+
+// <!DOCTYPE html>
+// <html>
+// <head>
+// <style>
+
+// .div{
+// margin: 200px auto;
+// position:relative; border:1px solid transparent; height:250px; width:250px;
+// display:flex;
+// flex-wrap:wrap;
+// justify-content: center;
+// align-items: center
+// }
+
+// div:hover p:nth-of-type(1){
+// left:100px;
+// top:-50px
+// }
+// div:hover p:nth-of-type(2){
+// left:-100px;
+// top:50px
+// }
+// div:hover p:nth-of-type(3){
+// left:-50px;
+// top:-100px
+// }
+// div:hover p:nth-of-type(4){
+// left:100px;
+// top:50px
+// }
+
+// p{
+//  width: 200px;
+//  height:200px;
+//  border: 1px solid black;
+//  position: absolute;
+//  left:0;
+//  top:0;
+//  transition: all .32s ease-out;
+// }
+
+// p:nth-of-type(1){
+// background: red;
+// z-index:1;
+// transform: rotate(20deg)
+
+// }
+// p:nth-of-type(2){
+// background: green;
+// z-index:2;
+// transform: rotate(40deg)
+
+// }
+// p:nth-of-type(3){
+// background: yellow;
+// z-index:3;
+// transform: rotate(60deg)
+
+// }
+// p:nth-of-type(4){
+// background: black;
+// z-index:4;
+
+// }
+
+// p:hover{
+// z-index: 10;
+// }
+
+// </style>
+// </head>
+// <body>
+
+// <div class="div">
+// <p></p>
+// <p></p>
+// <p></p>
+// <p></p>
+// <div>
+
+// </body>
+// </html>

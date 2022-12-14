@@ -72,8 +72,8 @@
     }
   }
   .subCardsWrapper{
-    max-width: 700px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     max-height: 90vh;
@@ -111,6 +111,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;  
+  max-width: 75%;
 }
 
 .activelnk{
@@ -142,6 +143,7 @@
       display: inline-block
     }
   }
+  
 }
 
 

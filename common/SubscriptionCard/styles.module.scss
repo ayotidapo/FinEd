@@ -94,80 +94,81 @@
 		  border: 1px solid #000;
 		}
 	}
-	&:hover{
-		background-color: #015351;
-	   color: #fff;
+		&:hover{
+			background-color: #015351;
+		color: #fff;
 
-		.p{
-			+ button{
-				margin-top: auto;
-				margin-bottom: 5px;
-				background: #C03E21;
-				color:#fff;
-				border: 1px solid transparent;
+			.p{
+				+ button{
+					margin-top: auto;
+					margin-bottom: 5px;
+					background: #C03E21;
+					color:#fff;
+					border: 1px solid transparent;
+				}
 			}
 		}
+    }
+	.hder{
+		width:100%;
+		margin: 0 auto;
+		text-align: center;
 	}
-  }
- .hder{
-	width:60%;
-	margin: 0 auto;
-	text-align: center;
- }
  
-  .enter_code_div{
-    min-width: 100%;  
-	width:80%;
+   .enter_code_div{
+		min-width: 100%;  
+		width:80%;
 	
-	.payplan_x{
-		
-		justify-content: center;
-		align-items: center;
-		:global(.title){
-			border-bottom: none;
-			padding: 20px;
-			font-size: var(--f-32);
-			+p{
-				font-size: 1.6rem;
-			}
-		}
-		.choosepay_x{
-			display: flex;
-			gap:35px;
-			margin:50px 0px;
-
+		.payplan_x{
+			
 			justify-content: center;
-			article{
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				width: 35%;
-				border: 1px solid #E5E5E5;
-                border-radius: 8px;
-				height: 262px;
-				padding: 0 12px;
-				text-align: center;
-				:global(.title){
-					font-size: var(--f-24);
+			align-items: center;
+			:global(.title){
+				border-bottom: none;
+				padding: 20px;
+				font-size: var(--f-32);
+				margin-bottom: 10px;
+				+p{
+					font-size: 1.6rem;
 				}
-				&:hover{
-					cursor: pointer;
-					color: #fff;
-					background: #015351;
+			}
+			.choosepay_x{
+				display: flex;
+				gap:35px;
+				margin:50px 0px;
+
+				justify-content: center;
+				article{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					width: 45%;
+					border: 1px solid #E5E5E5;
+					border-radius: 8px;
+					height: 262px;
+					padding: 0 12px;
+					text-align: center;
+					:global(.title){
+						font-size: var(--f-24);
+					}
+					&:hover{
+						cursor: pointer;
+						color: #fff;
+						background: #015351;
+					}
 				}
 			}
 		}
-	}
 	
 
-	form{
-		min-height: 135px;
-		
-	}
-  }
+		form{
+			min-height: 135px;
+			
+		}
+    }
   .inputWraper{
-	width: 60% !important;
+	width: 60%;
 	
   }
   .skip{
@@ -197,13 +198,104 @@
 
 }
 
-@media only screen and (max-width: 425px) {
+
+@media only screen and (max-width: 1024px) {
+	
+	.subzCard{
+		:global(.modalClass2){
+			width: 50%;
+		}
+	}
+}
+@media only screen and (max-width: 768px) {
+	
+	.subzCard{
+		:global(.modalClass2){
+			width: 70%;
+		}
+		:global(.modalClass){
+			width: 100%;
+		}
+		.enter_code_div{
+			.payplan_x{
+				:global(.title){
+				
+					display: block;
+	
+					+p{
+						font-size: var(--f-14);
+					}
+				}
+				.hder{
+					width: 100%;
+				}
+			}
+		}
+		
+		
+	}
+}
+
+
+
+@media only screen and (max-width: 470px) {
+	.subzCard{
+		:global(.modalClass2){
+			width: 100%;
+			height: auto;
+		}
+		:global(.modalClass){
+			width: 100%;
+			height: auto;
+		}
+		:global(.flx_jc_sb){
+			button{
+				width:10px
+			}
+		}
+		.enter_code_div{
+			.payplan_x{
+				:global(.title){				
+				
+						font-size: var(--f-20);
+					
+				}
+				.choosepay_x{
+					flex-direction: column;
+					margin: 0;
+					article{
+						width:100%
+					}
+				}
+			}
+		}
+		.inputWraper{
+			width: 100%;
+			
+		  }
+	}
 	.sub_card{
 		width: 100%;
+		
 		.p{
 			+ button {
 				font-size: 1.4rem;
 			}
 		}
+		
+	
+		
 	}
+}
+
+@media only screen and (max-width: 325px) {
+	.subzCard{
+		
+		:global(.flx_jc_sb){
+			flex-direction: column;
+			height: 120px;
+		}
+		
+	}
+	
 }

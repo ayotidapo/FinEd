@@ -22,7 +22,7 @@ const configureFW = (data) => {
   };
 };
 
-export const initConfig = {
+const initConfig = {
   public_key: process.env.FLUTTERWAVE_KEY,
   tx_ref: '',
   amount: 0,
