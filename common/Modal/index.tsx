@@ -32,14 +32,13 @@ const Modal: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (openModal) {
-      document.body.style.height = '100vh';
+      document.body.style.height = '100%';
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
-      document.body.style.height = 'auto';
     }
   }, [openModal]);
-
+  console.log(openModal);
   return (
     <div
       className={cx(styles.modal_wrapper, { [styles.open_wrapper]: openModal })}
