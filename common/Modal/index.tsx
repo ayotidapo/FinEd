@@ -38,7 +38,7 @@ const Modal: React.FC<Props> = (props) => {
       document.body.style.overflow = 'auto';
     }
   }, [openModal]);
-  console.log(openModal);
+
   return (
     <div
       className={cx(styles.modal_wrapper, { [styles.open_wrapper]: openModal })}

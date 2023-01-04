@@ -2,7 +2,6 @@
 
 :root {
   height: 100vh;
-  overflow: scroll;
   font-size: 10px;
   -webkit-font-smoothing: antialiased;
   color: var(--pri-col);
@@ -413,7 +412,7 @@ a {
   justify-content: center;
   padding-top: 150px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   .wrapper {
     display: flex;
     flex-direction: column;
