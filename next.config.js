@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['money-africa-media-staging.s3.amazonaws.com'],
+    domains: ['s3.amazonaws.com'],
   },
   env: {
     FLUTTERWAVE_KEY: process.env.FLUTTERWAVE_KEY,
