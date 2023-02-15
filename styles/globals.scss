@@ -2,6 +2,7 @@
 
 :root {
   height: 100vh;
+  overflow: scroll;
   font-size: 10px;
   -webkit-font-smoothing: antialiased;
   color: var(--pri-col);
@@ -269,7 +270,6 @@ a {
   background-color: var(--pg-bg-col);
   padding: 0px;
   padding-bottom: 0px;
-  overflow: scroll;
   max-width: 2500px;
   margin: 0 auto;
 }
