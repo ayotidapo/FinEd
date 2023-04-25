@@ -102,6 +102,7 @@ const VideosListPage: React.FC<Props> = (props) => {
     if (typeof window !== 'undefined') {
       setLoading(true);
     }
+
     getCategories();
   }, []);
 
